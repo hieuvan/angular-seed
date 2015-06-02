@@ -1,0 +1,30 @@
+#loginbox {
+  margin-top:50px;
+
+  .title {
+    color: #555;
+    margin-bottom: 30px;
+    text-align: center;
+
+    i { margin-right: 15px; }
+  }
+
+  .forgot-password {
+    float:right;
+    font-size: 80%;
+    position: relative;
+    top:-10px
+  }
+
+  .panel-body {
+    padding-top:30px;
+
+    .alert { display:none; }
+
+    form {
+      .input-group { margin-bottom: 25px; }
+      .form-group { margin-top: 10px; }
+    }
+  }
+}
+

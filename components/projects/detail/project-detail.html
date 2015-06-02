@@ -1,0 +1,61 @@
+<tabset class="col-md-6">
+  <tab heading="Tests">
+    <accordion close-others="true">
+      <div ng-hide="vm.tests.length">There are no tests.</div>
+
+      <accordion-group heading="{{test.name}}" ng-repeat="test in vm.tests">
+
+        <table class="table">
+          <thead>
+            <tr><th ng-repeat="title in vm.tables.tests">{{title}}</th></tr>
+          </thead>
+          <tbody>
+            <tr ng-repeat="form in test.forms">
+              <td>{{form.id}}</td>
+              <td><a href="/forms/show/form-1">{{form.name}}</a></td>
+              <td>{{form.date}}</td>
+              <td>{{form.user}}</td>
+              <td>{{form.user}}</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <a href="/tests/show/test-1" class="btn btn-default btn-sm btn-spaced">View all</a>
+      </accordion-group>
+    </accordion>
+  </tab>
+
+  <tab heading="Surveys">
+    This is surveys tab
+  </tab>
+
+  <tab heading="Exports">
+    This is exports tab
+  </tab>
+</tabset>
+
+<div class="col-md-6">
+  <div class="panel" ng-show="vm.exports.length">
+    <div class="panel-heading">
+      <h2 class="panel-title panel-title-large">Recent Exports</h2>
+    </div>
+    <div class="panel-body">
+      <table class="table exports">
+        <thead>
+          <tr><th ng-repeat="title in vm.tables.exports">test{{title}}</th></tr>
+        </thead>
+        <tbody>
+          <tr ng-repeat="export in vm.exports">
+            <td>{{export.date}}</td>
+            <td>{{export.name}}</td>
+            <td><span class="ellipsis">{{export.user}}</span></td>
+            <td>{{export.note}}</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <a href="exports.html" class="btn btn-default">View all</a>
+    </div>
+  </div>
+</div>
+

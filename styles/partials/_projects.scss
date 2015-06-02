@@ -1,0 +1,17 @@
+.panel.project {
+  padding: 10px;
+
+  .project-thumb {
+    border-radius: 5px;
+    color: white;
+    font-weight: bold;
+    font-size: 24px;
+    background: #6ea061;
+    text-shadow: 0 -1px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 1px rgba(0, 0, 0, 0.2);
+    width: 60px;
+    line-height: 60px;
+    text-align: center;
+    margin-right: 10px;
+  }
+}

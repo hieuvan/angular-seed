@@ -1,0 +1,20 @@
+header {
+  &.navbar { margin-bottom: 0; }
+
+  &.navbar-static-top { border: none; }
+
+  .navbar-header {
+    margin-top: 15px;
+    padding-right: 15px;
+  }
+
+  span.pull-right {
+    display: block;
+    margin-top: 15px;
+  }
+}
+
+.breadcrumb {
+  margin-bottom: 0;
+  margin-top: 7px;
+}
