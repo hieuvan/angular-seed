@@ -54,7 +54,8 @@ define(function(require) {
     };
 
     var authorizedUser = function(user) {
-      return user && !_.isEqual(user.get('email'), 'guest');
+      //return user && !_.isEqual(user.get('email'), 'guest');
+      return true;
     };
 
     return {
