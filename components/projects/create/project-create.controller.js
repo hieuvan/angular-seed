@@ -1,7 +1,7 @@
 'use strict';
 
 define(function(require) {
-  return ['ProjectsService', function(ProjectsService) {
+  return ['ProjectsService', '$state', function(ProjectsService, $state) {
     var vm = this;
 
     vm.projectName = 'some project';
@@ -14,8 +14,13 @@ define(function(require) {
       };
 
       ProjectsService.createProject(formdata).then(function(project) {
-        console.log(project);
+        if (_.isObject(project)) {
+          var id = project.id;
+          $state.go('projects.detail', {id: project.id});
+        } else {
+          // TODO: show error message
+        }
       });
-    };
+    };:
   }];
 });
