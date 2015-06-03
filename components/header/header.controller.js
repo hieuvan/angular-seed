@@ -4,7 +4,7 @@ define(function(require) {
   return ['AuthService', function(AuthService) {
     var vm = this;
 
-    vm.user = AuthService.getUser().get('name');
+    vm.authUserFullName = AuthService.getUser().get('name');
     vm.buildVersion = '3.4.5';
     vm.buildDate = "23/5/12";
     //vm.username = "Matt";

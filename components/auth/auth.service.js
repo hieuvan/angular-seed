@@ -30,7 +30,7 @@ define(function(require) {
 
     var handleLoginSuccess = function(user) {
       if (_.isObject(user)) {
-        currentUser = User({
+        currentUser = new User({
           email: user.data.email,
           family_name: user.data.family_name,
           given_name: user.data.given_name,
