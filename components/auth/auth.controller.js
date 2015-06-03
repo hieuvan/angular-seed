@@ -6,6 +6,7 @@ define(function(require) {
     var vm = this;
 
     vm.loggedOut = $stateParams.loggedout;
+    vm.loginError = false;
 
     vm.login = function() {
       var formdata = {
@@ -15,10 +16,11 @@ define(function(require) {
 
       AuthService.authenticate(formdata).then(function(response) {
         if (response) {
+          vm.loginError = false;
           AuthService.login(response);
           $state.go('projects.list');
         } else {
-          //console.log(response);
+          vm.loginError = true;
         }
       });
     };
