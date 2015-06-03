@@ -29,16 +29,19 @@ define(function(require) {
     };
 
     var handleLoginSuccess = function(user) {
-    console.log(user);
-      return new User({
-        email: user.email,
-        family_name: user.family_name,
-        given_name: user.given_name,
-        name: user.name
-      });
+      if (_.isObject(user)) {
+        currentUser = User({
+          email: user.data.email,
+          family_name: user.data.family_name,
+          given_name: user.data.given_name,
+          name: user.data.name
+        });
+        return currentUser;
+      }
+      return false;
     };
 
-     var handleLoginFailure = function() {
+    var handleLoginFailure = function() {
         // handle error
     };
 
@@ -54,7 +57,7 @@ define(function(require) {
     };
 
     var authorizedUser = function(user) {
-      //return user && !_.isEqual(user.get('email'), 'guest');
+      return user && !_.isEqual(user.get('email'), 'guest');
       return true;
     };
 

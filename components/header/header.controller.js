@@ -1,12 +1,13 @@
 'use strict';
 
 define(function(require) {
-  return [function() {
+  return ['AuthService', function(AuthService) {
     var vm = this;
 
+    vm.user = AuthService.getUser().get('name');
     vm.buildVersion = '3.4.5';
     vm.buildDate = "23/5/12";
-    vm.username = "Matt";
+    //vm.username = "Matt";
 
     vm.breadcrumbTemplate = 'test';
 

@@ -14,11 +14,11 @@ define(function(require) {
       };
 
       AuthService.authenticate(formdata).then(function(response) {
-        if (response.success) {
-          AuthService.login(response.user);
+        if (response) {
+          AuthService.login(response);
           $state.go('projects.list');
         } else {
-          console.log(response);
+          //console.log(response);
         }
       });
     };
