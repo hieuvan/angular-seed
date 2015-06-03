@@ -21,6 +21,6 @@ define(function(require) {
           // TODO: show error message
         }
       });
-    };
+    };:
   }];
 });
