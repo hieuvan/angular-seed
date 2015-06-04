@@ -7,12 +7,9 @@ define(function(require) {
 
     vm.loggedOut = $stateParams.loggedout;
 
-    vm.username = 'subash.adhikari@acer.edu.au';
-    vm.password = 'Evildead2';
-
     vm.login = function() {
       var formdata = {
-        email: vm.username,
+        username: vm.username,
         password: vm.password
       };
 
