@@ -17,6 +17,7 @@ define(function(require) {
 
   var AppRunner = require('app.runner'),
       constant = require('shared/constants/constant'),
+      Routes = require('app.routes.js'),
       HttpConfigProvider = require('shared/providers/http-config.provider'),
       HttpService = require('shared/services/http.service'),
       TitleDirective = require('shared/directives/title.directive');
@@ -37,13 +38,14 @@ define(function(require) {
 
   .constant('constant', constant)
 
-  .config(['$urlRouterProvider', '$httpProvider', 'constant',
-    function($urlRouterProvider, $httpProvider, constant) {
-      $urlRouterProvider.otherwise(constant.defaultUrl);
+  .config(['$httpProvider', 'constant',
+    function($httpProvider, constant) {
 
       $httpProvider.interceptors.push('HttpConfigProvider');
       $httpProvider.defaults.withCredentials = true;
   }])
+
+  .config(Routes)
 
   .service('HttpService', HttpService)
 

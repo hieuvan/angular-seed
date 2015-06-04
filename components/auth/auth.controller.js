@@ -6,7 +6,9 @@ define(function(require) {
     var vm = this;
 
     vm.loggedOut = $stateParams.loggedout;
-    vm.loginError = false;
+
+    vm.username = 'subash.adhikari@acer.edu.au';
+    vm.password = 'Evildead2';
 
     vm.login = function() {
       var formdata = {
@@ -14,14 +16,13 @@ define(function(require) {
         password: vm.password
       };
 
-      AuthService.authenticate(formdata).then(function(response) {
-        if (response) {
+      AuthService.login(formdata).then(function(response) {
+        console.log(response);
           vm.loginError = false;
-          AuthService.login(response);
           $state.go('projects.list');
-        } else {
-          vm.loginError = true;
-        }
+      }, function(error) {
+        vm.loginError = true;
+        vm.error = error.message;
       });
     };
 

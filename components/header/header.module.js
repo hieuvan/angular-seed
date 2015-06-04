@@ -10,6 +10,10 @@ define(function(require) {
 
   return angular.module('app.header', ['angularUtils.directives.uiBreadcrumbs'])
 
+  .config(['$stateProvider', function($stateProvider) {
+
+  }])
+
   .controller('HeaderController', HeaderController);
 
 });

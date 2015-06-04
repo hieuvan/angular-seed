@@ -6,7 +6,7 @@
 
     <alert ng-show="vm.loggedOut" type="success" close="vm.close()">You have been successfully logged out!</alert>
 
-    <alert ng-show="vm.loginError" type="danger">Can not log in. Invalid credentials!</alert>
+    <alert ng-show="vm.loginError" type="danger">{{vm.error}}</alert>
 
     <div class="panel panel-default">
 

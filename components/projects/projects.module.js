@@ -6,12 +6,9 @@ define(function(require) {
   var ProjectsController = require('components/projects/list/projects.controller'),
       ProjectController = require('components/projects/detail/project.controller'),
       ProjectCreateController = require('components/projects/create/project-create.controller'),
-      ProjectsService = require('components/projects/projects.service'),
-      RouteConfig = require('components/projects/route.config');
+      ProjectsService = require('components/projects/projects.service');
 
   return angular.module('app.projects', [])
-
-  .config(RouteConfig)
 
   .service('ProjectsService', ProjectsService)
 

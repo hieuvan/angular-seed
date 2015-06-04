@@ -23,11 +23,11 @@
     <![endif]-->
 
     <div class="pageAni page-animation animated angular-app-container">
-      <ng-include ng-hide="$state.includes('login')" src="'components/header/header.html'"></ng-include>
+      <div ui-view="header"></div>
 
-      <div class="container-fluid" ui-view></div>
+      <div class="container-fluid" ui-view="content"></div>
 
-      <ng-include ng-hide="$state.includes('login')" src="'components/footer/footer.html'"></ng-include>
+      <div ui-view="footer"></div>
     </div>
 
     <!-- build:js(.) scripts/vendor.js -->
