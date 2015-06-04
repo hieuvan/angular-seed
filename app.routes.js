@@ -27,10 +27,12 @@ define(function(require) {
       url: '',
       views: {
         'header': {
-          templateUrl: 'components/header/header.html'
+          templateUrl: 'components/header/header.html',
+          controller: 'HeaderController as vm'
         },
         'footer': {
-          templateUrl: 'components/footer/footer.html'
+          templateUrl: 'components/footer/footer.html',
+          controller: 'FooterController as vm'
         }
       },
       data: {
