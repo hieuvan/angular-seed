@@ -3,10 +3,8 @@
 define(function(require) {
   return ['AuthService', function(AuthService) {
     var vm = this;
-    //console.log(AuthService.getUser());
-    // AuthService.getUser().then(function(user) {
-    //   vm.authUserFullName = user.get('name');
-    // });
+
+    vm.authUserFullName = AuthService.getUser().get('name');
 
     vm.buildVersion = '3.4.5';
     vm.buildDate = "23/5/12";

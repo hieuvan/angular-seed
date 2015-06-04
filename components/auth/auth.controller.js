@@ -16,8 +16,7 @@ define(function(require) {
         password: vm.password
       };
 
-      AuthService.login(formdata).then(function(response) {
-        console.log(response);
+      AuthService.login(formdata).then(function(user) {
           vm.loginError = false;
           $state.go('root.projects.list');
       }, function(error) {

@@ -1,60 +1,82 @@
 'use strict';
 
 define(function(require) {
-  var GuestUser = require('shared/libs/user/guest-user-model'),
-      User = require('shared/libs/user/user-model');
+  var User = require('shared/libs/user/user-model');
 
   return ['$cookieStore', 'HttpService', '$q', function($cookies, HttpService, $q) {
-    var currentUser;
+    var user, tokenName = '_token';
 
     var login = function(formdata) {
-      var deferred = $q.defer();
+      return HttpService.post('login', formdata)
+        .then(function(response) {
+          var token = response.data;
 
-      HttpService.post('login', formdata).then(function(user) {
-        user = new User({
-          email: user.data.email,
-          family_name: user.data.family_name,
-          given_name: user.data.given_name,
-          name: user.data.name
+          setToken(token);
+
+          return getUser();
         });
-
-        $cookies.put('user', user.get());
-        deferred.resolve(user);
-      });
-
-      var $promise = deferred.promise;
-
-      currentUser = $promise;
-
-      return $promise;
     };
 
     var logout = function() {
-      $cookies.remove('user');
-      currentUser = new GuestUser;
-    };
-
-    var isLoggedIn = function() {
-      var userData = $cookies.get('user');
-      currentUser = userData ? new User(userData) : new GuestUser;
-
-      return authorizedUser(currentUser);
+      removeToken();
+      user = null;
     };
 
     var getUser = function() {
-      return currentUser;
+      var payload = getPayload();
+
+      return new User({
+        id: payload.id,
+        name: payload.name
+      });
     };
 
-    var authorizedUser = function(user) {
-      return user && !_.isEqual(user.get('email'), 'guest');
-      return true;
+    var isAuthenticated = function() {
+      if (!getToken()) return false;
+
+      var payload = getPayload();
+
+      if (!payload) return false;
+
+      return isTokenExpired(payload.exp);
+    };
+
+    var isTokenExpired = function(exp) {
+      if (!exp) return true; // no expiry is set in the token
+
+      return Math.round(new Date().getTime() / 1000) <= exp;
+    };
+
+    var setToken = function(token) {
+      $cookies.put(tokenName, token);
+    };
+
+    var removeToken = function() {
+      $cookies.remove(tokenName);
+    };
+
+    var getToken = function() {
+      return $cookies.get(tokenName);
+    };
+
+    var getPayload = function(token) {
+      token = token || getToken();
+
+      if (token && token.split('.').length === 3) {
+        var base64Url = token.split('.')[1];
+        var base64 = base64Url.replace('-', '+').replace('_', '/');
+
+        return JSON.parse(decodeURIComponent(escape(window.atob(base64))));
+      }
+
+      return false;
     };
 
     return {
       getUser: getUser,
       login: login,
       logout: logout,
-      isLoggedIn: isLoggedIn
+      isAuthenticated: isAuthenticated
     };
   }];
 });

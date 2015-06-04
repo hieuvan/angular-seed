@@ -11,12 +11,12 @@ define(function(require) {
     $rootScope.currentState;
 
     $rootScope.$on('$stateChangeStart', function (e, toState) {
-      if (toState.data.requireLogin && !AuthService.isLoggedIn()) {
+      if (toState.data.requireLogin && !AuthService.isAuthenticated()) {
         e.preventDefault();
         $state.go('login');
       }
 
-      if (toState.name == 'login' && AuthService.isLoggedIn()) {
+      if (toState.name == 'login' && AuthService.isAuthenticated()) {
         e.preventDefault();
         $state.go('root.projects.list');
       }
