@@ -8,7 +8,8 @@ define(function(require) {
 
     this.loginUrl = 'login';
 
-    this.$get = ['$cookieStore', 'HttpService', '$q', function($cookies, HttpService, $q) {
+    this.$get = ['$cookieStore', 'HttpService', '$q', '$jwt',
+    function($cookies, HttpService, $q, $jwt) {
 
       var tokenName = '_token';
 
@@ -45,7 +46,7 @@ define(function(require) {
        * @return false || UserModel
        */
       var getUser = function() {
-        var payload = getPayload();
+        var payload = $jwt.getPayload(getToken());
 
         if (!payload) return false;
 
@@ -62,27 +63,12 @@ define(function(require) {
        * @return boolean
        */
       var isAuthenticated = function() {
-        if (!getToken()) return false;
+        var token = getToken();
 
-        var payload = getPayload();
+        if (!token) return false;
 
-        if (!payload) return false;
+        if($jwt.isTokenExpired(token)) return true;
 
-        return isTokenExpired(payload.exp);
-      };
-
-      /**
-       * Check if token is expired
-       * if expired also delete it
-       *
-       * @return boolean
-       */
-      var isTokenExpired = function(exp) {
-        if (!exp) return true; // no expiry is set in the token
-
-        if (Math.round(new Date().getTime() / 1000) <= exp) return true;
-
-        // if token expired, remove it
         removeToken();
         return false;
       };
@@ -110,26 +96,6 @@ define(function(require) {
        */
       var getToken = function() {
         return $cookies.get(tokenName);
-      };
-
-      /**
-       * Decode the token and get the Json object associated to it
-       * If not token provided will get the token from cookie
-       *
-       * @param string token Optional.
-       * @return string || boolean Token or false
-       */
-      var getPayload = function(token) {
-        token = token || getToken();
-
-        if (token && token.split('.').length === 3) {
-          var base64Url = token.split('.')[1];
-          var base64 = base64Url.replace('-', '+').replace('_', '/');
-
-          return JSON.parse(decodeURIComponent(escape(window.atob(base64))));
-        }
-
-        return false;
       };
 
       // public methods
