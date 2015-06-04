@@ -1,8 +1,8 @@
 'use strict';
 
 define(function(require) {
-  return ['AuthService', '$state', '$stateParams', '$scope',
-  function(AuthService, $state, $stateParams, $scope) {
+  return ['$auth', '$state', '$stateParams', '$scope',
+  function($auth, $state, $stateParams, $scope) {
     var vm = this;
 
     vm.loggedOut = $stateParams.loggedout;
@@ -16,7 +16,7 @@ define(function(require) {
         password: vm.password
       };
 
-      AuthService.login(formdata).then(function(user) {
+      $auth.login(formdata).then(function(user) {
           vm.loginError = false;
           $state.go('root.projects.list');
       }, function(error) {
@@ -30,7 +30,7 @@ define(function(require) {
     };
 
     vm.logout = function() {
-      AuthService.logout();
+      $auth.logout();
       $state.go('login', {loggedout: true});
     };
   }];

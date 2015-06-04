@@ -7,6 +7,7 @@ define(function(require) {
   require('angular-ui-bootstrap-bower');
   require('angular-ui-bootstrap-tpls-bower');
   require('angular-debounce');
+  require('angular-cookies');
 
   // app components
   require('components/header/header.module');
@@ -18,12 +19,14 @@ define(function(require) {
   var AppRunner = require('app.runner'),
       constant = require('shared/constants/constant'),
       Routes = require('app.routes.js'),
+      AuthProvider = require('shared/providers/auth.provider'),
       HttpConfigProvider = require('shared/providers/http-config.provider'),
       HttpService = require('shared/services/http.service'),
       TitleDirective = require('shared/directives/title.directive');
 
   // app level module that depends on app view and components
   return angular.module('app', [
+    'ngCookies',
     'ui.router',
     'ui.bootstrap',
     'app.header',
@@ -38,8 +41,10 @@ define(function(require) {
 
   .constant('constant', constant)
 
-  .config(['$httpProvider', 'constant',
-    function($httpProvider, constant) {
+  .config(['$httpProvider', 'constant', '$authProvider',
+    function($httpProvider, constant, $authProvider) {
+
+      $authProvider.loginUrl = 'login';
 
       $httpProvider.interceptors.push('HttpConfigProvider');
       $httpProvider.defaults.withCredentials = true;
@@ -50,6 +55,8 @@ define(function(require) {
   .service('HttpService', HttpService)
 
   .provider('HttpConfigProvider', HttpConfigProvider)
+
+  .provider('$auth', AuthProvider)
 
   .directive('title', TitleDirective)
 

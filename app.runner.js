@@ -1,8 +1,8 @@
 'use strict';
 
 define(function(require) {
-  return ['$rootScope', '$state', '$stateParams', 'AuthService',
-  function($rootScope, $state, $stateParams, AuthService) {
+  return ['$rootScope', '$state', '$stateParams', '$auth',
+  function($rootScope, $state, $stateParams, $auth) {
 
     $rootScope.$state = $state;
     $rootScope.$stateParams = $stateParams;
@@ -11,12 +11,12 @@ define(function(require) {
     $rootScope.currentState;
 
     $rootScope.$on('$stateChangeStart', function (e, toState) {
-      if (toState.data.requireLogin && !AuthService.isAuthenticated()) {
+      if (toState.data.requireLogin && !$auth.isAuthenticated()) {
         e.preventDefault();
         $state.go('login');
       }
 
-      if (toState.name == 'login' && AuthService.isAuthenticated()) {
+      if (toState.name == 'login' && $auth.isAuthenticated()) {
         e.preventDefault();
         $state.go('root.projects.list');
       }

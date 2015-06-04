@@ -1,10 +1,10 @@
 'use strict';
 
 define(function(require) {
-  return ['AuthService', function(AuthService) {
+  return ['$auth', function($auth) {
     var vm = this;
 
-    vm.authUserFullName = AuthService.getUser().get('name');
+    vm.authUserFullName = $auth.getUser().get('name');
 
     vm.buildVersion = '3.4.5';
     vm.buildDate = "23/5/12";
