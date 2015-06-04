@@ -1,8 +1,25 @@
 'use strict';
 
 define(function(require) {
-  return ['$stateProvider', function($stateProvider) {
+  return ['$stateProvider', '$urlRouterProvider', 'constant',
+  function($stateProvider, $urlRouterProvider, constant) {
     var states = [];
+
+    states.push({
+      name: 'login',
+      url: '/login',
+      views: {
+        'content@': {
+          templateUrl: 'components/auth/login.html',
+          controller: 'AuthController as vm',
+        }
+      },
+      params: { loggedout: false },
+      data: {
+        requireLogin: false,
+        displayName: 'Login'
+      }
+    });
 
     states.push({
       name: 'root',
@@ -17,21 +34,21 @@ define(function(require) {
         }
       },
       data: {
-        proxy: 'root.home',
         requireLogin: true
       }
     });
 
     states.push({
-      name: 'root.home',
-      url: '/',
+      name: 'root.logout',
+      url: '/logout',
       views: {
         'content@': {
-          template: 'this is home'
+          templateUrl: 'components/auth/logout.html',
+          controller: 'AuthController as vm'
         }
       },
       data: {
-        displayName: 'Home'
+        displayName: 'Logout'
       }
     });
 
@@ -42,9 +59,6 @@ define(function(require) {
       views: {
         'content@': {
           templateUrl: 'components/projects/projects.html'
-        },
-        'head': {
-          templateUrl: 'components/projects/list/projects-heading.html'
         }
       },
       data: {
@@ -73,6 +87,9 @@ define(function(require) {
         'body': {
           templateUrl: 'components/projects/list/projects-list.html',
           controller: 'ProjectsController as vm',
+        },
+        'head': {
+          templateUrl: 'components/projects/list/projects-heading.html'
         }
       },
       data: {
@@ -106,7 +123,6 @@ define(function(require) {
         }
       },
       data: {
-        displayName: 'Users',
         proxy: 'root.users.list'
       }
     });
@@ -120,7 +136,7 @@ define(function(require) {
         }
       },
       data: {
-        displayName: 'Manage users'
+        displayName: 'Users'
       }
     });
 
@@ -139,7 +155,7 @@ define(function(require) {
       }
     });
 
-    //$urlRouterProvider.otherwise(constant.defaultUrl);
+    $urlRouterProvider.otherwise(constant.defaultUrl);
 
     angular.forEach(states, function(state) {
       $stateProvider.state(state);

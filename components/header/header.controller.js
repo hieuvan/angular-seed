@@ -15,11 +15,11 @@ define(function(require) {
     vm.breadcrumbTemplate = 'test';
 
     vm.menuItems = [
-      { name: 'Profile', state: "profile" },
-      { name: 'Admin', state: "profile" },
-      { name: 'Help', state: "profile" },
+      { name: 'Profile', state: "root.profile" },
+      { name: 'Admin', state: "root.profile" },
+      { name: 'Help', state: "root.profile" },
       { divider: true , state: false },
-      { name: 'logout', state: "logout" }
+      { name: 'logout', state: "root.logout" }
     ];
   }];
 });

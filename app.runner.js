@@ -18,12 +18,12 @@ define(function(require) {
 
       if (toState.name == 'login' && AuthService.isLoggedIn()) {
         e.preventDefault();
-        $state.go('projects.list');
+        $state.go('root.projects.list');
       }
     });
 
     $rootScope.$on('$stateChangeSuccess', function(ev, to, toParams, from, fromParams) {
-      $rootScope.previousState = from.name || 'projects.list';
+      $rootScope.previousState = from.name || 'root.projects.list';
       $rootScope.currentState = to.name;
     });
 

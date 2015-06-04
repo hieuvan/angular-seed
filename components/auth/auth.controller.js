@@ -19,7 +19,7 @@ define(function(require) {
       AuthService.login(formdata).then(function(response) {
         console.log(response);
           vm.loginError = false;
-          $state.go('projects.list');
+          $state.go('root.projects.list');
       }, function(error) {
         vm.loginError = true;
         vm.error = error.message;
