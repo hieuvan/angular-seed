@@ -7,9 +7,6 @@ define(function(require) {
 
     vm.loggedOut = $stateParams.loggedout;
 
-    vm.username = 'subash.adhikari@acer.edu.au';
-    vm.password = 'Evildead2';
-
     vm.login = function() {
       var formdata = {
         username: vm.username,
@@ -17,8 +14,8 @@ define(function(require) {
       };
 
       $auth.login(formdata).then(function(user) {
-          vm.loginError = false;
-          $state.go('root.projects.list');
+        vm.loginError = false;
+        $state.go('root.projects.list');
       }, function(error) {
         vm.loginError = true;
         vm.error = error.message;
