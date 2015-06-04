@@ -11,5 +11,4 @@ define(function(require) {
   return angular.module('app.header', ['angularUtils.directives.uiBreadcrumbs'])
 
   .controller('HeaderController', HeaderController);
-
 });

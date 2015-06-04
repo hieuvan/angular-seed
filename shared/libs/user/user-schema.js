@@ -7,6 +7,7 @@ define(function(require) {
     { key: 'email', type: 'string' },
     { key: 'family_name', type: 'string' },
     { key: 'given_name', type: 'string' },
+    { key: 'id', type: 'int' },
     { key: 'name', type: 'string' }
   ];
 

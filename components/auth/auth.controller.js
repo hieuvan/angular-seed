@@ -1,12 +1,14 @@
 'use strict';
 
 define(function(require) {
-  return ['AuthService', '$state', '$stateParams', '$scope',
-  function(AuthService, $state, $stateParams, $scope) {
+  return ['$auth', '$state', '$stateParams', '$scope',
+  function($auth, $state, $stateParams, $scope) {
     var vm = this;
 
     vm.loggedOut = $stateParams.loggedout;
-    vm.loginError = false;
+
+    vm.username = 'subash.adhikari@acer.edu.au';
+    vm.password = 'Evildead2';
 
     vm.login = function() {
       var formdata = {
@@ -14,14 +16,12 @@ define(function(require) {
         password: vm.password
       };
 
-      AuthService.authenticate(formdata).then(function(response) {
-        if (response) {
+      $auth.login(formdata).then(function(user) {
           vm.loginError = false;
-          AuthService.login(response);
-          $state.go('projects.list');
-        } else {
-          vm.loginError = true;
-        }
+          $state.go('root.projects.list');
+      }, function(error) {
+        vm.loginError = true;
+        vm.error = error.message;
       });
     };
 
@@ -30,7 +30,7 @@ define(function(require) {
     };
 
     vm.logout = function() {
-      AuthService.logout();
+      $auth.logout();
       $state.go('login', {loggedout: true});
     };
   }];

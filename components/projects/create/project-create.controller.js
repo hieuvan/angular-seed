@@ -16,7 +16,7 @@ define(function(require) {
       ProjectsService.createProject(formdata).then(function(project) {
         if (_.isObject(project)) {
           var id = project.id;
-          $state.go('projects.detail', {id: project.id});
+          $state.go('root.projects.detail', {id: project.id});
         } else {
           // TODO: show error message
         }
