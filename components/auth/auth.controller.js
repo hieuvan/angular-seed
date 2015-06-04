@@ -10,7 +10,7 @@ define(function(require) {
 
     vm.login = function() {
       var formdata = {
-        email: vm.username,
+        username: vm.username,
         password: vm.password
       };
 

@@ -31,6 +31,7 @@ define(function(require) {
     var handleLoginSuccess = function(user) {
       if (_.isObject(user)) {
         currentUser = new User({
+          username: user.data.username,
           email: user.data.email,
           family_name: user.data.family_name,
           given_name: user.data.given_name,
@@ -57,7 +58,7 @@ define(function(require) {
     };
 
     var authorizedUser = function(user) {
-      return user && !_.isEqual(user.get('email'), 'guest');
+      return user && !_.isEqual(user.get('username'), 'guest');
       return true;
     };
 

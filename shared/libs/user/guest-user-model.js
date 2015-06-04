@@ -5,7 +5,8 @@ define(function(require) {
 
   var GuestUserModel = function() {
     UserModel.call(this, {
-      email: 'guest',
+      username: 'guest',
+      email: '',
       family_name: '',
       given_name: '',
       name: ''
