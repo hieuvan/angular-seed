@@ -53,7 +53,7 @@ define(function(require) {
         displayName: 'Logout'
       }
     });
-
+    // projects
     states.push({
       name: 'root.projects',
       url: '/projects',
@@ -88,7 +88,7 @@ define(function(require) {
       views: {
         'body': {
           templateUrl: 'components/projects/list/projects-list.html',
-          controller: 'ProjectsController as vm',
+          controller: 'ProjectsController as vm'
         },
         'head': {
           templateUrl: 'components/projects/list/projects-heading.html'
@@ -114,7 +114,7 @@ define(function(require) {
         }
       }
     });
-
+    // users
     states.push({
       name: 'root.users',
       url: '/users',
@@ -133,8 +133,12 @@ define(function(require) {
       name: 'root.users.list',
       url: '',
       views: {
-        'content@': {
-          templateUrl: 'components/users/partials/users-list.html',
+        'body': {
+          templateUrl: 'components/users/list/users-list.html',
+          controller: 'UsersController as vm'
+        },
+        'head': {
+          templateUrl: 'components/users/list/users-heading.html'
         }
       },
       data: {
@@ -144,15 +148,16 @@ define(function(require) {
 
     states.push({
       name: 'root.users.detail',
-      url: '/:userid',
-      resolve: {
-        userid: function($stateParams) {
-          return $stateParams.userid;
-        }
-      },
+      url: '/{id:int}',
       views : {
         'body' : {
-          templateUrl: 'components/users/partials/users-detail.html'
+          controller: 'UserController as vm',
+          templateUrl: 'components/users/detail/user-detail.html',
+          resolve: {
+            project: ['$stateParams', 'UsersService', function($stateParams, UsersService) {
+              return UsersService.getUser($stateParams.id);
+            }]
+          }
         }
       }
     });

@@ -1,0 +1,11 @@
+<ul id="user-list" class="list-unstyled">
+  <li class="user panel panel-default clearfix" ng-repeat="user in vm.users">
+    <div class="user-thumb pull-left scaled-square ">
+      <div class="scaled-square-content"> {{user.id}} </div>
+    </div>
+    <h2 class="user-title pull-left">
+      <a href ui-sref="root.users.detail({ id: user.id })">{{user.name}}</a>
+    </h2>
+  </li>
+</ul>
+
