@@ -20,6 +20,7 @@ define(function(require) {
       constant = require('shared/constants/constant'),
       Routes = require('app.routes.js'),
       AuthProvider = require('shared/providers/auth.provider'),
+      Jwt = require('shared/providers/jwt.provider'),
       HttpConfigProvider = require('shared/providers/http-config.provider'),
       HttpService = require('shared/services/http.service'),
       TitleDirective = require('shared/directives/title.directive');
@@ -55,7 +56,7 @@ define(function(require) {
   .service('HttpService', HttpService)
 
   .provider('HttpConfigProvider', HttpConfigProvider)
-
+  .provider('$jwt', Jwt)
   .provider('$auth', AuthProvider)
 
   .directive('title', TitleDirective)
