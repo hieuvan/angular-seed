@@ -130,6 +130,20 @@ define(function(require) {
     });
 
     states.push({
+      name: 'root.users.create',
+      url: '/create',
+      views: {
+        'body' : {
+          templateUrl: 'components/users/create/user-create.html',
+          controller: 'UserCreateController as vm'
+        }
+      },
+      data: {
+        displayName: 'Create User'
+      }
+    });
+
+    states.push({
       name: 'root.users.list',
       url: '',
       views: {

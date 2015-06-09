@@ -1,0 +1,32 @@
+<form novalidate>
+  <div class="form-group">
+    <label for="given-name">Given Name</label>
+    <input
+      type="text"
+      class="form-control"
+      id="given-name"
+      placeholder="Enter Given Name"
+      ng-model="vm.givenName">
+  </div>
+  <div class="form-group">
+    <label for="family-name">Family Name</label>
+    <input
+      type="text"
+      class="form-control"
+      id="family-name"
+      placeholder="Enter Family Name"
+      ng-model="vm.familyName">
+  </div>
+  <div class="form-group">
+    <label for="email">Email</label>
+    <input
+      type="text"
+      class="form-control"
+      id="email"
+      placeholder="Enter ACER Email"
+      ng-model="vm.email">
+  </div>
+
+  <button type="submit" class="btn btn-primary" ng-click="vm.createUser()">Create User</button>
+  <button type="submit" class="btn btn-primary" ui-sref="root.users.list">Cancel</button>
+</form>
