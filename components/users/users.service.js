@@ -16,9 +16,7 @@ define(function(require) {
     };
 
     var createUser = function(data) {
-      return HttpService.post('users', data).then(function(user) {
-        return user.data;
-      });
+      return HttpService.post('users', data)
     };
 
     return {
