@@ -168,7 +168,7 @@ define(function(require) {
           controller: 'UserController as vm',
           templateUrl: 'components/users/detail/user-detail.html',
           resolve: {
-            project: ['$stateParams', 'UsersService', function($stateParams, UsersService) {
+            user: ['$stateParams', 'UsersService', function($stateParams, UsersService) {
               return UsersService.getUser($stateParams.id);
             }]
           }
