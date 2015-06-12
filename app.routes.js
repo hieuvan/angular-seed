@@ -11,7 +11,7 @@ define(function(require) {
       views: {
         'content@': {
           templateUrl: 'components/auth/login.html',
-          controller: 'AuthController as vm',
+          controller: 'AuthController as vm'
         }
       },
       params: { loggedout: false },
