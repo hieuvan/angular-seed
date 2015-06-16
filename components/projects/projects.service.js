@@ -10,7 +10,7 @@ define(function(require) {
     };
 
     var getProject = function(id) {
-      return HttpService.get('projects' + '/' + id).then(function(project) {
+      return HttpService.get('projects' + '/' + id, {'include[]': ['tests']}).then(function(project) {
         return project.data;
       });
     };
@@ -21,10 +21,24 @@ define(function(require) {
       });
     };
 
+    var addUserToProject = function(id, data) {
+      return HttpService.post('projects' + '/' + id + '/' + 'users', data).then(function() {
+
+      });
+    };
+
+    var getProjectUsers = function(id) {
+      return HttpService.get('projects' + '/' + id + '/' + 'users').then(function(project) {
+        return project.data;
+      });
+    };
+
     return {
       getProjects: getProjects,
       getProject: getProject,
-      createProject: createProject
+      createProject: createProject,
+      addUserToProject: addUserToProject,
+      getProjectUsers: getProjectUsers
     };
   }];
 });

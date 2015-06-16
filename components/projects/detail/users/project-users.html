@@ -1,0 +1,10 @@
+<div ng-hide="vm.users.length">There are no users.</div>
+<table class="table">
+  <tbody>
+    <tr ng-repeat="user in vm.users">
+      <td>{{user.family_name}}</td>
+      <td>{{user.given_name}}</td>
+      <td>{{user.email}}</td>
+    </tr>
+  </tbody>
+</table>

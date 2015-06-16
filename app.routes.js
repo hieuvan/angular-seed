@@ -114,6 +114,7 @@ define(function(require) {
         }
       }
     });
+
     // users
     states.push({
       name: 'root.users',
