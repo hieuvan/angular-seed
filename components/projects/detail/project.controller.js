@@ -15,7 +15,9 @@ define(function(require) {
     vm.exports = [];
     vm.users = [];
     //vm.email = [];
-
+		vm.userTab = {
+      "template":"components/projects/detail/users/project-users.html"
+    };
     vm.tables = {
       exports: ['Date', 'Form', 'User', 'Notes'] ,
       tests: ['#', 'Name', 'Last Updated', 'Updated by', 'Version']
@@ -30,7 +32,7 @@ define(function(require) {
       };
 
       ProjectsService.addUserToProject(project.id, formdata).then(function() {
-
+        vm.assignUserSuccess = true;
       });
     };
 

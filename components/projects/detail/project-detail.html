@@ -33,13 +33,14 @@
     This is exports tab
   </tab>
 
-  <tab heading="Users" ng-click="vm.getProjectUsers()">
-
+  <tab heading="Users" select="vm.getProjectUsers()">
+    <div ng-include="vm.userTab.template"></div>
   </tab>
 
-  <tab heading="Add Users">
+  <tab heading="Assign Users">
     <form novalidate>
-    <alert ng-show="vm.createUserError" type="danger">{{vm.error}}</alert>
+    <alert ng-show="vm.assignUserError" type="danger"></alert>
+    <alert ng-show="vm.assignUserSuccess" type="success">User assigned to the project successfully</alert>
     <div class="form-group">
       <label>First part of ACER staff's email address (before the @).</label>
       <div class="input-group">
@@ -51,7 +52,6 @@
     </form>
   </tab>
 </tabset>
-
 <div class="col-md-6">
   <div class="panel" ng-show="vm.exports.length">
     <div class="panel-heading">
