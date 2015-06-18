@@ -44,11 +44,24 @@ define(function(require) {
 
       });
     };
+    // search users in project
+    vm.filterUsers = function(user) {
+      var searchString = user.email + ' ' + user.given_name + ' ' + user.family_name;
+
+      if (!vm.query || searchString.toLowerCase().indexOf(vm.query.toLowerCase()) > -1) {
+        return true;
+      }
+      return false;
+    }
 
     vm.getProjectUsers = function() {
       ProjectsService.getProjectUsers(project.id).then(function(project) {
         vm.users = project.users;
       });
+    };
+
+     vm.close = function() {
+      vm.assignUserSuccess = false;
     };
   }];
 });

@@ -1,0 +1,25 @@
+.table-container{
+  position:relative;
+  margin-top:20px;
+  margin-bottom:20px;
+  border-bottom:1px solid #ccc;
+  .table{
+    margin:0;
+  }
+  > .table-container-scroll{
+    z-index:1;
+    max-height: 300px;
+    overflow-y:scroll;
+  }
+  > .table-container-header-fixed{
+    width:100%;
+    position:absolute;
+    top:0;
+    left:0;
+    z-index:2;
+    padding-right:17px; //for scrollbar
+    > table{
+      background:white;
+    }
+  }
+}

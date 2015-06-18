@@ -43,8 +43,9 @@
   <tab heading="Users" select="vm.getProjectUsers()">
     <div ng-include="vm.userTab.template"></div>
     <form novalidate>
+    <h4>Assign User To Project</h4>
     <alert ng-show="vm.assignUserError" type="danger"></alert>
-    <alert ng-show="vm.assignUserSuccess" type="success">User assigned to the project successfully</alert>
+    <alert ng-show="vm.assignUserSuccess" type="success" close="vm.close()">User assigned to the project successfully</alert>
     <div class="form-group">
       <label>First part of ACER staff's email address (before the @).</label>
       <div class="input-group">
