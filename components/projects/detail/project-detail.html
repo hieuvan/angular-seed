@@ -42,9 +42,6 @@
 
   <tab heading="Users" select="vm.getProjectUsers()">
     <div ng-include="vm.userTab.template"></div>
-  </tab>
-
-  <tab heading="Assign Users">
     <form novalidate>
     <alert ng-show="vm.assignUserError" type="danger"></alert>
     <alert ng-show="vm.assignUserSuccess" type="success">User assigned to the project successfully</alert>

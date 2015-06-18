@@ -1,10 +1,21 @@
-<div ng-hide="vm.users.length">There are no users.</div>
+<div ng-hide="vm.users.length != 0">There are no users.</div>
+<h4>Assign User To Project</h4>
+<div ng-show="vm.users.length > 0">
 <table class="table">
+  <thead>
+    <tr>
+      <td>Name</td>
+      <td>Email</td>
+      <td>Roles</td>
+    </tr>
+  </thead>
   <tbody>
     <tr ng-repeat="user in vm.users">
-      <td>{{user.family_name}}</td>
-      <td>{{user.given_name}}</td>
+      <td>{{user.given_name}} {{user.family_name}}</td>
       <td>{{user.email}}</td>
+      <td></td>
     </tr>
   </tbody>
 </table>
+</div>
+

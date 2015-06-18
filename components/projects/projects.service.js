@@ -22,8 +22,8 @@ define(function(require) {
     };
 
     var addUserToProject = function(id, data) {
-      return HttpService.post('projects' + '/' + id + '/' + 'users', data).then(function() {
-
+      return HttpService.post('projects' + '/' + id + '/' + 'users', data).then(function(user) {
+        return user.data;
       });
     };
 

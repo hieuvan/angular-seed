@@ -22,17 +22,16 @@ define(function(require) {
       exports: ['Date', 'Form', 'User', 'Notes'] ,
       tests: ['#', 'Name', 'Last Updated', 'Updated by', 'Version']
     };
-   /* vm.addEmail = function() {
-        vm.email = email;
-    };*/
 
     vm.addUserToProject = function() {
       var formdata = {
         email: vm.email
       };
 
-      ProjectsService.addUserToProject(project.id, formdata).then(function() {
+      ProjectsService.addUserToProject(project.id, formdata).then(function(user) {
         vm.assignUserSuccess = true;
+        vm.users.push(user);
+        vm.email = "";
       });
     };
 
