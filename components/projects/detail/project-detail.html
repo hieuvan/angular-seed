@@ -23,6 +23,13 @@
         <a href="/tests/show/test-1" class="btn btn-default btn-sm btn-spaced">View all</a>
       </accordion-group>
     </accordion>
+    <form novalidate>
+    <div class="form-group">
+      <label for="test-name">Test Name</label>
+      <input type="text" class="form-control" id="test-name" placeholder="Enter Test Name" ng-model="vm.testName">
+    </div>
+  <button type="submit" class="btn btn-primary" ng-click="vm.createTest()">Create Test</button>
+</form>
   </tab>
 
   <tab heading="Surveys">
