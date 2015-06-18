@@ -36,6 +36,16 @@ define(function(require) {
       });
     };
 
+    vm.addTestToProject = function() {
+      var formdata = {
+        name: vm.testName
+      };
+
+      ProjectsService.addTestToProject(project.id, formdata).then(function() {
+
+      });
+    };
+
     vm.getProjectUsers = function() {
       ProjectsService.getProjectUsers(project.id).then(function(project) {
         vm.users = project.users;
