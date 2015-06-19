@@ -15,6 +15,7 @@ define(function(require) {
   require('components/auth/auth.module');
   require('components/projects/projects.module');
   require('components/users/users.module');
+  require('components/home/home.module');
 
   var AppRunner = require('app.runner'),
       constant = require('shared/constants/constant'),
@@ -35,6 +36,7 @@ define(function(require) {
     'app.projects',
     'app.users',
     'app.auth',
+    'app.home',
     'rt.debounce'
   ])
 

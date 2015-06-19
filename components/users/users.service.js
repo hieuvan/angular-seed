@@ -19,10 +19,17 @@ define(function(require) {
       return HttpService.post('users', data)
     };
 
+    var getUserProjects = function(id) {
+      return HttpService.get('users' + '/' + id + '/' + 'projects').then(function(projects) {
+        return projects.data;
+      });
+    };
+
     return {
       getUsers: getUsers,
       getUser: getUser,
-      createUser: createUser
+      createUser: createUser,
+      getUserProjects: getUserProjects
     };
   }];
 });
