@@ -53,6 +53,21 @@ define(function(require) {
         displayName: 'Logout'
       }
     });
+    // home
+    states.push({
+      name: 'root.home',
+      url: '/home',
+      views: {
+        'content@' : {
+          controller: 'HomeController as vm',
+          templateUrl: 'components/home/home.html'
+        }
+      },
+      data: {
+        displayName: 'Home'
+      }
+    });
+
     // projects
     states.push({
       name: 'root.projects',
