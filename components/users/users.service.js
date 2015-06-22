@@ -16,7 +16,9 @@ define(function(require) {
     };
 
     var createUser = function(data) {
-      return HttpService.post('users', data)
+      return HttpService.post('users', data).then(function(user) {
+        return user.data;
+      });
     };
 
     var getProjects = function(id) {

@@ -11,7 +11,7 @@ define(function(require) {
 
       UsersService.createUser(formdata).then(function(user) {
         vm.createUserError = false;
-        $state.go('root.users.detail', {id: user.data.id});
+        $state.go('root.users.detail', {id: user.id});
         }, function(error) {
           vm.createUserError = true;
           vm.error = error.message;
