@@ -4,9 +4,6 @@ define(function(require) {
   return ['ProjectsService', '$state', function(ProjectsService, $state) {
     var vm = this;
 
-    vm.projectName = 'some project';
-    vm.itrackReference = '1238';
-
     vm.createProject = function() {
       var formdata = {
         name: vm.projectName,
@@ -14,12 +11,11 @@ define(function(require) {
       };
 
       ProjectsService.createProject(formdata).then(function(project) {
-        if (_.isObject(project)) {
-          var id = project.id;
-          $state.go('root.projects.detail', {id: project.id});
-        } else {
-          // TODO: show error message
-        }
+        vm.createProjectError = false;
+        $state.go('root.projects.detail', {id: project.id});
+        }, function(error) {
+          vm.createProjectError = true;
+          vm.error = error.message;
       });
     };
   }];
