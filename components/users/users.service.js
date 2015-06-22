@@ -10,7 +10,7 @@ define(function(require) {
     };
 
     var getUser = function(id) {
-      return HttpService.get('users' + '/' + id).then(function(user) {
+      return HttpService.get('users' + '/' + id, {'include[]': ['projects']}).then(function(user) {
         return user.data;
       });
     };
@@ -19,9 +19,10 @@ define(function(require) {
       return HttpService.post('users', data)
     };
 
-    var getUserProjects = function(id) {
-      return HttpService.get('users' + '/' + id + '/' + 'projects').then(function(projects) {
-        return projects.data;
+    var getProjects = function(id) {
+      return HttpService.get('users' + '/' + id + '/' + 'projects')
+      .then(function(response) {
+        return response.data.projects;
       });
     };
 
@@ -29,7 +30,7 @@ define(function(require) {
       getUsers: getUsers,
       getUser: getUser,
       createUser: createUser,
-      getUserProjects: getUserProjects
+      getProjects: getProjects
     };
   }];
 });
