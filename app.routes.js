@@ -57,6 +57,7 @@ define(function(require) {
     states.push({
       name: 'root.home',
       url: '/home',
+      abstract: true,
       views: {
         'content@' : {
           controller: 'HomeController as vm',
@@ -65,6 +66,16 @@ define(function(require) {
       },
       data: {
         displayName: 'Home'
+      }
+    });
+
+    states.push({
+      name: 'root.home.list',
+      url: '',
+      views: {
+        'projects' : {
+          templateUrl: 'components/projects/list/projects-list.html'
+        }
       }
     });
 
