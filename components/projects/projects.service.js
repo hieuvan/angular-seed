@@ -27,6 +27,12 @@ define(function(require) {
       });
     };
 
+    var addTestToProject = function(id, data) {
+      return HttpService.post('projects' + '/' + id + '/' + 'tests', data).then(function(test) {
+        return test.data;
+      });
+    };
+
     var getProjectUsers = function(id) {
       return HttpService.get('projects' + '/' + id + '/' + 'users').then(function(project) {
         return project.data;
@@ -38,7 +44,8 @@ define(function(require) {
       getProject: getProject,
       createProject: createProject,
       addUserToProject: addUserToProject,
-      getProjectUsers: getProjectUsers
+      getProjectUsers: getProjectUsers,
+      addTestToProject: addTestToProject
     };
   }];
 });

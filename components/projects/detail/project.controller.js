@@ -39,8 +39,8 @@ define(function(require) {
         name: vm.testName
       };
 
-      ProjectsService.addTestToProject(project.id, formdata).then(function() {
-
+      ProjectsService.addTestToProject(project.id, formdata).then(function(test) {
+        vm.tests.push(test);
       });
     };
 
