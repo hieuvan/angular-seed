@@ -18,6 +18,9 @@ define(function(require) {
 		vm.userTab = {
       "template":"components/projects/detail/users/project-users.html"
     };
+    vm.testTab = {
+      "template":"components/projects/detail/tests/project-tests.html"
+    };
     vm.tables = {
       exports: ['Date', 'Form', 'User', 'Notes'] ,
       tests: ['#', 'Name', 'Last Updated', 'Updated by', 'Version']
@@ -49,6 +52,16 @@ define(function(require) {
       var searchString = user.email + ' ' + user.given_name + ' ' + user.family_name;
 
       if (!vm.query || searchString.toLowerCase().indexOf(vm.query.toLowerCase()) > -1) {
+        return true;
+      }
+      return false;
+    }
+
+    // search tests in project
+    vm.filterTests = function(test) {
+      var searchString = test.name;
+
+      if (!vm.testQuery || searchString.toLowerCase().indexOf(vm.testQuery.toLowerCase()) > -1) {
         return true;
       }
       return false;
