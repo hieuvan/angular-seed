@@ -3,16 +3,36 @@
 define(function(require) {
   return ['HttpService', function(HttpService) {
 
+    var projects, project, projectUsers;
+
     var getProjects = function() {
-      return HttpService.get('projects').then(function(projects) {
-        return projects.data;
-      });
+      if (!projects) {
+        projects = HttpService.get('projects').then(function(projects) {
+          return projects.data;
+        });
+      }
+
+      return projects;
+    };
+
+    var getProjectUsers = function(id) {
+      if (!projectUsers) {
+        projectUsers = HttpService.get('projects' + '/' + id + '/' + 'users').then(function(project) {
+          return project.data;
+        });
+      }
+
+      return projectUsers;
     };
 
     var getProject = function(id) {
-      return HttpService.get('projects' + '/' + id, {'include[]': ['tests']}).then(function(project) {
-        return project.data;
-      });
+      if (!project) {
+        project = HttpService.get('projects' + '/' + id, {'include[]': ['tests']}).then(function(project) {
+          return project.data;
+        });
+      }
+
+      return project;
     };
 
     var createProject = function(data) {
@@ -30,12 +50,6 @@ define(function(require) {
     var addTestToProject = function(id, data) {
       return HttpService.post('projects' + '/' + id + '/' + 'tests', data).then(function(test) {
         return test.data;
-      });
-    };
-
-    var getProjectUsers = function(id) {
-      return HttpService.get('projects' + '/' + id + '/' + 'users').then(function(project) {
-        return project.data;
       });
     };
 
