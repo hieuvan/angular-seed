@@ -1,7 +1,7 @@
 <div ng-hide="vm.users.length">There are no users.</div>
 <div ng-show="vm.users.length">
   <h4>Users Assigned To Project</h4>
-  <div class="input-group">
+    <div class="input-group">
     <span class="input-group-addon"><span class="fa fa-search"></span></span>
     <input type="search" placeholder="Search" class="default form-control" autocomplete="off" ng-model="vm.query">
     <span class="input-group-addon"><span class="fa fa-times reset-input" data-ng-click="vm.query = ''"></span></span>
@@ -38,4 +38,19 @@
     </div>
   </div>
 </div>
+
+<form novalidate>
+  <alert ng-show="vm.assignUserError" type="danger"></alert>
+  <alert ng-show="vm.assignUserSuccess" type="success">User assigned to the project successfully</alert>
+  <div class="form-group">
+    <label>First part of ACER staff's email address (before the @).</label>
+    <div class="input-group">
+      <input type="text" class="form-control" placeholder="Enter ACER Email" ng-model="vm.email">
+      <div class="input-group-addon">@acer.edu.au</div>
+    </div>
+  </div>
+  <button type="submit" class="btn btn-primary" ng-click="vm.addUserToProject()">Add To Project</button>
+</form>
+
+
 
