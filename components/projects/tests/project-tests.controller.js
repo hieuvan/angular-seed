@@ -9,6 +9,14 @@ define(function(require) {
       vm.tests = project.tests;
     });
 
+    vm.addTestToProject = function() {
+      var formdata = { name: vm.testName };
+
+      ProjectsService.addTestToProject($stateParams.id, formdata).then(function(test) {
+        vm.tests.push(test);
+      });
+    };
+
     vm.filterTests = function(test) {
       var searchString = test.name;
 

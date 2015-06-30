@@ -10,6 +10,16 @@ define(function(require) {
       vm.users = project.users;
     });
 
+    vm.addUserToProject = function() {
+      var formdata = { email: vm.email };
+
+      ProjectsService.addUserToProject($stateParams.id, formdata).then(function(user) {
+        vm.assignUserSuccess = true;
+        vm.users.push(user);
+        vm.email = '';
+      });
+    };
+
     vm.filterUsers = function(user) {
       var searchString = user.email + ' ' + user.given_name + ' ' + user.family_name;
 

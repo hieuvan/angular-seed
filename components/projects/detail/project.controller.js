@@ -25,24 +25,6 @@ define(function(require) {
       vm.users = [];
     });
 
-    vm.addUserToProject = function() {
-      var formdata = { email: vm.email };
-
-      ProjectsService.addUserToProject($stateParams.id, formdata).then(function(user) {
-        vm.assignUserSuccess = true;
-        vm.users.push(user);
-        vm.email = '';
-      });
-    };
-
-    vm.addTestToProject = function() {
-      var formdata = { name: vm.testName };
-
-      ProjectsService.addTestToProject($stateParams.id, formdata).then(function(test) {
-        vm.tests.push(test);
-      });
-    };
-
     vm.close = function() {
       vm.assignUserSuccess = false;
     };
