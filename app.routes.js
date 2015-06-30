@@ -61,7 +61,7 @@ define(function(require) {
       views: {
         'content@' : {
           controller: 'HomeController as vm',
-          templateUrl: 'components/home/home.html'
+          template: '<div ui-view="projects" />'
         }
       },
       data: {
@@ -76,6 +76,10 @@ define(function(require) {
         'projects' : {
           templateUrl: 'components/projects/list/projects-list.html'
         }
+      },
+      data: {
+        displayName: 'Home',
+        title: 'My Projects'
       }
     });
 
@@ -84,11 +88,6 @@ define(function(require) {
       name: 'root.projects',
       url: '/projects',
       abstract: true,
-      views: {
-        'content@': {
-          templateUrl: 'components/projects/projects.html'
-        }
-      },
       data: {
         proxy: 'root.projects.list'
       }
@@ -98,7 +97,7 @@ define(function(require) {
       name: 'root.projects.create',
       url: '/create',
       views: {
-        'body' : {
+        'content@' : {
           templateUrl: 'components/projects/create/project-create.html',
           controller: 'ProjectCreateController as vm'
         }
@@ -112,16 +111,14 @@ define(function(require) {
       name: 'root.projects.list',
       url: '',
       views: {
-        'body': {
+        'content@': {
           templateUrl: 'components/projects/list/projects-list.html',
           controller: 'ProjectsController as vm'
-        },
-        'head': {
-          templateUrl: 'components/projects/list/projects-heading.html'
         }
       },
       data: {
-        displayName: 'Projects'
+        displayName: 'Projects',
+        title: 'Projects'
       }
     });
 
@@ -129,14 +126,66 @@ define(function(require) {
       name: 'root.projects.detail',
       url: '/{id:int}',
       views : {
-        'body' : {
+        'content@' : {
           controller: 'ProjectController as vm',
-          templateUrl: 'components/projects/detail/project-detail.html',
-          resolve: {
-            project: ['$stateParams', 'ProjectsService', function($stateParams, ProjectsService) {
-              return ProjectsService.getProject($stateParams.id);
-            }]
-          }
+          templateUrl: 'components/projects/detail/project-detail.html'
+        }
+      }
+    });
+
+    // Project tests
+    states.push({
+      name: 'root.projectTests',
+      parent: 'root.projects.detail',
+      url: '/tests',
+      abstract: true,
+      data: {
+        proxy: 'root.projectTests.list'
+      }
+    });
+
+    states.push({
+      name: 'root.projectTests.list',
+      url: '',
+      views: {
+        'tab-content@root.projects.detail': {
+          controller: 'ProjectTestsController as vm',
+          templateUrl: 'components/projects/tests/project-tests.html'
+        }
+      }
+    });
+
+    states.push({
+      name: 'root.projectTests.detail',
+      url: '/{testId:int}',
+      views: {
+        'content@': {
+          template: 'this is project test with id {{testId}}'
+        }
+      },
+      data: {
+        displayName: 'some test'
+      }
+    });
+
+    // Project users
+    states.push({
+      name: 'root.projectUsers',
+      parent: 'root.projects.detail',
+      url: '/users',
+      abstract: true,
+      data: {
+        proxy: 'root.projectUsers.list'
+      }
+    });
+
+    states.push({
+      name: 'root.projectUsers.list',
+      url: '',
+      views: {
+        'tab-content@root.projects.detail': {
+          controller: 'ProjectUsersController as vm',
+          templateUrl: 'components/projects/users/project-users.html'
         }
       }
     });

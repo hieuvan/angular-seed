@@ -2,78 +2,48 @@
 
 define(function(require) {
 
-  return ['$state', 'project', 'ProjectsService',
-  function($state, project, ProjectsService) {
+  return ['$state', '$stateParams', 'ProjectsService',
+  function($state, $stateParams, ProjectsService) {
     var vm = this;
 
-    vm.project = project;
+    vm.tabs = [
+      { heading: 'Tests', route: 'root.projectTests.list' },
+      { heading: 'Users', route: 'root.projectUsers.list' },
+    ];
 
-    // update the bread crumb
-    $state.current.data.displayName = project.name;
-
-    vm.tests = project.tests;
-    vm.exports = [];
-    vm.users = [];
-    //vm.email = [];
-		vm.userTab = {
-      "template":"components/projects/detail/users/project-users.html"
-    };
-    vm.testTab = {
-      "template":"components/projects/detail/tests/project-tests.html"
-    };
     vm.tables = {
       exports: ['Date', 'Form', 'User', 'Notes'] ,
       tests: ['#', 'Name', 'Last Updated', 'Updated by', 'Version']
     };
 
-    vm.addUserToProject = function() {
-      var formdata = {
-        email: vm.email
-      };
+    ProjectsService.getProject($stateParams.id).then(function(project) {
 
-      ProjectsService.addUserToProject(project.id, formdata).then(function(user) {
+      $state.current.data.displayName = project.name;
+
+      vm.project = project;
+      vm.exports = [];
+      vm.users = [];
+    });
+
+    vm.addUserToProject = function() {
+      var formdata = { email: vm.email };
+
+      ProjectsService.addUserToProject($stateParams.id, formdata).then(function(user) {
         vm.assignUserSuccess = true;
         vm.users.push(user);
-        vm.email = "";
+        vm.email = '';
       });
     };
 
     vm.addTestToProject = function() {
-      var formdata = {
-        name: vm.testName
-      };
+      var formdata = { name: vm.testName };
 
-      ProjectsService.addTestToProject(project.id, formdata).then(function(test) {
+      ProjectsService.addTestToProject($stateParams.id, formdata).then(function(test) {
         vm.tests.push(test);
       });
     };
-    // search users in project
-    vm.filterUsers = function(user) {
-      var searchString = user.email + ' ' + user.given_name + ' ' + user.family_name;
 
-      if (!vm.query || searchString.toLowerCase().indexOf(vm.query.toLowerCase()) > -1) {
-        return true;
-      }
-      return false;
-    }
-
-    // search tests in project
-    vm.filterTests = function(test) {
-      var searchString = test.name;
-
-      if (!vm.testQuery || searchString.toLowerCase().indexOf(vm.testQuery.toLowerCase()) > -1) {
-        return true;
-      }
-      return false;
-    }
-
-    vm.getProjectUsers = function() {
-      ProjectsService.getProjectUsers(project.id).then(function(project) {
-        vm.users = project.users;
-      });
-    };
-
-     vm.close = function() {
+    vm.close = function() {
       vm.assignUserSuccess = false;
     };
   }];
