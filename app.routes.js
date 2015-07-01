@@ -137,15 +137,12 @@ define(function(require) {
         }
       },
       resolve: {
-        project: ['ProjectsService', '$stateParams', function(ProjectService, $stateParams) {
-          return ProjectService.getProject($stateParams.id);
-        }],
-        projectName: ['project', function(project) {
-          return project.name;
+        project: ['ProjectsService', '$stateParams', function(ProjectsService, $stateParams) {
+          return ProjectsService.getProject($stateParams.id);
         }]
       },
       data: {
-        displayName: '{{ projectName }}'
+        displayName: '{{ project.name }}'
       }
     });
 
@@ -179,14 +176,6 @@ define(function(require) {
         'content@': {
           template: 'this is project test with id {{testId}}'
         }
-      },
-      resolve: {
-        testName: function() {
-          return 'Some test';
-        }
-      },
-      data: {
-        displayName: '{{ testName }}'
       }
     });
 
