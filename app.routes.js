@@ -153,7 +153,8 @@ define(function(require) {
       url: '/tests',
       abstract: true,
       data: {
-        proxy: 'root.projectTests.list'
+        proxy: 'root.projectTests.list',
+        displayName: false
       }
     });
 
@@ -175,9 +176,6 @@ define(function(require) {
         'content@': {
           template: 'this is project test with id {{testId}}'
         }
-      },
-      data: {
-        displayName: 'some test'
       }
     });
 
@@ -188,7 +186,8 @@ define(function(require) {
       url: '/users',
       abstract: true,
       data: {
-        proxy: 'root.projectUsers.list'
+        proxy: 'root.projectUsers.list',
+        displayName: false
       }
     });
 
