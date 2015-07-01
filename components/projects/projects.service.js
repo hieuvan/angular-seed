@@ -16,23 +16,15 @@ define(function(require) {
     };
 
     var getProjectUsers = function(id) {
-      if (!projectUsers) {
-        projectUsers = HttpService.get('projects' + '/' + id + '/' + 'users').then(function(project) {
-          return project.data;
-        });
-      }
-
-      return projectUsers;
+      return HttpService.get('projects' + '/' + id + '/' + 'users').then(function(project) {
+        return project.data;
+      });
     };
 
     var getProject = function(id) {
-      if (!project) {
-        project = HttpService.get('projects' + '/' + id, {'include[]': ['tests']}).then(function(project) {
-          return project.data;
-        });
-      }
-
-      return project;
+      return HttpService.get('projects' + '/' + id, {'include[]': ['tests']}).then(function(project) {
+        return project.data;
+      });
     };
 
     var createProject = function(data) {
