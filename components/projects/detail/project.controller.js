@@ -17,10 +17,8 @@ define(function(require) {
     };
 
     ProjectsService.getProject($stateParams.id).then(function(project) {
-
-      $state.current.data.displayName = project.name;
-
       vm.project = project;
+
       vm.exports = [];
       vm.users = [];
     });
