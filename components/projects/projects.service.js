@@ -3,16 +3,10 @@
 define(function(require) {
   return ['HttpService', function(HttpService) {
 
-    var projects, project, projectUsers;
-
     var getProjects = function() {
-      if (!projects) {
-        projects = HttpService.get('projects').then(function(projects) {
+      return HttpService.get('projects').then(function(projects) {
           return projects.data;
-        });
-      }
-
-      return projects;
+      });
     };
 
     var getProjectUsers = function(id) {

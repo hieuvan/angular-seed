@@ -17,7 +17,7 @@ define(function(require) {
       var data = data || {},
           deferred = $q.defer();
 
-      return $http.get(getUrl(url), { params: data })
+      return $http.get(getUrl(url), { params: data, cache: true })
         .then(handleSuccess, handleError);
     };
 
