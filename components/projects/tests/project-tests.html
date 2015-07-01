@@ -24,7 +24,7 @@
           </tr>
         </thead>
         <tr ng-repeat="test in (vm.filteredTests = (vm.tests | filter: vm.filterTests))">
-          <td><a href ui-sref="root.projectTests.detail({testId: 2})">{{test.name}}</a></td>
+          <td><a href ui-sref="root.projectTests.detail({testId: test.id})">{{test.name}}</a></td>
         </tr>
       </tbody>
       </table>
