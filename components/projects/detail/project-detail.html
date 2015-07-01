@@ -1,8 +1,9 @@
 <tabset class="col-md-6">
   <tab heading="Tests">
     <div ng-include="vm.testTab.template"></div>
-
     <form novalidate>
+      <alert ng-show="vm.addTestError" type="danger"></alert>
+      <alert ng-show="vm.addTestSuccess" type="success" close="vm.close()">Test added to project successfully</alert>
       <div class="form-group">
         <label for="test-name">Test Name</label>
         <input type="text" class="form-control" id="test-name" placeholder="Enter Test Name" ng-model="vm.testName">

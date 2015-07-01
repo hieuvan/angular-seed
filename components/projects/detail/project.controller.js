@@ -44,7 +44,9 @@ define(function(require) {
       };
 
       ProjectsService.addTestToProject(project.id, formdata).then(function(test) {
+        vm.addTestSuccess = true;
         vm.tests.push(test);
+        vm.testName = "";
       });
     };
     // search users in project

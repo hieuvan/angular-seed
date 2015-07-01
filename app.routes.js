@@ -141,6 +141,24 @@ define(function(require) {
       }
     });
 
+    states.push({
+      name: 'root.projects.details.tests',
+      url: '/tests',
+      template: 'this is project tests'
+    });
+
+    states.push({
+      name: 'root.projects.detail.tests.detail',
+      url: '/{id:int}/tests/{id:int}',
+      views : {
+        'body' : {
+          //controller: 'ProjectController as vm',
+          //templateUrl: 'components/projects/detail/project-detail.html',
+          template: 'this is project tests detail'
+        }
+      }
+    });
+
     // users
     states.push({
       name: 'root.users',
