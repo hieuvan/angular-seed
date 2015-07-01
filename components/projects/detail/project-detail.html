@@ -7,7 +7,7 @@
        heading="{{tab.heading}}"
        select="$state.go(tab.route)">
 
-    <div ui-view="tab-content"></div>
+       <div ui-view="tab-content-{{tab.heading | lowercase}}"></div>
   </tab>
 </tabset>
 

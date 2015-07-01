@@ -2,8 +2,8 @@
 
 define(function(require) {
 
-  return ['$state', '$stateParams', 'ProjectsService',
-  function($state, $stateParams, ProjectsService) {
+  return ['$state', '$stateParams', 'project',
+  function($state, $stateParams, project) {
     var vm = this;
 
     vm.tabs = [
@@ -16,12 +16,7 @@ define(function(require) {
       tests: ['#', 'Name', 'Last Updated', 'Updated by', 'Version']
     };
 
-    ProjectsService.getProject($stateParams.id).then(function(project) {
-      vm.project = project;
-
-      vm.exports = [];
-      vm.users = [];
-    });
+    vm.project = project;
 
     vm.close = function() {
       vm.assignUserSuccess = false;

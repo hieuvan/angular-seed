@@ -2,12 +2,10 @@
 
 define(function(require) {
 
-  return ['$stateParams', 'ProjectsService', function($stateParams, ProjectsService) {
+  return ['$stateParams', 'ProjectsService', 'project', function($stateParams, ProjectsService, project) {
     var vm = this;
 
-    ProjectsService.getProject($stateParams.id).then(function(project) {
-      vm.tests = project.tests;
-    });
+    vm.tests = project.tests;
 
     vm.addTestToProject = function() {
       var formdata = { name: vm.testName };

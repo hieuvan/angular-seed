@@ -113,7 +113,12 @@ define(function(require) {
       views: {
         'content@': {
           templateUrl: 'components/projects/list/projects-list.html',
-          controller: 'ProjectsController as vm'
+          controller: 'ProjectsController as vm',
+          resolve: {
+            projects: ['ProjectsService', function(ProjectsService) {
+              return ProjectsService.getProjects();
+            }]
+          }
         }
       },
       data: {
@@ -132,10 +137,11 @@ define(function(require) {
         }
       },
       resolve: {
-        projectName: ['ProjectsService', '$stateParams', function(ProjectService, $stateParams) {
-          return ProjectService.getProject($stateParams.id).then(function(project) {
-            return project.name;
-          });
+        project: ['ProjectsService', '$stateParams', function(ProjectService, $stateParams) {
+          return ProjectService.getProject($stateParams.id);
+        }],
+        projectName: ['project', function(project) {
+          return project.name;
         }]
       },
       data: {
@@ -150,7 +156,8 @@ define(function(require) {
       url: '/tests',
       abstract: true,
       data: {
-        proxy: 'root.projectTests.list'
+        proxy: 'root.projectTests.list',
+        displayName: false
       }
     });
 
@@ -158,7 +165,7 @@ define(function(require) {
       name: 'root.projectTests.list',
       url: '',
       views: {
-        'tab-content@root.projects.detail': {
+        'tab-content-tests@root.projects.detail': {
           controller: 'ProjectTestsController as vm',
           templateUrl: 'components/projects/tests/project-tests.html'
         }
@@ -173,8 +180,13 @@ define(function(require) {
           template: 'this is project test with id {{testId}}'
         }
       },
+      resolve: {
+        testName: function() {
+          return 'Some test';
+        }
+      },
       data: {
-        displayName: 'some test'
+        displayName: '{{ testName }}'
       }
     });
 
@@ -185,7 +197,8 @@ define(function(require) {
       url: '/users',
       abstract: true,
       data: {
-        proxy: 'root.projectUsers.list'
+        proxy: 'root.projectUsers.list',
+        displayName: false
       }
     });
 
@@ -193,7 +206,7 @@ define(function(require) {
       name: 'root.projectUsers.list',
       url: '',
       views: {
-        'tab-content@root.projects.detail': {
+        'tab-content-users@root.projects.detail': {
           controller: 'ProjectUsersController as vm',
           templateUrl: 'components/projects/users/project-users.html'
         }
