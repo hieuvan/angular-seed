@@ -132,10 +132,13 @@ define(function(require) {
         }
       },
       resolve: {
-        projectName: ['ProjectsService', '$stateParams', function(ProjectService, $stateParams) {
+        project: ['ProjectsService', '$stateParams', function(ProjectService, $stateParams) {
           return ProjectService.getProject($stateParams.id).then(function(project) {
-            return project.name;
+            return project;
           });
+        }],
+        projectName: ['project', function(project) {
+          return project.name;
         }]
       },
       data: {
@@ -158,7 +161,7 @@ define(function(require) {
       name: 'root.projectTests.list',
       url: '',
       views: {
-        'tab-content@root.projects.detail': {
+        'tab-content-tests@root.projects.detail': {
           controller: 'ProjectTestsController as vm',
           templateUrl: 'components/projects/tests/project-tests.html'
         }
@@ -193,7 +196,7 @@ define(function(require) {
       name: 'root.projectUsers.list',
       url: '',
       views: {
-        'tab-content@root.projects.detail': {
+        'tab-content-users@root.projects.detail': {
           controller: 'ProjectUsersController as vm',
           templateUrl: 'components/projects/users/project-users.html'
         }
