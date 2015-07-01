@@ -176,6 +176,14 @@ define(function(require) {
         'content@': {
           template: 'this is project test with id {{testId}}'
         }
+      },
+      resolve: {
+        testName: function() {
+          return 'Some test';
+        }
+      },
+      data: {
+        displayName: '{{ testName }}'
       }
     });
 
