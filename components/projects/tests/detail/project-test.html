@@ -1,0 +1,40 @@
+<div ng-hide="vm.test.forms.length">There are no forms.</div>
+<div class="col-md-12">
+  <h2 class="pull-left">{{vm.test.name}}</div>
+</div>
+<div ng-show="vm.test.forms.length">
+  <div class="col-md-12">
+    <h3>Forms</h3>
+    <div class="input-group">
+      <span class="input-group-addon"><span class="fa fa-search"></span></span>
+      <input type="search" placeholder="Search" class="default form-control" autocomplete="off" ng-model="vm.formQuery">
+      <span class="input-group-addon"><span class="fa fa-times reset-input" data-ng-click="vm.formQuery = ''"></span></span>
+    </div>
+    <div class="table-container">
+      <div class="table-container-header-fixed">
+        <table class="table table-condensed table-bordered">
+          <thead>
+            <tr>
+              <td>Name</td>
+            </tr>
+          </thead>
+        </table>
+      </div>
+      <div class="table-container-scroll">
+        <table class="table table-condensed table-bordered">
+        <tbody>
+          <thead>
+            <tr>
+              <td>Name</td>
+            </tr>
+          </thead>
+          <tr ng-repeat="form in (vm.filteredForms = (vm.test.forms | filter: vm.filteredForms))">
+            <td><a href>{{form.name}}</a></td>
+          </tr>
+        </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+

@@ -39,13 +39,20 @@ define(function(require) {
       });
     };
 
+    var getProjectTest = function(projectId, testId) {
+      return HttpService.get('projects' + '/' + projectId + '/' + 'tests' + '/' + testId + '/forms').then(function(test) {
+        return test.data;
+      });
+    };
+
     return {
       getProjects: getProjects,
       getProject: getProject,
       createProject: createProject,
       addUserToProject: addUserToProject,
       getProjectUsers: getProjectUsers,
-      addTestToProject: addTestToProject
+      addTestToProject: addTestToProject,
+      getProjectTest: getProjectTest
     };
   }];
 });
