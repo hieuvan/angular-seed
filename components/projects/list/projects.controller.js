@@ -2,11 +2,9 @@
 
 define(function(require) {
 
-  return ['ProjectsService', function(ProjectsService) {
+  return ['projects', function(projects) {
     var vm = this;
 
-    ProjectsService.getProjects().then(function(projects) {
-     vm.projects = projects;
-    });
+    vm.projects = projects;
   }];
 });

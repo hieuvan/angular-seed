@@ -18,9 +18,6 @@ define(function(require) {
 
     vm.project = project;
 
-    vm.exports = [];
-    vm.users = [];
-
     vm.close = function() {
       vm.assignUserSuccess = false;
     };

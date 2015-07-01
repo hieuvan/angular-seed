@@ -113,7 +113,12 @@ define(function(require) {
       views: {
         'content@': {
           templateUrl: 'components/projects/list/projects-list.html',
-          controller: 'ProjectsController as vm'
+          controller: 'ProjectsController as vm',
+          resolve: {
+            projects: ['ProjectsService', function(ProjectsService) {
+              return ProjectsService.getProjects();
+            }]
+          }
         }
       },
       data: {
@@ -133,9 +138,7 @@ define(function(require) {
       },
       resolve: {
         project: ['ProjectsService', '$stateParams', function(ProjectService, $stateParams) {
-          return ProjectService.getProject($stateParams.id).then(function(project) {
-            return project;
-          });
+          return ProjectService.getProject($stateParams.id);
         }],
         projectName: ['project', function(project) {
           return project.name;
