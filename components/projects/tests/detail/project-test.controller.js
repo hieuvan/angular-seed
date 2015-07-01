@@ -2,13 +2,10 @@
 
 define(function(require) {
 
-  return ['$stateParams', 'ProjectsService', 'project', function($stateParams, ProjectsService, project) {
+  return ['test', function(test) {
     var vm = this;
 
-    ProjectsService.getProjectTest($stateParams.id, $stateParams.testId).then(function(test) {
-    console.log(test);
-      vm.test = test;
-    });
+    vm.test = test;
 
     vm.filterForms = function(form) {
       var searchString = form.name;

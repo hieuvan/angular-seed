@@ -184,18 +184,10 @@ define(function(require) {
       resolve: {
         test: ['ProjectsService', '$stateParams', function(ProjectService, $stateParams) {
           return ProjectService.getProjectTest($stateParams.id, $stateParams.testId);
-        }],
-        testName: ['test', function(test) {
-          return test.name;
         }]
       },
-      /*resolve: {
-        testName: function() {
-          return 'Some test';
-        }
-      },*/
       data: {
-        displayName: '{{ testName }}'
+        displayName: '{{ test.name }}'
       }
     });
 

@@ -40,7 +40,9 @@ define(function(require) {
     };
 
     var getProjectTest = function(projectId, testId) {
-      return HttpService.get('projects' + '/' + projectId + '/' + 'tests' + '/' + testId + '/forms').then(function(test) {
+      var url = 'projects' + '/' + projectId + '/' + 'tests' + '/' + testId + '/forms';
+
+      return HttpService.get(url).then(function(test) {
         return test.data;
       });
     };

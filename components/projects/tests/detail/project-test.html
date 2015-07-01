@@ -28,7 +28,7 @@
               <td>Name</td>
             </tr>
           </thead>
-          <tr ng-repeat="form in (vm.filteredForms = (vm.test.forms | filter: vm.filteredForms))">
+          <tr ng-repeat="form in vm.test.forms">
             <td><a href>{{form.name}}</a></td>
           </tr>
         </tbody>
