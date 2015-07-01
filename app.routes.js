@@ -130,6 +130,16 @@ define(function(require) {
           controller: 'ProjectController as vm',
           templateUrl: 'components/projects/detail/project-detail.html'
         }
+      },
+      resolve: {
+        projectName: ['ProjectsService', '$stateParams', function(ProjectService, $stateParams) {
+          return ProjectService.getProject($stateParams.id).then(function(project) {
+            return project.name;
+          });
+        }]
+      },
+      data: {
+        displayName: '{{ projectName }}'
       }
     });
 
