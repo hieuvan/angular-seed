@@ -6,6 +6,7 @@ define(function(require) {
   var ProjectsController = require('components/projects/list/projects.controller'),
       ProjectController = require('components/projects/detail/project.controller'),
       ProjectTestsController = require('components/projects/tests/project-tests.controller'),
+      ProjectTestController = require('components/projects/tests/detail/project-test.controller'),
       ProjectUsersController = require('components/projects/users/project-users.controller'),
       ProjectCreateController = require('components/projects/create/project-create.controller'),
       ProjectsService = require('components/projects/projects.service');
@@ -18,6 +19,7 @@ define(function(require) {
   .controller('ProjectsController', ProjectsController)
   .controller('ProjectTestsController', ProjectTestsController)
   .controller('ProjectUsersController', ProjectUsersController)
-  .controller('ProjectCreateController', ProjectCreateController);
+  .controller('ProjectCreateController', ProjectCreateController)
+  .controller('ProjectTestController', ProjectTestController);
 
 });

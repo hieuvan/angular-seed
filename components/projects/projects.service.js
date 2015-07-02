@@ -39,6 +39,14 @@ define(function(require) {
       });
     };
 
+    var getProjectTest = function(projectId, testId) {
+      var url = 'projects' + '/' + projectId + '/' + 'tests' + '/' + testId + '/forms';
+
+      return HttpService.get(url).then(function(test) {
+        return test.data;
+      });
+    };
+
     return {
       getProjects: getProjects,
       getProject: getProject,

@@ -174,8 +174,17 @@ define(function(require) {
       url: '/{testId:int}',
       views: {
         'content@': {
-          template: 'this is project test with id {{testId}}'
+          controller: 'ProjectTestController as vm',
+          templateUrl: 'components/projects/tests/detail/project-test.html'
         }
+      },
+      resolve: {
+        test: ['ProjectsService', '$stateParams', function(ProjectService, $stateParams) {
+          return ProjectService.getProjectTest($stateParams.id, $stateParams.testId);
+        }]
+      },
+      data: {
+        displayName: '{{ test.name }}'
       }
     });
 
