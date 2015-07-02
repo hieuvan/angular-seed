@@ -47,14 +47,32 @@ define(function(require) {
       });
     };
 
+    var addFormToTest = function(projectId, testId, data) {
+      var url = 'projects' + '/' + projectId + '/' + 'tests' + '/' + testId + '/forms';
+
+      return HttpService.post(url, data).then(function(test) {
+        return test.data;
+      });
+    };
+
+    var getProjectTestForm = function(projectId, testId, formId) {
+      var url = 'projects' + '/' + projectId + '/' + 'tests' + '/' + testId + '/forms' + '/' + formId;
+
+      return HttpService.get(url).then(function(form) {
+        return form.data;
+      });
+    };
+
     return {
       getProjects: getProjects,
       getProject: getProject,
       getProjectTest: getProjectTest,
       getProjectUsers: getProjectUsers,
+      getProjectTestForm: getProjectTestForm,
       createProject: createProject,
       addUserToProject: addUserToProject,
-      addTestToProject: addTestToProject
+      addTestToProject: addTestToProject,
+      addFormToTest: addFormToTest
     };
   }];
 });

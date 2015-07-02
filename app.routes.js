@@ -188,6 +188,48 @@ define(function(require) {
       }
     });
 
+    // Project test forms
+    states.push({
+      name: 'root.projectTestForms',
+      parent: 'root.projectTests.detail',
+      url: '/forms',
+      abstract: true,
+      data: {
+        proxy: 'root.projectTestForms.list',
+        displayName: false
+      }
+    });
+
+    states.push({
+      name: 'root.projectTestForms.list',
+      url: '',
+      views: {
+        'content@': {
+          controller: 'ProjectTestController as vm',
+          templateUrl: 'components/projects/tests/detail/project-test.html'
+        }
+      }
+    });
+
+    states.push({
+      name: 'root.projectTestForms.detail',
+      url: '/{formId:int}',
+      views: {
+        'content@': {
+          controller: 'ProjectTestFormController as vm',
+          templateUrl: 'components/projects/tests/forms/detail/project-test-form.html'
+        }
+      },
+      resolve: {
+        form: ['ProjectsService', '$stateParams', function(ProjectService, $stateParams) {
+          return ProjectService.getProjectTestForm($stateParams.id, $stateParams.testId, $stateParams.formId);
+        }]
+      },
+      data: {
+        displayName: '{{ form.name }}'
+      }
+    });
+
     // Project users
     states.push({
       name: 'root.projectUsers',
