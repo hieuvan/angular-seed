@@ -28,7 +28,7 @@
               <td>Name</td>
             </tr>
           </thead>
-          <tr ng-repeat="form in vm.test.forms">
+          <tr ng-repeat="form in vm.test.forms | search:vm.formQuery:'name'">
             <td><a href>{{form.name}}</a></td>
           </tr>
         </tbody>

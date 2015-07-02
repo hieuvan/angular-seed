@@ -6,6 +6,8 @@ define(function(require) {
   function($stateParams, ProjectsService) {
     var vm = this;
 
+    vm.users = [];
+
     ProjectsService.getProjectUsers($stateParams.id).then(function(project) {
       vm.users = project.users;
     });
@@ -19,12 +21,5 @@ define(function(require) {
         vm.email = '';
       });
     };
-
-    vm.filterUsers = function(user) {
-      var searchString = user.email + ' ' + user.given_name + ' ' + user.family_name;
-
-      return (!vm.query || searchString.toLowerCase().indexOf(vm.query.toLowerCase()) > -1);
-    }
-
   }];
 });

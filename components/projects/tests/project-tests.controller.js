@@ -14,12 +14,5 @@ define(function(require) {
         vm.tests.push(test);
       });
     };
-
-    vm.filterTests = function(test) {
-      var searchString = test.name;
-
-      return (!vm.testQuery || searchString.toLowerCase().indexOf(vm.testQuery.toLowerCase()) > -1);
-    }
-
   }];
 });
