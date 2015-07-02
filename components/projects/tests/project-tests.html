@@ -1,9 +1,20 @@
 <div ng-hide="vm.tests.length">There are no tests.</div>
 <div ng-show="vm.tests.length">
-  <div class="input-group">
-    <span class="input-group-addon"><span class="fa fa-search"></span></span>
-    <input type="search" placeholder="Search" class="default form-control" autocomplete="off" ng-model="vm.testQuery">
-    <span class="input-group-addon"><span class="fa fa-times reset-input" data-ng-click="vm.testQuery = ''"></span></span>
+  <form>
+    <div class="form-group">
+      <label for="test-name">Test Name</label>
+      <input type="text" class="form-control" id="test-name" placeholder="Enter Test Name" ng-model="vm.testName">
+    </div>
+    <div class="form-group">
+      <button type="submit" class="btn btn-primary" ng-click="vm.addTestToProject()">Add Test</button>
+    </div>
+  </form>
+  <div class="form-group">
+    <div class="input-group">
+      <span class="input-group-addon"><span class="fa fa-search"></span></span>
+      <input type="search" placeholder="Search" class="default form-control" autocomplete="off" ng-model="vm.testQuery">
+      <span class="input-group-addon"><span class="fa fa-times reset-input" data-ng-click="vm.testQuery = ''"></span></span>
+    </div>
   </div>
   <div class="table-container">
     <div class="table-container-header-fixed">

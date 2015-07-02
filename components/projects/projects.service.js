@@ -47,6 +47,14 @@ define(function(require) {
       });
     };
 
+    var addFormToTest = function(projectId, testId, data) {
+      var url = 'projects' + '/' + projectId + '/' + 'tests' + '/' + testId + '/forms';
+
+      return HttpService.post(url, data).then(function(test) {
+        return test.data;
+      });
+    };
+
     return {
       getProjects: getProjects,
       getProject: getProject,
@@ -54,7 +62,8 @@ define(function(require) {
       addUserToProject: addUserToProject,
       getProjectUsers: getProjectUsers,
       addTestToProject: addTestToProject,
-      getProjectTest: getProjectTest
+      getProjectTest: getProjectTest,
+      addFormToTest: addFormToTest
     };
   }];
 });
