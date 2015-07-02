@@ -1,0 +1,42 @@
+<div class="col-md-12">
+  <h2 class="pull-left">{{vm.form.name}}</h2>
+</div>
+<div class="col-md-12">
+  <div ng-hide="vm.form.items.length">There are no item.</div>
+  <div ng-show="vm.form.items.length">
+    <div class="col-md-12">
+      <h3>Items</h3>
+      <div class="table-container">
+        <div class="table-container-header-fixed">
+          <table class="table table-condensed table-bordered">
+            <thead>
+              <tr>
+                <td>UID</td>
+                <td>Title</td>
+                <td>Stem</td>
+              </tr>
+            </thead>
+          </table>
+        </div>
+        <div class="table-container-scroll">
+          <table class="table table-condensed table-bordered">
+          <tbody>
+            <thead>
+              <tr>
+                <td>UID</td>
+                <td>Title</td>
+              </tr>
+            </thead>
+            <tr ng-repeat="item in vm.form.items">
+              <td>{{item.uid}}</td>
+              <td>{{item.title}}</td>
+              <td>{{item.stem}}</td>
+            </tr>
+          </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
