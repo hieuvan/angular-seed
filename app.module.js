@@ -24,6 +24,7 @@ define(function(require) {
       Jwt = require('shared/providers/jwt.provider'),
       HttpConfigProvider = require('shared/providers/http-config.provider'),
       HttpService = require('shared/services/http.service'),
+      SearchFilter = require('shared/filters/search.filter'),
       TitleDirective = require('shared/directives/title.directive');
 
   // app level module that depends on app view and components
@@ -62,6 +63,7 @@ define(function(require) {
   .provider('$auth', AuthProvider)
 
   .directive('title', TitleDirective)
+  .filter('search', SearchFilter)
 
   .run(AppRunner);
 });

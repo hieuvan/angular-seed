@@ -137,15 +137,12 @@ define(function(require) {
         }
       },
       resolve: {
-        project: ['ProjectsService', '$stateParams', function(ProjectService, $stateParams) {
-          return ProjectService.getProject($stateParams.id);
-        }],
-        projectName: ['project', function(project) {
-          return project.name;
+        project: ['ProjectsService', '$stateParams', function(ProjectsService, $stateParams) {
+          return ProjectsService.getProject($stateParams.id);
         }]
       },
       data: {
-        displayName: '{{ projectName }}'
+        displayName: '{{ project.name }}'
       }
     });
 
@@ -177,16 +174,17 @@ define(function(require) {
       url: '/{testId:int}',
       views: {
         'content@': {
-          template: 'this is project test with id {{testId}}'
+          controller: 'ProjectTestController as vm',
+          templateUrl: 'components/projects/tests/detail/project-test.html'
         }
       },
       resolve: {
-        testName: function() {
-          return 'Some test';
-        }
+        test: ['ProjectsService', '$stateParams', function(ProjectService, $stateParams) {
+          return ProjectService.getProjectTest($stateParams.id, $stateParams.testId);
+        }]
       },
       data: {
-        displayName: '{{ testName }}'
+        displayName: '{{ test.name }}'
       }
     });
 
