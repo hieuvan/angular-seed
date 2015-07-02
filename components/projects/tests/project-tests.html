@@ -23,7 +23,7 @@
             <td>Name</td>
           </tr>
         </thead>
-        <tr ng-repeat="test in (vm.filteredTests = (vm.tests | filter: vm.filterTests))">
+        <tr ng-repeat="test in vm.tests | textSearch:vm.testQuery">
           <td><a href ui-sref="root.projectTests.detail({testId: test.id})">{{test.name}}</a></td>
         </tr>
       </tbody>
