@@ -6,12 +6,11 @@ define(function(require) {
     var vm = this;
 
     vm.form = form;
-    vm.itemSearchResults = false;
 
     vm.addItemShow = function() {
       var modal = $modal.open({
-        templateUrl: 'components/projects/modal/add-item.html'
-        //controller: 'ItemsController as vm'
+        templateUrl: 'components/projects/modal/add-item.html',
+        controller: 'ItemsController as vm'
       });
 
       /*modal.result.then(function(selected) {
@@ -20,13 +19,7 @@ define(function(require) {
 
     };
 
-    vm.searchItem = function() {
-      var formdata = { query: vm.itemQuery };
 
-      ProjectsService.searchItem(formdata).then(function(items) {
-        vm.items = items;
-      });
-    };
 
   }];
 });

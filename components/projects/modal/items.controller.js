@@ -2,21 +2,22 @@
 
 define(function(require) {
 
-  return ['$state', '$stateParams', 'project',
-  function($state, $stateParams, project) {
+  return ['$modal', 'ProjectsService', function($modal, ProjectsService) {
     var vm = this;
 
-    vm.tabs = [
-      { heading: 'Tests', route: 'root.projectTests.list' },
-      { heading: 'Users', route: 'root.projectUsers.list' },
-    ];
+    vm.itemSearchResults = false;
 
-    vm.tables = {
-      exports: ['Date', 'Form', 'User', 'Notes'] ,
-      tests: ['#', 'Name', 'Last Updated', 'Updated by', 'Version']
+    vm.searchItem = function() {
+      var formdata = { query: vm.itemQuery };
+
+      ProjectsService.searchItem(formdata).then(function(items) {
+        vm.items = items;
+      });
     };
 
-    vm.project = project;
+    vm.cancel = function () {
+      $modal.dismiss('cancel');
+    };
 
     vm.close = function() {
       vm.assignUserSuccess = false;

@@ -10,6 +10,7 @@ define(function(require) {
       ProjectTestFormController = require('components/projects/tests/forms/detail/project-test-form.controller'),
       ProjectUsersController = require('components/projects/users/project-users.controller'),
       ProjectCreateController = require('components/projects/create/project-create.controller'),
+      ItemsController = require('components/projects/modal/items.controller'),
       ProjectsService = require('components/projects/projects.service');
 
   return angular.module('app.projects', [])
@@ -22,6 +23,7 @@ define(function(require) {
   .controller('ProjectUsersController', ProjectUsersController)
   .controller('ProjectCreateController', ProjectCreateController)
   .controller('ProjectTestController', ProjectTestController)
-  .controller('ProjectTestFormController', ProjectTestFormController);
+  .controller('ProjectTestFormController', ProjectTestFormController)
+  .controller('ItemsController', ItemsController);
 
 });
