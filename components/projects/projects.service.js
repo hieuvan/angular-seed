@@ -63,6 +63,13 @@ define(function(require) {
       });
     };
 
+    var searchItem = function(data) {
+
+      return HttpService.get('items?_q=' + data).then(function(items) {
+        return items.data;
+      });
+    };
+
     return {
       getProjects: getProjects,
       getProject: getProject,
@@ -72,7 +79,8 @@ define(function(require) {
       createProject: createProject,
       addUserToProject: addUserToProject,
       addTestToProject: addTestToProject,
-      addFormToTest: addFormToTest
+      addFormToTest: addFormToTest,
+      searchItem: searchItem
     };
   }];
 });

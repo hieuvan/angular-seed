@@ -1,0 +1,56 @@
+<div class="modal-header">
+  <button type="button" class="close" ng-click="vm.cancel()">
+    <span aria-hidden="true">&times;</span>
+    <span class="sr-only">Close</span>
+  </button>
+  <h3 class="modal-title">
+    Add item
+  </h3>
+</div>
+
+<div class="modal-body">
+  <div ng-show="vm.success">
+    <div class="alert alert-success">
+      {{vm.success}}
+    </div>
+  </div>
+  <div class="input-group">
+    <input type="search" placeholder="Search items by uid or title" class="default form-control" autocomplete="off" ng-model="vm.itemQuery">
+    <span class="input-group-addon"><span class="fa fa-search" ng-click="vm.searchItem()"></span></span>
+  </div>
+  <div class="table-container col-3" ng-show="vm.itemSearchResults">
+    <div class="table-container-header-fixed">
+      <table class="table table-condensed table-bordered">
+        <thead>
+          <tr>
+            <th>UID</th>
+            <th>Title</th>
+            <th>Content</th>
+          </tr>
+        </thead>
+      </table>
+    </div>
+    <div class="table-container-scroll">
+      <table class="table table-condensed table-bordered">
+        <thead>
+          <tr>
+            <th>UID</th>
+            <th>Title</th>
+            <th>Content</th>
+          </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="form in vm.test.forms">
+          <td>{{form.uid}}</td>
+          <td>{{form.title}}</td>
+          <td>{{form.stem}}</td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<div class="modal-footer">
+  <button class="btn btn-default" ng-click="vm.cancel()">Close</button>
+</div>
