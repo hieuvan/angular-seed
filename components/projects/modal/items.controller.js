@@ -12,6 +12,7 @@ define(function(require) {
 
       ProjectsService.searchItem(formdata).then(function(items) {
         vm.items = items;
+        vm.itemSearchResults = true;
       });
     };
 
@@ -19,8 +20,5 @@ define(function(require) {
       $modal.dismiss('cancel');
     };
 
-    vm.close = function() {
-      vm.assignUserSuccess = false;
-    };
   }];
 });
