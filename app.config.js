@@ -29,6 +29,9 @@ require.config({
     ],
     'angular-utils-ui-breadcrumbs': [
       'angular'
+    ],
+    'angular-ui-tree': [
+      'angular'
     ]
   },
   map: {
@@ -52,7 +55,8 @@ require.config({
     underscore: 'bower_components/underscore/underscore',
     'angular-cookies': 'bower_components/angular-cookies/angular-cookies',
     'angular-animate': 'bower_components/angular-animate/angular-animate',
-    'angular-utils-ui-breadcrumbs': 'bower_components/angular-utils-ui-breadcrumbs/uiBreadcrumbs'
+    'angular-utils-ui-breadcrumbs': 'bower_components/angular-utils-ui-breadcrumbs/uiBreadcrumbs',
+    'angular-ui-tree': 'bower_components/angular-ui-tree/dist/angular-ui-tree'
   },
   packages: [
 

@@ -2,7 +2,7 @@
 
 define(function(require) {
 
-  return ['$modal', 'ProjectsService', function($modal, ProjectsService) {
+  return ['$modalInstance', 'ProjectsService', function($modalInstance, ProjectsService) {
     var vm = this;
 
     vm.itemSearchResults = false;
@@ -17,7 +17,7 @@ define(function(require) {
     };
 
     vm.cancel = function () {
-      $modal.dismiss('cancel');
+      $modalInstance.dismiss('cancel');
     };
 
   }];

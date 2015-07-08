@@ -2,6 +2,7 @@
 
 define(function(require) {
   require('angular');
+  require('angular-ui-tree');
 
   var ProjectsController = require('components/projects/list/projects.controller'),
       ProjectController = require('components/projects/detail/project.controller'),
@@ -13,7 +14,7 @@ define(function(require) {
       ItemsController = require('components/projects/modal/items.controller'),
       ProjectsService = require('components/projects/projects.service');
 
-  return angular.module('app.projects', [])
+  return angular.module('app.projects', ['ui.tree'])
 
   .service('ProjectsService', ProjectsService)
 

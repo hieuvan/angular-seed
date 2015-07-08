@@ -6,6 +6,22 @@
   <div ng-show="vm.form.items.length">
     <div class="col-md-12">
       <h3>Items</h3>
+      <div ui-tree>
+  <ol ui-tree-nodes="" ng-model="list">
+    <li ng-repeat="item in list" ui-tree-node>
+      <div ui-tree-handle>
+        {{item.title}}
+      </div>
+      <ol ui-tree-nodes="" ng-model="item.items">
+        <li ng-repeat="subItem in item.items" ui-tree-node>
+          <div ui-tree-handle>
+            {{subItem.title}}
+          </div>
+        </li>
+      </ol>
+    </li>
+  </ol>
+</div>
       <div class="table-container">
         <div class="table-container-header-fixed">
           <table class="table table-condensed table-bordered">
