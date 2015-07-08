@@ -1,2 +1,4 @@
 #!/bin/sh
 
+mv bower_components/angular-ui-tree/dist/angular-ui-tree.min.css bower_components/angular-ui-tree/dist/_angular-ui-tree.scss 2>/dev/null
+
