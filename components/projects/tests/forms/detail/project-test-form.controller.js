@@ -12,11 +12,23 @@ define(function(require) {
         templateUrl: 'components/projects/modal/add-item.html',
         controller: 'ItemsController as vm'
       });
+    };
+    var getRootNodesScope = function() {
+      return angular.element(document.getElementById("tree-root")).scope();
+    };
 
-      /*modal.result.then(function(selected) {
-        console.log(selected);
-      });*/
+    vm.toggle = function(scope) {
+      scope.toggle();
+    };
 
+    vm.collapseAll = function() {
+      var scope = getRootNodesScope();
+      scope.collapseAll();
+    };
+
+    vm.expandAll = function() {
+      var scope = getRootNodesScope();
+      scope.expandAll();
     };
 
 
