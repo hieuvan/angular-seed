@@ -3,6 +3,11 @@
 </div>
 <div class="col-md-12">
   <div ng-hide="vm.form.items.length">There are no item.</div>
+  <form>
+    <div class="form-group">
+      <button type="button" class="btn btn-primary" ng-click="vm.addItemShow()">Add Item</button>
+    </div>
+  </form>
   <div ng-show="vm.form.items.length">
     <div class="col-md-6">
       <h3>Items</h3>
@@ -14,8 +19,8 @@
         <div ui-tree-handle>
           <a class="btn btn-success btn-xs" data-nodrag ng-click="vm.toggle(this)"><span class="glyphicon" ng-class="{'glyphicon-chevron-right': collapsed, 'glyphicon-chevron-down': !collapsed}"></span></a>
           {{item.uid}}
-          <!--<a class="pull-right btn btn-danger btn-xs" data-nodrag ng-click="remove(this)"><span class="glyphicon glyphicon-remove"></span></a>-->
-          <!--<a class="pull-right btn btn-primary btn-xs" data-nodrag ng-click="newSubItem(this)" style="margin-right: 8px;"><span class="glyphicon glyphicon-plus"></span></a>-->
+          <a class="pull-right btn btn-danger btn-xs" data-nodrag ng-click="remove(this)"><span class="glyphicon glyphicon-remove"></span></a>
+          <a class="pull-right btn btn-primary btn-xs" data-nodrag ng-click="newSubItem(this)" style="margin-right: 8px;"><span class="glyphicon glyphicon-plus"></span></a>
         </div>
         <ol ui-tree-nodes ng-model="item.items" ng-class="{hidden: collapsed}">
           <li ng-repeat="item in item.items" ui-tree-node ng-include="'items_renderer.html'">
@@ -29,41 +34,6 @@
         </ol>
       </div>
       </div>
-      <!--<div class="table-container">-->
-        <!--<div class="table-container-header-fixed">-->
-          <!--<table class="table table-condensed table-bordered">-->
-            <!--<thead>-->
-              <!--<tr>-->
-                <!--<td>UID</td>-->
-                <!--<td>Title</td>-->
-                <!--<td>Stem</td>-->
-              <!--</tr>-->
-            <!--</thead>-->
-          <!--</table>-->
-        <!--</div>-->
-        <!--<div class="table-container-scroll">-->
-          <!--<table class="table table-condensed table-bordered">-->
-          <!--<tbody>-->
-            <!--<thead>-->
-              <!--<tr>-->
-                <!--<td>UID</td>-->
-                <!--<td>Title</td>-->
-              <!--</tr>-->
-            <!--</thead>-->
-            <!--<tr ng-repeat="item in vm.form.items">-->
-              <!--<td>{{item.uid}}</td>-->
-              <!--<td>{{item.title}}</td>-->
-              <!--<td>{{item.stem}}</td>-->
-            <!--</tr>-->
-          <!--</tbody>-->
-          <!--</table>-->
-        <!--</div>-->
-      <!--</div>-->
-      <form>
-        <div class="form-group">
-          <button type="button" class="btn btn-primary" ng-click="vm.addItemShow()">Add Item</button>
-        </div>
-      </form>
     </div>
     <div class="col-md-6">
       <div class="info">
