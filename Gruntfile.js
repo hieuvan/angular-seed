@@ -30,7 +30,8 @@ module.exports = function (grunt) {
 
     karma: {
       unit : {
-        configFile : 'karma.conf.js'
+        configFile : 'karma.conf.js',
+        singleRun: false
       }
     },
 
@@ -340,14 +341,13 @@ module.exports = function (grunt) {
   grunt.registerTask('test', function (target) {
     if (target !== 'watch') {
       grunt.task.run([
-        'concurrent:test',
+        'karma:unit',
         'autoprefixer'
       ]);
     }
 
     grunt.task.run([
-      'connect:test',
-      'mocha'
+      'karma:unit'
     ]);
   });
 
@@ -372,9 +372,5 @@ module.exports = function (grunt) {
     'newer:jshint',
     'test',
     'build'
-  ]);
-
-  grunt.registerTask('jasmine', [
-    'karma:unit'
   ]);
 };
