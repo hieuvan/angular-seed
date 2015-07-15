@@ -5,7 +5,7 @@ if (typeof define !== 'function') {
   var define = require('amdefine')(module);
 }
 
-define({
+require.config({
   deps: [
     'app.main'
   ],
