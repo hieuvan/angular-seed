@@ -58,13 +58,22 @@ define(function(require) {
     var getProjectTestForm = function(projectId, testId, formId) {
       var url = 'projects' + '/' + projectId + '/' + 'tests' + '/' + testId + '/forms' + '/' + formId;
 
-      return HttpService.get(url, {'include[]': ['items']}).then(function(form) {
+      return HttpService.get(url, {'include': ['items']}).then(function(form) {
         return form.data;
       });
     };
 
     var searchItem = function(data) {
       return HttpService.get('items?_q=' + data.query).then(function(items) {
+        return items.data;
+      });
+    };
+
+    var addItemToForm = function(projectId, testId, formId, data) {
+      var url = 'projects' + '/' + projectId + '/' + 'tests' + '/' + testId + '/forms' + '/' + formId + '/' + 'items';
+
+      return HttpService.post(url, data).then(function(items) {
+        console.log(items);
         return items.data;
       });
     };
@@ -79,7 +88,8 @@ define(function(require) {
       addUserToProject: addUserToProject,
       addTestToProject: addTestToProject,
       addFormToTest: addFormToTest,
-      searchItem: searchItem
+      searchItem: searchItem,
+      addItemToForm: addItemToForm
     };
   }];
 });

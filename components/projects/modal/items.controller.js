@@ -2,22 +2,39 @@
 
 define(function(require) {
 
-  return ['$modalInstance', 'ProjectsService', function($modalInstance, ProjectsService) {
+  return ['$stateParams', '$modalInstance', 'ProjectsService', function($stateParams, $modalInstance, ProjectsService) {
     var vm = this;
 
+    //vm.form = form;
+
     vm.itemSearchResults = false;
+    //vm.selectedItems = [];
 
     vm.searchItem = function() {
-      var formdata = { query: vm.itemQuery };
+      var formData = { query: vm.itemQuery };
 
-      ProjectsService.searchItem(formdata).then(function(items) {
-        vm.items = items;
+      ProjectsService.searchItem(formData).then(function(items) {
+        vm.searchItems = items;
         vm.itemSearchResults = true;
       });
     };
 
     vm.cancel = function () {
       $modalInstance.dismiss('cancel');
+    };
+
+    vm.addItems = function () {
+      var selectedItems = _.where(vm.searchItems, {selected: true});
+      var formData = { items: _.pluck(selectedItems, 'id') };
+      //console.log(formData);
+      //var formData = { items: selectedItems };
+      var form = ProjectsService.getProjectTestForm($stateParams.id, $stateParams.testId, $stateParams.formId);
+      console.log(form);
+      ProjectsService.addItemToForm($stateParams.id, $stateParams.testId, $stateParams.formId, formData).then(function(items) {
+        //console.log(items);
+        form.items.push(items);
+        //console.log(vm.items);
+      });
     };
 
   }];
