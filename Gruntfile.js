@@ -1,19 +1,8 @@
-// Generated on 2015-02-03 using
-// generator-webapp 0.5.1
 'use strict';
-
-// # Globbing
-// for performance reasons we're only matching one level down:
-// 'test/spec/{,*/}*.js'
-// If you want to recursively match all subfolders, use:
-// 'test/spec/**/*.js'
 
 module.exports = function (grunt) {
 
-  // Time how long tasks take. Can help when optimizing build times
   require('time-grunt')(grunt);
-
-  // Load grunt tasks automatically
   require('load-grunt-tasks')(grunt);
 
   // Configurable paths
@@ -30,7 +19,9 @@ module.exports = function (grunt) {
 
     karma: {
       unit : {
-        configFile : 'karma.conf.js'
+        configFile : 'karma.conf.js',
+        singleRun: true,
+        autoWatch: false
       }
     },
 
@@ -45,7 +36,7 @@ module.exports = function (grunt) {
         tasks: ['jshint']
       },
       jstest: {
-        files: ['test/spec/{,*/}*.js'],
+        files: ['test/spec/**/*.js'],
         tasks: ['test:watch']
       },
       gruntfile: {
@@ -159,7 +150,7 @@ module.exports = function (grunt) {
           expand: true,
           cwd: '<%= config.app %>/styles',
           src: ['*.{scss,sass}'],
-          dest: '.tmp/styles',
+          dest: '<%=config.dist %>/styles',
           ext: '.css'
         }]
       },
@@ -339,15 +330,17 @@ module.exports = function (grunt) {
 
   grunt.registerTask('test', function (target) {
     if (target !== 'watch') {
-      grunt.task.run([
-        'concurrent:test',
+      return grunt.task.run([
+        'karma:unit',
         'autoprefixer'
       ]);
     }
 
+    grunt.config('karma:unit.singleRun', false);
+    grunt.config('karma:unit.autoWatch', true);
+
     grunt.task.run([
-      'connect:test',
-      'mocha'
+      'karma:unit'
     ]);
   });
 
@@ -372,9 +365,5 @@ module.exports = function (grunt) {
     'newer:jshint',
     'test',
     'build'
-  ]);
-
-  grunt.registerTask('jasmine', [
-    'karma:unit'
   ]);
 };

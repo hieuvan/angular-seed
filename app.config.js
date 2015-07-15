@@ -1,6 +1,11 @@
 'use strict';
 
-require.config({
+if (typeof define !== 'function') {
+  // to be able to require file from node
+  var define = require('amdefine')(module);
+}
+
+define({
   deps: [
     'app.main'
   ],
