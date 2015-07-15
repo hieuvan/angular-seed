@@ -1,11 +1,6 @@
 'use strict';
 
-if (typeof define !== 'function') {
-  // to be able to require file from node
-  var define = require('amdefine')(module);
-}
-
-require.config({
+var config = {
   deps: [
     'app.main'
   ],
@@ -66,5 +61,13 @@ require.config({
   packages: [
 
   ]
-});
+};
+
+if (typeof __karma__ !== 'undefined') {
+  // to be able to require file from node
+  define(config);
+} else {
+  // to be able to require file from browser
+  require.config(config);
+}
 

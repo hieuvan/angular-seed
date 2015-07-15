@@ -30,6 +30,6 @@ require(['base/app.config'], function(config) {
 
   config.callback = window.__karma__.start;
 
-  window.requirejs.config(config);
+  window.require.config(config);
 });
 
