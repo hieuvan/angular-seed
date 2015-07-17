@@ -52,6 +52,28 @@ module.exports = function (grunt) {
       }
     },
 
+    connect: {
+      server: {
+        options: {
+          port: 9000,
+          open: true,
+          livereload: 35729,
+          host: '0.0.0.0'
+        }
+      },
+      livereload: {
+        options: {
+          middleware: function(connect) {
+            return [
+              connect.static('.tmp'),
+              connect().use('/bower_components', connect.static('./bower_components')),
+              connect.static(config.app)
+            ];
+          }
+        }
+      },
+    },
+
     requirejs: {
       compile: {
         options: {
@@ -319,6 +341,7 @@ module.exports = function (grunt) {
       'bowerRequirejs',
       'concurrent:server',
       'autoprefixer',
+      'connect:livereload',
       'watch'
     ]);
   });
