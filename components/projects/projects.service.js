@@ -56,7 +56,7 @@ define(function(require) {
     };
 
     var getProjectTestForm = function(projectId, testId, formId) {
-      var url = 'projects' + '/' + projectId + '/' + 'tests' + '/' + testId + '/forms' + '/' + formId;
+      var url = 'projects' + '/' + projectId + '/' + 'tests' + '/' + testId + '/forms' + '/' + formId + '/' + 'items';
 
       return HttpService.get(url, {'include': ['items']}).then(function(form) {
         return form.data;

@@ -26,14 +26,9 @@ define(function(require) {
     vm.addItems = function () {
       var selectedItems = _.where(vm.searchItems, {selected: true});
       var formData = { items: _.pluck(selectedItems, 'id') };
-      //console.log(formData);
-      //var formData = { items: selectedItems };
       var form = ProjectsService.getProjectTestForm($stateParams.id, $stateParams.testId, $stateParams.formId);
-      console.log(form);
       ProjectsService.addItemToForm($stateParams.id, $stateParams.testId, $stateParams.formId, formData).then(function(items) {
-        //console.log(items);
         form.items.push(items);
-        //console.log(vm.items);
       });
     };
 
