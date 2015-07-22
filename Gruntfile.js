@@ -99,6 +99,14 @@ module.exports = function (grunt) {
       }
     },
 
+    processhtml: {
+      dist: {
+        files: {
+          '<%= config.dist %>/index.html': ['index.html']
+        }
+      }
+    },
+
     // Copies remaining files to places other tasks can use
     copy: {
       dist: {
@@ -239,62 +247,6 @@ module.exports = function (grunt) {
       }
     },
 
-    // Reads HTML for usemin blocks to enable smart builds that automatically
-    // concat, minify and revision files. Creates configurations in memory so
-    // additional tasks can operate on them
-    useminPrepare: {
-      options: {
-        dest: '<%= config.dist %>'
-      },
-      html: '<%= config.app %>/index.html'
-    },
-
-    // Performs rewrites based on rev and the useminPrepare configuration
-    usemin: {
-      options: {
-        assetsDirs: [
-          '<%= config.dist %>',
-          '<%= config.dist %>/images',
-          '<%= config.dist %>/styles'
-        ]
-      },
-      html: ['<%= config.dist %>/{,*/}*.html'],
-      css: ['<%= config.dist %>/styles/{,*/}*.css']
-    },
-
-    svgmin: {
-      dist: {
-        files: [{
-          expand: true,
-          cwd: '<%= config.app %>/images',
-          src: '{,*/}*.svg',
-          dest: '<%= config.dist %>/images'
-        }]
-      }
-    },
-
-    htmlmin: {
-      dist: {
-        options: {
-          collapseBooleanAttributes: true,
-          collapseWhitespace: true,
-          conservativeCollapse: true,
-          removeAttributeQuotes: true,
-          removeCommentsFromCDATA: true,
-          removeEmptyAttributes: true,
-          removeOptionalTags: true,
-          removeRedundantAttributes: true,
-          useShortDoctype: true
-        },
-        files: [{
-          expand: true,
-          cwd: '<%= config.dist %>',
-          src: '{,*/}*.html',
-          dest: '<%= config.dist %>'
-        }]
-      }
-    },
-
     // Generates a custom Modernizr build that includes only the tests you
     // reference in your app
     modernizr: {
@@ -321,7 +273,6 @@ module.exports = function (grunt) {
       ],
       dist: [
         'sass',
-        'svgmin'
       ]
     }
   });
@@ -371,17 +322,10 @@ module.exports = function (grunt) {
     'clean:dist',
     'wiredep:sass',
     'bowerRequirejs',
-    'useminPrepare',
     'concurrent:dist',
     'autoprefixer',
     'copy:dist',
-    //'concat',
-    //'cssmin',
-    //'uglify',
-    //'modernizr',
     'rev',
-    'usemin',
-    'htmlmin'
   ]);
 
   grunt.registerTask('default', [
