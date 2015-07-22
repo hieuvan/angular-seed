@@ -87,11 +87,16 @@ module.exports = function (grunt) {
 
     // Empties folders to start fresh
     clean: {
+      tmp: {
+        files: [{
+          dot: true,
+          src: ['.tmp']
+        }]
+      },
       dist: {
         files: [{
           dot: true,
           src: [
-            '.tmp',
             '<%= config.dist %>/*',
             '!<%= config.dist %>/.git*'
           ]
@@ -288,6 +293,7 @@ module.exports = function (grunt) {
     }
 
     grunt.task.run([
+      'clean:tmp',
       'wiredep:sass',
       'copy:fonts',
       'bowerRequirejs',
@@ -326,7 +332,7 @@ module.exports = function (grunt) {
     'concurrent:dist',
     'autoprefixer',
     'copy:dist',
-    'rev',
+    'processhtml:dist'
   ]);
 
   grunt.registerTask('default', [
