@@ -347,6 +347,7 @@ module.exports = function (grunt) {
     grunt.task.run([
       'clean:tmp',
       'wiredep:sass',
+      'ngtemplates',
       'bowerRequirejs',
       'concurrent:server',
       'autoprefixer:server',
