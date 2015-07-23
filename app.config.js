@@ -1,6 +1,6 @@
 'use strict';
 
-var config = {
+require.config({
   deps: [
     'app.main'
   ],
@@ -61,13 +61,10 @@ var config = {
   packages: [
 
   ]
-};
+});
 
+// to be able to require file from node
 if (typeof __karma__ !== 'undefined') {
-  // to be able to require file from node
-  define(config);
-} else {
-  // to be able to require file from browser
-  require.config(config);
+  define(requirejs.s.contexts._.config);
 }
 

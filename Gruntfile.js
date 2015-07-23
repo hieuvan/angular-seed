@@ -8,7 +8,8 @@ module.exports = function (grunt) {
   // Configurable paths
   var config = {
     app: '.',
-    dist: 'dist'
+    dist: 'dist',
+    bower: 'bower_components'
   };
 
   // Define the configuration for all the tasks
@@ -72,17 +73,6 @@ module.exports = function (grunt) {
           }
         }
       },
-    },
-
-    requirejs: {
-      compile: {
-        options: {
-          baseUrl: 'app',
-          mainConfigFile: 'app/app.config.js',
-          name: 'app.main',
-          out: '<%= config.dist %>/main.js'
-        }
-      }
     },
 
     // Empties folders to start fresh
@@ -216,11 +206,25 @@ module.exports = function (grunt) {
       }
     },
 
+    // automatically inject bower dependencies to rjs config
     bowerRequirejs: {
       target: {
         rjsConfig: '<%= config.app %>/app.config.js',
         options: {
           exclude: ['requirejs', 'bootstrap-sass', 'font-awesome']
+        }
+      }
+    },
+
+    requirejs: {
+      compile: {
+        options: {
+          baseUrl: '<%= config.app %>',
+          mainConfigFile: '<%= config.app %>/app.config.js',
+          name: 'app.main',
+          optimize: 'none',
+          include: ['<%= config.bower %>/requirejs/require.js'],
+          out: '<%= config.dist %>/main.js'
         }
       }
     },
