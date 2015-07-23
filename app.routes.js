@@ -1,6 +1,6 @@
 'use strict';
 
-define(function(require) {
+define(function() {
   return ['$stateProvider', '$urlRouterProvider', 'constant',
   function($stateProvider, $urlRouterProvider, constant) {
     var states = [];

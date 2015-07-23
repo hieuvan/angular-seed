@@ -38,8 +38,8 @@ module.exports = function (grunt) {
         options: { livereload: true }
       },
       jstest: {
-        files: ['test/spec/**/*.js'],
-        tasks: ['test:watch']
+        files: ['test/unit/**/*.js'],
+        tasks: ['test:watch', 'jshint']
       },
       html: {
         files: ['components/**/*html'],
@@ -174,7 +174,7 @@ module.exports = function (grunt) {
       all: [
         'Gruntfile.js',
         '<%= config.app %>/{,*/}*.js',
-        'test/spec/{,*/}*.js',
+        'test/{,*/}*.js',
         '!<%= config.app %>/shared/templates.js'
       ]
     },

@@ -1,6 +1,6 @@
 'use strict';
 
-define(function(require) {
+define(function() {
   return ['$rootScope', '$state', '$stateParams', '$auth',
   function($rootScope, $state, $stateParams, $auth) {
 
@@ -16,13 +16,13 @@ define(function(require) {
         $state.go('login');
       }
 
-      if (toState.name == 'login' && $auth.isAuthenticated()) {
+      if (toState.name === 'login' && $auth.isAuthenticated()) {
         e.preventDefault();
         $state.go('root.projects.list');
       }
     });
 
-    $rootScope.$on('$stateChangeSuccess', function(ev, to, toParams, from, fromParams) {
+    $rootScope.$on('$stateChangeSuccess', function(ev, to, toParams, from) {
       $rootScope.previousState = from.name || 'root.projects.list';
       $rootScope.currentState = to.name;
     });
