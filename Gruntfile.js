@@ -136,15 +136,17 @@ module.exports = function (grunt) {
         files: [{
           expand: true,
           dot: true,
+          flatten: true,
           cwd: 'bower_components',
           src: 'bootstrap-sass/assets/fonts/bootstrap/*',
-          dest: '.tmp/styles'
+          dest: '.tmp/fonts/bootstrap'
         },{
           expand: true,
           dot: true,
+          flatten: true,
           cwd: 'bower_components',
           src: 'font-awesome/fonts/*',
-          dest: '.tmp/styles'
+          dest: '.tmp/fonts/font-awesome'
 
         }]
       },
@@ -302,7 +304,8 @@ module.exports = function (grunt) {
     concurrent: {
       server: [
         'sass:server',
-        'copy:styles'
+        'copy:styles',
+        'copy:fonts'
       ],
       test: [
       ],
@@ -324,7 +327,6 @@ module.exports = function (grunt) {
     grunt.task.run([
       'clean:tmp',
       'wiredep:sass',
-      'copy:fonts',
       'bowerRequirejs',
       'concurrent:server',
       'autoprefixer',
