@@ -42,29 +42,38 @@ module.exports = function (grunt) {
       },
       html: {
         files: ['components/**/*html'],
-        tasks: ['ngtemplates']
+        tasks: ['ngtemplates'],
+        options: { livereload: true }
       },
       gruntfile: {
         files: ['Gruntfile.js']
       },
       sass: {
         files: ['<%= config.app %>/styles/{,*/}*.{scss,sass}'],
-        tasks: ['sass:server', 'autoprefixer:server']
+        tasks: ['sass:server', 'autoprefixer:server'],
+        options: { livereload: true }
       },
       styles: {
         files: ['<%= config.app %>/styles/{,*/}*.css'],
-        tasks: ['newer:copy:styles', 'autoprefixer:server']
+        tasks: ['newer:copy:styles', 'autoprefixer:server'],
+        options: { livereload: true }
+      },
+      livereload: {
+        options: {
+          livereload: '<%= connect.options.livereload %>'
+        },
+        files: [
+          '<%= config.app %>/images/{,*/}*'
+        ]
       }
     },
 
     connect: {
-      server: {
-        options: {
-          port: 9000,
-          open: true,
-          livereload: 35729,
-          host: '0.0.0.0'
-        }
+      options: {
+        port: 8000,
+        open: true,
+        livereload: 35729,
+        host: '0.0.0.0'
       },
       livereload: {
         options: {
