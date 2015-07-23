@@ -33,7 +33,7 @@ module.exports = function (grunt) {
         tasks: ['wiredep:sass', 'bowerRequirejs']
       },
       js: {
-        files: ['<%= config.app %>/scripts/{,*/}*.js'],
+        files: ['<%= config.app %>/{,*/}*.js'],
         tasks: ['jshint']
       },
       jstest: {
@@ -165,7 +165,8 @@ module.exports = function (grunt) {
       all: [
         'Gruntfile.js',
         '<%= config.app %>/{,*/}*.js',
-        'test/spec/{,*/}*.js'
+        'test/spec/{,*/}*.js',
+        '!<%= config.app %>/shared/templates.js'
       ]
     },
 
@@ -352,8 +353,7 @@ module.exports = function (grunt) {
   grunt.registerTask('test', function (target) {
     if (target !== 'watch') {
       return grunt.task.run([
-        'karma:unit',
-        'autoprefixer'
+        'karma:unit'
       ]);
     }
 
@@ -372,6 +372,7 @@ module.exports = function (grunt) {
     'concurrent:dist',
     'autoprefixer:dist',
     'processhtml:dist',
+    'newer:jshint',
     'ngtemplates',
     'requirejs'
   ]);

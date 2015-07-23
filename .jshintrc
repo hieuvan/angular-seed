@@ -1,5 +1,6 @@
 {
   "node": true,
+  "jasmine": true,
   "browser": true,
   "esnext": true,
   "bitwise": true,
@@ -21,6 +22,8 @@
     "angular": false,
     /* AMD */
     "define": false,
+    "describe": false,
+    "requirejs": false,
     /* Custom */
     "ngRoutes": false,
     "ngSanitize": false,
