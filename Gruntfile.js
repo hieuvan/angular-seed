@@ -40,6 +40,10 @@ module.exports = function (grunt) {
         files: ['test/spec/**/*.js'],
         tasks: ['test:watch']
       },
+      html: {
+        files: ['components/**/*html'],
+        tasks: ['ngtemplates']
+      },
       gruntfile: {
         files: ['Gruntfile.js']
       },
@@ -206,6 +210,26 @@ module.exports = function (grunt) {
       }
     },
 
+    // create angular template cache
+    ngtemplates: {
+      app: {
+        src: '<%= config.app %>/components/**/*.html',
+        dest: 'shared/templates.js',
+        options: {
+          url: function(url) {
+            return url.replace('./', '');
+          },
+          bootstrap: function(module, script) {
+            var wrapper = 'define(function(require) {\n';
+            wrapper += '\treturn [\'$templateCache\', function($templateCache) {\n';
+            wrapper += script + '\n\t}];\n});';
+
+            return wrapper;
+          }
+        }
+      }
+    },
+
     // automatically inject bower dependencies to rjs config
     bowerRequirejs: {
       target: {
@@ -216,6 +240,7 @@ module.exports = function (grunt) {
       }
     },
 
+    // optimize javascript with rjs optimizer
     requirejs: {
       compile: {
         options: {
@@ -224,7 +249,7 @@ module.exports = function (grunt) {
           name: 'app.main',
           optimize: 'none',
           include: ['<%= config.bower %>/requirejs/require.js'],
-          out: '<%= config.dist %>/main.js'
+          out: '<%= config.dist %>/js/main.js'
         }
       }
     },
@@ -336,7 +361,9 @@ module.exports = function (grunt) {
     'concurrent:dist',
     'autoprefixer',
     'copy:dist',
-    'processhtml:dist'
+    'processhtml:dist',
+    'ngtemplates',
+    'requirejs'
   ]);
 
   grunt.registerTask('default', [

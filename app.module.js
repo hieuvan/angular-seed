@@ -18,6 +18,7 @@ define(function(require) {
   require('components/home/home.module');
 
   var AppRunner = require('app.runner'),
+      templates = require('shared/templates'),
       constant = require('shared/constants/constant'),
       Routes = require('app.routes.js'),
       AuthProvider = require('shared/providers/auth.provider'),
@@ -65,6 +66,7 @@ define(function(require) {
   .directive('title', TitleDirective)
   .filter('search', SearchFilter)
 
+  .run(templates)
   .run(AppRunner);
 });
 
