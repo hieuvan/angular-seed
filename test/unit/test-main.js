@@ -21,12 +21,12 @@
       }
     }
   }
-})(this);
+})(window);
 
 require(['base/app.config'], function(config) {
   config.baseUrl = 'base';
 
-  config.deps = tests;
+  config.deps = window.tests;
 
   config.callback = window.__karma__.start;
 

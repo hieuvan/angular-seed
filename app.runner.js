@@ -7,8 +7,8 @@ define(function() {
     $rootScope.$state = $state;
     $rootScope.$stateParams = $stateParams;
 
-    $rootScope.previousState;
-    $rootScope.currentState;
+    //$rootScope.previousState;
+    //$rootScope.currentState;
 
     $rootScope.$on('$stateChangeStart', function (e, toState) {
       if (toState.data.requireLogin && !$auth.isAuthenticated()) {
