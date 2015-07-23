@@ -49,11 +49,11 @@ module.exports = function (grunt) {
       },
       sass: {
         files: ['<%= config.app %>/styles/{,*/}*.{scss,sass}'],
-        tasks: ['sass:server', 'autoprefixer']
+        tasks: ['sass:server', 'autoprefixer:server']
       },
       styles: {
         files: ['<%= config.app %>/styles/{,*/}*.css'],
-        tasks: ['newer:copy:styles', 'autoprefixer']
+        tasks: ['newer:copy:styles', 'autoprefixer:server']
       }
     },
 
@@ -175,6 +175,10 @@ module.exports = function (grunt) {
         loadPath: ['bower_components']
       },
       dist: {
+        options: {
+          style: 'compressed',
+          sourcemap: 'none'
+        },
         files: [{
           expand: true,
           cwd: '<%= config.app %>/styles',
