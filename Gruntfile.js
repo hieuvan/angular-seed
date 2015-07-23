@@ -7,7 +7,7 @@ module.exports = function (grunt) {
 
   // Configurable paths
   var config = {
-    app: '.',
+    app: 'app',
     dist: 'dist',
     bower: 'bower_components'
   };
@@ -63,7 +63,8 @@ module.exports = function (grunt) {
           livereload: '<%= connect.options.livereload %>'
         },
         files: [
-          '<%= config.app %>/images/{,*/}*'
+          '<%= config.app %>/images/{,*/}*',
+          '<%= config.app %>/index.html'
         ]
       }
     },
@@ -111,7 +112,7 @@ module.exports = function (grunt) {
     processhtml: {
       dist: {
         files: {
-          '<%= config.dist %>/index.html': ['index.html']
+          '<%= config.dist %>/index.html': ['<%= config.app %>/index.html']
         }
       }
     },
@@ -235,7 +236,7 @@ module.exports = function (grunt) {
     ngtemplates: {
       app: {
         src: '<%= config.app %>/components/**/*.html',
-        dest: 'shared/templates.js',
+        dest: '<%= config.app %>/shared/templates.js',
         options: {
           url: function(url) {
             return url.replace('./', '');
