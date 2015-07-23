@@ -34,7 +34,8 @@ module.exports = function (grunt) {
       },
       js: {
         files: ['<%= config.app %>/{,*/}*.js'],
-        tasks: ['jshint']
+        tasks: ['jshint'],
+        options: { livereload: true }
       },
       jstest: {
         files: ['test/spec/**/*.js'],
@@ -42,8 +43,7 @@ module.exports = function (grunt) {
       },
       html: {
         files: ['components/**/*html'],
-        tasks: ['ngtemplates'],
-        options: { livereload: true }
+        tasks: ['ngtemplates']
       },
       gruntfile: {
         files: ['Gruntfile.js']
