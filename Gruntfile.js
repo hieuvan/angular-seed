@@ -259,7 +259,8 @@ module.exports = function (grunt) {
           baseUrl: '<%= config.app %>',
           mainConfigFile: '<%= config.app %>/app.config.js',
           name: 'app.main',
-          optimize: 'none',
+          preserveLicenseComments: false,
+          //optimize: 'none',
           include: ['<%= config.bower %>/requirejs/require.js'],
           out: '<%= config.dist %>/js/main.js'
         }
