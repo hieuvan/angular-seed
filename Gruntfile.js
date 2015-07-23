@@ -372,9 +372,9 @@ module.exports = function (grunt) {
     'concurrent:dist',
     'autoprefixer:dist',
     'processhtml:dist',
-    'newer:jshint',
     'ngtemplates',
-    'requirejs'
+    'requirejs',
+    //'rev'
   ]);
 
   grunt.registerTask('default', [
