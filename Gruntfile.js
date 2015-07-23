@@ -121,15 +121,20 @@ module.exports = function (grunt) {
             '{,*/}*.html',
             'styles/fonts/{,*/}*.*'
           ]
-        }, {
-          src: 'node_modules/apache-server-configs/dist/.htaccess',
-          dest: '<%= config.dist %>/.htaccess'
-        }, {
+        },{
           expand: true,
           dot: true,
-          cwd: '.',
-          src: 'bower_components/bootstrap-sass/assets/fonts/bootstrap/*',
-          dest: '<%= config.dist %>'
+          flatten: true,
+          cwd: 'bower_components',
+          src: 'bootstrap-sass/assets/fonts/bootstrap/*',
+          dest: '<%= config.dist %>/styles/fonts/bootstrap'
+        },{
+          expand: true,
+          dot: true,
+          flatten: true,
+          cwd: 'bower_components',
+          src: 'font-awesome/fonts/*',
+          dest: '<%= config.dist %>/styles/fonts/font-awesome'
         }]
       },
       fonts: {
@@ -139,23 +144,15 @@ module.exports = function (grunt) {
           flatten: true,
           cwd: 'bower_components',
           src: 'bootstrap-sass/assets/fonts/bootstrap/*',
-          dest: '.tmp/fonts/bootstrap'
+          dest: '.tmp/styles/fonts/bootstrap'
         },{
           expand: true,
           dot: true,
           flatten: true,
           cwd: 'bower_components',
           src: 'font-awesome/fonts/*',
-          dest: '.tmp/fonts/font-awesome'
-
+          dest: '.tmp/styles/fonts/font-awesome'
         }]
-      },
-      styles: {
-        expand: true,
-        dot: true,
-        cwd: '<%= config.app %>/styles',
-        dest: '.tmp/styles/',
-        src: '{,*/}*.css'
       }
     },
 
@@ -203,6 +200,14 @@ module.exports = function (grunt) {
         browsers: ['> 1%', 'last 2 versions', 'Firefox ESR', 'Opera 12.1']
       },
       dist: {
+        files: [{
+          expand: true,
+          cwd: '<%= config.dist %>/styles/',
+          src: '{,*/}*.css',
+          dest: '<%= config.dist %>/styles/'
+        }]
+      },
+      server: {
         files: [{
           expand: true,
           cwd: '.tmp/styles/',
@@ -304,13 +309,13 @@ module.exports = function (grunt) {
     concurrent: {
       server: [
         'sass:server',
-        'copy:styles',
         'copy:fonts'
       ],
       test: [
       ],
       dist: [
-        'sass',
+        'sass:dist',
+        'copy:dist'
       ]
     }
   });
@@ -329,7 +334,7 @@ module.exports = function (grunt) {
       'wiredep:sass',
       'bowerRequirejs',
       'concurrent:server',
-      'autoprefixer',
+      'autoprefixer:server',
       'connect:livereload',
       'watch'
     ]);
@@ -361,8 +366,7 @@ module.exports = function (grunt) {
     'wiredep:sass',
     'bowerRequirejs',
     'concurrent:dist',
-    'autoprefixer',
-    'copy:dist',
+    'autoprefixer:dist',
     'processhtml:dist',
     'ngtemplates',
     'requirejs'
