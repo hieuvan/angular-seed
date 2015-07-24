@@ -21,6 +21,10 @@ define(function(require) {
       scope.toggle();
     };
 
+    vm.remove = function(scope) {
+      scope.remove();
+    };
+
     vm.collapseAll = function() {
       var scope = getRootNodesScope();
       scope.collapseAll();
