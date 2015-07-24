@@ -87,6 +87,12 @@ module.exports = function (grunt) {
           }
         }
       },
+      dist: {
+        options: {
+          base: '<%= config.dist %>',
+          livereload: false
+        }
+      }
     },
 
     // Empties folders to start fresh
@@ -379,12 +385,12 @@ module.exports = function (grunt) {
 
   grunt.registerTask('build', [
     'clean:dist',
-    'wiredep:sass',
-    'bowerRequirejs',
-    'concurrent:dist',
-    'autoprefixer:dist',
-    'processhtml:dist',
-    'ngtemplates',
+    //'wiredep:sass',
+    //'bowerRequirejs',
+    //'concurrent:dist',
+    //'autoprefixer:dist',
+    //'processhtml:dist',
+    //'ngtemplates',
     'requirejs',
     //'rev'
   ]);
