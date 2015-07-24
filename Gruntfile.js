@@ -8,8 +8,7 @@ module.exports = function (grunt) {
   // Configurable paths
   var config = {
     app: 'app',
-    dist: 'dist',
-    bower: 'bower_components'
+    dist: 'dist'
   };
 
   // Define the configuration for all the tasks
@@ -245,7 +244,7 @@ module.exports = function (grunt) {
         dest: '<%= config.app %>/shared/templates.js',
         options: {
           url: function(url) {
-            return url.replace('./', '');
+            return url.replace(config.app + '/', '');
           },
           bootstrap: function(module, script) {
             var wrapper = 'define(function(require) {\n';
@@ -277,7 +276,7 @@ module.exports = function (grunt) {
           name: 'app.main',
           preserveLicenseComments: false,
           //optimize: 'none',
-          include: ['<%= config.bower %>/requirejs/require.js'],
+          include: ['../bower_components/requirejs/require.js'],
           out: '<%= config.dist %>/js/main.js'
         }
       }
@@ -385,12 +384,12 @@ module.exports = function (grunt) {
 
   grunt.registerTask('build', [
     'clean:dist',
-    //'wiredep:sass',
-    //'bowerRequirejs',
-    //'concurrent:dist',
-    //'autoprefixer:dist',
-    //'processhtml:dist',
-    //'ngtemplates',
+    'wiredep:sass',
+    'bowerRequirejs',
+    'concurrent:dist',
+    'autoprefixer:dist',
+    'processhtml:dist',
+    'ngtemplates',
     'requirejs',
     //'rev'
   ]);

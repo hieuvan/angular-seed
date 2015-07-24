@@ -2,7 +2,7 @@ define(function(require) {
 	return ['$templateCache', function($templateCache) {
   'use strict';
 
-  $templateCache.put('app/components/auth/login.html',
+  $templateCache.put('components/auth/login.html',
     "<div class=\"container\">\n" +
     "  <div id=\"loginbox\" class=\"mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2\">\n" +
     "    <div class=\"title\">\n" +
@@ -57,7 +57,7 @@ define(function(require) {
   );
 
 
-  $templateCache.put('app/components/auth/logout.html',
+  $templateCache.put('components/auth/logout.html',
     "<div class=\"container\">\n" +
     "  <div id=\"loginbox\" class=\"mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2\">\n" +
     "    <div class=\"alert alert-danger fade in\" role=\"alert\">\n" +
@@ -73,7 +73,7 @@ define(function(require) {
   );
 
 
-  $templateCache.put('app/components/footer/footer.html',
+  $templateCache.put('components/footer/footer.html',
     "<div id=\"wrapper-push\"></div>\n" +
     "\n" +
     "<footer class=\"footer navbar-fixed-bottom\">\n" +
@@ -82,7 +82,7 @@ define(function(require) {
   );
 
 
-  $templateCache.put('app/components/header/breadcrumb.html',
+  $templateCache.put('components/header/breadcrumb.html',
     "<ol class=\"breadcrumb navbar-left\">\n" +
     "  <li ng-repeat=\"crumb in breadcrumbs\" ng-class=\"{ active: $last }\">\n" +
     "    <a ui-sref=\"{{ crumb.route }}\" ng-if=\"!$last\">{{ crumb.displayName }}&nbsp;</a>\n" +
@@ -93,7 +93,7 @@ define(function(require) {
   );
 
 
-  $templateCache.put('app/components/header/header.html',
+  $templateCache.put('components/header/header.html',
     "<div>\n" +
     "  <header class=\"navbar navbar-static-top navbar-shadow\">\n" +
     "    <div class=\"container-fluid\">\n" +
@@ -133,7 +133,7 @@ define(function(require) {
   );
 
 
-  $templateCache.put('app/components/projects/create/project-create.html',
+  $templateCache.put('components/projects/create/project-create.html',
     "<form novalidate>\n" +
     "  <alert ng-show=\"vm.createProjectError\" type=\"danger\">{{vm.error}}</alert>\n" +
     "  <div class=\"form-group\">\n" +
@@ -161,7 +161,7 @@ define(function(require) {
   );
 
 
-  $templateCache.put('app/components/projects/detail/project-detail.html',
+  $templateCache.put('components/projects/detail/project-detail.html',
     "<div class=\"col-md-12\">\n" +
     "  <h2 class=\"pull-left\">{{vm.project.name}}</h2>\n" +
     "</div>\n" +
@@ -178,7 +178,7 @@ define(function(require) {
   );
 
 
-  $templateCache.put('app/components/projects/list/projects-list.html',
+  $templateCache.put('components/projects/list/projects-list.html',
     "<div class=\"col-md-12\">\n" +
     "  <h2 class=\"pull-left\">{{$state.current.data.title}}</h2>\n" +
     "\n" +
@@ -204,7 +204,7 @@ define(function(require) {
   );
 
 
-  $templateCache.put('app/components/projects/modal/add-item.html',
+  $templateCache.put('components/projects/modal/add-item.html',
     "<div class=\"modal-header\">\n" +
     "  <button type=\"button\" class=\"close\" ng-click=\"vm.cancel()\">\n" +
     "    <span aria-hidden=\"true\">&times;</span>\n" +
@@ -273,7 +273,7 @@ define(function(require) {
   );
 
 
-  $templateCache.put('app/components/projects/tests/detail/project-test.html',
+  $templateCache.put('components/projects/tests/detail/project-test.html',
     "<div class=\"col-md-12\">\n" +
     "  <h2 class=\"pull-left\">{{vm.test.name}}</h2>\n" +
     "</div>\n" +
@@ -326,7 +326,7 @@ define(function(require) {
   );
 
 
-  $templateCache.put('app/components/projects/tests/forms/detail/project-test-form.html',
+  $templateCache.put('components/projects/tests/forms/detail/project-test-form.html',
     "<div class=\"col-md-12\">\n" +
     "  <h2 class=\"pull-left\">{{vm.form.name}}</h2>\n" +
     "</div>\n" +
@@ -376,7 +376,7 @@ define(function(require) {
   );
 
 
-  $templateCache.put('app/components/projects/tests/project-tests.html',
+  $templateCache.put('components/projects/tests/project-tests.html',
     "<div ng-hide=\"vm.tests.length\" class=\"form-group\">There are no tests.</div>\n" +
     "<form>\n" +
     "  <div class=\"form-group\">\n" +
@@ -425,7 +425,7 @@ define(function(require) {
   );
 
 
-  $templateCache.put('app/components/projects/users/project-users.html',
+  $templateCache.put('components/projects/users/project-users.html',
     "<div ng-hide=\"vm.users.length\" class=\"form-group\">There are no users.</div>\n" +
     "<div ng-show=\"vm.users.length\">\n" +
     "  <h4>Users Assigned To Project</h4>\n" +
@@ -485,7 +485,7 @@ define(function(require) {
   );
 
 
-  $templateCache.put('app/components/users/create/user-create.html',
+  $templateCache.put('components/users/create/user-create.html',
     "<form novalidate>\n" +
     "  <alert ng-show=\"vm.createUserError\" type=\"danger\">{{vm.error}}</alert>\n" +
     "  <div class=\"form-group\">\n" +
@@ -505,7 +505,7 @@ define(function(require) {
   );
 
 
-  $templateCache.put('app/components/users/detail/user-detail.html',
+  $templateCache.put('components/users/detail/user-detail.html',
     "<div class=\"col-md-6\">\n" +
     "  <div class=\"form-group\">\n" +
     "    <label for=\"family-name\">Family Name</label>\n" +
@@ -537,13 +537,13 @@ define(function(require) {
   );
 
 
-  $templateCache.put('app/components/users/list/users-heading.html',
+  $templateCache.put('components/users/list/users-heading.html',
     "<a class=\"btn btn-primary pull-right\" ng-show=\"$state.includes('root.users.list')\" ui-sref=\"root.users.create\">Create User</a>\n" +
     "\n"
   );
 
 
-  $templateCache.put('app/components/users/list/users-list.html',
+  $templateCache.put('components/users/list/users-list.html',
     "<ul id=\"user-list\" class=\"list-unstyled\">\n" +
     "  <li class=\"user panel panel-default clearfix\" ng-repeat=\"user in vm.users\">\n" +
     "    <h2 class=\"user-title pull-left\">\n" +
@@ -555,7 +555,7 @@ define(function(require) {
   );
 
 
-  $templateCache.put('app/components/users/users.html',
+  $templateCache.put('components/users/users.html',
     "<div class=\"row\">\n" +
     "  <div class=\"col-md-12\">\n" +
     "    <h2 class=\"pull-left\">{{$state.current.data.displayName}}</h2>\n" +
