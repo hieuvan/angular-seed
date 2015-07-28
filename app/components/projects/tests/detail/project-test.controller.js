@@ -6,7 +6,8 @@ define(function(require) {
     var vm = this;
 
     vm.test = test;
-    vm.forms = test.get('forms');
+
+    vm.forms = test.get('forms').getAll();
 
     vm.addFormToTest = function() {
       var formdata = { name: vm.formName };
