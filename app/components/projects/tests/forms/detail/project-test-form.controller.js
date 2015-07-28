@@ -2,10 +2,12 @@
 
 define(function(require) {
 
-  return ['test', 'form', '$modal', function(test, form, $modal) {
+  return ['form', '$modal', function(form, $modal) {
     var vm = this;
 
     vm.form = form;
+
+    vm.items = form.get('items').getAll();
 
     vm.addItemShow = function() {
       var modal = $modal.open({
@@ -13,6 +15,7 @@ define(function(require) {
         controller: 'ItemsController as vm'
       });
     };
+
     var getRootNodesScope = function() {
       return angular.element(document.getElementById("tree-root")).scope();
     };
@@ -34,8 +37,5 @@ define(function(require) {
       var scope = getRootNodesScope();
       scope.expandAll();
     };
-
-
-
   }];
 });

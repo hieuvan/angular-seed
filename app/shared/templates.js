@@ -328,16 +328,16 @@ define(function(require) {
 
   $templateCache.put('components/projects/tests/forms/detail/project-test-form.html',
     "<div class=\"col-md-12\">\n" +
-    "  <h2 class=\"pull-left\">{{vm.form.name}}</h2>\n" +
+    "  <h2 class=\"pull-left\">{{vm.form.get('name')}}</h2>\n" +
     "</div>\n" +
     "<div class=\"col-md-12\">\n" +
-    "  <div ng-hide=\"vm.form.items.length\">There are no item.</div>\n" +
+    "  <div ng-hide=\"vm.items.length\">There are no item.</div>\n" +
     "  <form>\n" +
     "    <div class=\"form-group\">\n" +
     "      <button type=\"button\" class=\"btn btn-primary\" ng-click=\"vm.addItemShow()\">Add Item</button>\n" +
     "    </div>\n" +
     "  </form>\n" +
-    "  <div ng-show=\"vm.form.items.length\">\n" +
+    "  <div ng-show=\"vm.items.length\">\n" +
     "    <div class=\"col-md-6\">\n" +
     "      <h3>Items</h3>\n" +
     "      <div class=\"form-group clearfix\">\n" +
@@ -347,19 +347,19 @@ define(function(require) {
     "      <script type=\"text/ng-template\" id=\"items_renderer.html\">\n" +
     "        <div ui-tree-handle>\n" +
     "          <a class=\"btn btn-success btn-xs\" data-nodrag ng-click=\"vm.toggle(this)\"><span class=\"glyphicon\" ng-class=\"{'glyphicon-chevron-right': collapsed, 'glyphicon-chevron-down': !collapsed}\"></span></a>\n" +
-    "          {{item.uid}}\n" +
+    "          {{item.get('uid')}}\n" +
     "          <a class=\"pull-right btn btn-danger btn-xs\" data-nodrag ng-click=\"vm.remove(this)\"><span class=\"glyphicon glyphicon-remove\"></span></a>\n" +
     "          <a class=\"pull-right btn btn-primary btn-xs\" data-nodrag ng-click=\"vm.newSubItem(this)\" style=\"margin-right: 8px;\"><span class=\"glyphicon glyphicon-plus\"></span></a>\n" +
     "        </div>\n" +
     "        <ol ui-tree-nodes ng-model=\"item.items\" ng-class=\"{hidden: collapsed}\">\n" +
-    "          <li ng-repeat=\"item in item.items\" ui-tree-node ng-include=\"'items_renderer.html'\">\n" +
+    "          <li ng-repeat=\"item in item.get('items')\" ui-tree-node ng-include=\"'items_renderer.html'\">\n" +
     "          </li>\n" +
     "        </ol>\n" +
     "      </script>\n" +
     "      <div class=\"form-group\">\n" +
     "      <div ui-tree id=\"tree-root\" ng-model=\"vm.treeRoot\" data-drag-enabled=\"true\" data-drop-enabled=\"true\">\n" +
-    "        <ol ui-tree-nodes=\"\" ng-model=\"vm.form.items\">\n" +
-    "          <li ng-repeat=\"item in vm.form.items\" ui-tree-node ng-include=\"'items_renderer.html'\"></li>\n" +
+    "        <ol ui-tree-nodes=\"\" ng-model=\"vm.items\">\n" +
+    "          <li ng-repeat=\"item in vm.items\" ui-tree-node ng-include=\"'items_renderer.html'\"></li>\n" +
     "        </ol>\n" +
     "      </div>\n" +
     "      </div>\n" +
@@ -368,7 +368,7 @@ define(function(require) {
     "      <div class=\"info\">\n" +
     "        Full tree data\n" +
     "      </div>\n" +
-    "      <pre class=\"code\">{{ vm.form.items | json }}</pre>\n" +
+    "      <pre class=\"code\">{{ vm.items | json }}</pre>\n" +
     "    </div>\n" +
     "  </div>\n" +
     "</div>\n" +
