@@ -2,11 +2,11 @@
 
 define(function(require) {
 
-  return ['HttpService', 'TestModel', function(HttpService, TestModel) {
+  return ['HttpService', 'TestModel', 'ProjectCollection', function(HttpService, TestModel, ProjectCollection) {
 
     var getProjects = function() {
       return HttpService.get('projects').then(function(projects) {
-          return projects.data;
+          return new ProjectCollection(projects.data);
       });
     };
 

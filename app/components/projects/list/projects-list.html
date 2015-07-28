@@ -10,10 +10,10 @@
   <ul id="project-list" class="list-unstyled">
     <li class="project panel panel-default clearfix" ng-repeat="project in vm.projects">
       <div class="project-thumb pull-left scaled-square ">
-        <div class="scaled-square-content"> {{project.id}} </div>
+        <div class="scaled-square-content"> {{project.get('id')}} </div>
       </div>
       <h2 class="project-title pull-left">
-        <a href ui-sref="root.projects.detail({ id: project.id })">{{project.name}}</a>
+        <a href ui-sref="root.projects.detail({ id: project.get('id') })">{{project.get('name')}}</a>
       </h2>
     </li>
   </ul>

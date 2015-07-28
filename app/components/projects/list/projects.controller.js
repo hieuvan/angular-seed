@@ -5,6 +5,6 @@ define(function(require) {
   return ['projects', function(projects) {
     var vm = this;
 
-    vm.projects = projects;
+    vm.projects = projects.getAll();
   }];
 });

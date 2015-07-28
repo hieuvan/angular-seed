@@ -11,8 +11,9 @@ define(function(require) {
       ProjectTestFormController = require('components/projects/tests/forms/detail/project-test-form.controller'),
       ProjectUsersController = require('components/projects/users/project-users.controller'),
       ProjectCreateController = require('components/projects/create/project-create.controller'),
-      ItemsController = require('components/projects/modal/items.controller'),
       ProjectsService = require('components/projects/projects.service'),
+      ProjectCollection = require('shared/libs/project/project-collection'),
+      ItemsController = require('components/projects/modal/items.controller'),
       TestModel = require('shared/libs/test/test-model');
 
   return angular.module('app.projects', ['ui.tree'])
@@ -20,6 +21,7 @@ define(function(require) {
   .service('ProjectsService', ProjectsService)
 
   .factory('TestModel', function() { return TestModel; })
+  .factory('ProjectCollection', function() { return ProjectCollection; })
 
   .controller('ProjectController', ProjectController)
   .controller('ProjectsController', ProjectsController)
