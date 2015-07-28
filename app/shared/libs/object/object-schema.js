@@ -23,6 +23,9 @@ define(function(require) {
     }
   };
 
+  /**
+   * TODO: add type check when initializing the object
+   */
   prototype.validateData = function(data) {
     var optionalProperties = _.where(this._properties, {required:false});
     var requiredProperties = _(_.pluck(this._properties, 'key')).difference(_.pluck(optionalProperties, 'key'));

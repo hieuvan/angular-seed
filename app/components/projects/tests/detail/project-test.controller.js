@@ -6,6 +6,7 @@ define(function(require) {
     var vm = this;
 
     vm.test = test;
+    console.log(test);
 
     vm.addFormToTest = function() {
       var formdata = { name: vm.formName };
@@ -14,12 +15,6 @@ define(function(require) {
         vm.test.forms.push(form);
       });
     };
-
-    vm.filterForms = function(form) {
-      var searchString = form.name;
-
-      return (!vm.formQuery || searchString.toLowerCase().indexOf(vm.formQuery.toLowerCase()) > -1);
-    }
 
   }];
 });

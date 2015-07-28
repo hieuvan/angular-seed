@@ -1,7 +1,8 @@
 'use strict';
 
 define(function(require) {
-  return ['HttpService', function(HttpService) {
+
+  return ['HttpService', 'TestModel', function(HttpService, TestModel) {
 
     var getProjects = function() {
       return HttpService.get('projects').then(function(projects) {
@@ -43,7 +44,7 @@ define(function(require) {
       var url = 'projects' + '/' + projectId + '/' + 'tests' + '/' + testId + '/forms';
 
       return HttpService.get(url).then(function(test) {
-        return test.data;
+        return new TestModel(test.data);
       });
     };
 

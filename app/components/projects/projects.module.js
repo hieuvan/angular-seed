@@ -12,11 +12,14 @@ define(function(require) {
       ProjectUsersController = require('components/projects/users/project-users.controller'),
       ProjectCreateController = require('components/projects/create/project-create.controller'),
       ItemsController = require('components/projects/modal/items.controller'),
-      ProjectsService = require('components/projects/projects.service');
+      ProjectsService = require('components/projects/projects.service'),
+      TestModel = require('shared/libs/test/test-model');
 
   return angular.module('app.projects', ['ui.tree'])
 
   .service('ProjectsService', ProjectsService)
+
+  .factory('TestModel', function() { return TestModel; })
 
   .controller('ProjectController', ProjectController)
   .controller('ProjectsController', ProjectsController)

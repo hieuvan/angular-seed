@@ -27,6 +27,7 @@ define(function(require) {
       var selectedItems = _.where(vm.searchItems, {selected: true});
       var formData = { items: _.pluck(selectedItems, 'id') };
       var form = ProjectsService.getProjectTestForm($stateParams.id, $stateParams.testId, $stateParams.formId);
+
       ProjectsService.addItemToForm($stateParams.id, $stateParams.testId, $stateParams.formId, formData).then(function(items) {
         form.items.push(items);
       });
