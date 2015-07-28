@@ -34,6 +34,10 @@ define(function(require) {
       var keys = fields.split(','),
           string = '';
 
+      if (_.isFunction(item.get)) {
+        item = item.get();
+      }
+
       _.each(keys, function(key) {
         key = key.trim();
 

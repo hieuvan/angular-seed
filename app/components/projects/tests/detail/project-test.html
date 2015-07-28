@@ -37,7 +37,7 @@
               <td>Name</td>
             </tr>
           </thead>
-          <tr ng-repeat="form in vm.forms">
+          <tr ng-repeat="form in vm.forms | search:vm.formQuery:'name'"">
             <td><a href ui-sref="root.projectTestForms.detail({formId: form.get('id')})">{{form.get('name')}}</a></td>
           </tr>
         </tbody>
