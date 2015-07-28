@@ -332,7 +332,6 @@ define(function(require) {
     "</div>\n" +
     "<div class=\"col-md-12\">\n" +
     "  <div ng-hide=\"vm.items.length\">There are no item.</div>\n" +
-    "\n" +
     "  <div ng-show=\"vm.items.length\">\n" +
     "    <div class=\"col-md-6\">\n" +
     "      <h3>Items</h3>\n" +
