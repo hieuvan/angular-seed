@@ -6,13 +6,13 @@ define(function(require) {
     var vm = this;
 
     vm.test = test;
-    console.log(test);
+    vm.forms = test.get('forms');
 
     vm.addFormToTest = function() {
       var formdata = { name: vm.formName };
 
       ProjectsService.addFormToTest($stateParams.id, $stateParams.testId, formdata).then(function(form) {
-        vm.test.forms.push(form);
+        //vm.forms.push(form);
       });
     };
 

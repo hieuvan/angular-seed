@@ -2,7 +2,7 @@
   <h2 class="pull-left">{{vm.test.name}}</h2>
 </div>
 <div class="col-md-12">
-  <div ng-hide="vm.test.forms.length" class="form-group">There are no forms.</div>
+  <div ng-hide="vm.forms.length" class="form-group">There are no forms.</div>
   <form>
     <div class="form-group">
       <label for="form-name">Form Name</label>
@@ -12,7 +12,7 @@
       <button type="submit" class="btn btn-primary" ng-click="vm.addFormToTest()">Add Form</button>
     </div>
   </form>
-  <div ng-show="vm.test.forms.length">
+  <div ng-show="vm.forms.length">
     <h3>Forms</h3>
     <div class="input-group">
       <span class="input-group-addon"><span class="fa fa-search"></span></span>
@@ -37,8 +37,8 @@
               <td>Name</td>
             </tr>
           </thead>
-          <tr ng-repeat="form in vm.test.forms | search:vm.formQuery:'name'">
-            <td><a href ui-sref="root.projectTestForms.detail({formId: form.id})">{{form.name}}</a></td>
+          <tr ng-repeat="form in vm.forms">
+            <td><a href ui-sref="root.projectTestForms.detail({formId: form.get('id')})">{{form.get('name')}}</a></td>
           </tr>
         </tbody>
         </table>

@@ -1,9 +1,11 @@
 'use strict';
 
 define(function(require) {
-  var model = require('shared/libs/object/object-model');
+  var model = require('shared/libs/object/object-model'),
+      schema = require('shared/libs/form/form-schema');
 
   var FormModel = function(data) {
+    this._schema = schema;
 
     model.call(this, data);
   };

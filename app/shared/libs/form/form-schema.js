@@ -8,14 +8,14 @@ define(function(require) {
     { key: 'name', type: 'string', required: true }
   ];
 
-  var TestSchema = function() {
-    this._className = 'TestModel';
+  var FormSchema = function() {
+    this._className = 'FormModel';
     this._properties = _properties;
 
     schema.call(this);
   };
 
-  TestSchema.prototype = Object.create(schema.prototype);
+  FormSchema.prototype = Object.create(schema.prototype);
 
-  return new TestSchema;
+  return new FormSchema;
 });

@@ -278,7 +278,7 @@ define(function(require) {
     "  <h2 class=\"pull-left\">{{vm.test.name}}</h2>\n" +
     "</div>\n" +
     "<div class=\"col-md-12\">\n" +
-    "  <div ng-hide=\"vm.test.forms.length\" class=\"form-group\">There are no forms.</div>\n" +
+    "  <div ng-hide=\"vm.forms.length\" class=\"form-group\">There are no forms.</div>\n" +
     "  <form>\n" +
     "    <div class=\"form-group\">\n" +
     "      <label for=\"form-name\">Form Name</label>\n" +
@@ -288,7 +288,7 @@ define(function(require) {
     "      <button type=\"submit\" class=\"btn btn-primary\" ng-click=\"vm.addFormToTest()\">Add Form</button>\n" +
     "    </div>\n" +
     "  </form>\n" +
-    "  <div ng-show=\"vm.test.forms.length\">\n" +
+    "  <div ng-show=\"vm.forms.length\">\n" +
     "    <h3>Forms</h3>\n" +
     "    <div class=\"input-group\">\n" +
     "      <span class=\"input-group-addon\"><span class=\"fa fa-search\"></span></span>\n" +
@@ -313,8 +313,8 @@ define(function(require) {
     "              <td>Name</td>\n" +
     "            </tr>\n" +
     "          </thead>\n" +
-    "          <tr ng-repeat=\"form in vm.test.forms | search:vm.formQuery:'name'\">\n" +
-    "            <td><a href ui-sref=\"root.projectTestForms.detail({formId: form.id})\">{{form.name}}</a></td>\n" +
+    "          <tr ng-repeat=\"form in vm.forms\">\n" +
+    "            <td><a href ui-sref=\"root.projectTestForms.detail({formId: form.get('id')})\">{{form.get('name')}}</a></td>\n" +
     "          </tr>\n" +
     "        </tbody>\n" +
     "        </table>\n" +
