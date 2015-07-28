@@ -1,16 +1,22 @@
-<form novalidate>
-  <alert ng-show="vm.createUserError" type="danger">{{vm.error}}</alert>
-  <div class="form-group">
-    <label for="email">Email</label>
-    <div class="input-group">
-      <input type="text" class="form-control" id="email" placeholder="Enter ACER Email" ng-model="vm.email">
-      <div class="input-group-addon">@acer.edu.au</div>
-    </div>
+<div class="col-md-12">
+  <h2 class="pull-left">{{$state.current.data.displayName}}</h2>
+</div>
 
-  </div>
-  <div class="form-group">
-    <p class="help-block">First part of ACER staff's email address (before the @). An invitation email will be sent to this email address.</p>
-  </div>
-  <button type="submit" class="btn btn-primary" ng-click="vm.createUser()">Create User</button>
-  <button type="submit" class="btn btn-primary" ui-sref="root.users.list">Cancel</button>
-</form>
+<div class="col-md-12">
+  <form novalidate>
+    <alert ng-show="vm.createUserError" type="danger">{{vm.error}}</alert>
+    <div class="form-group">
+      <label for="email">Email</label>
+      <div class="input-group">
+        <input type="text" class="form-control" id="email" placeholder="Enter ACER Email" ng-model="vm.email">
+        <div class="input-group-addon">@acer.edu.au</div>
+      </div>
+
+    </div>
+    <div class="form-group">
+      <p class="help-block">First part of ACER staff's email address (before the @). An invitation email will be sent to this email address.</p>
+    </div>
+    <button type="submit" class="btn btn-primary" ng-click="vm.createUser()">Create User</button>
+    <button type="submit" class="btn btn-primary" ui-sref="root.users.list">Cancel</button>
+  </form>
+</div>

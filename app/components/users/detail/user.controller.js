@@ -7,9 +7,5 @@ define(function(require) {
     var vm = this;
 
     vm.user = user;
-
-    // update the bread crumb
-    $state.current.data.displayName = user.name;
-
   }];
 });

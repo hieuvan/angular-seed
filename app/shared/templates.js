@@ -348,8 +348,8 @@ define(function(require) {
     "        <div ui-tree-handle>\n" +
     "          <a class=\"btn btn-success btn-xs\" data-nodrag ng-click=\"vm.toggle(this)\"><span class=\"glyphicon\" ng-class=\"{'glyphicon-chevron-right': collapsed, 'glyphicon-chevron-down': !collapsed}\"></span></a>\n" +
     "          {{item.uid}}\n" +
-    "          <a class=\"pull-right btn btn-danger btn-xs\" data-nodrag ng-click=\"remove(this)\"><span class=\"glyphicon glyphicon-remove\"></span></a>\n" +
-    "          <a class=\"pull-right btn btn-primary btn-xs\" data-nodrag ng-click=\"newSubItem(this)\" style=\"margin-right: 8px;\"><span class=\"glyphicon glyphicon-plus\"></span></a>\n" +
+    "          <a class=\"pull-right btn btn-danger btn-xs\" data-nodrag ng-click=\"vm.remove(this)\"><span class=\"glyphicon glyphicon-remove\"></span></a>\n" +
+    "          <a class=\"pull-right btn btn-primary btn-xs\" data-nodrag ng-click=\"vm.newSubItem(this)\" style=\"margin-right: 8px;\"><span class=\"glyphicon glyphicon-plus\"></span></a>\n" +
     "        </div>\n" +
     "        <ol ui-tree-nodes ng-model=\"item.items\" ng-class=\"{hidden: collapsed}\">\n" +
     "          <li ng-repeat=\"item in item.items\" ui-tree-node ng-include=\"'items_renderer.html'\">\n" +
@@ -486,86 +486,86 @@ define(function(require) {
 
 
   $templateCache.put('components/users/create/user-create.html',
-    "<form novalidate>\n" +
-    "  <alert ng-show=\"vm.createUserError\" type=\"danger\">{{vm.error}}</alert>\n" +
-    "  <div class=\"form-group\">\n" +
-    "    <label for=\"email\">Email</label>\n" +
-    "    <div class=\"input-group\">\n" +
-    "      <input type=\"text\" class=\"form-control\" id=\"email\" placeholder=\"Enter ACER Email\" ng-model=\"vm.email\">\n" +
-    "      <div class=\"input-group-addon\">@acer.edu.au</div>\n" +
-    "    </div>\n" +
+    "<div class=\"col-md-12\">\n" +
+    "  <h2 class=\"pull-left\">{{$state.current.data.displayName}}</h2>\n" +
+    "</div>\n" +
     "\n" +
-    "  </div>\n" +
-    "  <div class=\"form-group\">\n" +
-    "    <p class=\"help-block\">First part of ACER staff's email address (before the @). An invitation email will be sent to this email address.</p>\n" +
-    "  </div>\n" +
-    "  <button type=\"submit\" class=\"btn btn-primary\" ng-click=\"vm.createUser()\">Create User</button>\n" +
-    "  <button type=\"submit\" class=\"btn btn-primary\" ui-sref=\"root.users.list\">Cancel</button>\n" +
-    "</form>\n"
+    "<div class=\"col-md-12\">\n" +
+    "  <form novalidate>\n" +
+    "    <alert ng-show=\"vm.createUserError\" type=\"danger\">{{vm.error}}</alert>\n" +
+    "    <div class=\"form-group\">\n" +
+    "      <label for=\"email\">Email</label>\n" +
+    "      <div class=\"input-group\">\n" +
+    "        <input type=\"text\" class=\"form-control\" id=\"email\" placeholder=\"Enter ACER Email\" ng-model=\"vm.email\">\n" +
+    "        <div class=\"input-group-addon\">@acer.edu.au</div>\n" +
+    "      </div>\n" +
+    "\n" +
+    "    </div>\n" +
+    "    <div class=\"form-group\">\n" +
+    "      <p class=\"help-block\">First part of ACER staff's email address (before the @). An invitation email will be sent to this email address.</p>\n" +
+    "    </div>\n" +
+    "    <button type=\"submit\" class=\"btn btn-primary\" ng-click=\"vm.createUser()\">Create User</button>\n" +
+    "    <button type=\"submit\" class=\"btn btn-primary\" ui-sref=\"root.users.list\">Cancel</button>\n" +
+    "  </form>\n" +
+    "</div>\n"
   );
 
 
   $templateCache.put('components/users/detail/user-detail.html',
-    "<div class=\"col-md-6\">\n" +
-    "  <div class=\"form-group\">\n" +
-    "    <label for=\"family-name\">Family Name</label>\n" +
-    "    <input type=\"text\" class=\"form-control\" id=\"family-name\" ng-model=\"vm.user.family_name\">\n" +
-    "  </div>\n" +
-    "  <div class=\"form-group\">\n" +
-    "    <label for=\"given-name\">Given Name</label>\n" +
-    "    <input type=\"text\" class=\"form-control\" id=\"given-name\" ng-model=\"vm.user.given_name\">\n" +
-    "  </div>\n" +
-    "  <div class=\"form-group\">\n" +
-    "    <label for=\"email\">Email</label>\n" +
-    "    <input type=\"text\" class=\"form-control\" id=\"email\" ng-model=\"vm.user.email\">\n" +
-    "  </div>\n" +
+    "<div class=\"col-md-12\">\n" +
+    "  <h2 class=\"pull-left\">{{vm.user.name}}</h2>\n" +
     "</div>\n" +
-    "<div class=\"col-md-6\">\n" +
-    "  <div ng-hide=\"vm.user.projects.length\">You have no project assigned.</div>\n" +
-    "  <ul id=\"project-list\" class=\"list-unstyled\">\n" +
-    "    <li class=\"project panel panel-default clearfix\" ng-repeat=\"project in vm.user.projects\">\n" +
-    "      <div class=\"project-thumb pull-left scaled-square \">\n" +
-    "        <div class=\"scaled-square-content\"> {{project.id}} </div>\n" +
+    "\n" +
+    "<div class=\"col-md-12\">\n" +
+    "  <div class=\"row\">\n" +
+    "    <div class=\"col-md-6\">\n" +
+    "      <div class=\"form-group\">\n" +
+    "        <label for=\"family-name\">Family Name</label>\n" +
+    "        <input type=\"text\" class=\"form-control\" id=\"family-name\" ng-model=\"vm.user.family_name\">\n" +
     "      </div>\n" +
-    "      <h2 class=\"project-title pull-left\">\n" +
-    "        <a href ui-sref=\"root.projects.detail({ id: project.id })\">{{project.name}}</a>\n" +
-    "      </h2>\n" +
-    "    </li>\n" +
-    "  </ul>\n" +
-    "</div>\n" +
-    "\n"
-  );
-
-
-  $templateCache.put('components/users/list/users-heading.html',
-    "<a class=\"btn btn-primary pull-right\" ng-show=\"$state.includes('root.users.list')\" ui-sref=\"root.users.create\">Create User</a>\n" +
-    "\n"
+    "      <div class=\"form-group\">\n" +
+    "        <label for=\"given-name\">Given Name</label>\n" +
+    "        <input type=\"text\" class=\"form-control\" id=\"given-name\" ng-model=\"vm.user.given_name\">\n" +
+    "      </div>\n" +
+    "      <div class=\"form-group\">\n" +
+    "        <label for=\"email\">Email</label>\n" +
+    "        <input type=\"text\" class=\"form-control\" id=\"email\" ng-model=\"vm.user.email\">\n" +
+    "      </div>\n" +
+    "    </div>\n" +
+    "\n" +
+    "    <div class=\"col-md-6\">\n" +
+    "      <div ng-hide=\"vm.user.projects.length\">You have no project assigned.</div>\n" +
+    "      <ul id=\"project-list\" class=\"list-unstyled\">\n" +
+    "        <li class=\"project panel panel-default clearfix\" ng-repeat=\"project in vm.user.projects\">\n" +
+    "          <div class=\"project-thumb pull-left scaled-square \">\n" +
+    "            <div class=\"scaled-square-content\"> {{project.id}} </div>\n" +
+    "          </div>\n" +
+    "          <h2 class=\"project-title pull-left\">\n" +
+    "            <a href ui-sref=\"root.projects.detail({ id: project.id })\">{{project.name}}</a>\n" +
+    "          </h2>\n" +
+    "        </li>\n" +
+    "      </ul>\n" +
+    "    </div>\n" +
+    "  </div>\n" +
+    "<div>\n"
   );
 
 
   $templateCache.put('components/users/list/users-list.html',
-    "<ul id=\"user-list\" class=\"list-unstyled\">\n" +
-    "  <li class=\"user panel panel-default clearfix\" ng-repeat=\"user in vm.users\">\n" +
-    "    <h2 class=\"user-title pull-left\">\n" +
-    "      <a href ui-sref=\"root.users.detail({ id: user.id })\">{{user.name}}</a>\n" +
-    "    </h2>\n" +
-    "  </li>\n" +
-    "</ul>\n" +
-    "\n"
-  );
-
-
-  $templateCache.put('components/users/users.html',
-    "<div class=\"row\">\n" +
-    "  <div class=\"col-md-12\">\n" +
-    "    <h2 class=\"pull-left\">{{$state.current.data.displayName}}</h2>\n" +
+    "<div class=\"col-md-12\">\n" +
+    "  <h2 class=\"pull-left\">{{$state.current.data.displayName}}</h2>\n" +
     "\n" +
-    "    <div ui-view=\"head\"></div>\n" +
-    "  </div>\n" +
+    "  <a class=\"btn btn-primary pull-right\" ng-show=\"$state.includes('root.users.list')\" ui-sref=\"root.users.create\">Create User</a>\n" +
+    "</div>\n" +
     "\n" +
-    "  <div class=\"col-md-12\">\n" +
-    "    <div ui-view=\"body\"></div>\n" +
-    "  </div>\n" +
+    "<div class=\"col-md-12\">\n" +
+    "  <ul id=\"user-list\" class=\"list-unstyled\">\n" +
+    "    <li class=\"user panel panel-default clearfix\" ng-repeat=\"user in vm.users\">\n" +
+    "      <h2 class=\"user-title pull-left\">\n" +
+    "        <a href ui-sref=\"root.users.detail({ id: user.id })\">{{user.name}}</a>\n" +
+    "      </h2>\n" +
+    "    </li>\n" +
+    "  </ul>\n" +
     "</div>\n"
   );
 

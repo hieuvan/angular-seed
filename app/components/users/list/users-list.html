@@ -1,8 +1,15 @@
-<ul id="user-list" class="list-unstyled">
-  <li class="user panel panel-default clearfix" ng-repeat="user in vm.users">
-    <h2 class="user-title pull-left">
-      <a href ui-sref="root.users.detail({ id: user.id })">{{user.name}}</a>
-    </h2>
-  </li>
-</ul>
+<div class="col-md-12">
+  <h2 class="pull-left">{{$state.current.data.displayName}}</h2>
 
+  <a class="btn btn-primary pull-right" ng-show="$state.includes('root.users.list')" ui-sref="root.users.create">Create User</a>
+</div>
+
+<div class="col-md-12">
+  <ul id="user-list" class="list-unstyled">
+    <li class="user panel panel-default clearfix" ng-repeat="user in vm.users">
+      <h2 class="user-title pull-left">
+        <a href ui-sref="root.users.detail({ id: user.id })">{{user.name}}</a>
+      </h2>
+    </li>
+  </ul>
+</div>
