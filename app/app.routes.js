@@ -276,11 +276,6 @@ define(function() {
       name: 'root.users',
       url: '/users',
       abstract: true,
-      views: {
-        'content@' : {
-          templateUrl: 'components/users/users.html'
-        }
-      },
       data: {
         proxy: 'root.users.list'
       }
@@ -290,7 +285,7 @@ define(function() {
       name: 'root.users.create',
       url: '/create',
       views: {
-        'body' : {
+        'content@' : {
           templateUrl: 'components/users/create/user-create.html',
           controller: 'UserCreateController as vm'
         }
@@ -304,12 +299,9 @@ define(function() {
       name: 'root.users.list',
       url: '',
       views: {
-        'body': {
+        'content@': {
           templateUrl: 'components/users/list/users-list.html',
           controller: 'UsersController as vm'
-        },
-        'head': {
-          templateUrl: 'components/users/list/users-heading.html'
         }
       },
       data: {
@@ -321,15 +313,18 @@ define(function() {
       name: 'root.users.detail',
       url: '/{id:int}',
       views : {
-        'body' : {
+        'content@' : {
           controller: 'UserController as vm',
-          templateUrl: 'components/users/detail/user-detail.html',
-          resolve: {
-            user: ['$stateParams', 'UsersService', function($stateParams, UsersService) {
-              return UsersService.getUser($stateParams.id);
-            }]
-          }
+          templateUrl: 'components/users/detail/user-detail.html'
         }
+      },
+      resolve: {
+        user: ['$stateParams', 'UsersService', function($stateParams, UsersService) {
+          return UsersService.getUser($stateParams.id);
+        }]
+      },
+      data: {
+        displayName: '{{ user.name }}'
       }
     });
 

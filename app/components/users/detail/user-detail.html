@@ -1,28 +1,36 @@
-<div class="col-md-6">
-  <div class="form-group">
-    <label for="family-name">Family Name</label>
-    <input type="text" class="form-control" id="family-name" ng-model="vm.user.family_name">
-  </div>
-  <div class="form-group">
-    <label for="given-name">Given Name</label>
-    <input type="text" class="form-control" id="given-name" ng-model="vm.user.given_name">
-  </div>
-  <div class="form-group">
-    <label for="email">Email</label>
-    <input type="text" class="form-control" id="email" ng-model="vm.user.email">
-  </div>
-</div>
-<div class="col-md-6">
-  <div ng-hide="vm.user.projects.length">You have no project assigned.</div>
-  <ul id="project-list" class="list-unstyled">
-    <li class="project panel panel-default clearfix" ng-repeat="project in vm.user.projects">
-      <div class="project-thumb pull-left scaled-square ">
-        <div class="scaled-square-content"> {{project.id}} </div>
-      </div>
-      <h2 class="project-title pull-left">
-        <a href ui-sref="root.projects.detail({ id: project.id })">{{project.name}}</a>
-      </h2>
-    </li>
-  </ul>
+<div class="col-md-12">
+  <h2 class="pull-left">{{vm.user.name}}</h2>
 </div>
 
+<div class="col-md-12">
+  <div class="row">
+    <div class="col-md-6">
+      <div class="form-group">
+        <label for="family-name">Family Name</label>
+        <input type="text" class="form-control" id="family-name" ng-model="vm.user.family_name">
+      </div>
+      <div class="form-group">
+        <label for="given-name">Given Name</label>
+        <input type="text" class="form-control" id="given-name" ng-model="vm.user.given_name">
+      </div>
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input type="text" class="form-control" id="email" ng-model="vm.user.email">
+      </div>
+    </div>
+
+    <div class="col-md-6">
+      <div ng-hide="vm.user.projects.length">You have no project assigned.</div>
+      <ul id="project-list" class="list-unstyled">
+        <li class="project panel panel-default clearfix" ng-repeat="project in vm.user.projects">
+          <div class="project-thumb pull-left scaled-square ">
+            <div class="scaled-square-content"> {{project.id}} </div>
+          </div>
+          <h2 class="project-title pull-left">
+            <a href ui-sref="root.projects.detail({ id: project.id })">{{project.name}}</a>
+          </h2>
+        </li>
+      </ul>
+    </div>
+  </div>
+<div>

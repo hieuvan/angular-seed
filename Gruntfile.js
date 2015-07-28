@@ -32,7 +32,7 @@ module.exports = function (grunt) {
         tasks: ['wiredep:sass', 'bowerRequirejs']
       },
       js: {
-        files: ['<%= config.app %>/{,*/}*.js'],
+        files: ['<%= config.app %>/**/{,*/}*.js', '!<%= config.app %>/shared/templates.js'],
         tasks: ['jshint'],
         options: { livereload: true }
       },
@@ -41,8 +41,9 @@ module.exports = function (grunt) {
         tasks: ['test:watch', 'jshint']
       },
       html: {
-        files: ['components/**/*html'],
-        tasks: ['ngtemplates']
+        files: ['<%= config.app %>/**/{,*/}*.html'],
+        tasks: ['ngtemplates'],
+        options: { livereload: true }
       },
       gruntfile: {
         files: ['Gruntfile.js']
