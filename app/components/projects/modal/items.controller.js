@@ -2,9 +2,9 @@
 
 define(function(require) {
 
-  return ['$stateParams', '$modalInstance', 'ProjectsService', function($stateParams, $modalInstance, ProjectsService) {
+  return ['$stateParams', '$modalInstance', 'ProjectsService', 'test', function($stateParams, $modalInstance, ProjectsService, test) {
     var vm = this;
-
+    console.log(test);
     //vm.form = form;
 
     vm.itemSearchResults = false;
@@ -26,6 +26,7 @@ define(function(require) {
     vm.addItems = function () {
       var selectedItems = _.where(vm.searchItems, {selected: true});
       var formData = { items: _.pluck(selectedItems, 'id') };
+
       var form = ProjectsService.getProjectTestForm($stateParams.id, $stateParams.testId, $stateParams.formId);
 
       ProjectsService.addItemToForm($stateParams.id, $stateParams.testId, $stateParams.formId, formData).then(function(items) {

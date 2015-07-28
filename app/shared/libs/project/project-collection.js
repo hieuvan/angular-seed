@@ -5,7 +5,7 @@ define(function(require) {
       collection = require('shared/libs/object/object-collection');
 
   var ProjectCollection = function(data) {
-    this._className = 'CandidateCollection';
+    this._className = 'ProjectCollection';
 
     collection.call(this, ProjectModel, data);
   };

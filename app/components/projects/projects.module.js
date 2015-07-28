@@ -14,6 +14,7 @@ define(function(require) {
       ProjectsService = require('components/projects/projects.service'),
       ProjectCollection = require('shared/libs/project/project-collection'),
       ItemsController = require('components/projects/modal/items.controller'),
+      FormModel = require('shared/libs/form/form-model'),
       TestModel = require('shared/libs/test/test-model');
 
   return angular.module('app.projects', ['ui.tree'])
@@ -21,6 +22,7 @@ define(function(require) {
   .service('ProjectsService', ProjectsService)
 
   .factory('TestModel', function() { return TestModel; })
+  .factory('FormModel', function() { return FormModel; })
   .factory('ProjectCollection', function() { return ProjectCollection; })
 
   .controller('ProjectController', ProjectController)

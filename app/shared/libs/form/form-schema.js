@@ -4,8 +4,9 @@ define(function(require) {
   var schema = require('shared/libs/object/object-schema');
 
   var _properties = [
-    { key: 'id', type: 'int', required: true },
-    { key: 'name', type: 'string', required: true }
+    { key: 'id', type: 'int' },
+    { key: 'name', type: 'string' },
+    { key: 'items', type: 'array', required: false }
   ];
 
   var FormSchema = function() {

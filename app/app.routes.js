@@ -184,7 +184,7 @@ define(function() {
         }]
       },
       data: {
-        displayName: '{{ test.name }}'
+        displayName: "{{ test.get('name') }}"
       }
     });
 
@@ -226,7 +226,7 @@ define(function() {
         }]
       },
       data: {
-        displayName: '{{ form.name }}'
+        displayName: "{{ form.get('name') }}"
       }
     });
 
