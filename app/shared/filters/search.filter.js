@@ -1,7 +1,7 @@
 'use strict';
 
 define(function(require) {
-  return [function() {
+  return ['ObjectModel', function(ObjectModel) {
 
     /**
      * Search Filter
@@ -33,6 +33,10 @@ define(function(require) {
     var getSearchString = function(item, fields) {
       var keys = fields.split(','),
           string = '';
+
+      if (_.isFunction(item.get)) {
+        item = item.get();
+      }
 
       _.each(keys, function(key) {
         key = key.trim();
