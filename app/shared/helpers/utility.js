@@ -18,5 +18,15 @@ define(function(require) {
     (scope.$$phase || scope.$root.$$phase) ? fn() : scope.$apply(fn);
   };
 
+  /**
+   * Return a object wrapped in a function
+   *
+   * @param $scope scope
+   * @param function fn
+   */
+  prototype.factory = function(object {
+    return function() { return object; };
+  };
+
   return new Utility;
 });

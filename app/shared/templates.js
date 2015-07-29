@@ -204,7 +204,60 @@ define(function(require) {
   );
 
 
-  $templateCache.put('components/projects/modal/add-item.html',
+  $templateCache.put('components/projects/tests/detail/project-test.html',
+    "<div class=\"col-md-12\">\n" +
+    "  <h2 class=\"pull-left\">{{vm.test.name}}</h2>\n" +
+    "</div>\n" +
+    "<div class=\"col-md-12\">\n" +
+    "  <div ng-hide=\"vm.forms.length\" class=\"form-group\">There are no forms.</div>\n" +
+    "  <form>\n" +
+    "    <div class=\"form-group\">\n" +
+    "      <label for=\"form-name\">Form Name</label>\n" +
+    "      <input type=\"text\" class=\"form-control\" id=\"form-name\" placeholder=\"Enter Form Name\" ng-model=\"vm.formName\">\n" +
+    "    </div>\n" +
+    "    <div class=\"form-group\">\n" +
+    "      <button type=\"submit\" class=\"btn btn-primary\" ng-click=\"vm.addFormToTest()\">Add Form</button>\n" +
+    "    </div>\n" +
+    "  </form>\n" +
+    "  <div ng-show=\"vm.forms.length\">\n" +
+    "    <h3>Forms</h3>\n" +
+    "    <div class=\"input-group\">\n" +
+    "      <span class=\"input-group-addon\"><span class=\"fa fa-search\"></span></span>\n" +
+    "      <input type=\"search\" placeholder=\"Search\" class=\"default form-control\" autocomplete=\"off\" ng-model=\"vm.formQuery\">\n" +
+    "      <span class=\"input-group-addon\"><span class=\"fa fa-times reset-input\" data-ng-click=\"vm.formQuery = ''\"></span></span>\n" +
+    "    </div>\n" +
+    "    <div class=\"table-container\">\n" +
+    "      <div class=\"table-container-header-fixed\">\n" +
+    "        <table class=\"table table-condensed table-bordered\">\n" +
+    "          <thead>\n" +
+    "            <tr>\n" +
+    "              <td>Name</td>\n" +
+    "            </tr>\n" +
+    "          </thead>\n" +
+    "        </table>\n" +
+    "      </div>\n" +
+    "      <div class=\"table-container-scroll\">\n" +
+    "        <table class=\"table table-condensed table-bordered\">\n" +
+    "        <tbody>\n" +
+    "          <thead>\n" +
+    "            <tr>\n" +
+    "              <td>Name</td>\n" +
+    "            </tr>\n" +
+    "          </thead>\n" +
+    "          <tr ng-repeat=\"form in vm.forms | search:vm.formQuery:'name'\"\">\n" +
+    "            <td><a href ui-sref=\"root.projectTestForms.detail({formId: form.get('id')})\">{{form.get('name')}}</a></td>\n" +
+    "          </tr>\n" +
+    "        </tbody>\n" +
+    "        </table>\n" +
+    "      </div>\n" +
+    "    </div>\n" +
+    "  </div>\n" +
+    "</div>\n" +
+    "\n"
+  );
+
+
+  $templateCache.put('components/projects/tests/forms/detail/modal/add-item.html',
     "<div class=\"modal-header\">\n" +
     "  <button type=\"button\" class=\"close\" ng-click=\"vm.cancel()\">\n" +
     "    <span aria-hidden=\"true\">&times;</span>\n" +
@@ -273,98 +326,56 @@ define(function(require) {
   );
 
 
-  $templateCache.put('components/projects/tests/detail/project-test.html',
-    "<div class=\"col-md-12\">\n" +
-    "  <h2 class=\"pull-left\">{{vm.test.name}}</h2>\n" +
-    "</div>\n" +
-    "<div class=\"col-md-12\">\n" +
-    "  <div ng-hide=\"vm.forms.length\" class=\"form-group\">There are no forms.</div>\n" +
-    "  <form>\n" +
-    "    <div class=\"form-group\">\n" +
-    "      <label for=\"form-name\">Form Name</label>\n" +
-    "      <input type=\"text\" class=\"form-control\" id=\"form-name\" placeholder=\"Enter Form Name\" ng-model=\"vm.formName\">\n" +
-    "    </div>\n" +
-    "    <div class=\"form-group\">\n" +
-    "      <button type=\"submit\" class=\"btn btn-primary\" ng-click=\"vm.addFormToTest()\">Add Form</button>\n" +
-    "    </div>\n" +
-    "  </form>\n" +
-    "  <div ng-show=\"vm.forms.length\">\n" +
-    "    <h3>Forms</h3>\n" +
-    "    <div class=\"input-group\">\n" +
-    "      <span class=\"input-group-addon\"><span class=\"fa fa-search\"></span></span>\n" +
-    "      <input type=\"search\" placeholder=\"Search\" class=\"default form-control\" autocomplete=\"off\" ng-model=\"vm.formQuery\">\n" +
-    "      <span class=\"input-group-addon\"><span class=\"fa fa-times reset-input\" data-ng-click=\"vm.formQuery = ''\"></span></span>\n" +
-    "    </div>\n" +
-    "    <div class=\"table-container\">\n" +
-    "      <div class=\"table-container-header-fixed\">\n" +
-    "        <table class=\"table table-condensed table-bordered\">\n" +
-    "          <thead>\n" +
-    "            <tr>\n" +
-    "              <td>Name</td>\n" +
-    "            </tr>\n" +
-    "          </thead>\n" +
-    "        </table>\n" +
-    "      </div>\n" +
-    "      <div class=\"table-container-scroll\">\n" +
-    "        <table class=\"table table-condensed table-bordered\">\n" +
-    "        <tbody>\n" +
-    "          <thead>\n" +
-    "            <tr>\n" +
-    "              <td>Name</td>\n" +
-    "            </tr>\n" +
-    "          </thead>\n" +
-    "          <tr ng-repeat=\"form in vm.forms\">\n" +
-    "            <td><a href ui-sref=\"root.projectTestForms.detail({formId: form.get('id')})\">{{form.get('name')}}</a></td>\n" +
-    "          </tr>\n" +
-    "        </tbody>\n" +
-    "        </table>\n" +
-    "      </div>\n" +
-    "    </div>\n" +
-    "  </div>\n" +
-    "</div>\n" +
-    "\n"
-  );
-
-
   $templateCache.put('components/projects/tests/forms/detail/project-test-form.html',
     "<div class=\"col-md-12\">\n" +
     "  <h2 class=\"pull-left\">{{vm.form.get('name')}}</h2>\n" +
     "</div>\n" +
+    "\n" +
     "<div class=\"col-md-12\">\n" +
     "  <div ng-hide=\"vm.items.length\">There are no item.</div>\n" +
-    "  <div ng-show=\"vm.items.length\">\n" +
-    "    <div class=\"col-md-6\">\n" +
-    "      <h3>Items</h3>\n" +
-    "      <div class=\"form-group clearfix\">\n" +
-    "        <div class=\"btn-group\"><a href=\"\" class=\"btn btn-default pull-left\" ng-click=\"vm.expandAll()\">Expand all</a></div>\n" +
-    "        <div class=\"btn-group\"><a href=\"\" class=\"btn btn-default pull-left\" ng-click=\"vm.collapseAll()\">Collapse all</a></div>\n" +
+    "\n" +
+    "  <div class=\"form-group\">\n" +
+    "    <button type=\"button\" class=\"btn btn-primary\" ng-click=\"vm.addItemModal()\">Add Item</button>\n" +
+    "  </div>\n" +
+    "\n" +
+    "  <div ng-show=\"vm.items.length\" class=\"col-md-6\">\n" +
+    "    <h3>Items</h3>\n" +
+    "\n" +
+    "    <div class=\"form-group clearfix\">\n" +
+    "      <div class=\"btn-group\">\n" +
+    "        <a href=\"\" class=\"btn btn-default pull-left\" ng-click=\"vm.expandAll()\">Expand all</a>\n" +
+    "        <a href=\"\" class=\"btn btn-default pull-left\" ng-click=\"vm.collapseAll()\">Collapse all</a>\n" +
     "      </div>\n" +
-    "      <script type=\"text/ng-template\" id=\"items_renderer.html\">\n" +
-    "        <div ui-tree-handle>\n" +
-    "          <a class=\"btn btn-success btn-xs\" data-nodrag ng-click=\"vm.toggle(this)\"><span class=\"glyphicon\" ng-class=\"{'glyphicon-chevron-right': collapsed, 'glyphicon-chevron-down': !collapsed}\"></span></a>\n" +
-    "          {{item.get('uid')}}\n" +
-    "          <a class=\"pull-right btn btn-danger btn-xs\" data-nodrag ng-click=\"vm.remove(this)\"><span class=\"glyphicon glyphicon-remove\"></span></a>\n" +
-    "          <a class=\"pull-right btn btn-primary btn-xs\" data-nodrag ng-click=\"vm.newSubItem(this)\" style=\"margin-right: 8px;\"><span class=\"glyphicon glyphicon-plus\"></span></a>\n" +
-    "        </div>\n" +
-    "        <ol ui-tree-nodes ng-model=\"item.items\" ng-class=\"{hidden: collapsed}\">\n" +
-    "          <li ng-repeat=\"item in item.get('items')\" ui-tree-node ng-include=\"'items_renderer.html'\">\n" +
-    "          </li>\n" +
-    "        </ol>\n" +
-    "      </script>\n" +
-    "      <div class=\"form-group\">\n" +
+    "    </div>\n" +
+    "\n" +
+    "    <script type=\"text/ng-template\" id=\"items_renderer.html\">\n" +
+    "      <div ui-tree-handle>\n" +
+    "        <a class=\"btn btn-success btn-xs\" data-nodrag ng-click=\"vm.toggle(this)\"><span class=\"glyphicon\" ng-class=\"{'glyphicon-chevron-right': collapsed, 'glyphicon-chevron-down': !collapsed}\"></span></a>\n" +
+    "        {{item.get('uid')}}\n" +
+    "        <a class=\"pull-right btn btn-danger btn-xs\" data-nodrag ng-click=\"vm.remove(this)\"><span class=\"glyphicon glyphicon-remove\"></span></a>\n" +
+    "        <a class=\"pull-right btn btn-primary btn-xs\" data-nodrag ng-click=\"vm.newSubItem(this)\" style=\"margin-right: 8px;\"><span class=\"glyphicon glyphicon-plus\"></span></a>\n" +
+    "      </div>\n" +
+    "      <ol ui-tree-nodes ng-model=\"item.items\" ng-class=\"{hidden: collapsed}\">\n" +
+    "        <li ng-repeat=\"item in item.get('items')\" ui-tree-node ng-include=\"'items_renderer.html'\">\n" +
+    "        </li>\n" +
+    "      </ol>\n" +
+    "    </script>\n" +
+    "\n" +
+    "    <div class=\"form-group\">\n" +
     "      <div ui-tree id=\"tree-root\" ng-model=\"vm.treeRoot\" data-drag-enabled=\"true\" data-drop-enabled=\"true\">\n" +
     "        <ol ui-tree-nodes=\"\" ng-model=\"vm.items\">\n" +
     "          <li ng-repeat=\"item in vm.items\" ui-tree-node ng-include=\"'items_renderer.html'\"></li>\n" +
     "        </ol>\n" +
     "      </div>\n" +
-    "      </div>\n" +
     "    </div>\n" +
-    "    <div class=\"col-md-6\">\n" +
-    "      <div class=\"info\">\n" +
-    "        Full tree data\n" +
-    "      </div>\n" +
-    "      <pre class=\"code\">{{ vm.items | json }}</pre>\n" +
+    "  </div>\n" +
+    "\n" +
+    "  <div class=\"col-md-6\">\n" +
+    "    <div class=\"info\">\n" +
+    "      Full tree data\n" +
     "    </div>\n" +
+    "\n" +
+    "    <pre class=\"code\">{{ vm.items | json }}</pre>\n" +
     "  </div>\n" +
     "</div>\n" +
     "\n"

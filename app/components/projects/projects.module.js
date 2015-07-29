@@ -13,7 +13,7 @@ define(function(require) {
       ProjectCreateController = require('components/projects/create/project-create.controller'),
       ProjectsService = require('components/projects/projects.service'),
       ProjectCollection = require('shared/libs/project/project-collection'),
-      ItemsController = require('components/projects/modal/items.controller'),
+      ItemsController = require('components/projects/tests/forms/detail/modal/items.controller'),
       FormModel = require('shared/libs/form/form-model'),
       TestModel = require('shared/libs/test/test-model');
 
