@@ -5,7 +5,9 @@ define(function(require) {
   return ['$stateParams', 'ProjectsService', 'project', function($stateParams, ProjectsService, project) {
     var vm = this;
 
-    vm.tests = project.get('tests').getAll();
+    var testCollection = project.get('tests');
+
+    vm.tests = testCollection.getAll();
 
     vm.addTestToProject = function() {
       var formdata = { name: vm.testName };
@@ -15,7 +17,8 @@ define(function(require) {
     };
 
     var addTestToProjectSuccess = function(test) {
-      vm.tests.push(test);
+      testCollection.add(test);
+
       vm.testName = '';
       vm.addTestSuccess = true;
     };
