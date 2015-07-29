@@ -6,6 +6,7 @@ define(function(require) {
   var _properties = [
     { key: 'id', type: 'int' },
     { key: 'name', type: 'string' },
+    { key: 'test_id', type: 'string' },
     { key: 'items', type: 'array', required: false }
   ];
 

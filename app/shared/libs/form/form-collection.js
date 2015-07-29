@@ -1,11 +1,12 @@
 'use strict';
 
 define(function(require) {
-  var FormModel = require('shared/libs/project/project-model'),
+  var FormModel = require('shared/libs/form/form-model'),
       collection = require('shared/libs/object/object-collection');
 
   var FormCollection = function(data) {
     this._className = 'FormCollection';
+
     collection.call(this, FormModel, data);
   };
 

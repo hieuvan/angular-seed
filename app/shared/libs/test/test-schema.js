@@ -7,7 +7,7 @@ define(function(require) {
     { key: 'id', type: 'int' },
     { key: 'name', type: 'string' },
     { key: 'project_id', type: 'string' },
-    { key: 'forms', type: 'array' }
+    { key: 'forms', type: 'array', required: false }
   ];
 
   var TestSchema = function() {

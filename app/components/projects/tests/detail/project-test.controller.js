@@ -2,14 +2,13 @@
 
 define(function(require) {
 
-  return ['$stateParams', 'ProjectsService', 'test', 'FormCollection', function($stateParams, ProjectsService, test, FormCollection) {
+  return ['$stateParams', 'ProjectsService', 'test', function($stateParams, ProjectsService, test) {
     var vm = this;
 
     vm.test = test;
 
     vm.forms = test.get('forms').getAll();
-    console.log(test);
-    console.log(vm.forms);
+
     vm.addFormToTest = function() {
       var formdata = { name: vm.formName };
 

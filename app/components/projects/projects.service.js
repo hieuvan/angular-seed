@@ -45,7 +45,6 @@ define(function(require) {
       var url = 'projects' + '/' + projectId + '/' + 'tests' + '/' + testId + '/forms';
 
       return HttpService.get(url).then(function(test) {
-      console.log(new TestModel(test.data));
         return new TestModel(test.data);
       });
     };

@@ -142,7 +142,7 @@ define(function() {
         }]
       },
       data: {
-        displayName: '{{ project.name }}'
+        displayName: "{{ project.get('name') }}"
       }
     });
 
