@@ -13,11 +13,12 @@ define(function(require) {
       ProjectCreateController = require('components/projects/create/project-create.controller'),
       ProjectsService = require('components/projects/projects.service'),
       ProjectCollection = require('shared/libs/project/project-collection'),
-      ItemsController = require('components/projects/modal/items.controller'),
+      ItemsController = require('components/projects/tests/forms/detail/modal/items.controller'),
       FormModel = require('shared/libs/form/form-model'),
       FormCollection = require('shared/libs/form/form-collection'),
       TestModel = require('shared/libs/test/test-model'),
-      UserModel = require('shared/libs/user/user-model');
+      UserModel = require('shared/libs/user/user-model'),
+      ProjectModel = require('shared/libs/project/project-model');
 
   return angular.module('app.projects', ['ui.tree'])
 
@@ -26,6 +27,7 @@ define(function(require) {
   .factory('TestModel', function() { return TestModel; })
   .factory('FormModel', function() { return FormModel; })
   .factory('FormCollection', function() { return FormCollection; })
+  .factory('ProjectModel', function() { return ProjectModel; })
   .factory('ProjectCollection', function() { return ProjectCollection; })
   .factory('UserModel', function() { return UserModel; })
 

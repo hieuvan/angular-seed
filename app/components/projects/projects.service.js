@@ -2,8 +2,8 @@
 
 define(function(require) {
 
-  return ['HttpService', 'TestModel', 'FormModel', 'UserModel', 'ProjectCollection', 'FormCollection',
-    function(HttpService, TestModel, FormModel, UserModel, ProjectCollection, FormCollection) {
+  return ['HttpService', 'TestModel', 'FormModel', 'UserModel', 'ProjectModel', 'ProjectCollection', 'FormCollection',
+    function(HttpService, TestModel, FormModel, UserModel, ProjectModel, ProjectCollection, FormCollection) {
 
     var getProjects = function() {
       return HttpService.get('projects').then(function(projects) {
@@ -13,7 +13,7 @@ define(function(require) {
 
     var getProject = function(id) {
       return HttpService.get('projects' + '/' + id, {'include[]': ['tests']}).then(function(project) {
-        return project.data;
+        return new ProjectModel(project.data);
       });
     };
 

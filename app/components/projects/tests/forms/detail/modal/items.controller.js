@@ -2,9 +2,9 @@
 
 define(function(require) {
 
-  return ['$stateParams', '$modalInstance', 'ProjectsService', 'test', function($stateParams, $modalInstance, ProjectsService, test) {
+  return ['$stateParams', '$modalInstance', 'ProjectsService', function($stateParams, $modalInstance, ProjectsService) {
     var vm = this;
-    console.log(test);
+
     //vm.form = form;
 
     vm.itemSearchResults = false;

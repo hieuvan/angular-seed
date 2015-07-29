@@ -9,19 +9,19 @@ define(function(require) {
 
     vm.items = form.get('items').getAll();
 
+    vm.addItemModal = function() {
+      var modal = $modal.open({
+        templateUrl: 'components/projects/tests/forms/detail/modal/add-item.html',
+        controller: 'ItemsController as vm'
+      });
+    };
+
     var getRootNodesScope = function() {
       return angular.element(document.getElementById("tree-root")).scope();
     };
 
     vm.newSubItem = function(scope) {
-      console.log(scope);
-      $modal.open({
-        templateUrl: 'components/projects/modal/add-item.html',
-        controller: 'ItemsController as vm',
-        resolve: {
-          test: 'test'
-        }
-      });
+      vm.addItemModal();
     };
 
     vm.toggle = function(scope) {

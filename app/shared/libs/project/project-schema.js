@@ -6,7 +6,8 @@ define(function(require) {
   var _properties = [
     { key: 'id', type: 'int' },
     { key: 'itrack_reference', type: 'string' },
-    { key: 'name', type: 'string' }
+    { key: 'name', type: 'string' },
+    { key: 'tests', type: 'array' }
   ];
 
   var ProjectSchema = function() {
