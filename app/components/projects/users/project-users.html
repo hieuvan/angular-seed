@@ -40,7 +40,7 @@
 </div>
 
 <form novalidate>
-  <alert ng-show="vm.assignUserError" type="danger"></alert>
+  <alert ng-show="vm.assignUserError" type="danger">{{vm.error}}</alert>
   <alert ng-show="vm.assignUserSuccess" type="success">User assigned to the project successfully</alert>
   <div class="form-group">
     <label>First part of ACER staff's email address (before the @).</label>

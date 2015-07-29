@@ -4,6 +4,8 @@
 <div class="col-md-12">
   <div ng-hide="vm.forms.length" class="form-group">There are no forms.</div>
   <form>
+    <alert ng-show="vm.addFormError" type="danger">{{vm.error}}</alert>
+    <alert ng-show="vm.addFormSuccess" type="success">Form added successfully</alert>
     <div class="form-group">
       <label for="form-name">Form Name</label>
       <input type="text" class="form-control" id="form-name" placeholder="Enter Form Name" ng-model="vm.formName">
@@ -37,7 +39,7 @@
               <td>Name</td>
             </tr>
           </thead>
-          <tr ng-repeat="form in vm.forms | search:vm.formQuery:'name'"">
+          <tr ng-repeat="form in vm.forms | search:vm.formQuery:'name'">
             <td><a href ui-sref="root.projectTestForms.detail({formId: form.get('id')})">{{form.get('name')}}</a></td>
           </tr>
         </tbody>
