@@ -2,8 +2,8 @@
 
 define(function(require) {
 
-  return ['HttpService', 'TestModel', 'FormModel', 'ProjectCollection',
-    function(HttpService, TestModel, FormModel, ProjectCollection) {
+  return ['HttpService', 'TestModel', 'FormModel', 'UserModel', 'ProjectCollection', 'FormCollection',
+    function(HttpService, TestModel, FormModel, UserModel, ProjectCollection, FormCollection) {
 
     var getProjects = function() {
       return HttpService.get('projects').then(function(projects) {
@@ -31,13 +31,13 @@ define(function(require) {
 
     var addUserToProject = function(id, data) {
       return HttpService.post('projects' + '/' + id + '/' + 'users', data).then(function(user) {
-        return user.data;
+        return new UserModel(user.data);
       });
     };
 
     var addTestToProject = function(id, data) {
       return HttpService.post('projects' + '/' + id + '/' + 'tests', data).then(function(test) {
-        return test.data;
+        return new TestModel(test.data);
       });
     };
 
@@ -45,6 +45,7 @@ define(function(require) {
       var url = 'projects' + '/' + projectId + '/' + 'tests' + '/' + testId + '/forms';
 
       return HttpService.get(url).then(function(test) {
+      console.log(new TestModel(test.data));
         return new TestModel(test.data);
       });
     };
@@ -53,14 +54,14 @@ define(function(require) {
       var url = 'projects' + '/' + projectId + '/' + 'tests' + '/' + testId + '/forms';
 
       return HttpService.post(url, data).then(function(test) {
-        return test.data;
+        return new TestModel(test.data);
       });
     };
 
     var getProjectTestForm = function(projectId, testId, formId) {
       var url = 'projects' + '/' + projectId + '/' + 'tests' + '/' + testId + '/forms' + '/' + formId + '/' + 'items';
 
-      return HttpService.get(url, {'include': ['items']}).then(function(form) {
+      return HttpService.get(url).then(function(form) {
         return new FormModel(form.data);
       });
     };
@@ -75,7 +76,6 @@ define(function(require) {
       var url = 'projects' + '/' + projectId + '/' + 'tests' + '/' + testId + '/forms' + '/' + formId + '/' + 'items';
 
       return HttpService.post(url, data).then(function(items) {
-        console.log(items);
         return items.data;
       });
     };

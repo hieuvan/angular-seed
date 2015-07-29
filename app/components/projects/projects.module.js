@@ -15,7 +15,9 @@ define(function(require) {
       ProjectCollection = require('shared/libs/project/project-collection'),
       ItemsController = require('components/projects/modal/items.controller'),
       FormModel = require('shared/libs/form/form-model'),
-      TestModel = require('shared/libs/test/test-model');
+      FormCollection = require('shared/libs/form/form-collection'),
+      TestModel = require('shared/libs/test/test-model'),
+      UserModel = require('shared/libs/user/user-model');
 
   return angular.module('app.projects', ['ui.tree'])
 
@@ -23,7 +25,9 @@ define(function(require) {
 
   .factory('TestModel', function() { return TestModel; })
   .factory('FormModel', function() { return FormModel; })
+  .factory('FormCollection', function() { return FormCollection; })
   .factory('ProjectCollection', function() { return ProjectCollection; })
+  .factory('UserModel', function() { return UserModel; })
 
   .controller('ProjectController', ProjectController)
   .controller('ProjectsController', ProjectsController)

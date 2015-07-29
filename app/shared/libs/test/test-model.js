@@ -3,8 +3,7 @@
 define(function(require) {
   var model = require('shared/libs/object/object-model'),
       schema = require('shared/libs/test/test-schema'),
-      Collection = require('shared/libs/object/object-collection'),
-      FormModel = require('shared/libs/form/form-model');
+      FormCollection = require('shared/libs/form/form-collection');
 
   var TestModel = function(data) {
     this._schema = schema;
@@ -15,10 +14,12 @@ define(function(require) {
 
   var prototype = TestModel.prototype;
 
-  prototype._processData = function(data) {
-    data.forms = new Collection(FormModel, data.forms);
+  prototype._processData = function(test) {
+    if (!_.isUndefined(test.forms)) {
+      test.forms = new FormCollection(test.forms);
+    }
 
-    return data;
+    return test;
   };
 
   return TestModel;
