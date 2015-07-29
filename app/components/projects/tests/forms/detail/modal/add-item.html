@@ -43,15 +43,15 @@
             <th><input type="checkbox"></th>
             <th>UID</th>
             <th>Title</th>
-            <th>Content</th>
+            <th>Type</th>
           </tr>
         </thead>
         <tbody>
         <tr ng-repeat="item in vm.searchItems">
           <td><input type="checkbox" ng-model="item.selected"></td>
-          <td>{{item.uid}}</td>
-          <td>{{item.title}}</td>
-          <td>{{item.stem}}</td>
+          <td>{{item.get('uid')}}</td>
+          <td>{{item.get('title')}}</td>
+          <td>{{item.get('type')}}</td>
         </tr>
         </tbody>
       </table>

@@ -29,8 +29,8 @@
           </tr>
         </thead>
         <tr ng-repeat="user in vm.users | search:vm.userQuery:'email,given_name,family_name'">
-          <td>{{user.given_name}} {{user.family_name}}</td>
-          <td>{{user.email}}</td>
+          <td>{{user.get('given_name')}} {{user.get('family_name')}}</td>
+          <td>{{user.get('email')}}</td>
           <td></td>
         </tr>
       </tbody>

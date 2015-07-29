@@ -305,15 +305,15 @@ define(function(require) {
     "            <th><input type=\"checkbox\"></th>\n" +
     "            <th>UID</th>\n" +
     "            <th>Title</th>\n" +
-    "            <th>Content</th>\n" +
+    "            <th>Type</th>\n" +
     "          </tr>\n" +
     "        </thead>\n" +
     "        <tbody>\n" +
     "        <tr ng-repeat=\"item in vm.searchItems\">\n" +
     "          <td><input type=\"checkbox\" ng-model=\"item.selected\"></td>\n" +
-    "          <td>{{item.uid}}</td>\n" +
-    "          <td>{{item.title}}</td>\n" +
-    "          <td>{{item.stem}}</td>\n" +
+    "          <td>{{item.get('uid')}}</td>\n" +
+    "          <td>{{item.get('title')}}</td>\n" +
+    "          <td>{{item.get('type')}}</td>\n" +
     "        </tr>\n" +
     "        </tbody>\n" +
     "      </table>\n" +
@@ -471,8 +471,8 @@ define(function(require) {
     "          </tr>\n" +
     "        </thead>\n" +
     "        <tr ng-repeat=\"user in vm.users | search:vm.userQuery:'email,given_name,family_name'\">\n" +
-    "          <td>{{user.given_name}} {{user.family_name}}</td>\n" +
-    "          <td>{{user.email}}</td>\n" +
+    "          <td>{{user.get('given_name')}} {{user.get('family_name')}}</td>\n" +
+    "          <td>{{user.get('email')}}</td>\n" +
     "          <td></td>\n" +
     "        </tr>\n" +
     "      </tbody>\n" +

@@ -2,8 +2,8 @@
 
 define(function(require) {
 
-  return ['HttpService', 'TestModel', 'FormModel', 'UserModel', 'ProjectModel', 'ProjectCollection', 'FormCollection',
-    function(HttpService, TestModel, FormModel, UserModel, ProjectModel, ProjectCollection, FormCollection) {
+  return ['HttpService', 'TestModel', 'FormModel', 'UserModel', 'ProjectModel', 'ProjectCollection', 'FormCollection', 'ItemCollection',
+    function(HttpService, TestModel, FormModel, UserModel, ProjectModel, ProjectCollection, FormCollection, ItemCollection) {
 
     var getProjects = function() {
       return HttpService.get('projects').then(function(projects) {
@@ -19,7 +19,7 @@ define(function(require) {
 
     var getProjectUsers = function(id) {
       return HttpService.get('projects' + '/' + id + '/' + 'users').then(function(project) {
-        return project.data;
+        return new ProjectModel(project.data);
       });
     };
 
@@ -67,7 +67,7 @@ define(function(require) {
 
     var searchItem = function(data) {
       return HttpService.get('items?_q=' + data.query).then(function(items) {
-        return items.data;
+        return new ItemCollection(items.data);
       });
     };
 

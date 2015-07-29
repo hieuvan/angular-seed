@@ -6,10 +6,11 @@ define(function(require) {
   function($stateParams, ProjectsService) {
     var vm = this;
 
-    vm.users = [];
+    var userCollection = {};
 
     ProjectsService.getProjectUsers($stateParams.id).then(function(project) {
-      vm.users = project.users;
+      userCollection = project.get('users');
+      vm.users = userCollection.getAll();
     });
 
     vm.addUserToProject = function() {
@@ -17,7 +18,7 @@ define(function(require) {
 
       ProjectsService.addUserToProject($stateParams.id, formdata).then(function(user) {
         vm.assignUserSuccess = true;
-        vm.users.push(user);
+        userCollection.add(user);
         vm.email = '';
       }, function(error) {
         vm.assignUserError = true;

@@ -14,7 +14,7 @@ define(function(require) {
       var formData = { query: vm.itemQuery };
 
       ProjectsService.searchItem(formData).then(function(items) {
-        vm.searchItems = items;
+        vm.searchItems = items.getAll();
         vm.itemSearchResults = true;
       });
     };

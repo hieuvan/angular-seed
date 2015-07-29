@@ -7,7 +7,8 @@ define(function(require) {
     { key: 'id', type: 'int' },
     { key: 'itrack_reference', type: 'string' },
     { key: 'name', type: 'string' },
-    { key: 'tests', type: 'array', required: false }
+    { key: 'tests', type: 'array', required: false },
+    { key: 'users', type: 'array', required: false }
   ];
 
   var ProjectSchema = function() {
