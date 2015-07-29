@@ -1,7 +1,7 @@
 'use strict';
 
 define(function(require) {
-  return ['ObjectModel', function(ObjectModel) {
+  return [function() {
 
     /**
      * Search Filter
