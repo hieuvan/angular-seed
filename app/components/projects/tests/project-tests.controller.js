@@ -12,6 +12,11 @@ define(function(require) {
 
       ProjectsService.addTestToProject($stateParams.id, formdata).then(function(test) {
         vm.tests.push(test);
+        vm.testName = '';
+        vm.addTestSuccess = true;
+      }, function(error) {
+        vm.addTestError = true;
+        vm.error = error;
       });
     };
   }];

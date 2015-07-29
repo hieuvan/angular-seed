@@ -19,6 +19,9 @@ define(function(require) {
         vm.assignUserSuccess = true;
         vm.users.push(user);
         vm.email = '';
+      }, function(error) {
+        vm.assignUserError = true;
+        vm.error = error.message;
       });
     };
   }];

@@ -280,6 +280,8 @@ define(function(require) {
     "<div class=\"col-md-12\">\n" +
     "  <div ng-hide=\"vm.forms.length\" class=\"form-group\">There are no forms.</div>\n" +
     "  <form>\n" +
+    "    <alert ng-show=\"vm.addFormError\" type=\"danger\">{{vm.error}}</alert>\n" +
+    "    <alert ng-show=\"vm.addFormSuccess\" type=\"success\">Form added successfully</alert>\n" +
     "    <div class=\"form-group\">\n" +
     "      <label for=\"form-name\">Form Name</label>\n" +
     "      <input type=\"text\" class=\"form-control\" id=\"form-name\" placeholder=\"Enter Form Name\" ng-model=\"vm.formName\">\n" +
@@ -313,7 +315,7 @@ define(function(require) {
     "              <td>Name</td>\n" +
     "            </tr>\n" +
     "          </thead>\n" +
-    "          <tr ng-repeat=\"form in vm.forms\">\n" +
+    "          <tr ng-repeat=\"form in vm.forms | search:vm.formQuery:'name'\">\n" +
     "            <td><a href ui-sref=\"root.projectTestForms.detail({formId: form.get('id')})\">{{form.get('name')}}</a></td>\n" +
     "          </tr>\n" +
     "        </tbody>\n" +
@@ -374,6 +376,8 @@ define(function(require) {
   $templateCache.put('components/projects/tests/project-tests.html',
     "<div ng-hide=\"vm.tests.length\" class=\"form-group\">There are no tests.</div>\n" +
     "<form>\n" +
+    "  <alert ng-show=\"vm.addTestError\" type=\"danger\">{{vm.error}}</alert>\n" +
+    "  <alert ng-show=\"vm.addTestSuccess\" type=\"success\">Test added successfully</alert>\n" +
     "  <div class=\"form-group\">\n" +
     "    <label for=\"test-name\">Test Name</label>\n" +
     "    <input type=\"text\" class=\"form-control\" id=\"test-name\" placeholder=\"Enter Test Name\" ng-model=\"vm.testName\">\n" +
@@ -463,7 +467,7 @@ define(function(require) {
     "</div>\n" +
     "\n" +
     "<form novalidate>\n" +
-    "  <alert ng-show=\"vm.assignUserError\" type=\"danger\"></alert>\n" +
+    "  <alert ng-show=\"vm.assignUserError\" type=\"danger\">{{vm.error}}</alert>\n" +
     "  <alert ng-show=\"vm.assignUserSuccess\" type=\"success\">User assigned to the project successfully</alert>\n" +
     "  <div class=\"form-group\">\n" +
     "    <label>First part of ACER staff's email address (before the @).</label>\n" +
