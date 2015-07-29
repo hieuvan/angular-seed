@@ -2,11 +2,11 @@
 
 define(function(require) {
 
-  return ['$stateParams', '$modalInstance', 'ProjectsService', function($stateParams, $modalInstance, ProjectsService) {
+  return ['$stateParams', '$modalInstance', 'itemCollection', 'ProjectsService', function($stateParams, $modalInstance, itemCollection, ProjectsService) {
     var vm = this;
 
     //vm.form = form;
-
+console.log(itemCollection);
     vm.itemSearchResults = false;
     //vm.selectedItems = [];
 
@@ -25,12 +25,15 @@ define(function(require) {
 
     vm.addItems = function () {
       var selectedItems = _.where(vm.searchItems, {selected: true});
-      var formData = { items: _.pluck(selectedItems, 'id') };
 
-      var form = ProjectsService.getProjectTestForm($stateParams.id, $stateParams.testId, $stateParams.formId);
+      var formData = { items: _.map(selectedItems, function(item) { return item.get('id'); }) };
 
       ProjectsService.addItemToForm($stateParams.id, $stateParams.testId, $stateParams.formId, formData).then(function(items) {
-        form.items.push(items);
+        console.log(items);
+        //var itemCollection = form.get('items');
+        itemCollection.add(items.getAll());
+        //console.log(itemCollection);
+        //vm.items.add(items);
       });
     };
 

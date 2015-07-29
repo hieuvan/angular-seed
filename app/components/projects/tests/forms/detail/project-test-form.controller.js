@@ -3,16 +3,21 @@
 define(function(require) {
 
   return ['form', '$modal', function(form, $modal) {
-    var vm = this;
+    var vm = this,
+      itemCollection = form.get('items');
 
     vm.form = form;
-
-    vm.items = form.get('items').getAll();
+    vm.items = itemCollection.getAll();
 
     vm.addItemModal = function() {
       var modal = $modal.open({
         templateUrl: 'components/projects/tests/forms/detail/modal/add-item.html',
-        controller: 'ItemsController as vm'
+        controller: 'ItemsController as vm',
+        resolve: {
+          itemCollection: function() {
+            return itemCollection;
+          }
+        }
       });
     };
 

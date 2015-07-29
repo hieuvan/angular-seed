@@ -75,7 +75,7 @@ define(function(require) {
       var url = 'projects' + '/' + projectId + '/' + 'tests' + '/' + testId + '/forms' + '/' + formId + '/' + 'items';
 
       return HttpService.post(url, data).then(function(items) {
-        return items.data;
+        return new ItemCollection(items.data);
       });
     };
 

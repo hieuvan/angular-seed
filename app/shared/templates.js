@@ -310,7 +310,7 @@ define(function(require) {
     "        </thead>\n" +
     "        <tbody>\n" +
     "        <tr ng-repeat=\"item in vm.searchItems\">\n" +
-    "          <td><input type=\"checkbox\" ng-model=\"item.selected\"></td>\n" +
+    "          <td><input type=\"checkbox\" id=\"{{item.get('id')}}\" ng-model=\"item.selected\"></td>\n" +
     "          <td>{{item.get('uid')}}</td>\n" +
     "          <td>{{item.get('title')}}</td>\n" +
     "          <td>{{item.get('type')}}</td>\n" +
