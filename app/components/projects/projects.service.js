@@ -52,8 +52,8 @@ define(function(require) {
     var addFormToTest = function(projectId, testId, data) {
       var url = 'projects' + '/' + projectId + '/' + 'tests' + '/' + testId + '/forms';
 
-      return HttpService.post(url, data).then(function(test) {
-        return new TestModel(test.data);
+      return HttpService.post(url, data).then(function(form) {
+        return new FormModel(form.data);
       });
     };
 

@@ -163,7 +163,7 @@ define(function(require) {
 
   $templateCache.put('components/projects/detail/project-detail.html',
     "<div class=\"col-md-12\">\n" +
-    "  <h2 class=\"pull-left\">{{vm.project.name}}</h2>\n" +
+    "  <h2 class=\"pull-left\">{{vm.project.get('name')}}</h2>\n" +
     "</div>\n" +
     "\n" +
     "<tabset class=\"col-md-6\">\n" +
@@ -206,7 +206,7 @@ define(function(require) {
 
   $templateCache.put('components/projects/tests/detail/project-test.html',
     "<div class=\"col-md-12\">\n" +
-    "  <h2 class=\"pull-left\">{{vm.test.name}}</h2>\n" +
+    "  <h2 class=\"pull-left\">{{vm.test.get('name')}}</h2>\n" +
     "</div>\n" +
     "<div class=\"col-md-12\">\n" +
     "  <div ng-hide=\"vm.forms.length\" class=\"form-group\">There are no forms.</div>\n" +
@@ -339,8 +339,9 @@ define(function(require) {
     "  <div class=\"form-group\">\n" +
     "    <button type=\"button\" class=\"btn btn-primary\" ng-click=\"vm.addItemModal()\">Add Item</button>\n" +
     "  </div>\n" +
-    "\n" +
-    "  <div ng-show=\"vm.items.length\" class=\"col-md-6\">\n" +
+    "</div>\n" +
+    "<div ng-show=\"vm.items.length\" class=\"col-md-12\">\n" +
+    "  <div class=\"col-md-6\">\n" +
     "    <h3>Items</h3>\n" +
     "\n" +
     "    <div class=\"form-group clearfix\">\n" +
@@ -385,6 +386,9 @@ define(function(require) {
 
 
   $templateCache.put('components/projects/tests/project-tests.html',
+    "<div class=\"col-md-12\">\n" +
+    "  <h2 class=\"pull-left\">{{vm.project.name}}</h2>\n" +
+    "</div>\n" +
     "<div ng-hide=\"vm.tests.length\" class=\"form-group\">There are no tests.</div>\n" +
     "<form>\n" +
     "  <alert ng-show=\"vm.addTestError\" type=\"danger\">{{vm.error}}</alert>\n" +

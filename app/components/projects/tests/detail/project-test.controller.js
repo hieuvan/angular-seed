@@ -7,20 +7,27 @@ define(function(require) {
 
     vm.test = test;
 
-    vm.forms = test.get('forms').getAll();
+    var formCollection = test.get('forms');
+
+    vm.forms = formCollection.getAll();
 
     vm.addFormToTest = function() {
       var formdata = { name: vm.formName };
 
-      ProjectsService.addFormToTest($stateParams.id, $stateParams.testId, formdata).then(function(form) {
-        vm.forms.add(form);
-        vm.addFormSuccess = true;
-        vm.formName = '';
-      }, function(error) {
-        vm.addFormError = true;
-        vm.error = error;
-      });
+      ProjectsService.addFormToTest($stateParams.id, $stateParams.testId, formdata)
+        .then(addFormToTestSuccess, addFormToTestError);
     };
 
+    var addFormToTestSuccess = function(form) {
+      formCollection.add(form);
+
+      vm.addFormSuccess = true;
+      vm.formName = '';
+    };
+
+    var addFormToTestError = function(error) {
+      vm.addFormError = true;
+      vm.error = error;
+    };
   }];
 });
