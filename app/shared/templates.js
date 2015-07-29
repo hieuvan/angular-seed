@@ -211,6 +211,8 @@ define(function(require) {
     "<div class=\"col-md-12\">\n" +
     "  <div ng-hide=\"vm.forms.length\" class=\"form-group\">There are no forms.</div>\n" +
     "  <form>\n" +
+    "    <alert ng-show=\"vm.addFormError\" type=\"danger\">{{vm.error}}</alert>\n" +
+    "    <alert ng-show=\"vm.addFormSuccess\" type=\"success\">Form added successfully</alert>\n" +
     "    <div class=\"form-group\">\n" +
     "      <label for=\"form-name\">Form Name</label>\n" +
     "      <input type=\"text\" class=\"form-control\" id=\"form-name\" placeholder=\"Enter Form Name\" ng-model=\"vm.formName\">\n" +
@@ -244,7 +246,7 @@ define(function(require) {
     "              <td>Name</td>\n" +
     "            </tr>\n" +
     "          </thead>\n" +
-    "          <tr ng-repeat=\"form in vm.forms | search:vm.formQuery:'name'\"\">\n" +
+    "          <tr ng-repeat=\"form in vm.forms | search:vm.formQuery:'name'\">\n" +
     "            <td><a href ui-sref=\"root.projectTestForms.detail({formId: form.get('id')})\">{{form.get('name')}}</a></td>\n" +
     "          </tr>\n" +
     "        </tbody>\n" +
@@ -323,61 +325,6 @@ define(function(require) {
     "  <button class=\"btn btn-default\" ng-click=\"vm.cancel()\">Close</button>\n" +
     "  <button class=\"btn btn-default\" ng-click=\"vm.addItems()\">Add Selected</button>\n" +
     "</div>\n"
-  );
-
-
-  $templateCache.put('components/projects/tests/detail/project-test.html',
-    "<div class=\"col-md-12\">\n" +
-    "  <h2 class=\"pull-left\">{{vm.test.name}}</h2>\n" +
-    "</div>\n" +
-    "<div class=\"col-md-12\">\n" +
-    "  <div ng-hide=\"vm.forms.length\" class=\"form-group\">There are no forms.</div>\n" +
-    "  <form>\n" +
-    "    <alert ng-show=\"vm.addFormError\" type=\"danger\">{{vm.error}}</alert>\n" +
-    "    <alert ng-show=\"vm.addFormSuccess\" type=\"success\">Form added successfully</alert>\n" +
-    "    <div class=\"form-group\">\n" +
-    "      <label for=\"form-name\">Form Name</label>\n" +
-    "      <input type=\"text\" class=\"form-control\" id=\"form-name\" placeholder=\"Enter Form Name\" ng-model=\"vm.formName\">\n" +
-    "    </div>\n" +
-    "    <div class=\"form-group\">\n" +
-    "      <button type=\"submit\" class=\"btn btn-primary\" ng-click=\"vm.addFormToTest()\">Add Form</button>\n" +
-    "    </div>\n" +
-    "  </form>\n" +
-    "  <div ng-show=\"vm.forms.length\">\n" +
-    "    <h3>Forms</h3>\n" +
-    "    <div class=\"input-group\">\n" +
-    "      <span class=\"input-group-addon\"><span class=\"fa fa-search\"></span></span>\n" +
-    "      <input type=\"search\" placeholder=\"Search\" class=\"default form-control\" autocomplete=\"off\" ng-model=\"vm.formQuery\">\n" +
-    "      <span class=\"input-group-addon\"><span class=\"fa fa-times reset-input\" data-ng-click=\"vm.formQuery = ''\"></span></span>\n" +
-    "    </div>\n" +
-    "    <div class=\"table-container\">\n" +
-    "      <div class=\"table-container-header-fixed\">\n" +
-    "        <table class=\"table table-condensed table-bordered\">\n" +
-    "          <thead>\n" +
-    "            <tr>\n" +
-    "              <td>Name</td>\n" +
-    "            </tr>\n" +
-    "          </thead>\n" +
-    "        </table>\n" +
-    "      </div>\n" +
-    "      <div class=\"table-container-scroll\">\n" +
-    "        <table class=\"table table-condensed table-bordered\">\n" +
-    "        <tbody>\n" +
-    "          <thead>\n" +
-    "            <tr>\n" +
-    "              <td>Name</td>\n" +
-    "            </tr>\n" +
-    "          </thead>\n" +
-    "          <tr ng-repeat=\"form in vm.forms | search:vm.formQuery:'name'\">\n" +
-    "            <td><a href ui-sref=\"root.projectTestForms.detail({formId: form.get('id')})\">{{form.get('name')}}</a></td>\n" +
-    "          </tr>\n" +
-    "        </tbody>\n" +
-    "        </table>\n" +
-    "      </div>\n" +
-    "    </div>\n" +
-    "  </div>\n" +
-    "</div>\n" +
-    "\n"
   );
 
 
