@@ -1,11 +1,11 @@
 'use strict';
 
 define(function(require) {
-  return ['HttpService', function(HttpService) {
+  return ['HttpService', 'UserCollection', function(HttpService, UserCollection) {
 
     var getUsers = function() {
       return HttpService.get('users').then(function(users) {
-        return users.data;
+        return new UserCollection(users.data);
       });
     };
 

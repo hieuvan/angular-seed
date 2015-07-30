@@ -304,6 +304,11 @@ define(function() {
           controller: 'UsersController as vm'
         }
       },
+      resolve: {
+        users: ['UsersService', function(UsersService) {
+          return UsersService.getUsers();
+        }]
+      },
       data: {
         displayName: 'Users'
       }
