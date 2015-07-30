@@ -5,10 +5,7 @@ define(function(require) {
   return ['$stateParams', '$modalInstance', 'itemCollection', 'ProjectsService', function($stateParams, $modalInstance, itemCollection, ProjectsService) {
     var vm = this;
 
-    //vm.form = form;
-console.log(itemCollection);
     vm.itemSearchResults = false;
-    //vm.selectedItems = [];
 
     vm.searchItem = function() {
       var formData = { query: vm.itemQuery };
@@ -24,16 +21,20 @@ console.log(itemCollection);
     };
 
     vm.addItems = function () {
+
+      var formData = { items: getFormData() };
+
+      ProjectsService.addItemToForm($stateParams.id, $stateParams.testId, $stateParams.formId, formData)
+        .then(function(items) {
+          itemCollection.add(items.getAll());
+        });
+    };
+
+    var getFormData = function() {
       var selectedItems = _.where(vm.searchItems, {selected: true});
 
-      var formData = { items: _.map(selectedItems, function(item) { return item.get('id'); }) };
-
-      ProjectsService.addItemToForm($stateParams.id, $stateParams.testId, $stateParams.formId, formData).then(function(items) {
-        console.log(items);
-        //var itemCollection = form.get('items');
-        itemCollection.add(items.getAll());
-        //console.log(itemCollection);
-        //vm.items.add(items);
+      return _.map(selectedItems, function(item) {
+        return item.get('id');
       });
     };
 
