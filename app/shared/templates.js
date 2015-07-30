@@ -548,9 +548,9 @@ define(function(require) {
     "    </div>\n" +
     "\n" +
     "    <div class=\"col-md-6\">\n" +
-    "      <div ng-hide=\"vm.user.projects.length\">You have no project assigned.</div>\n" +
+    "      <div ng-hide=\"vm.projects.length\">You have no project assigned.</div>\n" +
     "      <ul id=\"project-list\" class=\"list-unstyled\">\n" +
-    "        <li class=\"project panel panel-default clearfix\" ng-repeat=\"project in vm.user.projects\">\n" +
+    "        <li class=\"project panel panel-default clearfix\" ng-repeat=\"project in vm.projects\">\n" +
     "          <div class=\"project-thumb pull-left scaled-square \">\n" +
     "            <div class=\"scaled-square-content\"> {{project.id}} </div>\n" +
     "          </div>\n" +

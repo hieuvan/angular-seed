@@ -20,9 +20,9 @@
     </div>
 
     <div class="col-md-6">
-      <div ng-hide="vm.user.projects.length">You have no project assigned.</div>
+      <div ng-hide="vm.projects.length">You have no project assigned.</div>
       <ul id="project-list" class="list-unstyled">
-        <li class="project panel panel-default clearfix" ng-repeat="project in vm.user.projects">
+        <li class="project panel panel-default clearfix" ng-repeat="project in vm.projects">
           <div class="project-thumb pull-left scaled-square ">
             <div class="scaled-square-content"> {{project.id}} </div>
           </div>
