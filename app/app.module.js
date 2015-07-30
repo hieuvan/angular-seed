@@ -26,7 +26,17 @@ define(function(require) {
       HttpConfigProvider = require('shared/providers/http-config.provider'),
       HttpService = require('shared/services/http.service'),
       SearchFilter = require('shared/filters/search.filter'),
-      TitleDirective = require('shared/directives/title.directive');
+      TitleDirective = require('shared/directives/title.directive'),
+      ProjectCollection = require('shared/libs/project/project-collection'),
+      FormModel = require('shared/libs/form/form-model'),
+      FormCollection = require('shared/libs/form/form-collection'),
+      TestModel = require('shared/libs/test/test-model'),
+      UserModel = require('shared/libs/user/user-model'),
+      UserCollection = require('shared/libs/user/user-collection'),
+      ItemModel = require('shared/libs/item/item-model'),
+      ItemCollection = require('shared/libs/item/item-collection'),
+      ProjectModel = require('shared/libs/project/project-model');
+
 
   // app level module that depends on app view and components
   return angular.module('app', [
@@ -58,6 +68,16 @@ define(function(require) {
   .config(Routes)
 
   .service('HttpService', HttpService)
+
+  .factory('TestModel', function() { return TestModel; })
+  .factory('FormModel', function() { return FormModel; })
+  .factory('FormCollection', function() { return FormCollection; })
+  .factory('ProjectModel', function() { return ProjectModel; })
+  .factory('ProjectCollection', function() { return ProjectCollection; })
+  .factory('UserModel', function() { return UserModel; })
+  .factory('UserCollection', function() { return UserCollection; })
+  .factory('ItemModel', function() { return ItemModel; })
+  .factory('ItemCollection', function() { return ItemCollection; })
 
   .provider('HttpConfigProvider', HttpConfigProvider)
   .provider('$jwt', Jwt)

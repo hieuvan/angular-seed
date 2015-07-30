@@ -6,6 +6,12 @@ define(function(require) {
     data = data || [];
     var self = this;
 
+    // TODO: check if objectModel is actually instance of ObjectModel
+    //       atm we just check if it is function, which isnt roboust
+    if (!_.isFunction(objectModel)) {
+      throw new Error('First parameter passed to Object collection must be instance of ObjectModel.');
+    }
+
     this._className = this._className || 'ObjectCollection';
 
     self._collection = _.chain(data).map(function(eachData) {

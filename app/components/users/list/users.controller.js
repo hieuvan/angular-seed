@@ -2,11 +2,11 @@
 
 define(function(require) {
 
-  return ['UsersService', function(UsersService) {
+  return ['users', function(users) {
     var vm = this;
 
-    UsersService.getUsers().then(function(users) {
-     vm.users = users;
-    });
+    var userCollection = users;
+
+    vm.users = userCollection.getAll();
   }];
 });

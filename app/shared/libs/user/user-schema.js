@@ -7,7 +7,8 @@ define(function(require) {
     { key: 'name', type: 'string' },
     { key: 'email', type: 'string', required: false },
     { key: 'given_name', type: 'string', required: false },
-    { key: 'family_name', type: 'string', required: false }
+    { key: 'family_name', type: 'string', required: false },
+    { key: 'projects', type: 'array', required: false }
   ];
 
   var UserSchema = function() {

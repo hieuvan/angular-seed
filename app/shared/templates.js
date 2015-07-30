@@ -527,7 +527,7 @@ define(function(require) {
 
   $templateCache.put('components/users/detail/user-detail.html',
     "<div class=\"col-md-12\">\n" +
-    "  <h2 class=\"pull-left\">{{vm.user.name}}</h2>\n" +
+    "  <h2 class=\"pull-left\">{{vm.user.get('name')}}</h2>\n" +
     "</div>\n" +
     "\n" +
     "<div class=\"col-md-12\">\n" +
@@ -535,27 +535,27 @@ define(function(require) {
     "    <div class=\"col-md-6\">\n" +
     "      <div class=\"form-group\">\n" +
     "        <label for=\"family-name\">Family Name</label>\n" +
-    "        <input type=\"text\" class=\"form-control\" id=\"family-name\" ng-model=\"vm.user.family_name\">\n" +
+    "        <input type=\"text\" class=\"form-control\" id=\"family-name\" ng-model=\"vm.familyName\">\n" +
     "      </div>\n" +
     "      <div class=\"form-group\">\n" +
     "        <label for=\"given-name\">Given Name</label>\n" +
-    "        <input type=\"text\" class=\"form-control\" id=\"given-name\" ng-model=\"vm.user.given_name\">\n" +
+    "        <input type=\"text\" class=\"form-control\" id=\"given-name\" ng-model=\"vm.givenName\">\n" +
     "      </div>\n" +
     "      <div class=\"form-group\">\n" +
     "        <label for=\"email\">Email</label>\n" +
-    "        <input type=\"text\" class=\"form-control\" id=\"email\" ng-model=\"vm.user.email\">\n" +
+    "        <input type=\"text\" class=\"form-control\" id=\"email\" ng-model=\"vm.email\">\n" +
     "      </div>\n" +
     "    </div>\n" +
     "\n" +
     "    <div class=\"col-md-6\">\n" +
-    "      <div ng-hide=\"vm.user.projects.length\">You have no project assigned.</div>\n" +
+    "      <div ng-hide=\"vm.projects.length\">You have no project assigned.</div>\n" +
     "      <ul id=\"project-list\" class=\"list-unstyled\">\n" +
-    "        <li class=\"project panel panel-default clearfix\" ng-repeat=\"project in vm.user.projects\">\n" +
+    "        <li class=\"project panel panel-default clearfix\" ng-repeat=\"project in vm.projects\">\n" +
     "          <div class=\"project-thumb pull-left scaled-square \">\n" +
-    "            <div class=\"scaled-square-content\"> {{project.id}} </div>\n" +
+    "            <div class=\"scaled-square-content\"> {{project.get('id')}} </div>\n" +
     "          </div>\n" +
     "          <h2 class=\"project-title pull-left\">\n" +
-    "            <a href ui-sref=\"root.projects.detail({ id: project.id })\">{{project.name}}</a>\n" +
+    "            <a href ui-sref=\"root.projects.detail({ id: project.get('id') })\">{{project.get('name')}}</a>\n" +
     "          </h2>\n" +
     "        </li>\n" +
     "      </ul>\n" +
@@ -576,7 +576,7 @@ define(function(require) {
     "  <ul id=\"user-list\" class=\"list-unstyled\">\n" +
     "    <li class=\"user panel panel-default clearfix\" ng-repeat=\"user in vm.users\">\n" +
     "      <h2 class=\"user-title pull-left\">\n" +
-    "        <a href ui-sref=\"root.users.detail({ id: user.id })\">{{user.name}}</a>\n" +
+    "        <a href ui-sref=\"root.users.detail({ id: user.get('id') })\">{{user.get('name')}}</a>\n" +
     "      </h2>\n" +
     "    </li>\n" +
     "  </ul>\n" +

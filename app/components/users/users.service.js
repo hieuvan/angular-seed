@@ -1,17 +1,18 @@
 'use strict';
 
 define(function(require) {
-  return ['HttpService', function(HttpService) {
+  return ['HttpService', 'UserCollection', 'UserModel',
+  function(HttpService, UserCollection, UserModel) {
 
     var getUsers = function() {
       return HttpService.get('users').then(function(users) {
-        return users.data;
+        return new UserCollection(users.data);
       });
     };
 
     var getUser = function(id) {
       return HttpService.get('users' + '/' + id, {'include[]': ['projects']}).then(function(user) {
-        return user.data;
+        return new UserModel(user.data);
       });
     };
 

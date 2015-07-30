@@ -59,7 +59,6 @@ define(function(require) {
 
     var authorizedUser = function(user) {
       return user && !_.isEqual(user.get('username'), 'guest');
-      return true;
     };
 
     return {

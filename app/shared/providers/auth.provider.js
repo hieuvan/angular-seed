@@ -1,15 +1,14 @@
 'use strict';
 
 define(function(require) {
-  var User = require('shared/libs/user/user-model');
 
   return [function() {
     var self = this;
 
     this.loginUrl = 'login';
 
-    this.$get = ['$cookieStore', 'HttpService', '$q', '$jwt',
-    function($cookies, HttpService, $q, $jwt) {
+    this.$get = ['$cookieStore', 'HttpService', '$q', '$jwt', 'UserModel',
+    function($cookies, HttpService, $q, $jwt, UserModel) {
 
       var tokenName = '_token';
 
@@ -50,7 +49,7 @@ define(function(require) {
 
         if (!payload) return false;
 
-        return new User({
+        return new UserModel({
           id: payload.id,
           name: payload.name
         });
