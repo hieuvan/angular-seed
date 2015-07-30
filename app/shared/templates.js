@@ -576,7 +576,7 @@ define(function(require) {
     "  <ul id=\"user-list\" class=\"list-unstyled\">\n" +
     "    <li class=\"user panel panel-default clearfix\" ng-repeat=\"user in vm.users\">\n" +
     "      <h2 class=\"user-title pull-left\">\n" +
-    "        <a href ui-sref=\"root.users.detail({ id: user.id })\">{{user.name}}</a>\n" +
+    "        <a href ui-sref=\"root.users.detail({ id: user.get('id') })\">{{user.get('name')}}</a>\n" +
     "      </h2>\n" +
     "    </li>\n" +
     "  </ul>\n" +

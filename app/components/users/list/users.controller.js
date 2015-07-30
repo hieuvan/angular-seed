@@ -5,6 +5,8 @@ define(function(require) {
   return ['users', function(users) {
     var vm = this;
 
-    vm.users = users;
+    var userCollection = users;
+
+    vm.users = userCollection.getAll();
   }];
 });

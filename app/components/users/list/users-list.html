@@ -8,7 +8,7 @@
   <ul id="user-list" class="list-unstyled">
     <li class="user panel panel-default clearfix" ng-repeat="user in vm.users">
       <h2 class="user-title pull-left">
-        <a href ui-sref="root.users.detail({ id: user.id })">{{user.name}}</a>
+        <a href ui-sref="root.users.detail({ id: user.get('id') })">{{user.get('name')}}</a>
       </h2>
     </li>
   </ul>
