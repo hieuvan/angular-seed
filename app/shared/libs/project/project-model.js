@@ -22,6 +22,7 @@ define(function(require) {
     }
 
     if (!_.isUndefined(project.users)) {
+      console.log(project.users);
       project.users = new UserCollection(project.users);
     }
 

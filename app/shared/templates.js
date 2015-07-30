@@ -552,10 +552,10 @@ define(function(require) {
     "      <ul id=\"project-list\" class=\"list-unstyled\">\n" +
     "        <li class=\"project panel panel-default clearfix\" ng-repeat=\"project in vm.projects\">\n" +
     "          <div class=\"project-thumb pull-left scaled-square \">\n" +
-    "            <div class=\"scaled-square-content\"> {{project.id}} </div>\n" +
+    "            <div class=\"scaled-square-content\"> {{project.get('id')}} </div>\n" +
     "          </div>\n" +
     "          <h2 class=\"project-title pull-left\">\n" +
-    "            <a href ui-sref=\"root.projects.detail({ id: project.id })\">{{project.name}}</a>\n" +
+    "            <a href ui-sref=\"root.projects.detail({ id: project.get('id') })\">{{project.get('name')}}</a>\n" +
     "          </h2>\n" +
     "        </li>\n" +
     "      </ul>\n" +

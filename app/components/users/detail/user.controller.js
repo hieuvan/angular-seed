@@ -8,7 +8,9 @@ define(function(require) {
 
     vm.user = user;
 
-    vm.projects = user.get('projects');
+    var projectCollection = user.get('projects');
+    console.log(projectCollection);
+    vm.projects = projectCollection.getAll();
 
     vm.familyName = user.get('family_name');
     vm.givenName = user.get('given_name');
