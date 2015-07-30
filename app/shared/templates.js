@@ -527,7 +527,7 @@ define(function(require) {
 
   $templateCache.put('components/users/detail/user-detail.html',
     "<div class=\"col-md-12\">\n" +
-    "  <h2 class=\"pull-left\">{{vm.user.name}}</h2>\n" +
+    "  <h2 class=\"pull-left\">{{vm.user.get('name')}}</h2>\n" +
     "</div>\n" +
     "\n" +
     "<div class=\"col-md-12\">\n" +
@@ -535,15 +535,15 @@ define(function(require) {
     "    <div class=\"col-md-6\">\n" +
     "      <div class=\"form-group\">\n" +
     "        <label for=\"family-name\">Family Name</label>\n" +
-    "        <input type=\"text\" class=\"form-control\" id=\"family-name\" ng-model=\"vm.user.family_name\">\n" +
+    "        <input type=\"text\" class=\"form-control\" id=\"family-name\" ng-model=\"vm.familyName\">\n" +
     "      </div>\n" +
     "      <div class=\"form-group\">\n" +
     "        <label for=\"given-name\">Given Name</label>\n" +
-    "        <input type=\"text\" class=\"form-control\" id=\"given-name\" ng-model=\"vm.user.given_name\">\n" +
+    "        <input type=\"text\" class=\"form-control\" id=\"given-name\" ng-model=\"vm.givenName\">\n" +
     "      </div>\n" +
     "      <div class=\"form-group\">\n" +
     "        <label for=\"email\">Email</label>\n" +
-    "        <input type=\"text\" class=\"form-control\" id=\"email\" ng-model=\"vm.user.email\">\n" +
+    "        <input type=\"text\" class=\"form-control\" id=\"email\" ng-model=\"vm.email\">\n" +
     "      </div>\n" +
     "    </div>\n" +
     "\n" +

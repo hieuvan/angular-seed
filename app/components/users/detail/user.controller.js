@@ -2,10 +2,14 @@
 
 define(function(require) {
 
-  return ['$state', 'user', 'UsersService',
-  function($state, user, UsersService) {
+  return ['user',
+  function(user) {
     var vm = this;
 
     vm.user = user;
+
+    vm.familyName = user.get('family_name');
+    vm.givenName = user.get('given_name');
+    vm.email = user.get('email');
   }];
 });
