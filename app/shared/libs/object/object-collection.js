@@ -87,6 +87,14 @@ define(function(require) {
     return this.invoke('set', key, value);
   };
 
+  prototype.Andadd = function(key, value) {
+    return this.invoke('add', key, value);
+  };
+
+  prototype.andRemove = function() {
+    return this.invoke('remove', key, value);
+  };
+
   prototype.invoke = function(fn) {
     if (!validFunction(this._result[0], fn)) {
       throw new Error(fn + ' is not a valid function available in ' + this._result[0].toString() +'.');
