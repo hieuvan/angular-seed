@@ -20,9 +20,10 @@ define(function(require) {
         * @return object Updated config provider
         */
         request: function(config) {
+
           if(!_.contains(allowedMethods, config.method)) {
-            config.headers['Content-Type'] = 'application/x-www-form-urlencoded';
-            config.transformRequest = stringify;
+            config.headers['Content-Type'] = 'application/json';
+            //config.transformRequest = stringify;
           }
 
           return config;
