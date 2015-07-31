@@ -2,24 +2,24 @@
 
 define(function(require) {
 
-  return ['HttpService', 'TestModel', 'FormModel', 'UserModel', 'ProjectModel', 'ProjectCollection', 'FormCollection', 'ItemCollection',
-    function(HttpService, TestModel, FormModel, UserModel, ProjectModel, ProjectCollection, FormCollection, ItemCollection) {
+  return ['HttpService', 'ItemModel', 'TestModel', 'FormModel', 'UserModel', 'ProjectModel', 'ProjectCollection', 'FormCollection', 'ItemCollection',
+    function(HttpService, ItemModel, TestModel, FormModel, UserModel, ProjectModel, ProjectCollection, FormCollection, ItemCollection) {
 
     var getProjects = function() {
       return HttpService.get('projects').then(function(projects) {
-          return new ProjectCollection(projects.data);
+        return new ProjectCollection(projects.data);
       });
     };
 
     var getProject = function(id) {
       return HttpService.get('projects' + '/' + id, {'include[]': ['tests']}).then(function(project) {
-        return new ProjectModel(project.data);
+        return new ProjectModel(project.data, { tests: TestModel });
       });
     };
 
     var getProjectUsers = function(id) {
       return HttpService.get('projects' + '/' + id + '/' + 'users').then(function(project) {
-        return new ProjectModel(project.data);
+        return new ProjectModel(project.data, { users: UserModel });
       });
     };
 
@@ -61,7 +61,7 @@ define(function(require) {
       var url = 'projects' + '/' + projectId + '/' + 'tests' + '/' + testId + '/forms' + '/' + formId + '/' + 'items';
 
       return HttpService.get(url).then(function(form) {
-        return new FormModel(form.data);
+        return new FormModel(form.data, { items: ItemModel });
       });
     };
 

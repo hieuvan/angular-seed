@@ -1,8 +1,8 @@
 'use strict';
 
 define(function(require) {
-  return ['HttpService', 'UserCollection', 'UserModel',
-  function(HttpService, UserCollection, UserModel) {
+  return ['HttpService', 'UserCollection', 'UserModel', 'ProjectModel',
+  function(HttpService, UserCollection, UserModel, ProjectModel) {
 
     var getUsers = function() {
       return HttpService.get('users').then(function(users) {
@@ -12,7 +12,7 @@ define(function(require) {
 
     var getUser = function(id) {
       return HttpService.get('users' + '/' + id, {'include[]': ['projects']}).then(function(user) {
-        return new UserModel(user.data);
+        return new UserModel(user.data, { projects: ProjectModel });
       });
     };
 

@@ -5,9 +5,9 @@ define(function(require) {
       schema = require('shared/libs/test/test-schema'),
       FormCollection = require('shared/libs/form/form-collection');
 
-  var TestModel = function(data) {
+  var TestModel = function(data, includes) {
     this._schema = schema;
-    model.call(this, data);
+    model.call(this, data, includes);
   };
 
   TestModel.prototype = Object.create(model.prototype);

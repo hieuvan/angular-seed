@@ -329,7 +329,7 @@ define(function() {
         }]
       },
       data: {
-        displayName: '{{ user.name }}'
+        displayName: "{{ user.get('name') }}"
       }
     });
 

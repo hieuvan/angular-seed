@@ -5,23 +5,15 @@ define(function(require) {
       ItemsCollection = require('shared/libs/item/item-collection'),
       schema = require('shared/libs/form/form-schema');
 
-  var FormModel = function(data) {
+  var FormModel = function(data, includes) {
     this._schema = schema;
 
-    model.call(this, data);
+    model.call(this, data, includes);
   };
 
   FormModel.prototype = Object.create(model.prototype);
 
   var prototype = FormModel.prototype;
-
-  prototype._processData = function(form) {
-    if (!_.isUndefined(form.items)) {
-      form.items = new ItemsCollection(form.items);
-    }
-
-    return form;
-  };
 
   return FormModel;
 });

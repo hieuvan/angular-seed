@@ -1,10 +1,13 @@
 'use strict';
 
 define(function(require) {
-  var schema = require('shared/libs/object/object-schema');
+  var Collection = require('shared/libs/object/object-collection'),
+      schema = require('shared/libs/object/object-schema');
 
-  var ObjectModel = function(data) {
+  var ObjectModel = function(data, includes) {
     this._schema = this._schema || new schema;
+
+    data = this._processIncludes(data, includes);
 
     if (_.isFunction(this._processData)) {
       data = this._processData(data);
@@ -68,6 +71,26 @@ define(function(require) {
     }
 
     this._schema.validateType(key, value);
+  };
+
+  /**
+   * Include collection to the model if specified
+   *
+   * @param array data
+   * @param object includes
+   */
+  prototype._processIncludes = function(data, includes) {
+    if (_.isUndefined(includes)) return data;
+
+    for (var i in includes) {
+      var toInclude = data[i], model = includes[i];
+
+      if (_.isUndefined(toInclude)) continue;
+
+      data[i] = new Collection(model, toInclude)
+    }
+
+    return data;
   };
 
   prototype.toString = function() {
