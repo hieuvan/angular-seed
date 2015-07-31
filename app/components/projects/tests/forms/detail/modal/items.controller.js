@@ -7,6 +7,8 @@ define(function(require) {
 
     vm.itemSearchResults = false;
 
+    var parentId = 1;
+
     vm.searchItem = function() {
       var formData = { query: vm.itemQuery };
 
@@ -31,11 +33,17 @@ define(function(require) {
     };
 
     var getFormData = function() {
-      var selectedItems = _.where(vm.searchItems, {selected: true});
+      var formdata = {},
+          selectedItems = _.where(vm.searchItems, {selected: true});
 
-      return _.map(selectedItems, function(item) {
-        return item.get('id');
+      _.each(selectedItems, function(item, index) {
+        formdata[item.get('id')] = {
+          parent_item_id: parentId,
+          position: index + 1
+        };
       });
+
+      return formdata;
     };
 
   }];
