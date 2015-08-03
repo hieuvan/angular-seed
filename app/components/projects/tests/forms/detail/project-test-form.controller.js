@@ -2,31 +2,26 @@
 
 define(function(require) {
 
-  return ['form', '$modal', function(form, $modal) {
-    var vm = this,
-      itemCollection = form.get('items');
+  return ['form', '$modal', '$scope', function(form, $modal, $scope) {
+    var vm = this;
 
     vm.form = form;
-    vm.items = itemCollection.getAll();
+    vm.items = form.get('items');
 
-    vm.addItemModal = function() {
+    vm.addItemModal = function(scope) {
       var modal = $modal.open({
         templateUrl: 'components/projects/tests/forms/detail/modal/add-item.html',
         controller: 'ItemsController as vm',
         resolve: {
-          itemCollection: function() {
-            return itemCollection;
-          }
+          node: function() { return scope; },
+          tree: function() { return vm.items; }
         }
       });
     };
 
-    var getRootNodesScope = function() {
-      return angular.element(document.getElementById("tree-root")).scope();
-    };
-
     vm.newSubItem = function(scope) {
-      vm.addItemModal();
+      console.log(scope);
+      vm.addItemModal(scope);
     };
 
     vm.toggle = function(scope) {
@@ -38,13 +33,16 @@ define(function(require) {
     };
 
     vm.collapseAll = function() {
-      var scope = getRootNodesScope();
-      scope.collapseAll();
+      getRootNodesScope().collapseAll();
     };
 
     vm.expandAll = function() {
-      var scope = getRootNodesScope();
-      scope.expandAll();
+      getRootNodesScope().expandAll();
     };
+
+    var getRootNodesScope = function() {
+      return angular.element(document.getElementById("tree-root")).scope();
+    };
+
   }];
 });

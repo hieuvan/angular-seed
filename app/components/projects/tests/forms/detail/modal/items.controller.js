@@ -2,18 +2,19 @@
 
 define(function(require) {
 
-  return ['$stateParams', '$modalInstance', 'itemCollection', 'ProjectsService', function($stateParams, $modalInstance, itemCollection, ProjectsService) {
+  return ['$stateParams', '$modalInstance', 'node', 'tree', 'ProjectsService',
+    function($stateParams, $modalInstance, node, tree, ProjectsService) {
+
     var vm = this;
 
     vm.itemSearchResults = false;
-
-    var parentId = 1;
+    vm.foundItems = [];
 
     vm.searchItem = function() {
       var formData = { query: vm.itemQuery };
 
       ProjectsService.searchItem(formData).then(function(items) {
-        vm.searchItems = items.getAll();
+        vm.foundItems = items.getAll();
         vm.itemSearchResults = true;
       });
     };
@@ -26,24 +27,44 @@ define(function(require) {
 
       var formData = { items: getFormData() };
 
-      ProjectsService.addItemToForm($stateParams.id, $stateParams.testId, $stateParams.formId, formData)
-        .then(function(items) {
-          itemCollection.add(items.getAll());
+      ProjectsService
+        .addItemToForm($stateParams.id, $stateParams.testId, $stateParams.formId, formData)
+        .then(updateTree);
+    };
+
+    var updateTree = function(items) {
+      if (_.isUndefined(node)) {
+        _.each(items.flatten(), function(item) {
+          tree.push(item);
         });
+
+        return;
+      }
     };
 
     var getFormData = function() {
-      var formdata = {},
-          selectedItems = _.where(vm.searchItems, {selected: true});
+      var formdata = {};
 
-      _.each(selectedItems, function(item, index) {
+      _.each(getSelectedItems(), function(item, index) {
         formdata[item.get('id')] = {
-          parent_item_id: parentId,
-          position: index + 1
+          parent_item_id: getParentId(),
+          position: getPosition(index)
         };
       });
 
       return formdata;
+    };
+
+    var getSelectedItems = function() {
+      return _.where(vm.foundItems, {selected: true});
+    };
+
+    var getParentId = function() {
+      return _.isUndefined(node) ? 0 : node.$modalValue.id;
+    };
+
+    var getPosition = function(index) {
+      return _.isUndefined(node) ? 0 : node.depth() + index;
     };
 
   }];

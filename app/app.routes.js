@@ -142,7 +142,7 @@ define(function() {
         }]
       },
       data: {
-        displayName: "{{ project.get('name') }}"
+        displayName: '{{ project.get("name") }}'
       }
     });
 
@@ -184,7 +184,7 @@ define(function() {
         }]
       },
       data: {
-        displayName: "{{ test.get('name') }}"
+        displayName: '{{ test.get("name") }}'
       }
     });
 
@@ -226,7 +226,7 @@ define(function() {
         }]
       },
       data: {
-        displayName: "{{ form.get('name') }}"
+        displayName: '{{ form.get("name") }}'
       }
     });
 
@@ -329,7 +329,7 @@ define(function() {
         }]
       },
       data: {
-        displayName: "{{ user.get('name') }}"
+        displayName: '{{ user.get("name") }}'
       }
     });
 

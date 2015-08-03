@@ -61,7 +61,7 @@ define(function(require) {
       var url = 'projects' + '/' + projectId + '/' + 'tests' + '/' + testId + '/forms' + '/' + formId + '/' + 'items';
 
       return HttpService.get(url).then(function(form) {
-        return new FormModel(form.data, { items: ItemModel });
+        return new FormModel(form.data);
       });
     };
 

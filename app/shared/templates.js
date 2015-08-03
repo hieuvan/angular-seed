@@ -309,7 +309,7 @@ define(function(require) {
     "          </tr>\n" +
     "        </thead>\n" +
     "        <tbody>\n" +
-    "        <tr ng-repeat=\"item in vm.searchItems\">\n" +
+    "        <tr ng-repeat=\"item in vm.foundItems\">\n" +
     "          <td><input type=\"checkbox\" id=\"{{item.get('id')}}\" ng-model=\"item.selected\"></td>\n" +
     "          <td>{{item.get('uid')}}</td>\n" +
     "          <td>{{item.get('title')}}</td>\n" +
@@ -354,12 +354,12 @@ define(function(require) {
     "    <script type=\"text/ng-template\" id=\"items_renderer.html\">\n" +
     "      <div ui-tree-handle>\n" +
     "        <a class=\"btn btn-success btn-xs\" data-nodrag ng-click=\"vm.toggle(this)\"><span class=\"glyphicon\" ng-class=\"{'glyphicon-chevron-right': collapsed, 'glyphicon-chevron-down': !collapsed}\"></span></a>\n" +
-    "        {{item.get('uid')}}\n" +
+    "        {{item.uid}}\n" +
     "        <a class=\"pull-right btn btn-danger btn-xs\" data-nodrag ng-click=\"vm.remove(this)\"><span class=\"glyphicon glyphicon-remove\"></span></a>\n" +
     "        <a class=\"pull-right btn btn-primary btn-xs\" data-nodrag ng-click=\"vm.newSubItem(this)\" style=\"margin-right: 8px;\"><span class=\"glyphicon glyphicon-plus\"></span></a>\n" +
     "      </div>\n" +
     "      <ol ui-tree-nodes ng-model=\"item.items\" ng-class=\"{hidden: collapsed}\">\n" +
-    "        <li ng-repeat=\"item in item.get('items')\" ui-tree-node ng-include=\"'items_renderer.html'\">\n" +
+    "        <li ng-repeat=\"item in item.items\" ui-tree-node ng-include=\"'items_renderer.html'\">\n" +
     "        </li>\n" +
     "      </ol>\n" +
     "    </script>\n" +
@@ -380,8 +380,7 @@ define(function(require) {
     "\n" +
     "    <pre class=\"code\">{{ vm.items | json }}</pre>\n" +
     "  </div>\n" +
-    "</div>\n" +
-    "\n"
+    "</div>\n"
   );
 
 

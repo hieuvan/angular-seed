@@ -42,6 +42,16 @@ define(function(require) {
     return this._collection;
   };
 
+  prototype.flatten = function() {
+    var flattened = [];
+
+    _.each(this.getAll(), function(model) {
+      flattened.push(model.get());
+    });
+
+    return flattened;
+  };
+
   prototype.pluck = function(property) {
     return _.map(this._collection, function(model){
       return model.get(property);
