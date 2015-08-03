@@ -259,6 +259,20 @@ define(function(require) {
   );
 
 
+  $templateCache.put('components/projects/tests/forms/detail/items_renderer.html',
+    "<div ui-tree-handle>\n" +
+    "  <a class=\"btn btn-success btn-xs\" data-nodrag ng-click=\"vm.toggle(this)\"><span class=\"glyphicon\" ng-class=\"{'glyphicon-chevron-right': collapsed, 'glyphicon-chevron-down': !collapsed}\"></span></a>\n" +
+    "  {{item.uid}}\n" +
+    "  <a class=\"pull-right btn btn-danger btn-xs\" data-nodrag ng-click=\"vm.remove(this)\"><span class=\"glyphicon glyphicon-remove\"></span></a>\n" +
+    "  <a class=\"pull-right btn btn-primary btn-xs\" data-nodrag ng-click=\"vm.newSubItem(this)\" style=\"margin-right: 8px;\"><span class=\"glyphicon glyphicon-plus\"></span></a>\n" +
+    "</div>\n" +
+    "<ol ui-tree-nodes ng-model=\"item.items\" ng-class=\"{hidden: collapsed}\">\n" +
+    "  <li ng-repeat=\"item in item.items\" ui-tree-node ng-include=\"vm.item_renderer\">\n" +
+    "  </li>\n" +
+    "</ol>\n"
+  );
+
+
   $templateCache.put('components/projects/tests/forms/detail/modal/add-item.html',
     "<div class=\"modal-header\">\n" +
     "  <button type=\"button\" class=\"close\" ng-click=\"vm.cancel()\">\n" +
@@ -351,23 +365,10 @@ define(function(require) {
     "      </div>\n" +
     "    </div>\n" +
     "\n" +
-    "    <script type=\"text/ng-template\" id=\"items_renderer.html\">\n" +
-    "      <div ui-tree-handle>\n" +
-    "        <a class=\"btn btn-success btn-xs\" data-nodrag ng-click=\"vm.toggle(this)\"><span class=\"glyphicon\" ng-class=\"{'glyphicon-chevron-right': collapsed, 'glyphicon-chevron-down': !collapsed}\"></span></a>\n" +
-    "        {{item.uid}}\n" +
-    "        <a class=\"pull-right btn btn-danger btn-xs\" data-nodrag ng-click=\"vm.remove(this)\"><span class=\"glyphicon glyphicon-remove\"></span></a>\n" +
-    "        <a class=\"pull-right btn btn-primary btn-xs\" data-nodrag ng-click=\"vm.newSubItem(this)\" style=\"margin-right: 8px;\"><span class=\"glyphicon glyphicon-plus\"></span></a>\n" +
-    "      </div>\n" +
-    "      <ol ui-tree-nodes ng-model=\"item.items\" ng-class=\"{hidden: collapsed}\">\n" +
-    "        <li ng-repeat=\"item in item.items\" ui-tree-node ng-include=\"'items_renderer.html'\">\n" +
-    "        </li>\n" +
-    "      </ol>\n" +
-    "    </script>\n" +
-    "\n" +
     "    <div class=\"form-group\">\n" +
     "      <div ui-tree id=\"tree-root\" ng-model=\"vm.treeRoot\" data-drag-enabled=\"true\" data-drop-enabled=\"true\">\n" +
     "        <ol ui-tree-nodes=\"\" ng-model=\"vm.items\">\n" +
-    "          <li ng-repeat=\"item in vm.items\" ui-tree-node ng-include=\"'items_renderer.html'\"></li>\n" +
+    "          <li ng-repeat=\"item in vm.items\" ui-tree-node ng-include=\"vm.item_renderer\"></li>\n" +
     "        </ol>\n" +
     "      </div>\n" +
     "    </div>\n" +

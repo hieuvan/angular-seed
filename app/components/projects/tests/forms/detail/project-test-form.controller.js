@@ -2,11 +2,13 @@
 
 define(function(require) {
 
-  return ['form', '$modal', '$scope', function(form, $modal, $scope) {
+  return ['form', '$modal', '$templateCache', function(form, $modal, $templateCache) {
     var vm = this;
 
     vm.form = form;
     vm.items = form.get('items');
+
+    vm.item_renderer = 'components/projects/tests/forms/detail/items_renderer.html';
 
     vm.addItemModal = function(scope) {
       var modal = $modal.open({
