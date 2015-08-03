@@ -49,7 +49,9 @@ define(function(require) {
   };
 
   prototype.removeById = function(id) {
-    this._collection = _.filter(this._collection, function(model) {return model.get('id') != id});
+    this._collection = _.filter(this._collection, function(model) {
+      return model.get('id') != id
+    });
   };
 
   /**
@@ -113,6 +115,20 @@ define(function(require) {
 
   prototype.toString = function() {
     return this._className;
+  };
+
+  prototype.each = function(callback) {
+    if (!_.isFunction(callback)) {
+      throw new Error(
+        'Argument passed to ' + this._className + ' must be a valid callback function.'
+      );
+    }
+
+    var self = this;
+
+    _.each(self.getAll(), function(model) {
+      callback.call(self, model);
+    });
   };
 
   var validateData = function(data) {
