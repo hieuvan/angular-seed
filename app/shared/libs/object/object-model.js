@@ -59,6 +59,10 @@ define(function(require) {
     return this;
   };
 
+  prototype.toString = function() {
+    return this._schema.className();
+  };
+
   prototype._validateParams = function(key, value) {
     this._schema.validateKey(key);
 
@@ -80,6 +84,8 @@ define(function(require) {
    * @param object includes
    */
   prototype._processIncludes = function(data, includes) {
+    var self = this;
+
     if (_.isUndefined(includes)) return data;
 
     for (var i in includes) {
@@ -87,14 +93,15 @@ define(function(require) {
 
       if (_.isUndefined(toInclude)) continue;
 
+      // recursively process each collection
+      for (var j in toInclude) {
+        toInclude[j] = self._processIncludes(toInclude[j], includes);
+      }
+
       data[i] = new Collection(model, toInclude)
     }
 
     return data;
-  };
-
-  prototype.toString = function() {
-    return this._schema.className();
   };
 
   return ObjectModel;
