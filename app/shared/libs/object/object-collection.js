@@ -13,6 +13,7 @@ define(function(require) {
     }
 
     this._className = this._className || 'ObjectCollection';
+    this._model = objectModel;
 
     self._collection = _.chain(data).map(function(eachData) {
       var model = new objectModel(eachData);
@@ -52,9 +53,18 @@ define(function(require) {
     return flattened;
   };
 
-  prototype.pluck = function(property) {
+  prototype.pluck = function(properties) {
+    var self = this,
+        properties = _.isArray(properties) ? properties : [properties];
+
     return _.map(this._collection, function(model){
-      return model.get(property);
+      var result = {};
+
+      _.each(properties, function(property) {
+        result[property] = model.get(property);
+      });
+
+      return result;
     });
   };
 
@@ -62,6 +72,17 @@ define(function(require) {
     this._collection = _.filter(this._collection, function(model) {
       return model.get('id') != id
     });
+  };
+
+  /**
+   * Reduce the items of the given collection from the collection
+   *
+   * @param collection Collection to intersect with
+   *
+   * @return ObjectCollection
+   */
+  prototype.intersect = function(collection) {
+
   };
 
   /**
