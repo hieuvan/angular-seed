@@ -7,22 +7,6 @@ define(function(require) {
 
     vm.form = form;
     vm.items = form.get('items');
-    // vm.items = [{
-    //   'uid': 'tree1 - item1',
-    //   'items': [
-    //     {uid: 'test', items: []},
-    //     {uid: 'tests 2', items: []}
-    //   ]
-    // }, {
-    //   'uid': 'tree1 - item2',
-    //   'items': []
-    // }, {
-    //   'uid': 'tree1 - item3',
-    //   'items': []
-    // }, {
-    //   'uid': 'tree1 - item4',
-    //   'items': []
-    // }];
 
     vm.item_renderer = 'components/projects/tests/forms/detail/items_renderer.html';
 
@@ -38,7 +22,6 @@ define(function(require) {
     };
 
     vm.newSubItem = function(scope) {
-      console.log(scope);
       vm.addItemModal(scope);
     };
 

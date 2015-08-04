@@ -35,11 +35,9 @@ define(function(require) {
     };
 
     var updateTree = function(items) {
-      if (_.isUndefined(node)) {
-        _.each(items.flatten(), function(item) {
-          tree.push(item);
-        });
-      }
+      _.each(items.flatten(), function(item) {
+        _.isUndefined(node) ? tree.push(item) : node.$modelValue.items.push(item);
+      });
 
       vm.foundItems.substract(items);
     };
@@ -62,7 +60,7 @@ define(function(require) {
     };
 
     var getParentId = function() {
-      return _.isUndefined(node) ? 0 : node.$modalValue.id;
+      return _.isUndefined(node) ? 0 : node.$modelValue.id;
     };
 
     var getPosition = function(index) {

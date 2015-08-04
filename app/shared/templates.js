@@ -261,17 +261,17 @@ define(function(require) {
 
   $templateCache.put('components/projects/tests/forms/detail/items_renderer.html',
     "<div ui-tree-handle class=\"tree-node tree-node-content\">\n" +
-    "  <a class=\"btn btn-success btn-xs\" ng-if=\"item.items && item.items.length > 0\" nodrag ng-click=\"vm.toggle(this)\">\n" +
+    "  <a class=\"btn btn-success btn-xs\" ng-if=\"item.items && item.items.length > 0\" data-nodrag ng-click=\"vm.toggle(this)\">\n" +
     "    <span class=\"glyphicon\" ng-class=\"{'glyphicon-chevron-right': collapsed, 'glyphicon-chevron-down': !collapsed}\"></span>\n" +
     "  </a>\n" +
     "\n" +
     "  {{item.uid}}\n" +
     "\n" +
-    "  <a class=\"pull-right btn btn-danger btn-xs\" nodrag ng-click=\"vm.remove(this)\">\n" +
+    "  <a class=\"pull-right btn btn-danger btn-xs\" data-nodrag ng-click=\"vm.remove(this)\">\n" +
     "    <span class=\"glyphicon glyphicon-remove\"></span>\n" +
     "  </a>\n" +
     "\n" +
-    "  <a class=\"pull-right btn btn-primary btn-xs\" nodrag ng-click=\"vm.newSubItem(this)\" style=\"margin-right: 8px;\">\n" +
+    "  <a class=\"pull-right btn btn-primary btn-xs\" data-nodrag ng-click=\"vm.newSubItem(this)\" style=\"margin-right: 8px;\">\n" +
     "    <span class=\"glyphicon glyphicon-plus\"></span>\n" +
     "  </a>\n" +
     "</div>\n" +

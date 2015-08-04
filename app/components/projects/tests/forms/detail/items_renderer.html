@@ -1,15 +1,15 @@
 <div ui-tree-handle class="tree-node tree-node-content">
-  <a class="btn btn-success btn-xs" ng-if="item.items && item.items.length > 0" nodrag ng-click="vm.toggle(this)">
+  <a class="btn btn-success btn-xs" ng-if="item.items && item.items.length > 0" data-nodrag ng-click="vm.toggle(this)">
     <span class="glyphicon" ng-class="{'glyphicon-chevron-right': collapsed, 'glyphicon-chevron-down': !collapsed}"></span>
   </a>
 
   {{item.uid}}
 
-  <a class="pull-right btn btn-danger btn-xs" nodrag ng-click="vm.remove(this)">
+  <a class="pull-right btn btn-danger btn-xs" data-nodrag ng-click="vm.remove(this)">
     <span class="glyphicon glyphicon-remove"></span>
   </a>
 
-  <a class="pull-right btn btn-primary btn-xs" nodrag ng-click="vm.newSubItem(this)" style="margin-right: 8px;">
+  <a class="pull-right btn btn-primary btn-xs" data-nodrag ng-click="vm.newSubItem(this)" style="margin-right: 8px;">
     <span class="glyphicon glyphicon-plus"></span>
   </a>
 </div>
