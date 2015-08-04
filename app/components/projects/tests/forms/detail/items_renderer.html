@@ -1,10 +1,19 @@
-<div ui-tree-handle>
-  <a class="btn btn-success btn-xs" data-nodrag ng-click="vm.toggle(this)"><span class="glyphicon" ng-class="{'glyphicon-chevron-right': collapsed, 'glyphicon-chevron-down': !collapsed}"></span></a>
+<div ui-tree-handle class="tree-node tree-node-content">
+  <a class="btn btn-success btn-xs" ng-if="item.items && item.items.length > 0" data-nodrag ng-click="vm.toggle(this)">
+    <span class="glyphicon" ng-class="{'glyphicon-chevron-right': collapsed, 'glyphicon-chevron-down': !collapsed}"></span>
+  </a>
+
   {{item.uid}}
-  <a class="pull-right btn btn-danger btn-xs" data-nodrag ng-click="vm.remove(this)"><span class="glyphicon glyphicon-remove"></span></a>
-  <a class="pull-right btn btn-primary btn-xs" data-nodrag ng-click="vm.newSubItem(this)" style="margin-right: 8px;"><span class="glyphicon glyphicon-plus"></span></a>
+
+  <a class="pull-right btn btn-danger btn-xs" data-nodrag ng-click="vm.remove(this)">
+    <span class="glyphicon glyphicon-remove"></span>
+  </a>
+
+  <a class="pull-right btn btn-primary btn-xs" data-nodrag ng-click="vm.newSubItem(this)" style="margin-right: 8px;">
+    <span class="glyphicon glyphicon-plus"></span>
+  </a>
 </div>
+
 <ol ui-tree-nodes ng-model="item.items" ng-class="{hidden: collapsed}">
-  <li ng-repeat="item in item.items" ui-tree-node ng-include="vm.item_renderer">
-  </li>
+  <li ng-repeat="item in item.items" ui-tree-node ng-include="vm.item_renderer"></li>
 </ol>
