@@ -27,6 +27,10 @@ define(function(require) {
     return this._data[key];
   };
 
+  prototype.has = function(key) {
+    return this._data.hasOwnProperty(key);
+  };
+
   prototype.isType = function(className) {
     return this.toString() == className;
   };

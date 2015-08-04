@@ -8,7 +8,7 @@ define(function(require) {
     var vm = this;
 
     vm.itemSearchResults = false;
-    vm.foundItems = [];
+    vm.foundItems;
 
     vm.searchItem = function() {
       var formData = {
@@ -17,7 +17,7 @@ define(function(require) {
       };
 
       ProjectsService.searchItem(formData).then(function(items) {
-        vm.foundItems = items.getAll();
+        vm.foundItems = items;
         vm.itemSearchResults = true;
       });
     };
@@ -40,9 +40,9 @@ define(function(require) {
         _.each(items.flatten(), function(item) {
           tree.push(item);
         });
-
-        return;
       }
+
+      vm.foundItems.intersect(items);
     };
 
     var getFormData = function() {
@@ -59,7 +59,7 @@ define(function(require) {
     };
 
     var getSelectedItems = function() {
-      return _.where(vm.foundItems, {selected: true});
+      return _.where(vm.foundItems.getAll(), {selected: true});
     };
 
     var getParentId = function() {

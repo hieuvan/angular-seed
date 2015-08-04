@@ -72,6 +72,8 @@ define(function(require) {
     this._collection = _.filter(this._collection, function(model) {
       return model.get('id') != id
     });
+
+    return this;
   };
 
   /**
@@ -81,8 +83,20 @@ define(function(require) {
    *
    * @return ObjectCollection
    */
-  prototype.intersect = function(collection) {
+  prototype.intersect = function(collection, key) {
+    if (_.isUndefined(key)) key = 'id';
 
+    var self = this;
+
+    collection.each(function(model) {
+      if (!model.has(key)) {
+        throw new Error(model.toString() + ' does not have property ' + key);
+      }
+
+      self.removeById(model.get(key));
+    });
+
+    return self;
   };
 
   /**

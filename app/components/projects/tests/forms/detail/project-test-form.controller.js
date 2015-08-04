@@ -2,11 +2,27 @@
 
 define(function(require) {
 
-  return ['form', '$modal', '$templateCache', function(form, $modal, $templateCache) {
+  return ['form', '$modal', function(form, $modal) {
     var vm = this;
 
     vm.form = form;
     vm.items = form.get('items');
+    // vm.items = [{
+    //   'uid': 'tree1 - item1',
+    //   'items': [
+    //     {uid: 'test', items: []},
+    //     {uid: 'tests 2', items: []}
+    //   ]
+    // }, {
+    //   'uid': 'tree1 - item2',
+    //   'items': []
+    // }, {
+    //   'uid': 'tree1 - item3',
+    //   'items': []
+    // }, {
+    //   'uid': 'tree1 - item4',
+    //   'items': []
+    // }];
 
     vm.item_renderer = 'components/projects/tests/forms/detail/items_renderer.html';
 

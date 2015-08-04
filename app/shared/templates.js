@@ -260,15 +260,24 @@ define(function(require) {
 
 
   $templateCache.put('components/projects/tests/forms/detail/items_renderer.html',
-    "<div ui-tree-handle>\n" +
-    "  <a class=\"btn btn-success btn-xs\" data-nodrag ng-click=\"vm.toggle(this)\"><span class=\"glyphicon\" ng-class=\"{'glyphicon-chevron-right': collapsed, 'glyphicon-chevron-down': !collapsed}\"></span></a>\n" +
+    "<div ui-tree-handle class=\"tree-node tree-node-content\">\n" +
+    "  <a class=\"btn btn-success btn-xs\" ng-if=\"item.items && item.items.length > 0\" data-nodrag ng-click=\"vm.toggle(this)\">\n" +
+    "    <span class=\"glyphicon\" ng-class=\"{'glyphicon-chevron-right': collapsed, 'glyphicon-chevron-down': !collapsed}\"></span>\n" +
+    "  </a>\n" +
+    "\n" +
     "  {{item.uid}}\n" +
-    "  <a class=\"pull-right btn btn-danger btn-xs\" data-nodrag ng-click=\"vm.remove(this)\"><span class=\"glyphicon glyphicon-remove\"></span></a>\n" +
-    "  <a class=\"pull-right btn btn-primary btn-xs\" data-nodrag ng-click=\"vm.newSubItem(this)\" style=\"margin-right: 8px;\"><span class=\"glyphicon glyphicon-plus\"></span></a>\n" +
+    "\n" +
+    "  <a class=\"pull-right btn btn-danger btn-xs\" data-nodrag ng-click=\"vm.remove(this)\">\n" +
+    "    <span class=\"glyphicon glyphicon-remove\"></span>\n" +
+    "  </a>\n" +
+    "\n" +
+    "  <a class=\"pull-right btn btn-primary btn-xs\" data-nodrag ng-click=\"vm.newSubItem(this)\" style=\"margin-right: 8px;\">\n" +
+    "    <span class=\"glyphicon glyphicon-plus\"></span>\n" +
+    "  </a>\n" +
     "</div>\n" +
+    "\n" +
     "<ol ui-tree-nodes ng-model=\"item.items\" ng-class=\"{hidden: collapsed}\">\n" +
-    "  <li ng-repeat=\"item in item.items\" ui-tree-node ng-include=\"vm.item_renderer\">\n" +
-    "  </li>\n" +
+    "  <li ng-repeat=\"item in item.items\" ui-tree-node ng-include=\"vm.item_renderer\"></li>\n" +
     "</ol>\n"
   );
 
@@ -323,7 +332,7 @@ define(function(require) {
     "          </tr>\n" +
     "        </thead>\n" +
     "        <tbody>\n" +
-    "        <tr ng-repeat=\"item in vm.foundItems\">\n" +
+    "        <tr ng-repeat=\"item in vm.foundItems.getAll()\">\n" +
     "          <td><input type=\"checkbox\" id=\"{{item.get('id')}}\" ng-model=\"item.selected\"></td>\n" +
     "          <td>{{item.get('uid')}}</td>\n" +
     "          <td>{{item.get('title')}}</td>\n" +
