@@ -2,7 +2,7 @@
 
 define(function(require) {
 
-  var ObjectCollection = function(objectModel, data) {
+  var ObjectCollection = function(objectModel, data, includes) {
     data = data || [];
     var self = this;
 
@@ -16,7 +16,7 @@ define(function(require) {
     this._model = objectModel;
 
     self._collection = _.chain(data).map(function(eachData) {
-      var model = new objectModel(eachData);
+      var model = new objectModel(eachData, includes);
 
       if (_.isFunction(self.iterator)) {
         model = self.iterator(model);
@@ -77,13 +77,13 @@ define(function(require) {
   };
 
   /**
-   * Reduce the items of the given collection from the collection
+   * Substract the items of the given collection from the collection
    *
    * @param collection Collection to intersect with
    *
    * @return ObjectCollection
    */
-  prototype.intersect = function(collection, key) {
+  prototype.substract = function(collection, key) {
     if (_.isUndefined(key)) key = 'id';
 
     var self = this;
