@@ -66,7 +66,7 @@ define(function(require) {
     };
 
     var searchItem = function(data) {
-      return HttpService.get('items?_q=' + data.query).then(function(items) {
+      return HttpService.get('items?_q=' + data.query + '&form_id=' + data.formId ).then(function(items) {
         return new ItemCollection(items.data);
       });
     };

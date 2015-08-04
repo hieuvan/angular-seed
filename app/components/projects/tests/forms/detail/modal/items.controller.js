@@ -11,7 +11,10 @@ define(function(require) {
     vm.foundItems = [];
 
     vm.searchItem = function() {
-      var formData = { query: vm.itemQuery };
+      var formData = {
+        query: vm.itemQuery,
+        formId: $stateParams.formId
+      };
 
       ProjectsService.searchItem(formData).then(function(items) {
         vm.foundItems = items.getAll();
