@@ -15,14 +15,14 @@
 
     <div class="form-group clearfix">
       <div class="btn-group">
-        <a href="" class="btn btn-default pull-left" ng-click="vm.expandAll()">Expand all</a>
-        <a href="" class="btn btn-default pull-left" ng-click="vm.collapseAll()">Collapse all</a>
+        <a href class="btn btn-default pull-left" ng-click="vm.expandAll()">Expand all</a>
+        <a href class="btn btn-default pull-left" ng-click="vm.collapseAll()">Collapse all</a>
       </div>
     </div>
 
     <div class="form-group">
-      <div ui-tree id="tree-root" ng-model="vm.treeRoot" data-drag-enabled="true" data-drop-enabled="true">
-        <ol ui-tree-nodes="" ng-model="vm.items">
+      <div ui-tree id="tree-root" ng-model="vm.treeRoot" drag-enabled="true" drop-enabled="true">
+        <ol ui-tree-nodes ng-model="vm.items">
           <li ng-repeat="item in vm.items" ui-tree-node ng-include="vm.item_renderer"></li>
         </ol>
       </div>
