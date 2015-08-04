@@ -4,7 +4,6 @@ define(function(require) {
 
   return ['$stateParams', '$modalInstance', 'node', 'tree', 'ProjectsService',
     function($stateParams, $modalInstance, node, tree, ProjectsService) {
-
     var vm = this;
 
     vm.itemSearchResults = false;
@@ -42,7 +41,7 @@ define(function(require) {
         });
       }
 
-      vm.foundItems.intersect(items);
+      vm.foundItems.substract(items);
     };
 
     var getFormData = function() {

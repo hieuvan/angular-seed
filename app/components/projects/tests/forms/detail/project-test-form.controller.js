@@ -2,7 +2,7 @@
 
 define(function(require) {
 
-  return ['form', '$modal', function(form, $modal) {
+  return ['form', '$modal', 'ItemCollection', 'ItemModel', function(form, $modal, ItemCollection, ItemModel) {
     var vm = this;
 
     vm.form = form;
