@@ -13,11 +13,13 @@ define(function(require) {
      *
      * @return object Promise with resolved data
      */
-    var get = function(url, data) {
+    var get = function(url, data, cache) {
       var data = data || {},
           deferred = $q.defer();
 
-      return $http.get(getUrl(url), { params: data, cache: true })
+      if (_.isUndefined(cache)) cache = true;
+
+      return $http.get(getUrl(url), { params: data, cache: cache })
         .then(handleSuccess, handleError);
     };
 
