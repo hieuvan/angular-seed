@@ -30,6 +30,11 @@ define(function(require) {
     };
 
     vm.remove = function(scope) {
+      var childNodesCount = scope.$nodeScope.childNodesCount();
+
+      if (childNodesCount > 0) {
+
+      }
       scope.remove();
     };
 
