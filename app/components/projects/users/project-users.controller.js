@@ -8,7 +8,7 @@ define(function(require) {
 
     var userCollection = {};
 
-    ProjectsService.getProjectUsers($stateParams.id).then(function(project) {
+    ProjectsService.getProjectUsers($stateParams.projectId).then(function(project) {
       userCollection = project.get('users');
       vm.users = userCollection.getAll();
     });

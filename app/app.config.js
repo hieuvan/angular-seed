@@ -32,6 +32,9 @@ require.config({
     ],
     'angular-ui-tree': [
       'angular'
+    ],
+    'angular-httpi': [
+      'angular'
     ]
   },
   map: {
@@ -56,7 +59,8 @@ require.config({
     'angular-cookies': '../bower_components/angular-cookies/angular-cookies',
     'angular-animate': '../bower_components/angular-animate/angular-animate',
     'angular-utils-ui-breadcrumbs': '../bower_components/angular-utils-ui-breadcrumbs/uiBreadcrumbs',
-    'angular-ui-tree': '../bower_components/angular-ui-tree/dist/angular-ui-tree'
+    'angular-ui-tree': '../bower_components/angular-ui-tree/dist/angular-ui-tree',
+    'angular-httpi': '../bower_components/angular-httpi/lib/httpi'
   },
   packages: [
 

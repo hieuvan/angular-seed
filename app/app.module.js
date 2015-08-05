@@ -8,6 +8,7 @@ define(function(require) {
   require('angular-ui-bootstrap-tpls-bower');
   require('angular-debounce');
   require('angular-cookies');
+  require('angular-httpi');
 
   // app components
   require('components/header/header.module');
@@ -24,6 +25,7 @@ define(function(require) {
       AuthProvider = require('shared/providers/auth.provider'),
       Jwt = require('shared/providers/jwt.provider'),
       HttpConfigProvider = require('shared/providers/http-config.provider'),
+      ResourceProvider = require('shared/providers/resource.provider'),
       HttpService = require('shared/services/http.service'),
       SearchFilter = require('shared/filters/search.filter'),
       TitleDirective = require('shared/directives/title.directive'),
@@ -49,20 +51,22 @@ define(function(require) {
     'app.users',
     'app.auth',
     'app.home',
-    'rt.debounce'
+    'httpi'
   ])
 
   // TODO: add page load animation later
 
   .constant('constant', constant)
 
-  .config(['$httpProvider', 'constant', '$authProvider',
-    function($httpProvider, constant, $authProvider) {
+  .config(['$httpProvider', 'constant', '$authProvider', '$resourceProvider',
+    function($httpProvider, constant, $authProvider, $resourceProvider) {
 
       $authProvider.loginUrl = 'login';
 
       $httpProvider.interceptors.push('HttpConfigProvider');
       $httpProvider.defaults.withCredentials = true;
+
+      $resourceProvider.apiUrl = constant.apiUrl;
   }])
 
   .config(Routes)
@@ -82,6 +86,7 @@ define(function(require) {
   .provider('HttpConfigProvider', HttpConfigProvider)
   .provider('$jwt', Jwt)
   .provider('$auth', AuthProvider)
+  .provider('$resource', ResourceProvider)
 
   .directive('title', TitleDirective)
   .filter('search', SearchFilter)

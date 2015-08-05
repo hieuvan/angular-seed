@@ -2,29 +2,37 @@
 
 define(function(require) {
 
-  return ['HttpService', 'ItemModel', 'TestModel', 'FormModel', 'UserModel', 'ProjectModel', 'ProjectCollection', 'FormCollection', 'ItemCollection',
-    function(HttpService, ItemModel, TestModel, FormModel, UserModel, ProjectModel, ProjectCollection, FormCollection, ItemCollection) {
+  return ['HttpService', '$resource', 'ItemModel', 'TestModel', 'FormModel', 'UserModel', 'ProjectModel', 'ProjectCollection', 'FormCollection', 'ItemCollection',
+    function(HttpService, $resource, ItemModel, TestModel, FormModel, UserModel, ProjectModel, ProjectCollection, FormCollection, ItemCollection) {
 
     var getProjects = function() {
-      return HttpService.get('projects').then(function(projects) {
+      return $resource.url('projects').get().then(function(projects) {
         return new ProjectCollection(projects.data);
       });
     };
 
-    var getProject = function(id) {
-      return HttpService.get('projects' + '/' + id, {'include[]': ['tests']}).then(function(project) {
+    var getProject = function(projectId) {
+      var params = {projectId: projectId},
+          resource = $resource.url('projects/:projectId?include[]=tests');
+
+      return resource.get(params).then(function(project) {
         return new ProjectModel(project.data, { tests: TestModel });
       });
     };
 
-    var getProjectUsers = function(id) {
-      return HttpService.get('projects' + '/' + id + '/' + 'users').then(function(project) {
+    var getProjectUsers = function(projectId) {
+      var params = {projectId: projectId},
+          resource = $resource.url('projects/:projectId/users');
+
+      return resource.get(params).then(function(project) {
         return new ProjectModel(project.data, { users: UserModel });
       });
     };
 
     var createProject = function(data) {
-      return HttpService.post('projects', data).then(function(project) {
+      var resource = $resource.url('projects');
+
+      return resource.post(data).then(function(project) {
         return project.data;
       });
     };
@@ -42,9 +50,10 @@ define(function(require) {
     };
 
     var getProjectTest = function(projectId, testId) {
-      var url = 'projects' + '/' + projectId + '/' + 'tests' + '/' + testId + '/forms';
+      var params = {projectId: projectId, testId: testId},
+          resource = $resource.url('projects/:projectId/tests/:testId/forms');
 
-      return HttpService.get(url).then(function(test) {
+      return resource.get(params).then(function(test) {
         return new TestModel(test.data);
       });
     };
@@ -58,17 +67,19 @@ define(function(require) {
     };
 
     var getProjectTestForm = function(projectId, testId, formId) {
-      var url = 'projects' + '/' + projectId + '/' + 'tests' + '/' + testId + '/forms' + '/' + formId + '/' + 'items';
+      var params = {projectId: projectId, testId: testId, formId: formId},
+          resource = $resource.url('projects/:projectId/tests/:testId/forms/:formId/items');
 
-      return HttpService.get(url).then(function(form) {
+      return resource.get(params).then(function(form) {
         return new FormModel(form.data);
       });
     };
 
     var searchItem = function(data) {
-      data = {_q : data.query, form_id: data.formId};
+      var params = {q : data.query, formId: data.formId},
+          resource = $resource.url('items?_q=:q&form_id=:formId');
 
-      return HttpService.get('items', data, false).then(function(items) {
+      return resource.get(params, false).then(function(items) {
         return new ItemCollection(items.data);
       });
     };
@@ -82,8 +93,9 @@ define(function(require) {
     };
 
     var removeFormItem = function(params) {
-      var url = 'projects/:projectId/tests/:testId/forms/:formId/items/:itemId';
-      console.log(params);
+      var resource = $resource('projects/:projectId/tests/:testId/forms/:formId/items/:itemId');
+
+      resource.delete({params: params});
 
       //return HttpService.delete(url, data);
     };
