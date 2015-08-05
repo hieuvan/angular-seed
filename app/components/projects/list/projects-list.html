@@ -13,7 +13,7 @@
         <div class="scaled-square-content"> {{project.get('id')}} </div>
       </div>
       <h2 class="project-title pull-left">
-        <a href ui-sref="root.projects.detail({ id: project.get('id') })">{{project.get('name')}}</a>
+        <a href ui-sref="root.projects.detail({ projectId: project.get('id') })">{{project.get('name')}}</a>
       </h2>
     </li>
   </ul>

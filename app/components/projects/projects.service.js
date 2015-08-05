@@ -81,6 +81,13 @@ define(function(require) {
       });
     };
 
+    var removeFormItem = function(params) {
+      var url = 'projects/:projectId/tests/:testId/forms/:formId/items/:itemId';
+      console.log(params);
+
+      //return HttpService.delete(url, data);
+    };
+
     return {
       getProjects: getProjects,
       getProject: getProject,
@@ -92,7 +99,8 @@ define(function(require) {
       addTestToProject: addTestToProject,
       addFormToTest: addFormToTest,
       searchItem: searchItem,
-      addItemToForm: addItemToForm
+      addItemToForm: addItemToForm,
+      removeFormItem: removeFormItem
     };
   }];
 });

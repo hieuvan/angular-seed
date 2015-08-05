@@ -194,7 +194,7 @@ define(function(require) {
     "        <div class=\"scaled-square-content\"> {{project.get('id')}} </div>\n" +
     "      </div>\n" +
     "      <h2 class=\"project-title pull-left\">\n" +
-    "        <a href ui-sref=\"root.projects.detail({ id: project.get('id') })\">{{project.get('name')}}</a>\n" +
+    "        <a href ui-sref=\"root.projects.detail({ projectId: project.get('id') })\">{{project.get('name')}}</a>\n" +
     "      </h2>\n" +
     "    </li>\n" +
     "  </ul>\n" +
@@ -375,9 +375,9 @@ define(function(require) {
     "    </div>\n" +
     "\n" +
     "    <div class=\"form-group\">\n" +
-    "      <div ui-tree id=\"tree-root\" ng-model=\"vm.treeRoot\" drag-enabled=\"true\" drop-enabled=\"true\">\n" +
-    "        <ol ui-tree-nodes ng-model=\"vm.items\">\n" +
-    "          <li ng-repeat=\"item in vm.items\" ui-tree-node ng-include=\"vm.item_renderer\"></li>\n" +
+    "      <div class=\"angular-ui-tree\" ui-tree id=\"tree-root\" ng-model=\"vm.treeRoot\">\n" +
+    "        <ol ui-tree-nodes ng-model=\"vm.items\" class=\"angular-ui-tree-nodes\">\n" +
+    "          <li ng-repeat=\"item in vm.items\" class=\"angular-ui-tree-node\" ui-tree-node ng-include=\"vm.item_renderer\"></li>\n" +
     "        </ol>\n" +
     "      </div>\n" +
     "    </div>\n" +

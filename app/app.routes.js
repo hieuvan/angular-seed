@@ -129,7 +129,7 @@ define(function() {
 
     states.push({
       name: 'root.projects.detail',
-      url: '/{id:int}',
+      url: '/{projectId:int}',
       views : {
         'content@' : {
           controller: 'ProjectController as vm',
@@ -138,7 +138,7 @@ define(function() {
       },
       resolve: {
         project: ['ProjectsService', '$stateParams', function(ProjectsService, $stateParams) {
-          return ProjectsService.getProject($stateParams.id);
+          return ProjectsService.getProject($stateParams.projectId);
         }]
       },
       data: {
@@ -180,7 +180,7 @@ define(function() {
       },
       resolve: {
         test: ['ProjectsService', '$stateParams', function(ProjectService, $stateParams) {
-          return ProjectService.getProjectTest($stateParams.id, $stateParams.testId);
+          return ProjectService.getProjectTest($stateParams.projectId, $stateParams.testId);
         }]
       },
       data: {
@@ -222,7 +222,7 @@ define(function() {
       },
       resolve: {
         form: ['ProjectsService', '$stateParams', function(ProjectService, $stateParams) {
-          return ProjectService.getProjectTestForm($stateParams.id, $stateParams.testId, $stateParams.formId);
+          return ProjectService.getProjectTestForm($stateParams.projectId, $stateParams.testId, $stateParams.formId);
         }]
       },
       data: {
@@ -325,7 +325,7 @@ define(function() {
       },
       resolve: {
         user: ['$stateParams', 'UsersService', function($stateParams, UsersService) {
-          return UsersService.getUser($stateParams.id);
+          return UsersService.getUser($stateParams.projectId);
         }]
       },
       data: {

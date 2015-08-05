@@ -2,7 +2,7 @@
 
 define(function(require) {
 
-  return ['form', '$modal', 'ItemCollection', 'ItemModel', function(form, $modal, ItemCollection, ItemModel) {
+  return ['form', '$modal', '$stateParams', 'ProjectsService', function(form, $modal, $stateParams, ProjectsService) {
     var vm = this;
 
     vm.form = form;
@@ -30,12 +30,15 @@ define(function(require) {
     };
 
     vm.remove = function(scope) {
-      var childNodesCount = scope.$nodeScope.childNodesCount();
+      var params = {
+        projectId: $stateParams.projectId,
+        formId: $stateParams.formId,
+        testId: $stateParams.testId,
+        itemId: scope.$modelValue.id
+      };
 
-      if (childNodesCount > 0) {
 
-      }
-      scope.remove();
+      ProjectsService.removeFormItem(params);
     };
 
     vm.collapseAll = function() {

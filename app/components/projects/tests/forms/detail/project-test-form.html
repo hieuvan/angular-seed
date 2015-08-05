@@ -21,9 +21,9 @@
     </div>
 
     <div class="form-group">
-      <div ui-tree id="tree-root" ng-model="vm.treeRoot" drag-enabled="true" drop-enabled="true">
-        <ol ui-tree-nodes ng-model="vm.items">
-          <li ng-repeat="item in vm.items" ui-tree-node ng-include="vm.item_renderer"></li>
+      <div class="angular-ui-tree" ui-tree id="tree-root" ng-model="vm.treeRoot">
+        <ol ui-tree-nodes ng-model="vm.items" class="angular-ui-tree-nodes">
+          <li ng-repeat="item in vm.items" class="angular-ui-tree-node" ui-tree-node ng-include="vm.item_renderer"></li>
         </ol>
       </div>
     </div>
