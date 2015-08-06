@@ -30,10 +30,11 @@ define(function(require) {
     };
 
     vm.remove = function(scope) {
-      var items = [scope.$modelValue.id],
+      var items = pluckItems(scope.$modelValue, 'id'),
           projectId = $stateParams.projectId,
           formId = $stateParams.formId,
           testId = $stateParams.testId;
+
 
       ProjectsService
         .removeFormItem(projectId, formId, testId, items)
@@ -52,6 +53,34 @@ define(function(require) {
 
     var getRootNodesScope = function() {
       return angular.element(document.getElementById("tree-root")).scope();
+    };
+
+    /**
+     * Pluck deeply nested keys value from node.items
+     *
+     * @param node Haystack
+     * @param string key Object key to pluck
+     *
+     * @returns array
+     */
+    var pluckItems = function(node, key) {
+      var result = [];
+
+      result.push(node[key]);
+
+      if (_.isUndefined(node.items)) return result;
+
+      _.each(node.items, function(item) {
+        result.push(item[key]);
+
+        var children = pluckItems(item, key);
+
+        if (!_.isEmpty(children)) {
+          result = _.union(result, children);
+        }
+      });
+
+      return result;
     };
 
   }];
