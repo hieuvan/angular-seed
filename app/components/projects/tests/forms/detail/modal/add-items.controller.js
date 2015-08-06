@@ -2,12 +2,13 @@
 
 define(function(require) {
 
-  return ['$stateParams', '$modalInstance', 'node', 'tree', 'ProjectsService',
-    function($stateParams, $modalInstance, node, tree, ProjectsService) {
+  return ['$stateParams', '$modalInstance', 'node', 'tree', 'ProjectsService', 'ngToast',
+    function($stateParams, $modalInstance, node, tree, ProjectsService, ngToast) {
     var vm = this;
 
     vm.itemSearchResults = false;
     vm.foundItems;
+    console.log(ngToast);
 
     vm.searchItem = function() {
       var formData = {
@@ -42,6 +43,8 @@ define(function(require) {
       });
 
       vm.foundItems.substract(items);
+
+      ngToast.success('Item added to tree.')
     };
 
     var getFormData = function() {

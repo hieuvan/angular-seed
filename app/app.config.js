@@ -35,6 +35,15 @@ require.config({
     ],
     'angular-httpi': [
       'angular'
+    ],
+    'angular-animate': [
+      'angular'
+    ],
+    'angular-sanitize': [
+      'angular'
+    ],
+    'angular-toast': [
+      'angular', 'angular-sanitize', 'angular-animate'
     ]
   },
   map: {
@@ -60,7 +69,9 @@ require.config({
     'angular-animate': '../bower_components/angular-animate/angular-animate',
     'angular-utils-ui-breadcrumbs': '../bower_components/angular-utils-ui-breadcrumbs/uiBreadcrumbs',
     'angular-ui-tree': '../bower_components/angular-ui-tree/dist/angular-ui-tree',
-    'angular-httpi': '../bower_components/angular-httpi/lib/httpi'
+    'angular-httpi': '../bower_components/angular-httpi/lib/httpi',
+    'angular-sanitize': '../bower_components/angular-sanitize/angular-sanitize',
+    'angular-toast': '../bower_components/ngtoast/dist/ngToast'
   },
   packages: [
 

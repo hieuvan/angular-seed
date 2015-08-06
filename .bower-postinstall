@@ -1,4 +1,13 @@
 #!/bin/bash
 
-mv bower_components/angular-ui-tree/dist/angular-ui-tree.min.css bower_components/angular-ui-tree/dist/_angular-ui-tree.scss 2>/dev/null
+css_files=(
+  bower_components/angular-ui-tree/dist/angular-ui-tree.min
+  bower_components/ngtoast/dist/ngToast-animations
+  bower_components/ngtoast/dist/ngToast
+)
+
+for i in "${css_files[@]}"; do
+  mv $i.css $i.scss 2>/dev/null
+done
+
 

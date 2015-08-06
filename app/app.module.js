@@ -9,6 +9,8 @@ define(function(require) {
   require('angular-debounce');
   require('angular-cookies');
   require('angular-httpi');
+  require('angular-sanitize');
+  require('angular-toast');
 
   // app components
   require('components/header/header.module');
@@ -43,6 +45,7 @@ define(function(require) {
   // app level module that depends on app view and components
   return angular.module('app', [
     'ngCookies',
+    'ngToast',
     'ui.router',
     'ui.bootstrap',
     'app.header',

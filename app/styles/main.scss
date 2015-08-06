@@ -6,6 +6,9 @@ $fa-font-path:   "../styles/fonts/font-awesome";
 // endbower
 @import "font-awesome/scss/font-awesome";
 @import "angular-ui-tree/dist/angular-ui-tree";
+@import "ngtoast/dist/ngToast";
+@import "ngtoast/dist/ngToast-animations";
+
 
 @import "partials/angular";
 @import "partials/login";
