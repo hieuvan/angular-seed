@@ -92,12 +92,19 @@ define(function(require) {
       });
     };
 
-    var removeFormItem = function(params) {
-      var resource = $resource('projects/:projectId/tests/:testId/forms/:formId/items/:itemId');
+    var removeFormItem = function(projectId, formId, testId, items) {
+      var params = {
+        projectId: projectId,
+        formId: formId,
+        testId: testId,
+        items: items
+      };
 
-      resource.delete({params: params});
+      var resource = $resource.url('projects/:projectId/tests/:testId/forms/:formId/items');
 
-      //return HttpService.delete(url, data);
+      return resource.delete(params).then(function(items) {
+        return items.data;
+      });
     };
 
     return {

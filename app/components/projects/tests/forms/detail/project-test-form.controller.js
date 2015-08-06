@@ -30,15 +30,16 @@ define(function(require) {
     };
 
     vm.remove = function(scope) {
-      var params = {
-        projectId: $stateParams.projectId,
-        formId: $stateParams.formId,
-        testId: $stateParams.testId,
-        itemId: scope.$modelValue.id
-      };
+      var items = [scope.$modelValue.id],
+          projectId = $stateParams.projectId,
+          formId = $stateParams.formId,
+          testId = $stateParams.testId;
 
-
-      ProjectsService.removeFormItem(params);
+      ProjectsService
+        .removeFormItem(projectId, formId, testId, items)
+        .then(function(items) {
+          scope.remove();
+        });
     };
 
     vm.collapseAll = function() {

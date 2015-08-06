@@ -47,19 +47,19 @@ define(function() {
         return resource.post(data).then(handleSuccess, handleError);
       };
 
-      var put = function() {
+      var put = function(data) {
         return resource.put(data).then(handleSuccess, handleError);
       };
 
-      var remove = function() {
-        return resource.delete(data).then(handleSuccess, handleError);
+      var remove = function(data) {
+        return resource.delete({data: data}).then(handleSuccess, handleError);
       };
 
-      var head = function() {
+      var head = function(data) {
         return resource.head(data).then(handleSuccess, handleError);
       };
 
-      var jsonp = function() {
+      var jsonp = function(data) {
         return resource.jsonp(data).then(handleSuccess, handleError);
       };
 
