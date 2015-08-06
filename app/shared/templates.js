@@ -282,7 +282,7 @@ define(function(require) {
   );
 
 
-  $templateCache.put('components/projects/tests/forms/detail/modal/add-item.html',
+  $templateCache.put('components/projects/tests/forms/detail/modal/add-items.html',
     "<div class=\"modal-header\">\n" +
     "  <button type=\"button\" class=\"close\" ng-click=\"vm.cancel()\">\n" +
     "    <span aria-hidden=\"true\">&times;</span>\n" +
@@ -347,6 +347,18 @@ define(function(require) {
     "<div class=\"modal-footer\">\n" +
     "  <button class=\"btn btn-default\" ng-click=\"vm.cancel()\">Close</button>\n" +
     "  <button class=\"btn btn-default\" ng-click=\"vm.addItems()\">Add Selected</button>\n" +
+    "</div>\n"
+  );
+
+
+  $templateCache.put('components/projects/tests/forms/detail/modal/remove-items.html',
+    "<div class=\"modal-header\">\n" +
+    "  <h4 class=\"modal-title\">Are you sure you want to remove {{vm.name}}{{vm.multipleItems ? ' and all nested items' : ''}}?</h4>\n" +
+    "</div>\n" +
+    "\n" +
+    "<div class=\"modal-footer\">\n" +
+    "  <button class=\"btn btn-default\" ng-click=\"vm.cancel()\">Cancel</button>\n" +
+    "  <button class=\"btn btn-danger\" ng-click=\"vm.removeItems()\">Remove Items</button>\n" +
     "</div>\n"
   );
 

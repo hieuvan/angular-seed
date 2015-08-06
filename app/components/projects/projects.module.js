@@ -12,7 +12,8 @@ define(function(require) {
       ProjectUsersController = require('components/projects/users/project-users.controller'),
       ProjectCreateController = require('components/projects/create/project-create.controller'),
       ProjectsService = require('components/projects/projects.service'),
-      ItemsController = require('components/projects/tests/forms/detail/modal/items.controller');
+      AddItemsController = require('components/projects/tests/forms/detail/modal/add-items.controller'),
+      RemoveItemsController = require('components/projects/tests/forms/detail/modal/remove-items.controller');
 
   return angular.module('app.projects', ['ui.tree'])
 
@@ -25,6 +26,7 @@ define(function(require) {
   .controller('ProjectCreateController', ProjectCreateController)
   .controller('ProjectTestController', ProjectTestController)
   .controller('ProjectTestFormController', ProjectTestFormController)
-  .controller('ItemsController', ItemsController);
+  .controller('AddItemsController', AddItemsController)
+  .controller('RemoveItemsController', RemoveItemsController);
 
 });

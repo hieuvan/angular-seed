@@ -1,0 +1,8 @@
+<div class="modal-header">
+  <h4 class="modal-title">Are you sure you want to remove {{vm.name}}{{vm.multipleItems ? ' and all nested items' : ''}}?</h4>
+</div>
+
+<div class="modal-footer">
+  <button class="btn btn-default" ng-click="vm.cancel()">Cancel</button>
+  <button class="btn btn-danger" ng-click="vm.removeItems()">Remove Items</button>
+</div>
