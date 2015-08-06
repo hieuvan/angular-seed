@@ -5,19 +5,21 @@ define(function(require) {
   require('angular-ui-tree');
 
   var ProjectsController = require('components/projects/list/projects.controller'),
-      ProjectController = require('components/projects/detail/project.controller'),
-      ProjectTestsController = require('components/projects/tests/project-tests.controller'),
-      ProjectTestController = require('components/projects/tests/detail/project-test.controller'),
-      ProjectTestFormController = require('components/projects/tests/forms/detail/project-test-form.controller'),
-      ProjectUsersController = require('components/projects/users/project-users.controller'),
-      ProjectCreateController = require('components/projects/create/project-create.controller'),
+      ProjectController = require('components/projects/detail/projects.controller'),
+      ProjectTestsController = require('components/projects/tests/projects-tests.controller'),
+      ProjectTestController = require('components/projects/tests/detail/projects-tests.controller'),
+      ProjectTestFormController = require('components/projects/tests/forms/detail/projects-tests-forms.controller'),
+      ProjectUsersController = require('components/projects/users/projects-users.controller'),
+      ProjectCreateController = require('components/projects/create/projects-create.controller'),
       ProjectsService = require('components/projects/projects.service'),
+      ProjectTestFormService = require('components/projects/tests/forms/projects-tests-forms.service'),
       AddItemsController = require('components/projects/tests/forms/detail/modal/add-items.controller'),
       RemoveItemsController = require('components/projects/tests/forms/detail/modal/remove-items.controller');
 
   return angular.module('app.projects', ['ui.tree'])
 
   .service('ProjectsService', ProjectsService)
+  .service('ProjectTestFormService', ProjectTestFormService)
 
   .controller('ProjectController', ProjectController)
   .controller('ProjectsController', ProjectsController)

@@ -133,7 +133,7 @@ define(function(require) {
   );
 
 
-  $templateCache.put('components/projects/create/project-create.html',
+  $templateCache.put('components/projects/create/projects-create.html',
     "<form novalidate>\n" +
     "  <alert ng-show=\"vm.createProjectError\" type=\"danger\">{{vm.error}}</alert>\n" +
     "  <div class=\"form-group\">\n" +
@@ -161,7 +161,7 @@ define(function(require) {
   );
 
 
-  $templateCache.put('components/projects/detail/project-detail.html',
+  $templateCache.put('components/projects/detail/projects-detail.html',
     "<div class=\"col-md-12\">\n" +
     "  <h2 class=\"pull-left\">{{vm.project.get('name')}}</h2>\n" +
     "</div>\n" +
@@ -204,7 +204,7 @@ define(function(require) {
   );
 
 
-  $templateCache.put('components/projects/tests/detail/project-test.html',
+  $templateCache.put('components/projects/tests/detail/projects-test.html',
     "<div class=\"col-md-12\">\n" +
     "  <h2 class=\"pull-left\">{{vm.test.get('name')}}</h2>\n" +
     "</div>\n" +
@@ -363,7 +363,7 @@ define(function(require) {
   );
 
 
-  $templateCache.put('components/projects/tests/forms/detail/project-test-form.html',
+  $templateCache.put('components/projects/tests/forms/detail/projects-tests-form.html',
     "<div class=\"col-md-12\">\n" +
     "  <h2 class=\"pull-left\">{{vm.form.get('name')}}</h2>\n" +
     "</div>\n" +
@@ -406,7 +406,7 @@ define(function(require) {
   );
 
 
-  $templateCache.put('components/projects/tests/project-tests.html',
+  $templateCache.put('components/projects/tests/projects-tests.html',
     "<div class=\"col-md-12\">\n" +
     "  <h2 class=\"pull-left\">{{vm.project.name}}</h2>\n" +
     "</div>\n" +
@@ -460,7 +460,7 @@ define(function(require) {
   );
 
 
-  $templateCache.put('components/projects/users/project-users.html',
+  $templateCache.put('components/projects/users/projects-users.html',
     "<div ng-hide=\"vm.users.length\" class=\"form-group\">There are no users.</div>\n" +
     "<div ng-show=\"vm.users.length\">\n" +
     "  <h4>Users Assigned To Project</h4>\n" +

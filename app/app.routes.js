@@ -98,7 +98,7 @@ define(function() {
       url: '/create',
       views: {
         'content@' : {
-          templateUrl: 'components/projects/create/project-create.html',
+          templateUrl: 'components/projects/create/projects-create.html',
           controller: 'ProjectCreateController as vm'
         }
       },
@@ -133,7 +133,7 @@ define(function() {
       views : {
         'content@' : {
           controller: 'ProjectController as vm',
-          templateUrl: 'components/projects/detail/project-detail.html'
+          templateUrl: 'components/projects/detail/projects-detail.html'
         }
       },
       resolve: {
@@ -164,7 +164,7 @@ define(function() {
       views: {
         'tab-content-tests@root.projects.detail': {
           controller: 'ProjectTestsController as vm',
-          templateUrl: 'components/projects/tests/project-tests.html'
+          templateUrl: 'components/projects/tests/projects-tests.html'
         }
       }
     });
@@ -175,7 +175,7 @@ define(function() {
       views: {
         'content@': {
           controller: 'ProjectTestController as vm',
-          templateUrl: 'components/projects/tests/detail/project-test.html'
+          templateUrl: 'components/projects/tests/detail/projects-test.html'
         }
       },
       resolve: {
@@ -206,7 +206,7 @@ define(function() {
       views: {
         'content@': {
           controller: 'ProjectTestController as vm',
-          templateUrl: 'components/projects/tests/detail/project-test.html'
+          templateUrl: 'components/projects/tests/detail/projects-test.html'
         }
       }
     });
@@ -217,12 +217,12 @@ define(function() {
       views: {
         'content@': {
           controller: 'ProjectTestFormController as vm',
-          templateUrl: 'components/projects/tests/forms/detail/project-test-form.html'
+          templateUrl: 'components/projects/tests/forms/detail/projects-tests-form.html'
         }
       },
       resolve: {
-        form: ['ProjectsService', '$stateParams', function(ProjectService, $stateParams) {
-          return ProjectService.getProjectTestForm($stateParams.projectId, $stateParams.testId, $stateParams.formId);
+        form: ['ProjectTestFormService', '$stateParams', function(ProjectTestFormService, $stateParams) {
+          return ProjectTestFormService.getProjectTestForm($stateParams.projectId, $stateParams.testId, $stateParams.formId);
         }]
       },
       data: {
@@ -248,7 +248,7 @@ define(function() {
       views: {
         'tab-content-users@root.projects.detail': {
           controller: 'ProjectUsersController as vm',
-          templateUrl: 'components/projects/users/project-users.html'
+          templateUrl: 'components/projects/users/projects-users.html'
         }
       }
     });

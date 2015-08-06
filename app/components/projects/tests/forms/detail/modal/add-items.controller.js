@@ -2,13 +2,12 @@
 
 define(function(require) {
 
-  return ['$stateParams', '$modalInstance', 'node', 'tree', 'ProjectsService', 'ngToast',
-    function($stateParams, $modalInstance, node, tree, ProjectsService, ngToast) {
+  return ['$stateParams', '$modalInstance', 'node', 'tree', 'ProjectTestFormService', 'ngToast',
+    function($stateParams, $modalInstance, node, tree, ProjectTestFormService, ngToast) {
     var vm = this;
 
     vm.itemSearchResults = false;
     vm.foundItems;
-    console.log(ngToast);
 
     vm.searchItem = function() {
       var formData = {
@@ -16,7 +15,7 @@ define(function(require) {
         formId: $stateParams.formId
       };
 
-      ProjectsService.searchItem(formData).then(function(items) {
+      ProjectTestFormService.searchItem(formData).then(function(items) {
         vm.foundItems = items;
         vm.itemSearchResults = true;
       });
@@ -28,10 +27,8 @@ define(function(require) {
 
     vm.addItems = function () {
 
-      var formData = { items: getFormData() };
-
-      ProjectsService
-        .addItemToForm($stateParams.id, $stateParams.testId, $stateParams.formId, formData)
+      ProjectTestFormService
+        .addItemToForm($stateParams.formId, getFormData())
         .then(updateTree);
     };
 

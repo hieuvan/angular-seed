@@ -14,7 +14,7 @@ define(function(require) {
     vm.addFormToTest = function() {
       var formdata = { name: vm.formName };
 
-      ProjectsService.addFormToTest($stateParams.id, $stateParams.testId, formdata)
+      ProjectsService.addFormToTest($stateParams.projectId, $stateParams.testId, formdata)
         .then(addFormToTestSuccess, addFormToTestError);
     };
 
@@ -27,7 +27,7 @@ define(function(require) {
 
     var addFormToTestError = function(error) {
       vm.addFormError = true;
-      vm.error = error;
+      vm.error = error.errors.name;
     };
   }];
 });
