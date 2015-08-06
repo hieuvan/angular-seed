@@ -35,8 +35,9 @@ define(function(require) {
     };
 
     var updateTree = function(items) {
-      // TODO: doesnt work if tried to add to immediately added parent item
       _.each(items.flatten(), function(item) {
+        (!item.hasOwnProperty('items')) && (item.items = []);
+
         _.isUndefined(node) ? tree.push(item) : node.$modelValue.items.push(item);
       });
 

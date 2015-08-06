@@ -49,7 +49,7 @@ define(function(require) {
     };
 
     var getRootNodesScope = function() {
-      return angular.element(document.getElementById("tree-root")).scope();
+      return angular.element(document.getElementById('tree-root')).scope();
     };
 
   }];
