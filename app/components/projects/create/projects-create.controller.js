@@ -1,7 +1,7 @@
 'use strict';
 
 define(function(require) {
-  return ['ProjectsService', '$state', function(ProjectsService, $state) {
+  return ['ProjectsService', '$state', 'ngToast', function(ProjectsService, $state, ngToast) {
     var vm = this;
 
     vm.createProject = function() {
@@ -14,7 +14,8 @@ define(function(require) {
     };
 
     var successFn = function(project) {
-      $state.go('root.projects.detail', {id: project.id});
+      $state.go('root.projects.detail', {projectId: project.id});
+      ngToast.success(project.name + ' was added.');
     };
 
     var errorFn = function(error) {
