@@ -10,13 +10,15 @@ define(function(require) {
         itrackReference: vm.itrackReference
       };
 
-      ProjectsService.createProject(formdata).then(function(project) {
-        vm.createProjectError = false;
-        $state.go('root.projects.detail', {id: project.id});
-        }, function(error) {
-          vm.createProjectError = true;
-          vm.error = error.message;
-      });
+      ProjectsService.createProject(formdata).then(successFn, errorFn);
+    };
+
+    var successFn = function(project) {
+      $state.go('root.projects.detail', {id: project.id});
+    };
+
+    var errorFn = function(error) {
+      vm.errors = error.errors;
     };
   }];
 });

@@ -134,30 +134,42 @@ define(function(require) {
 
 
   $templateCache.put('components/projects/create/projects-create.html',
-    "<form novalidate>\n" +
-    "  <alert ng-show=\"vm.createProjectError\" type=\"danger\">{{vm.error}}</alert>\n" +
-    "  <div class=\"form-group\">\n" +
-    "    <label for=\"project-name\">Project Name</label>\n" +
-    "    <input\n" +
-    "      type=\"text\"\n" +
-    "      class=\"form-control\"\n" +
-    "      id=\"project-name\"\n" +
-    "      placeholder=\"Enter Project Name\"\n" +
-    "      ng-model=\"vm.projectName\">\n" +
-    "  </div>\n" +
-    "  <div class=\"form-group\">\n" +
-    "    <label for=\"itrack-reference\">Itrack Reference</label>\n" +
-    "    <input\n" +
-    "      type=\"text\"\n" +
-    "      class=\"form-control\"\n" +
-    "      id=\"itrack-reference\"\n" +
-    "      placeholder=\"Enter iTrack Reference\"\n" +
-    "      ng-model=\"vm.itrackReference\">\n" +
-    "  </div>\n" +
+    "<div class=\"col-md-6\">\n" +
+    "  <form novalidate>\n" +
+    "    <div class=\"form-group\" ng-class=\"{'has-error': vm.errors.name}\">\n" +
+    "      <label class=\"control-label\" for=\"project-name\">Project Name</label>\n" +
+    "      <input\n" +
+    "        type=\"text\"\n" +
+    "        class=\"form-control\"\n" +
+    "        id=\"project-name\"\n" +
+    "        placeholder=\"Enter Project Name\"\n" +
+    "        ng-model=\"vm.projectName\">\n" +
     "\n" +
-    "  <button type=\"submit\" class=\"btn btn-primary\" ng-click=\"vm.createProject()\">Create Project</button>\n" +
-    "  <button type=\"submit\" class=\"btn btn-primary\" ui-sref=\"root.projects.list\">Cancel</button>\n" +
-    "</form>\n"
+    "      <span ng-show=\"vm.errors.name\" ng-repeat=\"error in vm.errors.name\">\n" +
+    "        <p class=\"help-block\">{{error}}</p>\n" +
+    "      </span>\n" +
+    "    </div>\n" +
+    "\n" +
+    "    <div class=\"form-group\" ng-class=\"{'has-error': vm.errors.itrack_ref}\">\n" +
+    "\n" +
+    "      <label class=\"control-label\" for=\"itrack-reference\">Itrack Reference</label>\n" +
+    "\n" +
+    "      <input\n" +
+    "        type=\"text\"\n" +
+    "        class=\"form-control\"\n" +
+    "        id=\"itrack-reference\"\n" +
+    "        placeholder=\"Enter iTrack Reference\"\n" +
+    "        ng-model=\"vm.itrackReference\">\n" +
+    "\n" +
+    "      <span ng-show=\"vm.errors\" ng-repeat=\"error in vm.errors.itrack_ref\">\n" +
+    "        <p class=\"help-block\">{{error}}</p>\n" +
+    "      </span>\n" +
+    "    </div>\n" +
+    "\n" +
+    "    <button type=\"submit\" class=\"btn btn-primary\" ng-click=\"vm.createProject()\">Create Project</button>\n" +
+    "    <button type=\"submit\" class=\"btn btn-danger\" ui-sref=\"root.projects.list\">Cancel</button>\n" +
+    "  </form>\n" +
+    "</div>\n"
   );
 
 

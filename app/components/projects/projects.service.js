@@ -32,7 +32,7 @@ define(function(require) {
     var createProject = function(data) {
       var resource = $resource.url('projects');
 
-      return resource.post(data).then(function(project) {
+      return resource.put(data).then(function(project) {
         return project.data;
       });
     };
