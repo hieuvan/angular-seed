@@ -10,8 +10,10 @@
 
   for (var file in global.__karma__.files) {
     if (global.__karma__.files.hasOwnProperty(file)) {
+
       // get rid of leading slash in file path - prevents "no timestamp" error
       fileWithoutLeadingSlash = file.replace(/^\//, '');
+      console.log(file);
       global.__karma__.files[fileWithoutLeadingSlash] = global.__karma__.files[file];
       delete global.__karma__.files[file];
 
@@ -23,10 +25,16 @@
   }
 })(window);
 
+// get the app config and modify to fit test settings
 require(['base/app.config'], function(config) {
   config.baseUrl = 'base';
 
   config.deps = window.tests;
+  //config.deps.push('base/app/app.main');
+
+  for (var i in config.paths) {
+    config.paths[i] = config.paths[i].replace('../', '');
+  }
 
   config.callback = window.__karma__.start;
 

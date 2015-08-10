@@ -1,15 +1,20 @@
 'use strict';
 
-define(function() {
+define(function(require) {
 
-  describe('app is loaded', function() {
+  var angular = require('underscore');
+  require('app.module');
 
-    it('will pass as expected', function(){
-      expect(true).toBeTruthy();
+  describe('App Module:', function() {
+
+    var module;
+
+    beforeEach(function() {
+      module = angular.module('app');
     });
 
-    xit('will fail as expected', function() {
-      expect(false).toBeTruthy();
+    it('should be registered', function(){
+      //console.log(module);
     });
 
   });

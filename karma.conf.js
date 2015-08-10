@@ -3,20 +3,16 @@
 module.exports = function(config) {
   config.set({
 
-    basePath: './app',
+    basePath: 'app',
 
     // available frameworks: https://npmjs.org/browse/keyword/karma-adapter
     frameworks: ['jasmine', 'requirejs'],
 
     // list of files / patterns to load in the browser
     files: [
-      { pattern: '../bower_components/**/*.js', included: false },
+      { pattern: '**/*.js', included: false },
+      { pattern: 'bower_components/**/*.js', included: false },
       { pattern: '../test/unit/**/*.spec.js', included: false },
-      { pattern: 'components/**/*.js', included: false },
-      { pattern: 'shared/**/*.js', included: false },
-      { pattern: './*.js', included: false },
-
-      'app.config.js',
       '../test/unit/test-main.js',
     ],
 
