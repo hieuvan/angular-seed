@@ -33,6 +33,10 @@ define(function(require) {
       deps.forEach(function(dep) {
         self.hasDependency(dep);
       });
+
+      it('should have same number of dependencies.', function() {
+        expect(self.deps).toEqual(deps);
+      });
     });
   };
 
