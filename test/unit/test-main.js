@@ -31,6 +31,8 @@ require(['base/app/app.config'], function(config) {
 
   config.deps = window.tests;
 
+  config.paths.test = '../test/unit';
+
   config.callback = window.__karma__.start;
 
   window.require.config(config);

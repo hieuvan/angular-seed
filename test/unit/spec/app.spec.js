@@ -2,21 +2,27 @@
 
 define(function(require) {
 
-  require('app.module');
-
-  var angular = require('angular');
+  var Module = require('test/shared/module');
 
   describe('App Module:', function() {
 
-    var module;
+    var module = new Module('app');
 
-    beforeEach(function() {
-      module = angular.module('app');
-    });
+    module.isRegistered();
 
-    it('should be registered', function(){
-      expect(module).not.toBe(null);
-    });
+    module.hasDependencies([
+      'ngCookies',
+      'ngToast',
+      'ui.router',
+      'ui.bootstrap',
+      'app.header',
+      'app.footer',
+      'app.projects',
+      'app.users',
+      'app.auth',
+      'app.home',
+      'httpi'
+    ]);
 
   });
 
