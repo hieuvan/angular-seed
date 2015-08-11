@@ -15,7 +15,7 @@ define(function(require) {
     });
 
     it('should be registered', function(){
-      //console.log(module);
+      expect(module).not.toBe(null);
     });
 
   });
