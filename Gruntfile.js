@@ -8,7 +8,8 @@ module.exports = function (grunt) {
   // Configurable paths
   var config = {
     app: 'app',
-    dist: 'dist'
+    dist: 'dist',
+    test: 'test'
   };
 
   // Define the configuration for all the tasks
@@ -32,13 +33,13 @@ module.exports = function (grunt) {
         tasks: ['wiredep:sass', 'bowerRequirejs']
       },
       js: {
-        files: ['<%= config.app %>/**/{,*/}*.js', '!<%= config.app %>/shared/templates.js'],
-        tasks: ['jshint'],
+        files: [
+          '<%= config.app %>/**/{,*/}*.js',
+          '<%= config.test %>/unit/**/*.js',
+          '!<%= config.app %>/shared/templates.js'
+        ],
+        tasks: ['jshint', 'test:watch'],
         options: { livereload: true }
-      },
-      jstest: {
-        files: ['test/unit/**/*.js'],
-        tasks: ['test:watch', 'jshint']
       },
       html: {
         files: ['<%= config.app %>/**/{,*/}*.html'],
