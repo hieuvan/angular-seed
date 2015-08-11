@@ -2,15 +2,16 @@
 
 define(function(require) {
 
-  var angular = require('underscore');
   require('app.module');
+
+  var angular = require('angular');
 
   describe('App Module:', function() {
 
     var module;
 
     beforeEach(function() {
-      module = angular.module('app');
+      //module = angular.module('app');
     });
 
     it('should be registered', function(){

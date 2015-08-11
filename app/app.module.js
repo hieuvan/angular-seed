@@ -23,7 +23,7 @@ define(function(require) {
   var AppRunner = require('app.runner'),
       templates = require('shared/templates'),
       constant = require('shared/constants/constant'),
-      Routes = require('app.routes.js'),
+      Routes = require('app.routes'),
       AuthProvider = require('shared/providers/auth.provider'),
       Jwt = require('shared/providers/jwt.provider'),
       HttpConfigProvider = require('shared/providers/http-config.provider'),
