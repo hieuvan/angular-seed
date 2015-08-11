@@ -2,6 +2,8 @@
 
 define(function(require) {
 
+  require('app.module');
+
   var Module = require('test/shared/module');
 
   describe('App Module:', function() {
