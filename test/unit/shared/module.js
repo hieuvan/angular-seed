@@ -7,7 +7,7 @@ define(function(require) {
   var Module = function(name) {
     this.module = angular.module(name);
     this.name = name;
-    this.deps = this.module.value(name).requires;
+    this.deps = this.module.requires;
   },
 
   prototype = Module.prototype;
