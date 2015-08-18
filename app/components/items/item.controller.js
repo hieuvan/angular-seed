@@ -9,11 +9,11 @@ define(function(require) {
     vm.form = form;
     vm.items = form.get('items');
 
-    vm.item_renderer = 'components/projects/tests/forms/detail/items_renderer.html';
+    vm.item_renderer = 'components/items/items_renderer.html';
 
     vm.addItemModal = function(scope) {
       var modal = $modal.open({
-        templateUrl: 'components/projects/tests/forms/detail/modal/add-items.html',
+        templateUrl: 'components/items/modal/add-items.html',
         controller: 'AddItemsController as vm',
         resolve: {
           node: function() { return scope; },
@@ -33,7 +33,7 @@ define(function(require) {
     vm.remove = function(scope) {
 
       $modal.open({
-        templateUrl: 'components/projects/tests/forms/detail/modal/remove-items.html',
+        templateUrl: 'components/items/modal/remove-items.html',
         controller: 'RemoveItemsController as vm',
         resolve: {
           node: function() { return scope; }
