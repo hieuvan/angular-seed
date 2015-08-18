@@ -10,10 +10,7 @@ define(function(require) {
     vm.foundItems;
 
     vm.searchItem = function() {
-      var formData = {
-        query: vm.itemQuery,
-        formId: $stateParams.formId
-      };
+      var formData = { query: vm.itemQuery };
 
       ItemService.searchItem(formData).then(function(items) {
         vm.foundItems = items;
@@ -28,7 +25,7 @@ define(function(require) {
     vm.addItems = function () {
 
       ItemService
-        .addItemToForm($stateParams.formId, getFormData())
+        .addItemToForm(getFormData())
         .then(updateTree);
     };
 

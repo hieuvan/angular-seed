@@ -1,8 +1,8 @@
 'use strict';
 
 define(function() {
-  return ['node', '$modalInstance', '$stateParams', 'ProjectTestFormService', 'ngToast',
-    function(node, $modalInstance, $stateParams, ProjectTestFormService, ngToast) {
+  return ['node', '$modalInstance', '$stateParams', 'ItemService', 'ngToast',
+    function(node, $modalInstance, $stateParams, ItemService, ngToast) {
 
     var vm = this,
         currentNode = node.$modelValue;
@@ -12,15 +12,11 @@ define(function() {
     vm.multipleItems = !_.isEmpty(currentNode.items);
 
     vm.removeItems = function() {
-      var items = pluckItems(currentNode, 'id'),
-          projectId = $stateParams.projectId,
-          formId = $stateParams.formId,
-          testId = $stateParams.testId;
+      var items = pluckItems(currentNode, 'id');
 
       vm.cancel();
 
-      ProjectTestFormService
-        .removeFormItem(projectId, formId, testId, items)
+      ItemService.removeFormItem(items)
         .then(function(items) {
           node.remove();
 
