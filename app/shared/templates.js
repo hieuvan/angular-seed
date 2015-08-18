@@ -28,9 +28,7 @@ define(function(require) {
     "    <div class=\"container-fluid\">\n" +
     "      <h4 class=\"navbar-header\">Assessment Builder</h4>\n" +
     "      <ul class=\"nav navbar-nav navbar-left\">\n" +
-    "        <li><a href ui-sref=\"root.home.list\">Home</a></li>\n" +
-    "        <li><a href ui-sref=\"root.projects.list\">Projects</a></li>\n" +
-    "        <li><a href ui-sref=\"root.users.list\">Users</a></li>\n" +
+    "        <li><a href ui-sref=\"root.items.detail\">Items</a></li>\n" +
     "        <!--li><a href ui-sref=\"roles\">Roles</a></li-->\n" +
     "      </ul>\n" +
     "\n" +
@@ -62,7 +60,50 @@ define(function(require) {
   );
 
 
-  $templateCache.put('components/items/detail/items_renderer.html',
+  $templateCache.put('components/items/item.html',
+    "<div class=\"col-md-12\">\n" +
+    "  <h2 class=\"pull-left\">{{vm.form.get('name')}}</h2>\n" +
+    "</div>\n" +
+    "\n" +
+    "<div class=\"col-md-12\">\n" +
+    "  <div ng-hide=\"vm.items.length\">There are no item.</div>\n" +
+    "\n" +
+    "  <div class=\"form-group\">\n" +
+    "    <button type=\"button\" class=\"btn btn-primary\" ng-click=\"vm.addItemModal()\">Add Item</button>\n" +
+    "  </div>\n" +
+    "</div>\n" +
+    "<div ng-show=\"vm.items.length\" class=\"col-md-12\">\n" +
+    "  <div class=\"col-md-6\">\n" +
+    "    <h3>Items</h3>\n" +
+    "\n" +
+    "    <div class=\"form-group clearfix\">\n" +
+    "      <div class=\"btn-group\">\n" +
+    "        <a href class=\"btn btn-default pull-left\" ng-click=\"vm.expandAll()\">Expand all</a>\n" +
+    "        <a href class=\"btn btn-default pull-left\" ng-click=\"vm.collapseAll()\">Collapse all</a>\n" +
+    "      </div>\n" +
+    "    </div>\n" +
+    "\n" +
+    "    <div class=\"form-group\">\n" +
+    "      <div class=\"angular-ui-tree\" ui-tree id=\"tree-root\" ng-model=\"vm.treeRoot\">\n" +
+    "        <ol ui-tree-nodes ng-model=\"vm.items\" class=\"angular-ui-tree-nodes\">\n" +
+    "          <li ng-repeat=\"item in vm.items\" class=\"angular-ui-tree-node\" ui-tree-node ng-include=\"vm.item_renderer\"></li>\n" +
+    "        </ol>\n" +
+    "      </div>\n" +
+    "    </div>\n" +
+    "  </div>\n" +
+    "\n" +
+    "  <div class=\"col-md-6\">\n" +
+    "    <div class=\"info\">\n" +
+    "      Full tree data\n" +
+    "    </div>\n" +
+    "\n" +
+    "    <pre class=\"code\">{{ vm.items | json }}</pre>\n" +
+    "  </div>\n" +
+    "</div>\n"
+  );
+
+
+  $templateCache.put('components/items/items_renderer.html',
     "<div ui-tree-handle class=\"tree-node tree-node-content\">\n" +
     "  <a class=\"btn btn-success btn-xs\" ng-if=\"item.items && item.items.length > 0\" data-nodrag ng-click=\"vm.toggle(this)\">\n" +
     "    <span class=\"glyphicon\" ng-class=\"{'glyphicon-chevron-right': collapsed, 'glyphicon-chevron-down': !collapsed}\"></span>\n" +
@@ -85,7 +126,7 @@ define(function(require) {
   );
 
 
-  $templateCache.put('components/items/detail/modal/add-items.html',
+  $templateCache.put('components/items/modal/add-items.html',
     "<div class=\"modal-header\">\n" +
     "  <button type=\"button\" class=\"close\" ng-click=\"vm.cancel()\">\n" +
     "    <span aria-hidden=\"true\">&times;</span>\n" +
@@ -154,7 +195,7 @@ define(function(require) {
   );
 
 
-  $templateCache.put('components/items/detail/modal/remove-items.html',
+  $templateCache.put('components/items/modal/remove-items.html',
     "<div class=\"modal-header\">\n" +
     "  <h4 class=\"modal-title\">Are you sure you want to remove {{vm.name}}{{vm.multipleItems ? ' and all nested items' : ''}}?</h4>\n" +
     "</div>\n" +
@@ -162,49 +203,6 @@ define(function(require) {
     "<div class=\"modal-footer\">\n" +
     "  <button class=\"btn btn-default\" ng-click=\"vm.cancel()\">Cancel</button>\n" +
     "  <button class=\"btn btn-danger\" ng-click=\"vm.removeItems()\">Remove Items</button>\n" +
-    "</div>\n"
-  );
-
-
-  $templateCache.put('components/items/detail/projects-tests-form.html',
-    "<div class=\"col-md-12\">\n" +
-    "  <h2 class=\"pull-left\">{{vm.form.get('name')}}</h2>\n" +
-    "</div>\n" +
-    "\n" +
-    "<div class=\"col-md-12\">\n" +
-    "  <div ng-hide=\"vm.items.length\">There are no item.</div>\n" +
-    "\n" +
-    "  <div class=\"form-group\">\n" +
-    "    <button type=\"button\" class=\"btn btn-primary\" ng-click=\"vm.addItemModal()\">Add Item</button>\n" +
-    "  </div>\n" +
-    "</div>\n" +
-    "<div ng-show=\"vm.items.length\" class=\"col-md-12\">\n" +
-    "  <div class=\"col-md-6\">\n" +
-    "    <h3>Items</h3>\n" +
-    "\n" +
-    "    <div class=\"form-group clearfix\">\n" +
-    "      <div class=\"btn-group\">\n" +
-    "        <a href class=\"btn btn-default pull-left\" ng-click=\"vm.expandAll()\">Expand all</a>\n" +
-    "        <a href class=\"btn btn-default pull-left\" ng-click=\"vm.collapseAll()\">Collapse all</a>\n" +
-    "      </div>\n" +
-    "    </div>\n" +
-    "\n" +
-    "    <div class=\"form-group\">\n" +
-    "      <div class=\"angular-ui-tree\" ui-tree id=\"tree-root\" ng-model=\"vm.treeRoot\">\n" +
-    "        <ol ui-tree-nodes ng-model=\"vm.items\" class=\"angular-ui-tree-nodes\">\n" +
-    "          <li ng-repeat=\"item in vm.items\" class=\"angular-ui-tree-node\" ui-tree-node ng-include=\"vm.item_renderer\"></li>\n" +
-    "        </ol>\n" +
-    "      </div>\n" +
-    "    </div>\n" +
-    "  </div>\n" +
-    "\n" +
-    "  <div class=\"col-md-6\">\n" +
-    "    <div class=\"info\">\n" +
-    "      Full tree data\n" +
-    "    </div>\n" +
-    "\n" +
-    "    <pre class=\"code\">{{ vm.items | json }}</pre>\n" +
-    "  </div>\n" +
     "</div>\n"
   );
 

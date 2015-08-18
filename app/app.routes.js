@@ -21,7 +21,6 @@ define(function() {
       }
     });
 
-    // Project test forms
     states.push({
       name: 'root.items',
       url: '/items',
@@ -36,13 +35,13 @@ define(function() {
       url: '',
       views: {
         'content@': {
-          controller: 'ProjectTestFormController as vm',
-          templateUrl: 'components/items/detail/projects-tests-form.html'
+          controller: 'ItemController as vm',
+          templateUrl: 'components/items/item.html'
         }
       },
       resolve: {
-        form: ['ProjectTestFormService', '$stateParams', function(ProjectTestFormService, $stateParams) {
-          return ProjectTestFormService.getProjectTestForm($stateParams.projectId, $stateParams.testId, $stateParams.formId);
+        form: ['ItemService', '$stateParams', function(ItemService, $stateParams) {
+          return ItemService.getProjectTestForm($stateParams.projectId, $stateParams.testId, $stateParams.formId);
         }]
       },
       data: {
