@@ -1,9 +1,8 @@
 'use strict';
 
 define(function(require) {
-
-  return ['form', '$modal', '$stateParams', 'ProjectsService',
-    function(form, $modal, $stateParams, ProjectsService) {
+  return ['form', '$modal', '$stateParams',
+    function(form, $modal, $stateParams) {
 
     var vm = this;
 

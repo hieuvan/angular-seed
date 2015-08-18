@@ -24,7 +24,7 @@
       <ul class="nav navbar-nav navbar-right">
         <li dropdown class="dropdown">
           <a href dropdown-toggle class="dropdown-toggle" data-toggle="dropdown">
-            <span class="glyphicon glyphicon-user"></span> {{vm.authUserFullName}} <span class="caret"></span>
+            <span class="glyphicon glyphicon-user"></span> {{vm.username}} <span class="caret"></span>
           </a>
           <ul class="dropdown-menu" role="menu">
             <li ng-repeat="menu in vm.menuItems"><a href ui-sref="{{menu.state}}">{{menu.name}}</a></li>

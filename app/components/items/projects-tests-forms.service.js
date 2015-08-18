@@ -2,11 +2,11 @@
 
 define(function(require) {
 
-  return ['$resource', 'FormModel', 'FormCollection', 'ItemCollection',
-    function($resource, FormModel, FormCollection, ItemCollection) {
+  return ['$resource', 'FormModel', 'ItemCollection',
+    function($resource, FormModel, ItemCollection) {
 
     var getProjectTestForm = function(projectId, testId, formId) {
-      var params = {projectId: projectId, testId: testId, formId: formId},
+      var params = {formId: 2}, // TODO: form id is hardcoded
           resource = $resource.url('forms/:formId/items');
 
       return resource.get(params).then(function(form) {

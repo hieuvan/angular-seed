@@ -1,14 +1,12 @@
 'use strict';
 
 define(function(require) {
-  return ['$auth', function($auth) {
+  return [function() {
     var vm = this;
-
-    vm.authUserFullName = $auth.getUser().get('name');
 
     vm.buildVersion = '3.4.5';
     vm.buildDate = "23/5/12";
-    //vm.username = "Matt";
+    vm.username = "Subash";
 
     vm.breadcrumbTemplate = 'test';
 

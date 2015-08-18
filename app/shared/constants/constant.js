@@ -3,7 +3,7 @@
 define(function(require) {
 
   return {
-    defaultUrl: '/projects',
+    defaultUrl: '/items',
     apiUrl: 'http://api.local-newbuilder/v1/'
   };
 
