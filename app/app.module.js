@@ -25,7 +25,6 @@ define(function(require) {
       ResourceProvider = require('shared/providers/resource.provider'),
       TitleDirective = require('shared/directives/title.directive'),
       FormModel = require('shared/libs/form/form-model'),
-      FormCollection = require('shared/libs/form/form-collection'),
       ItemCollection = require('shared/libs/item/item-collection');
 
 
@@ -56,7 +55,6 @@ define(function(require) {
 
   .config(Routes)
 
-  .factory('ItemModel', function() { return ItemModel; })
   .factory('ItemCollection', function() { return ItemCollection; })
   .factory('FormModel', function() { return FormModel; })
 

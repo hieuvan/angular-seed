@@ -18,11 +18,8 @@ define(function(require) {
       'ui.router',
       'ui.bootstrap',
       'app.header',
+      'app.items',
       'app.footer',
-      'app.projects',
-      'app.users',
-      'app.auth',
-      'app.home',
       'httpi'
     ]);
 
