@@ -51,6 +51,18 @@ define(function(require) {
       getRootNodesScope().expandAll();
     };
 
+    vm.options = function() {
+      console.log('setting options');
+    };
+
+    vm.preview = function() {
+      console.log('previewing');
+    };
+
+    vm.save = function() {
+      console.log('saving');
+    };
+
     var getRootNodesScope = function() {
       return angular.element(document.getElementById('tree-root')).scope();
     };

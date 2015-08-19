@@ -81,6 +81,13 @@ define(function(require) {
     "        <a href class=\"btn btn-default pull-left\" ng-click=\"vm.expandAll()\">Expand all</a>\n" +
     "        <a href class=\"btn btn-default pull-left\" ng-click=\"vm.collapseAll()\">Collapse all</a>\n" +
     "      </div>\n" +
+    "\n" +
+    "      <a href class=\"btn btn-default\" ng-click=\"vm.options()\">Set options</a>\n" +
+    "\n" +
+    "      <div class=\"btn-group pull-right\">\n" +
+    "        <a href class=\"btn btn-default\" ng-click=\"vm.preview()\">Preview</a>\n" +
+    "        <a href class=\"btn btn-primary\" ng-click=\"vm.save()\">Save</a>\n" +
+    "      </div>\n" +
     "    </div>\n" +
     "\n" +
     "    <div class=\"form-group\">\n" +
