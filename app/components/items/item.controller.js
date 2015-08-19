@@ -6,6 +6,8 @@ define(function(require) {
 
     var vm = this;
 
+    vm.debug = false;
+
     vm.form = form;
     vm.items = form.get('items');
 

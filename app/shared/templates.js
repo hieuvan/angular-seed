@@ -73,7 +73,7 @@ define(function(require) {
     "  </div>\n" +
     "</div>\n" +
     "<div ng-show=\"vm.items.length\" class=\"col-md-12\">\n" +
-    "  <div class=\"col-md-6\">\n" +
+    "  <div ng-class=\"vm.debug ? 'col-md-6' : 'col-md-12'\">\n" +
     "    <h3>Items</h3>\n" +
     "\n" +
     "    <div class=\"form-group clearfix\">\n" +
@@ -92,7 +92,7 @@ define(function(require) {
     "    </div>\n" +
     "  </div>\n" +
     "\n" +
-    "  <div class=\"col-md-6\">\n" +
+    "  <div class=\"col-md-6\" ng-show=\"vm.debug\">\n" +
     "    <div class=\"info\">\n" +
     "      Full tree data\n" +
     "    </div>\n" +

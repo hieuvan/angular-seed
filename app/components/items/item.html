@@ -10,7 +10,7 @@
   </div>
 </div>
 <div ng-show="vm.items.length" class="col-md-12">
-  <div class="col-md-6">
+  <div ng-class="vm.debug ? 'col-md-6' : 'col-md-12'">
     <h3>Items</h3>
 
     <div class="form-group clearfix">
@@ -29,7 +29,7 @@
     </div>
   </div>
 
-  <div class="col-md-6">
+  <div class="col-md-6" ng-show="vm.debug">
     <div class="info">
       Full tree data
     </div>
