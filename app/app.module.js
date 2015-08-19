@@ -34,9 +34,7 @@ define(function(require) {
     'ngToast',
     'ui.router',
     'ui.bootstrap',
-    'app.header',
     'app.items',
-    'app.footer',
     'httpi'
   ])
 
