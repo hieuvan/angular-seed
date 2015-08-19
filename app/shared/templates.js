@@ -61,8 +61,7 @@ define(function(require) {
 
 
   $templateCache.put('components/items/item.html',
-    "<div style=\"padding-top: 30px;\" class=\"col-md-12\">\n" +
-    "\n" +
+    "<section id=\"ui-tree\">\n" +
     "  <div ng-hide=\"vm.items.length\" class=\"col-md-12\">\n" +
     "    <alert type=\"warning\">There are no items.</alert>\n" +
     "  </div>\n" +
@@ -87,6 +86,8 @@ define(function(require) {
     "      </div>\n" +
     "    </div>\n" +
     "\n" +
+    "    <hr>\n" +
+    "\n" +
     "    <div class=\"form-group\">\n" +
     "      <div class=\"angular-ui-tree\" ui-tree id=\"tree-root\" ng-model=\"vm.treeRoot\">\n" +
     "        <ol ui-tree-nodes ng-model=\"vm.items\" class=\"angular-ui-tree-nodes\">\n" +
@@ -97,13 +98,11 @@ define(function(require) {
     "  </div>\n" +
     "\n" +
     "  <div class=\"col-md-6\" ng-show=\"vm.debug\">\n" +
-    "    <div class=\"info\">\n" +
-    "      Full tree data\n" +
-    "    </div>\n" +
+    "    <div class=\"info\">Full tree data</div>\n" +
     "\n" +
     "    <pre class=\"code\">{{ vm.items | json }}</pre>\n" +
     "  </div>\n" +
-    "</div>\n"
+    "</section>\n"
   );
 
 

@@ -1,5 +1,4 @@
-<div style="padding-top: 30px;" class="col-md-12">
-
+<section id="ui-tree">
   <div ng-hide="vm.items.length" class="col-md-12">
     <alert type="warning">There are no items.</alert>
   </div>
@@ -24,6 +23,8 @@
       </div>
     </div>
 
+    <hr>
+
     <div class="form-group">
       <div class="angular-ui-tree" ui-tree id="tree-root" ng-model="vm.treeRoot">
         <ol ui-tree-nodes ng-model="vm.items" class="angular-ui-tree-nodes">
@@ -34,10 +35,8 @@
   </div>
 
   <div class="col-md-6" ng-show="vm.debug">
-    <div class="info">
-      Full tree data
-    </div>
+    <div class="info">Full tree data</div>
 
     <pre class="code">{{ vm.items | json }}</pre>
   </div>
-</div>
+</section>
