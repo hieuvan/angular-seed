@@ -1,11 +1,6 @@
-<div style="padding-top: 30px;" class="col-md-12">
-
+<section id="ui-tree">
   <div ng-hide="vm.items.length" class="col-md-12">
     <alert type="warning">There are no items.</alert>
-  </div>
-
-  <div class="form-group col-md-12">
-    <button type="button" class="btn btn-primary" ng-click="vm.addItemModal()">Add Item</button>
   </div>
 
   <div ng-show="vm.items.length" ng-class="vm.debug ? 'col-md-6' : 'col-md-12'">
@@ -18,11 +13,15 @@
 
       <a href class="btn btn-default" ng-click="vm.options()">Set options</a>
 
+      <a href class="btn btn-primary" ng-click="vm.addItemModal()">Add Item</a>
+
       <div class="btn-group pull-right">
         <a href class="btn btn-default" ng-click="vm.preview()">Preview</a>
         <a href class="btn btn-primary" ng-click="vm.save()">Save</a>
       </div>
     </div>
+
+    <hr>
 
     <div class="form-group">
       <div class="angular-ui-tree" ui-tree id="tree-root" ng-model="vm.treeRoot">
@@ -34,10 +33,8 @@
   </div>
 
   <div class="col-md-6" ng-show="vm.debug">
-    <div class="info">
-      Full tree data
-    </div>
+    <div class="info">Full tree data</div>
 
     <pre class="code">{{ vm.items | json }}</pre>
   </div>
-</div>
+</section>
