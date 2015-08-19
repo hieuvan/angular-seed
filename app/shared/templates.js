@@ -61,20 +61,17 @@ define(function(require) {
 
 
   $templateCache.put('components/items/item.html',
-    "<div class=\"col-md-12\">\n" +
-    "  <h2 class=\"pull-left\">{{vm.form.get('name')}}</h2>\n" +
-    "</div>\n" +
+    "<div style=\"padding-top: 30px;\" class=\"col-md-12\">\n" +
     "\n" +
-    "<div class=\"col-md-12\">\n" +
-    "  <div ng-hide=\"vm.items.length\">There are no item.</div>\n" +
+    "  <div ng-hide=\"vm.items.length\" class=\"col-md-12\">\n" +
+    "    <alert type=\"warning\">There are no items.</alert>\n" +
+    "  </div>\n" +
     "\n" +
-    "  <div class=\"form-group\">\n" +
+    "  <div class=\"form-group col-md-12\">\n" +
     "    <button type=\"button\" class=\"btn btn-primary\" ng-click=\"vm.addItemModal()\">Add Item</button>\n" +
     "  </div>\n" +
-    "</div>\n" +
-    "<div ng-show=\"vm.items.length\" class=\"col-md-12\">\n" +
-    "  <div ng-class=\"vm.debug ? 'col-md-6' : 'col-md-12'\">\n" +
-    "    <h3>Items</h3>\n" +
+    "\n" +
+    "  <div ng-show=\"vm.items.length\" ng-class=\"vm.debug ? 'col-md-6' : 'col-md-12'\">\n" +
     "\n" +
     "    <div class=\"form-group clearfix\">\n" +
     "      <div class=\"btn-group\">\n" +
