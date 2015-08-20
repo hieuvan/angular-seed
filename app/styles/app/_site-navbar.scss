@@ -1,0 +1,28 @@
+.navbar-site{
+    border-radius:0;
+    border-left:0;
+    border-right:0;
+    margin-bottom:0;
+    .breadcrumb{
+        margin-bottom:0;
+        padding:0;
+        background:0;
+        li{
+            display:block;
+            padding-top:15px;
+            padding-bottom:15px;
+            float:left; 
+            &:before{
+                padding-left:10px;
+                padding-right:10px;
+            }
+        }
+        a{
+            color:#777;
+        }
+        :last-child a{
+            color:$acer-purple;
+            font-weight:bold;
+        }
+    }
+}

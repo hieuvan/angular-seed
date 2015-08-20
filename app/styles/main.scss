@@ -1,5 +1,4 @@
-$icon-font-path: "../styles/fonts/bootstrap/";
-$fa-font-path:   "../styles/fonts/font-awesome";
+@import "variables/vars";
 
 // bower:scss
 @import "bootstrap-sass/assets/stylesheets/_bootstrap.scss";
@@ -9,8 +8,9 @@ $fa-font-path:   "../styles/fonts/font-awesome";
 @import "ngtoast/dist/ngToast";
 @import "ngtoast/dist/ngToast-animations";
 
-@import "components/layout";
 
+@import "components/layout";
+@import "components/buttons";
 
 @import "partials/angular";
 @import "partials/login";

@@ -1,0 +1,132 @@
+ol.nested-sortable,ol.nested-sortable ol {
+  list-style-type: none;
+  padding-left:0;
+}
+
+ol.nested-sortable{
+
+  .draggable{
+    margin-right:10px;
+    opacity:0;
+  }
+
+  >li:first-child{
+    border-top-color:transparent;
+  }
+  .row{
+    padding-top:10px;
+    padding-bottom:10px;
+    &:hover .draggable{
+      opacity:1;
+    }
+  }
+
+  li{
+    line-height:25px;
+    border:1px solid transparent;
+    border-top:1px solid #ddd;
+    color:#555;
+  }
+
+  .break{
+    $breakColor: #EB5D00;
+    background:#FAF5F2;
+    color:$breakColor;
+  } 
+
+  .group {
+    > .row{
+      background:#fafafa; 
+    }
+    ol .row-label{
+      border-left:1px solid #ddd;
+    }
+  }
+
+  .row-label{
+    display:inline-block;
+  }
+
+
+  .caret{display:none;}
+  .group.nested-sortable-branch, .form.nested-sortable-branch{ 
+    >.row .caret{
+      display:inline-block;
+      margin-right:5px;
+    }
+    &.nested-sortable-collapsed{
+      >.row .caret{
+        border-bottom: 4px solid transparent;
+        border-top: 4px solid transparent;
+        border-left: 4px solid;
+        display: inline-block;
+        height: 0;
+        width: 0;
+      }
+    }
+  }
+
+  .form{
+    $formColor: #f60;
+    font-weight:bold;
+    color:$formColor;
+    ol .row-label{
+      cursor: pointer;
+    }
+  }
+
+  .ui-sortable-placeholder{
+    border:2px dashed #428bca;
+  }
+
+  .ui-sortable-helper{
+    border-top:0;
+    border-bottom:0;
+    background:transparentize(white,.7);
+    .row-label{
+      cursor:move;
+    }
+  }
+
+  .nested-sortable-error {
+    border-color: #cc4127;
+  }
+
+}
+
+div.table-header{
+  padding-top:10px;
+  padding-bottom:10px;
+  border-bottom:2px solid #ccc;
+  border-top:2px solid #ccc;
+  font-weight:bold;
+}
+
+
+$nestingStep: 25px;
+$nestingLabel:" ol";
+$currentNestingLabel: $nestingLabel;
+
+ol.nested-sortable{
+  ol{
+    .row-label{
+      padding-left:$nestingStep;
+    }
+    @for $i from 2 through 6{
+
+      #{$currentNestingLabel} .row-label{
+        margin-left:$nestingStep * $i;
+      }
+
+      #{$currentNestingLabel} .ui-sortable-placeholder{
+        margin-left:$nestingStep * $i;
+      }
+
+      $currentNestingLabel: $currentNestingLabel + $nestingLabel;
+    }
+  }
+}
+
+.nested-sortable-collapsed > ol {
+  display:none;
+}

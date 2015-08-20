@@ -1,0 +1,114 @@
+#growls{
+  z-index: 50000;
+  position: fixed;
+  &.default{
+    top: 10px;
+    right: 10px;
+  }
+  &.tl {
+    top: 10px;
+    left: 10px; 
+  }
+  &.tr {
+    top: 10px;
+    right: 10px; 
+  }
+  &.bl {
+    bottom: 10px;
+    left: 10px; 
+  }
+  &.br {
+    bottom: 10px;
+    right: 10px; 
+  }
+  &.tc {
+    top: 10px;
+    right: 10px;
+    left: 10px; 
+  }
+  &.bc {
+    bottom: 10px;
+    right: 10px;
+    left: 10px; 
+  }
+
+  &.tc .growl, &.bc .growl {
+    margin-left: auto;
+    margin-right: auto; 
+  }
+}
+
+.growl {
+  opacity: 1;
+  position: relative;
+  box-shadow: 1px 2px 1px rgba(0,0,0,.1); 
+
+  border:1px solid #ccc;
+
+  color:#555;
+  background:#fafafa;
+
+  -webkit-transition: opacity 0.4s ease-in-out;
+  -moz-transition: opacity 0.4s ease-in-out;
+  transition: opacity 0.4s ease-in-out; 
+
+  &.growl-incoming {
+    opacity: 0;
+  }
+  &.growl-outgoing {
+    opacity: 0;
+  }
+
+  &.growl-small {
+    width: 200px;
+    padding: 5px;
+    margin: 5px; 
+  }
+  &.growl-medium {
+    width: 250px;
+    padding: 10px;
+    margin: 10px; }
+
+  &.growl-large {
+    width: 300px;
+    padding: 15px;
+    margin: 15px; 
+  }
+
+  &.growl-success {
+    color:#2d4821;
+    background-color: #dff0d8;
+    border-color: #d6e9c6;
+  }
+  &.growl-info {
+    color:#214c62;
+    background-color: #d9edf7;
+    border-color: #bce8f1
+  }
+  &.growl-warning {
+    color:#6c4a00;
+    background-color:#f9f1c6;
+    border-color: #faebcc
+  }
+  &.growl-danger {
+    color:#d2322d;
+    background-color: #f2dede;
+    border-color: #ebccd1
+  }
+  
+  .growl-title{
+    display:none;
+  }
+
+}
+
+.growl-close {
+  cursor: pointer;
+  position: absolute;
+  right: 5px;
+  top: 5px;
+  font-size: 24px;
+  line-height: 18px;
+  font-weight: bold;
+  padding: 5px;
+}

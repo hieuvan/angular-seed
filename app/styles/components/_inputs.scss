@@ -1,0 +1,90 @@
+//Input placeholder color
+
+$placeholderColour: #888;
+$input-size:25px;
+
+::-webkit-input-placeholder {
+    color: $placeholderColour !important
+}
+
+:-moz-placeholder {
+    color: $placeholderColour !important
+}
+
+::-moz-placeholder {
+    color: $placeholderColour !important
+}
+
+:-ms-input-placeholder {
+    color: $placeholderColour !important
+}
+
+//radio button skins
+input[type="radio"],input[type="checkbox"] {
+    height: $input-size;
+    width: $input-size;
+    cursor:default;
+    display:inline-block;
+}
+
+input.input-custom-skin{
+    margin: 0;
+    vertical-align:middle;
+    opacity:0;
+    + label{
+        position:relative;
+        z-index:10;
+        padding-left:$input-size;
+        margin-bottom:0;
+        margin-left:-1 * ($input-size + 5px);
+        height:$input-size;
+        vertical-align: middle;
+        background-image: url('../img/input_sprites.png');
+        background-size: $input-size ($input-size*14); //1/2 the actual size for retina
+        background-repeat:no-repeat;
+        background-color:white;
+        cursor: pointer;
+    }
+    &.disabled + label{
+        opacity:.3;
+    }
+
+    $emptyCheckHighlighted: -0px;
+    $emptyCheck: -25px; 
+    $emptyRadioHighlighted: -50px;
+    $emptyRadio: -75px; 
+    $fullCheckHighlighted: -100px;
+    $fullCheck: -125px; 
+    $fullRadioHighlighted: -150px;
+    $fullRadio: -175px; 
+    $semiCheckHighlighted: -200px;
+    $semiCheck: -225px; 
+    $impliedCheckHighlighted: -250px;
+    $impliedCheck: -275px; 
+    
+    &[type="radio"] + label{background-position: 0 $emptyRadio; }
+    &[type="radio"]:checked + label{background-position: 0 $fullRadio;}
+
+    &[type="checkbox"] + label{background-position: 0 $emptyCheck;}
+    &[type="checkbox"]:checked + label{background-position: 0 $fullCheck;}
+
+    &[type="radio"]:hover + label{background-position: 0 $emptyRadioHighlighted; }
+    &[type="radio"]:active + label{background-position: 0 $emptyRadioHighlighted; }
+
+    &[type="radio"]:checked:hover + label{background-position: 0 $fullRadioHighlighted;}
+    &[type="radio"]:checked:focus + label{background-position: 0 $fullRadioHighlighted;}
+
+    &[type="checkbox"]:hover + label{background-position: 0 $emptyCheckHighlighted;}
+    &[type="checkbox"]:focus + label{background-position: 0 $emptyCheckHighlighted;}
+
+    &[type="checkbox"]:checked:hover + label{background-position: 0 $fullCheckHighlighted;}
+    &[type="checkbox"]:checked:focus + label{background-position: 0 $fullCheckHighlighted;}
+
+    &[type="checkbox"].semi:hover + label{background-position: 0 $semiCheckHighlighted;}
+    &[type="checkbox"].semi:focus + label{background-position: 0 $semiCheckHighlighted;}
+    &[type="checkbox"].semi + label{background-position: 0 $semiCheck;}
+
+    &[type="checkbox"].implied-check:hover + label{background-position: 0 $impliedCheckHighlighted;}
+    &[type="checkbox"].implied-check:focus + label{background-position: 0 $impliedCheckHighlighted;}
+    &[type="checkbox"].implied-check + label{background-position: 0 $impliedCheck;}
+}

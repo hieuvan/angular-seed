@@ -1,0 +1,32 @@
+@mixin triangle($dir, $size, $color) {
+    border: $size transparent solid;
+ 
+    @if ($dir == "top" or $dir == "up") {
+        border-bottom-color: $color;
+    }
+    @else if ($dir == "right" or $dir == "after") {
+        border-left-color: $color;
+    }
+    @else if ($dir == "bottom" or $dir == "down") {
+        border-top-color: $color;
+    }
+    @else if ($dir == "left" or $dir == "before") {
+        border-right-color: $color;
+    }
+}
+
+.scaled-square{
+    position:relative;
+    &:before{
+        content: "";
+        display: block;
+        padding-top: 100%;
+    }
+    >.scaled-square-content{
+        position: absolute;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+    }
+}
