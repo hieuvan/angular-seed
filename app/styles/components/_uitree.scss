@@ -32,6 +32,12 @@
       }
     }
 
+    .angular-ui-tree-node {
+      .angular-ui-tree-handle {
+        span { cursor: pointer; }
+      }
+    }
+
   }
 }
 

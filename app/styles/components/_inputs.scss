@@ -39,7 +39,7 @@ input.input-custom-skin{
         margin-left:-1 * ($input-size + 5px);
         height:$input-size;
         vertical-align: middle;
-        background-image: url('../img/input_sprites.png');
+        background-image: url($images + '/input_sprites.png');
         background-size: $input-size ($input-size*14); //1/2 the actual size for retina
         background-repeat:no-repeat;
         background-color:white;
@@ -50,18 +50,18 @@ input.input-custom-skin{
     }
 
     $emptyCheckHighlighted: -0px;
-    $emptyCheck: -25px; 
+    $emptyCheck: -25px;
     $emptyRadioHighlighted: -50px;
-    $emptyRadio: -75px; 
+    $emptyRadio: -75px;
     $fullCheckHighlighted: -100px;
-    $fullCheck: -125px; 
+    $fullCheck: -125px;
     $fullRadioHighlighted: -150px;
-    $fullRadio: -175px; 
+    $fullRadio: -175px;
     $semiCheckHighlighted: -200px;
-    $semiCheck: -225px; 
+    $semiCheck: -225px;
     $impliedCheckHighlighted: -250px;
-    $impliedCheck: -275px; 
-    
+    $impliedCheck: -275px;
+
     &[type="radio"] + label{background-position: 0 $emptyRadio; }
     &[type="radio"]:checked + label{background-position: 0 $fullRadio;}
 

@@ -63,13 +63,13 @@ define(function(require) {
     "      <div class=\"col-md-1\">\n" +
     "\n" +
     "      </div>\n" +
-    "      <div class=\"col-md-4\">\n" +
+    "      <div class=\"col-md-5\">\n" +
     "        Title\n" +
     "      </div>\n" +
-    "      <div class=\"col-md-5\">\n" +
+    "      <div class=\"col-md-4\">\n" +
     "        Configuration\n" +
     "      </div>\n" +
-    "      <div class=\"col-md-2\">\n" +
+    "      <div class=\"col-md-1\">\n" +
     "        Version\n" +
     "      </div>\n" +
     "    </div>\n" +
@@ -94,24 +94,37 @@ define(function(require) {
 
   $templateCache.put('components/items/items_renderer.html',
     "<div ui-tree-handle class=\"row tree-node tree-node-content\">\n" +
-    "  <div class=\"col-xs-1 check-cell\">\n" +
+    "  <div class=\"col-xs-1\">\n" +
     "    <input type=\"checkbox\" id=\"checkbox\" class=\"input-custom-skin\">\n" +
-    "    <label for=\"checkbox\"></label>\n" +
+    "    <label data-nodrag for=\"checkbox\"></label>\n" +
     "  </div>\n" +
     "\n" +
-    "  <a class=\"btn btn-success btn-xs\" ng-if=\"item.items && item.items.length > 0\" data-nodrag ng-click=\"vm.toggle(this)\">\n" +
-    "    <span class=\"glyphicon\" ng-class=\"{'glyphicon-chevron-right': collapsed, 'glyphicon-chevron-down': !collapsed}\"></span>\n" +
-    "  </a>\n" +
+    "  <div class=\"col-xs-5\">\n" +
+    "    <span ng-if=\"item.items && item.items.length > 0\"\n" +
+    "          data-nodrag ng-click=\"vm.toggle(this)\"\n" +
+    "          ng-class=\"{'glyphicon-chevron-right': collapsed, 'glyphicon-chevron-down': !collapsed}\"\n" +
+    "          class=\"glyphicon\">\n" +
+    "    </span>\n" +
     "\n" +
-    "  {{item.uid}}\n" +
+    "    <span class=\"text\">{{item.uid}}</span>\n" +
+    "  </div>\n" +
     "\n" +
-    "  <a class=\"pull-right btn btn-danger btn-xs\" data-nodrag ng-click=\"vm.remove(this)\">\n" +
-    "    <span class=\"glyphicon glyphicon-remove\"></span>\n" +
-    "  </a>\n" +
+    "  <div class=\"col-xs-4\">\n" +
+    "  </div>\n" +
     "\n" +
-    "  <a class=\"pull-right btn btn-primary btn-xs\" data-nodrag ng-click=\"vm.newSubItem(this)\" style=\"margin-right: 8px;\">\n" +
-    "    <span class=\"glyphicon glyphicon-plus\"></span>\n" +
-    "  </a>\n" +
+    "  <div class=\"col-xs-1\">\n" +
+    "    <span>1.0.0 ZC</span>\n" +
+    "  </div>\n" +
+    "\n" +
+    "  <div class=\"col-xs-1\">\n" +
+    "    <a class=\"pull-right btn btn-danger btn-xs\" data-nodrag ng-click=\"vm.remove(this)\">\n" +
+    "      <span class=\"glyphicon glyphicon-remove\"></span>\n" +
+    "    </a>\n" +
+    "\n" +
+    "    <a class=\"pull-right btn btn-primary btn-xs\" data-nodrag ng-click=\"vm.newSubItem(this)\" style=\"margin-right: 8px;\">\n" +
+    "      <span class=\"glyphicon glyphicon-plus\"></span>\n" +
+    "    </a>\n" +
+    "  </div>\n" +
     "</div>\n" +
     "\n" +
     "<ol ui-tree-nodes ng-model=\"item.items\" ng-class=\"{hidden: collapsed}\">\n" +
