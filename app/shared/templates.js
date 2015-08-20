@@ -93,7 +93,12 @@ define(function(require) {
 
 
   $templateCache.put('components/items/items_renderer.html',
-    "<div ui-tree-handle class=\"tree-node tree-node-content\">\n" +
+    "<div ui-tree-handle class=\"row tree-node tree-node-content\">\n" +
+    "  <div class=\"col-xs-1 check-cell\">\n" +
+    "    <input type=\"checkbox\" id=\"checkbox\" class=\"input-custom-skin\">\n" +
+    "    <label for=\"checkbox\"></label>\n" +
+    "  </div>\n" +
+    "\n" +
     "  <a class=\"btn btn-success btn-xs\" ng-if=\"item.items && item.items.length > 0\" data-nodrag ng-click=\"vm.toggle(this)\">\n" +
     "    <span class=\"glyphicon\" ng-class=\"{'glyphicon-chevron-right': collapsed, 'glyphicon-chevron-down': !collapsed}\"></span>\n" +
     "  </a>\n" +
