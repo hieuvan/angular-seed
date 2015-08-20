@@ -99,13 +99,15 @@ define(function(require) {
     "  </div>\n" +
     "\n" +
     "  <div class=\"col-xs-5\">\n" +
-    "    <span ng-if=\"item.items && item.items.length > 0\"\n" +
-    "          data-nodrag ng-click=\"vm.toggle(this)\"\n" +
-    "          ng-class=\"{'glyphicon-chevron-right': collapsed, 'glyphicon-chevron-down': !collapsed}\"\n" +
-    "          class=\"glyphicon\">\n" +
-    "    </span>\n" +
+    "    <div class=\"row-label\">\n" +
+    "      <span ng-if=\"item.items && item.items.length\"\n" +
+    "            data-nodrag ng-click=\"vm.toggle(this)\"\n" +
+    "            ng-class=\"{'glyphicon-chevron-right': collapsed, 'glyphicon-chevron-down': !collapsed}\"\n" +
+    "            class=\"glyphicon\">\n" +
+    "      </span>\n" +
     "\n" +
-    "    <span class=\"text\">{{item.uid}}</span>\n" +
+    "      <span class=\"text\">{{item.uid}}</span>\n" +
+    "    </div>\n" +
     "  </div>\n" +
     "\n" +
     "  <div class=\"col-xs-4\">\n" +

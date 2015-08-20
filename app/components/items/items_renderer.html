@@ -4,13 +4,15 @@
   </div>
 
   <div class="col-xs-5">
-    <span ng-if="item.items && item.items.length > 0"
-          data-nodrag ng-click="vm.toggle(this)"
-          ng-class="{'glyphicon-chevron-right': collapsed, 'glyphicon-chevron-down': !collapsed}"
-          class="glyphicon">
-    </span>
+    <div class="row-label">
+      <span ng-if="item.items && item.items.length"
+            data-nodrag ng-click="vm.toggle(this)"
+            ng-class="{'glyphicon-chevron-right': collapsed, 'glyphicon-chevron-down': !collapsed}"
+            class="glyphicon">
+      </span>
 
-    <span class="text">{{item.uid}}</span>
+      <span class="text">{{item.uid}}</span>
+    </div>
   </div>
 
   <div class="col-xs-4">
