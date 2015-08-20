@@ -1,7 +1,9 @@
 header {
-  &.navbar { margin-bottom: 0; }
 
-  &.navbar-static-top { border: none; }
+  &.navbar {
+    margin-bottom: 0;
+    border-color: $navbar-border-color;
+  }
 
   .navbar-header {
     padding-right: 15px;
