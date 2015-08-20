@@ -31,27 +31,6 @@ define(function(require) {
     "      <span class=\"text-muted pull-right\"><small>Build {{vm.buildVersion}} | {{vm.buildDate}}</small></span>\n" +
     "    </div>\n" +
     "  </header>\n" +
-    "\n" +
-    "  <nav class=\"navbar navbar-default\" role=\"navigation\">\n" +
-    "    <div class=\"container-fluid\">\n" +
-    "      <ui-breadcrumbs\n" +
-    "        displayname-property=\"data.displayName\"\n" +
-    "        abstract-proxy-property=\"data.proxy\"\n" +
-    "        template-url=\"components/header/breadcrumb.html\"\n" +
-    "      ></ui-breadcrumbs>\n" +
-    "\n" +
-    "      <ul class=\"nav navbar-nav navbar-right\">\n" +
-    "        <li dropdown class=\"dropdown\">\n" +
-    "          <a href dropdown-toggle class=\"dropdown-toggle\" data-toggle=\"dropdown\">\n" +
-    "            <span class=\"glyphicon glyphicon-user\"></span> {{vm.username}} <span class=\"caret\"></span>\n" +
-    "          </a>\n" +
-    "          <ul class=\"dropdown-menu\" role=\"menu\">\n" +
-    "            <li ng-repeat=\"menu in vm.menuItems\"><a href ui-sref=\"{{menu.state}}\">{{menu.name}}</a></li>\n" +
-    "          </ul>\n" +
-    "        </li>\n" +
-    "      </ul>\n" +
-    "    </div>\n" +
-    "  </nav>\n" +
     "</div>\n"
   );
 

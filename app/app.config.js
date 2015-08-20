@@ -27,9 +27,6 @@ require.config({
     'angular-cookies': [
       'angular'
     ],
-    'angular-utils-ui-breadcrumbs': [
-      'angular'
-    ],
     'angular-ui-tree': [
       'angular'
     ],
@@ -69,7 +66,6 @@ require.config({
     underscore: '../bower_components/underscore/underscore',
     'angular-cookies': '../bower_components/angular-cookies/angular-cookies',
     'angular-animate': '../bower_components/angular-animate/angular-animate',
-    'angular-utils-ui-breadcrumbs': '../bower_components/angular-utils-ui-breadcrumbs/uiBreadcrumbs',
     'angular-ui-tree': '../bower_components/angular-ui-tree/dist/angular-ui-tree',
     'angular-httpi': '../bower_components/angular-httpi/lib/httpi',
     'angular-sanitize': '../bower_components/angular-sanitize/angular-sanitize',
