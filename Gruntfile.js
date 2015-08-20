@@ -59,11 +59,6 @@ module.exports = function (grunt) {
         tasks: ['sass:server', 'autoprefixer:server'],
         options: { livereload: true }
       },
-      styles: {
-        files: ['<%= config.app %>/styles/{,*/}*.css'],
-        tasks: ['newer:copy:styles', 'autoprefixer:server'],
-        options: { livereload: true }
-      },
       livereload: {
         options: {
           livereload: '<%= connect.options.livereload %>'
