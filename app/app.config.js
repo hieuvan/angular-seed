@@ -43,6 +43,9 @@ require.config({
       'angular',
       'angular-sanitize',
       'angular-animate'
+    ],
+    'angular-bootstrap-checkbox': [
+      'angular'
     ]
   },
   map: {
@@ -70,7 +73,8 @@ require.config({
     'angular-httpi': '../bower_components/angular-httpi/lib/httpi',
     'angular-sanitize': '../bower_components/angular-sanitize/angular-sanitize',
     'angular-toast': '../bower_components/ngtoast/dist/ngToast',
-    ngtoast: '../bower_components/ngtoast/dist/ngToast'
+    ngtoast: '../bower_components/ngtoast/dist/ngToast',
+    'angular-bootstrap-checkbox': '../bower_components/angular-bootstrap-checkbox/angular-bootstrap-checkbox'
   },
   packages: [
 

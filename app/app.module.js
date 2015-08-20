@@ -11,6 +11,7 @@ define(function(require) {
   require('angular-httpi');
   require('angular-sanitize');
   require('angular-toast');
+  require('angular-bootstrap-checkbox');
 
   // app components
   require('components/header/header.module');
@@ -33,6 +34,7 @@ define(function(require) {
     'ngToast',
     'ui.router',
     'ui.bootstrap',
+    'ui.checkbox',
     'app.header',
     'app.items',
     'httpi'

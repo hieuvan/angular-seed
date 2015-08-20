@@ -31,6 +31,7 @@ input.input-custom-skin{
     margin: 0;
     vertical-align:middle;
     opacity:0;
+
     + label{
         position:relative;
         z-index:10;
@@ -45,6 +46,7 @@ input.input-custom-skin{
         background-color:white;
         cursor: pointer;
     }
+
     &.disabled + label{
         opacity:.3;
     }
