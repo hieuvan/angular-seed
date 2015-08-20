@@ -4,13 +4,13 @@ header {
   &.navbar-static-top { border: none; }
 
   .navbar-header {
-    margin-top: 15px;
     padding-right: 15px;
+    color: $acer-purple;
   }
 
   span.pull-right {
     display: block;
-    margin-top: 15px;
+    margin-top: $navbar-padding-vertical;
   }
 }
 

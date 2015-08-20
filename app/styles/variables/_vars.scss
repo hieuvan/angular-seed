@@ -1,13 +1,10 @@
-// Bootstrap oversides
-// --------------------------------------------------
-$icon-font-path: "../../styles/fonts/bootstrap/";
-$fa-font-path:   "../../styles/fonts/font-awesome";
+@import "bootstrap-overrides";
 
 // Colors
 // --------------------------------------------------
 $orange: #f60;
 $orange-dark:#d50;
-
+$acer-purple: #663366;
 
 // Z-Index Scale (private vars)
 // --------------------------------------------------

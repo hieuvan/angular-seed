@@ -15,7 +15,6 @@ define(function(require) {
   // app components
   require('components/header/header.module');
   require('components/items/item.module');
-  require('components/footer/footer.module');
 
   var AppRunner = require('app.runner'),
       templates = require('shared/templates'),
@@ -34,6 +33,7 @@ define(function(require) {
     'ngToast',
     'ui.router',
     'ui.bootstrap',
+    'app.header',
     'app.items',
     'httpi'
   ])

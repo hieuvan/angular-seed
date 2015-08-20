@@ -27,10 +27,6 @@ define(function(require) {
     "  <header class=\"navbar navbar-static-top navbar-shadow\">\n" +
     "    <div class=\"container-fluid\">\n" +
     "      <h4 class=\"navbar-header\">Assessment Builder</h4>\n" +
-    "      <ul class=\"nav navbar-nav navbar-left\">\n" +
-    "        <li><a href ui-sref=\"root.items.detail\">Items</a></li>\n" +
-    "        <!--li><a href ui-sref=\"roles\">Roles</a></li-->\n" +
-    "      </ul>\n" +
     "\n" +
     "      <span class=\"text-muted pull-right\"><small>Build {{vm.buildVersion}} | {{vm.buildDate}}</small></span>\n" +
     "    </div>\n" +
@@ -78,13 +74,26 @@ define(function(require) {
     "\n" +
     "      <a href class=\"btn btn-primary\" ng-click=\"vm.addItemModal()\">Add Item</a>\n" +
     "\n" +
-    "      <div class=\"btn-group pull-right\">\n" +
+    "      <div class=\"pull-right\">\n" +
     "        <a href class=\"btn btn-default\" ng-click=\"vm.preview()\">Preview</a>\n" +
     "        <a href class=\"btn btn-primary\" ng-click=\"vm.save()\">Save</a>\n" +
     "      </div>\n" +
     "    </div>\n" +
     "\n" +
-    "    <hr>\n" +
+    "    <div class=\"table-header row\">\n" +
+    "      <div class=\"col-md-1\">\n" +
+    "\n" +
+    "      </div>\n" +
+    "      <div class=\"col-md-4\">\n" +
+    "        Title\n" +
+    "      </div>\n" +
+    "      <div class=\"col-md-5\">\n" +
+    "        Configuration\n" +
+    "      </div>\n" +
+    "      <div class=\"col-md-2\">\n" +
+    "        Version\n" +
+    "      </div>\n" +
+    "    </div>\n" +
     "\n" +
     "    <div class=\"form-group\">\n" +
     "      <div class=\"angular-ui-tree\" ui-tree id=\"tree-root\" ng-model=\"vm.treeRoot\">\n" +
