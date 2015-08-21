@@ -13,32 +13,14 @@ define(function(require) {
 
     vm.item_renderer = 'components/items/items_renderer.html';
 
-    /**
-     * recursively count number of items
-     *
-     * @param array items
-     * @return int number of items
-     */
-    vm.itemCount = function(items) {
-      var count = 0;
-
-      if (!items.length) return count;
-
-      count += items.length;
-
-      _.each(items, function(item) {
-        item.items && (count += vm.itemCount(item.items));
-      });
-
-      return count;
-    };
-
     vm.newSubItem = function(scope) {
-      vm.addItemModal(scope);
-    };
-
-    vm.toggle = function(scope) {
-      scope.toggle();
+      $modal.open({
+        templateUrl: 'components/items/modal/add-items.html',
+        controller: 'AddItemsController as vm',
+        resolve: {
+          node: function() { return scope; },
+        }
+      });
     };
 
     vm.remove = function(scope) {
@@ -50,6 +32,10 @@ define(function(require) {
           node: function() { return scope; }
         }
       });
+    };
+
+    vm.toggle = function(scope) {
+      scope.toggle();
     };
 
     vm.collapseAll = function() {
@@ -72,6 +58,25 @@ define(function(require) {
       console.log('saving');
     };
 
+    /**
+     * recursively count number of items
+     *
+     * @param array items
+     * @return int number of items
+     */
+    vm.itemCount = function(items) {
+      var count = 0;
+
+      if (!items.length) return count;
+
+      count += items.length;
+
+      _.each(items, function(item) {
+        item.items && (count += vm.itemCount(item.items));
+      });
+
+      return count;
+    };
     var getRootNodesScope = function() {
       return angular.element(document.getElementById('tree-root')).scope();
     };

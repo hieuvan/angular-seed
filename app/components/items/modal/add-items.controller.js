@@ -2,8 +2,8 @@
 
 define(function(require) {
 
-  return ['$stateParams', '$modalInstance', 'node', 'tree', 'ItemService', 'ngToast',
-    function($stateParams, $modalInstance, node, tree, ItemService, ngToast) {
+  return ['$stateParams', '$modalInstance', 'node', 'ItemService', 'ngToast',
+    function($stateParams, $modalInstance, node, ItemService, ngToast) {
     var vm = this;
 
     vm.itemSearchResults = false;
@@ -31,9 +31,9 @@ define(function(require) {
 
     var updateTree = function(items) {
       _.each(items.flatten(), function(item) {
-        (!item.hasOwnProperty('items')) && (item.items = []);
+        !item.hasOwnProperty('items') && (item.items = []);
 
-        _.isUndefined(node) ? tree.push(item) : node.$modelValue.items.push(item);
+        node.$modelValue.items.push(item);
       });
 
       vm.foundItems.substract(items);
@@ -46,8 +46,8 @@ define(function(require) {
 
       _.each(getSelectedItems(), function(item, index) {
         formdata[item.get('id')] = {
-          parent_item_id: getParentId(),
-          position: getPosition(index)
+          parent_item_id: node.$modelValue.id,
+          position: node.depth() + index
         };
       });
 
@@ -56,14 +56,6 @@ define(function(require) {
 
     var getSelectedItems = function() {
       return _.where(vm.foundItems.getAll(), {selected: true});
-    };
-
-    var getParentId = function() {
-      return _.isUndefined(node) ? 0 : node.$modelValue.id;
-    };
-
-    var getPosition = function(index) {
-      return _.isUndefined(node) ? 0 : node.depth() + index;
     };
 
   }];
