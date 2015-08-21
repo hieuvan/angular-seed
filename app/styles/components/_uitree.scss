@@ -1,17 +1,16 @@
-$ui-tree-parent-padding: 0px;
 $ui-tree-nested-padding: 40px;
 
-$nestingStep: 15px;
-$push: 20px;
+$nestingStep: 10px;
+$push: 15px;
 $nestingLabel:" ol";
 $currentNestingLabel: $nestingLabel;
 
-.angular-ui-tree {
 
 
   ol.angular-ui-tree-nodes {
     list-style-type: none;
-    padding-left: $ui-tree-parent-padding;
+
+    .angular-ui-tree-nodes { padding-left: 0; }
 
     ol {
       .row-label {
@@ -27,7 +26,7 @@ $currentNestingLabel: $nestingLabel;
           margin-left:$nestingStep * $i + $currentPush;
         }
 
-        #{$currentNestingLabel} .angular-ui-placeholder {
+        #{$currentNestingLabel} .angular-ui-tree-drag {
           margin-left:$nestingStep * $i;
         }
 
@@ -37,6 +36,8 @@ $currentNestingLabel: $nestingLabel;
 
     .row-label {
       display:inline-block;
+
+      span.glyphicon { font-size: 0.8em; }
     }
 
     .row {
@@ -75,7 +76,6 @@ $currentNestingLabel: $nestingLabel;
     }
 
   }
-}
 
 
 

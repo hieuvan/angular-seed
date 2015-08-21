@@ -99,9 +99,8 @@ define(function(require) {
     "  </div>\n" +
     "\n" +
     "  <div class=\"col-xs-5\">\n" +
-    "    <div class=\"row-label\">\n" +
+    "    <div data-nodrag class=\"row-label\" ng-click=\"vm.toggle(this)\">\n" +
     "      <span ng-if=\"item.items && item.items.length\"\n" +
-    "            data-nodrag ng-click=\"vm.toggle(this)\"\n" +
     "            ng-class=\"{'glyphicon-chevron-right': collapsed, 'glyphicon-chevron-down': !collapsed}\"\n" +
     "            class=\"glyphicon\">\n" +
     "      </span>\n" +

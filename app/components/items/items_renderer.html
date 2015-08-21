@@ -4,9 +4,8 @@
   </div>
 
   <div class="col-xs-5">
-    <div class="row-label">
+    <div data-nodrag class="row-label" ng-click="vm.toggle(this)">
       <span ng-if="item.items && item.items.length"
-            data-nodrag ng-click="vm.toggle(this)"
             ng-class="{'glyphicon-chevron-right': collapsed, 'glyphicon-chevron-down': !collapsed}"
             class="glyphicon">
       </span>
