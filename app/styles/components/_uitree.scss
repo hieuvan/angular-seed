@@ -4,6 +4,7 @@ $ui-tree-nested-padding: 40px;
 $nestingStep: 30px;
 $nestingLabel:" ol";
 $currentNestingLabel: $nestingLabel;
+$push: 20px;
 
 .angular-ui-tree {
 
@@ -12,18 +13,22 @@ $currentNestingLabel: $nestingLabel;
     list-style-type: none;
     padding-left: $ui-tree-parent-padding;
 
-    ol{
-      .row-label{
+    ol {
+      .row-label {
         padding-left:$nestingStep;
+        border-left:1px solid #ddd;
+        margin-left: $push;
       }
 
       @for $i from 1 through 6 {
 
-        #{$currentNestingLabel} .row-label{
-          margin-left:$nestingStep * $i;
+        $push: $push * $i;
+
+        #{$currentNestingLabel} .row-label {
+          margin-left:$nestingStep * $i + $push;
         }
 
-        #{$currentNestingLabel} .ui-sortable-placeholder{
+        #{$currentNestingLabel} .angular-ui-placeholder {
           margin-left:$nestingStep * $i;
         }
 
@@ -54,6 +59,11 @@ $currentNestingLabel: $nestingLabel;
     .angular-ui-tree-node {
       .angular-ui-tree-handle {
         span { cursor: pointer; }
+
+        &.group {
+          background:#fafafa;
+        }
+
       }
     }
 

@@ -1,4 +1,4 @@
-<div ui-tree-handle class="row tree-node tree-node-content">
+<div ui-tree-handle ng-class="{'group': item.items && item.items.length}" class="row tree-node tree-node-content">
   <div class="col-xs-1">
     <checkbox data-nodrag ng-model="checkboxModel"></checkbox>
   </div>
