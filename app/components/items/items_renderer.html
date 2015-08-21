@@ -1,16 +1,17 @@
-<div ui-tree-handle ng-class="{'group': item.items && item.items.length}" class="row tree-node tree-node-content">
+<div ui-tree-handle ng-class="{'group': item.items.length}" class="row tree-node tree-node-content">
   <div class="col-xs-1">
     <checkbox data-nodrag ng-model="checkboxModel"></checkbox>
   </div>
 
   <div class="col-xs-5">
     <div data-nodrag class="row-label" ng-click="vm.toggle(this)">
-      <span ng-if="item.items && item.items.length"
+      <span ng-if="item.items.length"
             ng-class="{'glyphicon-chevron-right': collapsed, 'glyphicon-chevron-down': !collapsed}"
             class="glyphicon">
       </span>
 
       <span class="text">{{item.uid}}</span>
+      <span class="badge" ng-if="item.items.length">{{vm.itemCount(item.items)}}</span>
     </div>
   </div>
 

@@ -51,8 +51,6 @@ define(function(require) {
     "\n" +
     "      <a href class=\"btn btn-default\" ng-click=\"vm.options()\">Set options</a>\n" +
     "\n" +
-    "      <a href class=\"btn btn-primary\" ng-click=\"vm.addItemModal()\">Add Item</a>\n" +
-    "\n" +
     "      <div class=\"pull-right\">\n" +
     "        <a href class=\"btn btn-default\" ng-click=\"vm.preview()\">Preview</a>\n" +
     "        <a href class=\"btn btn-primary\" ng-click=\"vm.save()\">Save</a>\n" +
@@ -93,19 +91,20 @@ define(function(require) {
 
 
   $templateCache.put('components/items/items_renderer.html',
-    "<div ui-tree-handle ng-class=\"{'group': item.items && item.items.length}\" class=\"row tree-node tree-node-content\">\n" +
+    "<div ui-tree-handle ng-class=\"{'group': item.items.length}\" class=\"row tree-node tree-node-content\">\n" +
     "  <div class=\"col-xs-1\">\n" +
     "    <checkbox data-nodrag ng-model=\"checkboxModel\"></checkbox>\n" +
     "  </div>\n" +
     "\n" +
     "  <div class=\"col-xs-5\">\n" +
     "    <div data-nodrag class=\"row-label\" ng-click=\"vm.toggle(this)\">\n" +
-    "      <span ng-if=\"item.items && item.items.length\"\n" +
+    "      <span ng-if=\"item.items.length\"\n" +
     "            ng-class=\"{'glyphicon-chevron-right': collapsed, 'glyphicon-chevron-down': !collapsed}\"\n" +
     "            class=\"glyphicon\">\n" +
     "      </span>\n" +
     "\n" +
     "      <span class=\"text\">{{item.uid}}</span>\n" +
+    "      <span class=\"badge\" ng-if=\"item.items.length\">{{vm.itemCount(item.items)}}</span>\n" +
     "    </div>\n" +
     "  </div>\n" +
     "\n" +

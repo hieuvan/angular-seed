@@ -13,15 +13,24 @@ define(function(require) {
 
     vm.item_renderer = 'components/items/items_renderer.html';
 
-    vm.addItemModal = function(scope) {
-      var modal = $modal.open({
-        templateUrl: 'components/items/modal/add-items.html',
-        controller: 'AddItemsController as vm',
-        resolve: {
-          node: function() { return scope; },
-          tree: function() { return vm.items; }
-        }
+    /**
+     * recursively count number of items
+     *
+     * @param array items
+     * @return int number of items
+     */
+    vm.itemCount = function(items) {
+      var count = 0;
+
+      if (!items.length) return count;
+
+      count += items.length;
+
+      _.each(items, function(item) {
+        item.items && (count += vm.itemCount(item.items));
       });
+
+      return count;
     };
 
     vm.newSubItem = function(scope) {
