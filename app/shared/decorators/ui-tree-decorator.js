@@ -23,12 +23,18 @@
         restrict: 'A',
         link: function(scope, element, attrs) {
 
+          scope.selected = false;
+
           scope.allChildNodes = function() {
             return allChildNodes(this);
           };
 
-          scope.toggleCheckbox = function() {
-            console.log('toggling checkbox');
+          scope.selectNode = function() {
+            scope.selected = true;
+
+            var element = scope.$element.find('button').isolateScope();
+
+            element.checked = true;
           };
 
           scope.allChildNodesCount = function() {
@@ -72,12 +78,16 @@
 
             var node = angular.element(e.target).scope().$nodeScope;
 
-            if (!node.hasChild()) return;
+            if (!node || !node.hasChild()) return;
 
             var childNodes = node.allChildNodes();
 
+            var node = childNodes[1];
+
+            node.selectNode();
+
             for (var i in childNodes) {
-              childNodes[i].toggleCheckbox();
+               childNodes[i].selectNode();
             }
 
           });
