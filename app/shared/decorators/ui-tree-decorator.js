@@ -21,10 +21,14 @@
     .directive('uiTreeNode', [function() {
       return {
         restrict: 'A',
-        link: function(scope, element) {
+        link: function(scope, element, attrs) {
 
           scope.allChildNodes = function() {
             return allChildNodes(this);
+          };
+
+          scope.toggleCheckbox = function() {
+            console.log('toggling checkbox');
           };
 
           scope.allChildNodesCount = function() {
@@ -57,12 +61,26 @@
   'use strict';
 
   angular.module('ui.tree.decorated')
-    .directive('uiTreeNodeSelector', [function() {
+    .directive('checkbox', [function() {
       return {
-        restrict: 'A',
-        controller: 'TreeNodeSelectorController',
-        link: function(scope, element) {
+        restrict: 'E',
+        require: ['ngModel', '^uiTreeNode'],
+        link: function(scope, element, attr, controllers) {
 
+          element.on('click', function(e) {
+            e.stopPropagation();
+
+            var node = angular.element(e.target).scope().$nodeScope;
+
+            if (!node.hasChild()) return;
+
+            var childNodes = node.allChildNodes();
+
+            for (var i in childNodes) {
+              childNodes[i].toggleCheckbox();
+            }
+
+          });
         }
       };
 
