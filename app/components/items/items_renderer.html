@@ -1,6 +1,6 @@
 <div ui-tree-handle ng-class="{'group': item.items.length}" class="row tree-node tree-node-content">
   <div class="col-xs-1">
-    <checkbox data-nodrag ng-model="checkboxModel"></checkbox>
+    <checkbox ng-model="vm.checkboxes[item.id]" ng-click="vm.checkbox(this)" data-nodrag></checkbox>
   </div>
 
   <div class="col-xs-5">

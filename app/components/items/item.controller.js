@@ -13,6 +13,8 @@ define(function(require) {
 
     vm.item_renderer = 'components/items/items_renderer.html';
 
+    vm.checkboxes = {};
+
     vm.newSubItem = function(scope) {
       $modal.open({
         templateUrl: 'components/items/modal/add-items.html',
@@ -21,6 +23,17 @@ define(function(require) {
           node: function() { return scope; },
         }
       });
+    };
+
+    vm.checkbox = function(scope) {
+      if (!scope.hasChild()) return;
+
+      var id = scope.$modelValue;
+
+      console.log(scope.allChildNodes());
+
+      //return _.where(vm.foundItems.getAll(), {selected: true});
+      //console.log(scope.childNodes());
     };
 
     vm.remove = function(scope) {
@@ -77,6 +90,7 @@ define(function(require) {
 
       return count;
     };
+
     var getRootNodesScope = function() {
       return angular.element(document.getElementById('tree-root')).scope();
     };

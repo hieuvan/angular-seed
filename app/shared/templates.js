@@ -93,7 +93,7 @@ define(function(require) {
   $templateCache.put('components/items/items_renderer.html',
     "<div ui-tree-handle ng-class=\"{'group': item.items.length}\" class=\"row tree-node tree-node-content\">\n" +
     "  <div class=\"col-xs-1\">\n" +
-    "    <checkbox data-nodrag ng-model=\"checkboxModel\"></checkbox>\n" +
+    "    <checkbox ng-model=\"vm.checkboxes[item.id]\" ng-click=\"vm.checkbox(this)\" data-nodrag></checkbox>\n" +
     "  </div>\n" +
     "\n" +
     "  <div class=\"col-xs-5\">\n" +

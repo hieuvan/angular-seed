@@ -46,6 +46,9 @@ require.config({
     ],
     'angular-bootstrap-checkbox': [
       'angular'
+    ],
+    'angular-ui-tree-decorator': [
+      'angular', 'angular-ui-tree'
     ]
   },
   map: {
@@ -74,7 +77,8 @@ require.config({
     'angular-sanitize': '../bower_components/angular-sanitize/angular-sanitize',
     'angular-toast': '../bower_components/ngtoast/dist/ngToast',
     ngtoast: '../bower_components/ngtoast/dist/ngToast',
-    'angular-bootstrap-checkbox': '../bower_components/angular-bootstrap-checkbox/angular-bootstrap-checkbox'
+    'angular-bootstrap-checkbox': '../bower_components/angular-bootstrap-checkbox/angular-bootstrap-checkbox',
+    'angular-ui-tree-decorator': 'shared/decorators/ui-tree-decorator'
   },
   packages: [
 
