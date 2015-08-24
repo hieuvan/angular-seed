@@ -48,7 +48,7 @@ require.config({
       'angular'
     ],
     'angular-ui-tree-decorator': [
-      'angular', 'angular-ui-tree'
+      'angular', 'angular-ui-tree', 'angular-bootstrap-checkbox'
     ]
   },
   map: {

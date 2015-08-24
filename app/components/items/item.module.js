@@ -2,7 +2,6 @@
 
 define(function(require) {
   require('angular');
-  require('angular-ui-tree');
   require('angular-ui-tree-decorator');
 
   var ItemController = require('components/items/item.controller'),

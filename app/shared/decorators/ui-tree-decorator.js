@@ -1,7 +1,24 @@
 (function() {
   'use strict';
 
-  angular.module('ui.tree.decorated', ['ui.tree'])
+  angular.module('ui.tree.decorated', ['ui.checkbox', 'ui.tree']);
+})();
+
+(function() {
+  'use strict';
+
+  angular.module('ui.tree.decorated')
+    .controller('TreeNodeSelectorController', [function() {
+      console.log('controlling');
+    }]);
+
+})();
+
+(function() {
+  'use strict';
+
+  angular.module('ui.tree.decorated')
+
     .directive('uiTreeNode', [function() {
       return {
         restrict: 'A',
@@ -29,6 +46,22 @@
         }
       };
     }]);
+
 })();
 
+(function() {
+  'use strict';
+
+  angular.module('ui.tree.decorated')
+    .directive('uiTreeNodeSelector', [function() {
+      return {
+        restrict: 'A',
+        controller: 'TreeNodeSelectorController',
+        link: function(scope, element) {
+
+        }
+      };
+
+    }]);
+})();
 
