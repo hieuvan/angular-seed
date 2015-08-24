@@ -17,7 +17,6 @@ define(function(require) {
       'ngToast',
       'ui.router',
       'ui.bootstrap',
-      'ui.checkbox',
       'app.header',
       'app.items',
       'httpi'

@@ -104,7 +104,7 @@ define(function(require) {
     "      </span>\n" +
     "\n" +
     "      <span class=\"text\">{{item.uid}}</span>\n" +
-    "      <span class=\"badge\" ng-if=\"item.items.length\">{{vm.itemCount(item.items)}}</span>\n" +
+    "      <span class=\"badge\" ng-if=\"item.items.length\">{{vm.itemCount(this)}}</span>\n" +
     "    </div>\n" +
     "  </div>\n" +
     "\n" +

@@ -30,10 +30,9 @@ define(function(require) {
 
       var id = scope.$modelValue;
 
-      console.log(scope.allChildNodes());
+      console.log(scope.allChildNodesCount());
 
       //return _.where(vm.foundItems.getAll(), {selected: true});
-      //console.log(scope.childNodes());
     };
 
     vm.remove = function(scope) {
@@ -71,24 +70,8 @@ define(function(require) {
       console.log('saving');
     };
 
-    /**
-     * recursively count number of items
-     *
-     * @param array items
-     * @return int number of items
-     */
-    vm.itemCount = function(items) {
-      var count = 0;
-
-      if (!items.length) return count;
-
-      count += items.length;
-
-      _.each(items, function(item) {
-        item.items && (count += vm.itemCount(item.items));
-      });
-
-      return count;
+    vm.itemCount = function(scope) {
+      return scope.allChildNodesCount();
     };
 
     var getRootNodesScope = function() {

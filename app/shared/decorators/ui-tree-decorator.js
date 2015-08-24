@@ -9,7 +9,6 @@
 
   angular.module('ui.tree.decorated')
     .controller('TreeNodeSelectorController', [function() {
-      console.log('controlling');
     }]);
 
 })();
@@ -23,14 +22,19 @@
       return {
         restrict: 'A',
         link: function(scope, element) {
+
           scope.allChildNodes = function() {
             return allChildNodes(this);
+          };
+
+          scope.allChildNodesCount = function() {
+            return allChildNodes(this).length;
           };
 
           var allChildNodes = function($scope) {
             var nodes = [];
 
-            if (!scope.hasChild()) return nodes;
+            if (!$scope.hasChild()) return nodes;
              var children = $scope.childNodes();
 
             for (var i in children) {
