@@ -29,12 +29,12 @@
             return allChildNodes(this);
           };
 
-          scope.selectNode = function() {
-            scope.selected = true;
+          scope.toggleNodeSelection = function(value) {
+            scope.selected = value;
 
             var element = scope.$element.find('button').isolateScope();
 
-            element.checked = true;
+            element.checked = value;
           };
 
           scope.allChildNodesCount = function() {
@@ -70,27 +70,48 @@
     .directive('checkbox', [function() {
       return {
         restrict: 'E',
-        require: ['ngModel', '^uiTreeNode'],
-        link: function(scope, element, attr, controllers) {
+        priority: 1,
+        link: function(scope, element, attrs, modelCtrl) {
+          var isolateScope = element.isolateScope();
 
-          element.on('click', function(e) {
-            e.stopPropagation();
+          isolateScope.$watch(function() {
+            return isolateScope.checked;
+          },function(newValue, oldValue) {
+            var node = angular.element(element).scope().$nodeScope;
 
-            var node = angular.element(e.target).scope().$nodeScope;
+            node.selected = newValue;
 
-            if (!node || !node.hasChild()) return;
+            if (node && node.hasChild()) {
+              var childNodes = node.allChildNodes();
 
-            var childNodes = node.allChildNodes();
-
-            var node = childNodes[1];
-
-            node.selectNode();
-
-            for (var i in childNodes) {
-               childNodes[i].selectNode();
+              for (var i in childNodes) {
+                childNodes[i].toggleNodeSelection(newValue);
+              }
             }
+          }, true);
 
-          });
+          //var isolateScope =
+
+          // element.on('click', function(e) {
+          //   e.stopPropagation();
+
+          //   var node = angular.element(e.target).scope().$nodeScope;
+
+          //   node.selected = true;
+
+          //   if (!node || !node.hasChild()) return;
+
+          //   var childNodes = node.allChildNodes();
+
+          //   var node = childNodes[1];
+
+          //   node.selectNode();
+
+          //   for (var i in childNodes) {
+          //      childNodes[i].selectNode();
+          //   }
+
+          // });
         }
       };
 

@@ -10,8 +10,11 @@
             class="glyphicon">
       </span>
 
+
       <span class="text">{{item.uid}}</span>
       <span class="badge" ng-if="item.items.length">{{vm.itemCount(this)}}</span>
+
+      <span class="badge" ng-if="this.selected">selected</span>
     </div>
   </div>
 
