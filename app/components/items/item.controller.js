@@ -25,16 +25,6 @@ define(function(require) {
       });
     };
 
-    vm.checkbox = function(scope) {
-      if (!scope.hasChild()) return;
-
-      var id = scope.$modelValue;
-
-      console.log(scope.allChildNodesCount());
-
-      //return _.where(vm.foundItems.getAll(), {selected: true});
-    };
-
     vm.remove = function(scope) {
 
       $modal.open({
