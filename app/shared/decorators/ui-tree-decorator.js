@@ -17,6 +17,46 @@
   'use strict';
 
   angular.module('ui.tree.decorated')
+    .directive('uiTree', [function() {
+      return {
+        restrict: 'A',
+        link: function($scope) {
+
+          $scope.allNodes = function() {
+            var scope = $scope.$nodesScope,
+                allNodes = [],
+                nodes = scope.childNodes();
+
+            for (var i in nodes) {
+              allNodes.push(nodes[i]);
+
+              allNodes = allNodes.concat(nodes[i].allChildNodes());
+            }
+
+            return allNodes;
+          };
+
+          $scope.getSelectedNodes = function() {
+            var selectedNodes = [],
+                allNodes = $scope.allNodes();
+
+            for (var i in allNodes) {
+              if (allNodes[i].selected) selectedNodes.push(allNodes[i]);
+            }
+
+            return selectedNodes;
+          };
+
+        }
+      };
+
+    }]);
+})();
+
+(function() {
+  'use strict';
+
+  angular.module('ui.tree.decorated')
 
     .directive('uiTreeNode', [function() {
       return {
