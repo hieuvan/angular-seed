@@ -1,9 +1,8 @@
 'use strict';
 
 define(function(require) {
-  return ['form', '$modal', '$stateParams',
-    function(form, $modal, $stateParams) {
-
+  return ['form', '$modal', '$stateParams', 'icons',
+    function(form, $modal, $stateParams, icons) {
     var vm = this;
 
     vm.debug = false;
@@ -62,6 +61,10 @@ define(function(require) {
 
     vm.itemCount = function(scope) {
       return scope.allChildNodesCount();
+    };
+
+    vm.getIcon = function(type) {
+      return icons[type];
     };
 
     var getRootNodesScope = function() {

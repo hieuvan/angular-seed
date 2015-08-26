@@ -15,5 +15,14 @@ define(function(require) {
 
   .controller('ItemController', ItemController)
   .controller('AddItemsController', AddItemsController)
-  .controller('RemoveItemsController', RemoveItemsController);
+  .controller('RemoveItemsController', RemoveItemsController)
+
+  .constant('icons', {
+     'Complex Multiple Choice': 'map-marker',
+     'Multiple Choice': 'list',
+     'folder': 'book',
+     'items': 'pencil',
+     'cluster': 'folder-open'
+    }
+  );
 });
