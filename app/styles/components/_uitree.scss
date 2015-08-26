@@ -15,10 +15,6 @@ ol.angular-ui-tree-nodes {
       padding-left:$nestingStep;
       border-left:1px solid #ddd;
       margin-left: $push;
-
-      .second-icon {
-        padding-left: 10px;
-      }
     }
 
     @for $i from 1 through 6 {
@@ -35,7 +31,14 @@ ol.angular-ui-tree-nodes {
   .row-label {
     display:inline-block;
 
-    span.glyphicon { font-size: 0.8em; }
+    span.glyphicon {
+      font-size: 0.8em;
+
+      &.second-icon {
+        padding-left: 10px;
+        font-size: 1em;
+      }
+    }
   }
 
   .row {
