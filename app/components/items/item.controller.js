@@ -1,8 +1,8 @@
 'use strict';
 
 define(function(require) {
-  return ['form', '$modal', '$stateParams', 'icons',
-    function(form, $modal, $stateParams, icons) {
+  return ['form', '$modal', '$stateParams', 'attributes',
+    function(form, $modal, $stateParams, attributes) {
     var vm = this;
 
     vm.debug = false;
@@ -11,8 +11,6 @@ define(function(require) {
     vm.items = form.get('items');
 
     vm.item_renderer = 'components/items/items_renderer.html';
-
-    vm.checkboxes = {};
 
     vm.newSubItem = function(scope) {
       $modal.open({
@@ -63,8 +61,8 @@ define(function(require) {
       return scope.allChildNodesCount();
     };
 
-    vm.getIcon = function(type) {
-      return icons[type];
+    vm.getIcon = function(item) {
+      return attributes[item.type].icon;
     };
 
     var getRootNodesScope = function() {
