@@ -15,6 +15,10 @@ ol.angular-ui-tree-nodes {
       padding-left:$nestingStep;
       border-left:1px solid #ddd;
       margin-left: $push;
+
+      .second-icon {
+        padding-left: 10px;
+      }
     }
 
     @for $i from 1 through 6 {
