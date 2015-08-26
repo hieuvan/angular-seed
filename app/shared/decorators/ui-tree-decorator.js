@@ -47,6 +47,16 @@
             return selectedNodes;
           };
 
+          $scope.toggleNodesSelection = function(value) {
+            value = value || true;
+
+            var allNodes = $scope.allNodes();
+
+            for (var i in allNodes) {
+              allNodes[i].toggleNodeSelection(value);
+            }
+          };
+
         }
       };
 

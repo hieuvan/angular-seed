@@ -49,12 +49,7 @@ define(function(require) {
     };
 
     vm.options = function() {
-      var selectedNodes = getRootNodesScope().getSelectedNodes();
-
-      for (var i in selectedNodes) {
-        selectedNodes[i].remove();
-      }
-
+      console.log('setting options');
     };
 
     vm.preview = function() {
