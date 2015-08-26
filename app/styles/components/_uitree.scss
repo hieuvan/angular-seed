@@ -45,12 +45,16 @@ ol.angular-ui-tree-nodes {
 
   li {
     line-height:25px;
-    border:1px solid transparent;
     border-top:1px solid #ddd;
     color:#555;
   }
 
   .angular-ui-tree-node {
+    &.angular-ui-tree-node-selected .angular-ui-tree-handle {
+      background: rgb(51, 122, 183);
+      background: rgba(51, 122, 183, 0.2);
+    }
+
     .angular-ui-tree-handle {
       span { cursor: pointer; }
 

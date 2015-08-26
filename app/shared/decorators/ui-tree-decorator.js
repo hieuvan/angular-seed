@@ -72,7 +72,6 @@
       return {
         restrict: 'A',
         link: function(scope, element, attrs) {
-
           scope.selected = false;
 
           scope.allChildNodes = function() {
@@ -120,12 +119,18 @@
     .controller('CheckboxController', ['$scope', '$element', function($scope, $element) {
 
       $scope.toogleCheckbox = function(value) {
-        var node = angular.element($element).scope().$nodeScope;
+        var selectedNodeClass = 'angular-ui-tree-node-selected',
+            node = angular.element($element).scope().$nodeScope,
+            element = node.$element;
 
         node.selected = value;
 
+        value ? element.addClass(selectedNodeClass) : element.removeClass(selectedNodeClass);
+
         if (node && node.hasChild()) {
+
           var childNodes = node.allChildNodes();
+
 
           for (var i in childNodes) {
             childNodes[i].toggleNodeSelection(value);
