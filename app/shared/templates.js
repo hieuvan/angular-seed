@@ -104,7 +104,7 @@ define(function(require) {
     "      </span>\n" +
     "\n" +
     "\n" +
-    "      <span class=\"glyphicon glyphicon-{{vm.getIcon(item.type)}} second-icon\"></span>\n" +
+    "      <span class=\"glyphicon glyphicon-{{vm.getIcon(item)}} second-icon\"></span>\n" +
     "\n" +
     "      <span class=\"text\">{{item.uid}}</span>\n" +
     "      <span class=\"badge\" ng-if=\"item.items.length\">{{vm.itemCount(this)}}</span>\n" +

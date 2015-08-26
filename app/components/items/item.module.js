@@ -7,7 +7,8 @@ define(function(require) {
   var ItemController = require('components/items/item.controller'),
       ItemService = require('components/items/item.service'),
       AddItemsController = require('components/items/modal/add-items.controller'),
-      RemoveItemsController = require('components/items/modal/remove-items.controller');
+      RemoveItemsController = require('components/items/modal/remove-items.controller'),
+      attributes = require('components/items/attributes.constant');
 
   return angular.module('app.items', ['ui.tree.decorated'])
 
@@ -17,12 +18,5 @@ define(function(require) {
   .controller('AddItemsController', AddItemsController)
   .controller('RemoveItemsController', RemoveItemsController)
 
-  .constant('icons', {
-     'Complex Multiple Choice': 'map-marker',
-     'Multiple Choice': 'list',
-     'folder': 'book',
-     'items': 'pencil',
-     'cluster': 'folder-open'
-    }
-  );
+  .constant('attributes', attributes);
 });
