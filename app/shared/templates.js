@@ -130,6 +130,7 @@ define(function(require) {
     "</div>\n" +
     "\n" +
     "<ol ui-tree-nodes ng-model=\"item.items\" ng-class=\"{hidden: collapsed}\">\n" +
+    "  <!-- <li class=\"angular-ui-tree-placeholder\"></li> -->\n" +
     "  <li ng-repeat=\"item in item.items\" ui-tree-node ng-include=\"vm.item_renderer\"></li>\n" +
     "</ol>\n"
   );

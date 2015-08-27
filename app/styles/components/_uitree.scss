@@ -5,6 +5,8 @@ $push: 15px;
 $nestingLabel:" ol";
 $currentNestingLabel: $nestingLabel;
 
+$placeHolderMargin:100px;
+
 ol.angular-ui-tree-nodes {
   list-style-type: none;
 
@@ -17,11 +19,19 @@ ol.angular-ui-tree-nodes {
       margin-left: $push;
     }
 
+    .angular-ui-tree-placeholder {
+      margin-left: $placeHolderMargin;
+    }
+
     @for $i from 1 through 6 {
       $currentPush: $push * ($i + 1);
 
       #{$currentNestingLabel} .row-label {
         margin-left:$nestingStep * $i + $currentPush;
+      }
+
+      #{$currentNestingLabel} .angular-ui-tree-placeholder {
+        margin-left: 40px * $i + $placeHolderMargin;
       }
 
       $currentNestingLabel: $currentNestingLabel + $nestingLabel;
