@@ -4,19 +4,19 @@ define(function() {
 
   return {
    'Complex Multiple Choice': {
-     icon: 'map-marker'
+     icon: 'book'
     },
    'Multiple Choice': {
      icon: 'list'
    },
    'folder': {
-     icon: 'book'
+     icon: 'folder-open'
    },
    'items': {
      icon: 'pencil'
    },
    'cluster': {
-     icon: 'folder-open'
+     icon: 'folder-close'
    }
   };
 
