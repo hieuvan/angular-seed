@@ -12,6 +12,16 @@ define(function(require) {
 
     vm.item_renderer = 'components/items/items_renderer.html';
 
+    vm.treeOptions = {
+      accept: function(sourceNodeScope, destNodeScope, destIndex) {
+        var containers = ['folder', 'cluster'];
+
+        var destType = destNodeScope.$element.attr('data-type');
+
+        return _.contains(containers, destType);
+      }
+    };
+
     vm.newSubItem = function(scope) {
       $modal.open({
         templateUrl: 'components/items/modal/add-items.html',

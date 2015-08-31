@@ -36,6 +36,6 @@
   </div>
 </div>
 
-<ol ui-tree-nodes ng-model="item.items" ng-class="{hidden: collapsed}">
+<ol ui-tree-nodes ng-model="item.items" data-type="{{item.type}}" ng-class="{hidden: collapsed}">
   <li ng-repeat="item in item.items" ui-tree-node ng-include="vm.item_renderer"></li>
 </ol>

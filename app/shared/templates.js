@@ -73,7 +73,7 @@ define(function(require) {
     "    </div>\n" +
     "\n" +
     "    <div class=\"form-group\">\n" +
-    "      <div class=\"angular-ui-tree\" ui-tree id=\"tree-root\" ng-model=\"vm.treeRoot\">\n" +
+    "      <div class=\"angular-ui-tree\" ui-tree=\"vm.treeOptions\" id=\"tree-root\" ng-model=\"vm.treeRoot\">\n" +
     "        <ol ui-tree-nodes ng-model=\"vm.items\" class=\"angular-ui-tree-nodes\">\n" +
     "          <li ng-repeat=\"item in vm.items\" class=\"angular-ui-tree-node\" ui-tree-node ng-include=\"vm.item_renderer\"></li>\n" +
     "        </ol>\n" +
@@ -129,7 +129,7 @@ define(function(require) {
     "  </div>\n" +
     "</div>\n" +
     "\n" +
-    "<ol ui-tree-nodes ng-model=\"item.items\" ng-class=\"{hidden: collapsed}\">\n" +
+    "<ol ui-tree-nodes ng-model=\"item.items\" data-type=\"{{item.type}}\" ng-class=\"{hidden: collapsed}\">\n" +
     "  <li ng-repeat=\"item in item.items\" ui-tree-node ng-include=\"vm.item_renderer\"></li>\n" +
     "</ol>\n"
   );
