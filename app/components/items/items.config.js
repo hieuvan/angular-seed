@@ -2,6 +2,8 @@
 
 define(function() {
 
+  var containers = ['folder', 'cluster'];
+
   var attributes = {
     'Complex Multiple Choice': {
      icon: 'book'
@@ -21,7 +23,8 @@ define(function() {
   };
 
   return {
-    attributes: attributes
+    attributes: attributes,
+    containers: containers
   };
 
 });

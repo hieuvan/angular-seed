@@ -36,7 +36,7 @@
 
     <div class="form-group">
       <div class="angular-ui-tree" ui-tree="vm.treeOptions" id="tree-root" ng-model="vm.treeRoot">
-        <ol ui-tree-nodes ng-model="vm.items" class="angular-ui-tree-nodes">
+        <ol ui-tree-nodes ng-model="vm.items" data-node-type="cluster" class="angular-ui-tree-nodes">
           <li ng-repeat="item in vm.items" class="angular-ui-tree-node" ui-tree-node ng-include="vm.item_renderer"></li>
         </ol>
       </div>

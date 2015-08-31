@@ -1,41 +1,49 @@
-<div ui-tree-handle ng-class="{'group': item.items.length}" class="row tree-node tree-node-content">
-  <div class="col-xs-1">
-    <checkbox ng-model="vm.checkboxes[item.id]" data-nodrag></checkbox>
-  </div>
+<div
+  ui-tree-handle
+  ng-class="{'group': vm.isContainer(item.type)}"
+  class="row tree-node tree-node-content">
 
-  <div class="col-xs-5">
-    <div data-nodrag class="row-label" ng-click="vm.toggle(this)">
-      <span ng-if="item.items.length"
-            ng-class="{'glyphicon-chevron-right': collapsed, 'glyphicon-chevron-down': !collapsed}"
-            class="glyphicon">
-      </span>
-
-
-      <span class="glyphicon glyphicon-{{vm.getIcon(item)}} second-icon"></span>
-
-      <span class="text">{{item.uid}}</span>
-      <span class="badge" ng-if="item.items.length">{{vm.itemCount(this)}}</span>
+    <div class="col-xs-1">
+      <checkbox ng-model="vm.checkboxes[item.id]" data-nodrag></checkbox>
     </div>
-  </div>
 
-  <div class="col-xs-4">
-  </div>
+    <div class="col-xs-5">
+      <div data-nodrag class="row-label" ng-click="vm.toggle(this)">
+        <span ng-if="item.items.length"
+              ng-class="{'glyphicon-chevron-right': collapsed, 'glyphicon-chevron-down': !collapsed}"
+              class="glyphicon">
+        </span>
 
-  <div class="col-xs-1">
-    <span>1.0.0 ZC</span>
-  </div>
 
-  <div class="col-xs-1">
-    <a class="pull-right btn btn-danger btn-xs" data-nodrag ng-click="vm.remove(this)">
-      <span class="glyphicon glyphicon-remove"></span>
-    </a>
+        <span class="glyphicon glyphicon-{{vm.getIcon(item)}} second-icon"></span>
 
-    <a class="pull-right btn btn-primary btn-xs" data-nodrag ng-click="vm.newSubItem(this)" style="margin-right: 8px;">
-      <span class="glyphicon glyphicon-plus"></span>
-    </a>
-  </div>
+        <span class="text">{{item.uid}}</span>
+        <span class="badge" ng-if="item.items.length">{{vm.itemCount(this)}}</span>
+      </div>
+    </div>
+
+    <div class="col-xs-4">
+    </div>
+
+    <div class="col-xs-1">
+      <span>1.0.0 ZC</span>
+    </div>
+
+    <div class="col-xs-1">
+      <a class="pull-right btn btn-danger btn-xs" data-nodrag ng-click="vm.remove(this)">
+        <span class="glyphicon glyphicon-remove"></span>
+      </a>
+
+      <a class="pull-right btn btn-primary btn-xs" data-nodrag ng-click="vm.newSubItem(this)" style="margin-right: 8px;">
+        <span class="glyphicon glyphicon-plus"></span>
+      </a>
+    </div>
 </div>
 
-<ol ui-tree-nodes ng-model="item.items" data-type="{{item.type}}" ng-class="{hidden: collapsed}">
-  <li ng-repeat="item in item.items" ui-tree-node ng-include="vm.item_renderer"></li>
+<ol
+  ui-tree-nodes
+  ng-model="item.items"
+  data-node-type="{{item.type}}"
+  ng-class="{hidden: collapsed}">
+    <li ng-repeat="item in item.items" ui-tree-node ng-include="vm.item_renderer"></li>
 </ol>

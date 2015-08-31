@@ -14,11 +14,10 @@ define(function(require) {
 
     vm.treeOptions = {
       accept: function(sourceNodeScope, destNodeScope, destIndex) {
-        var containers = ['folder', 'cluster'];
 
-        var destType = destNodeScope.$element.attr('data-type');
+        var destType = destNodeScope.$element.attr('data-node-type');
 
-        return _.contains(containers, destType);
+        return vm.isContainer(destType);
       }
     };
 
@@ -71,8 +70,18 @@ define(function(require) {
       return scope.allChildNodesCount();
     };
 
+    /**
+     * Get glyphicon class
+     *
+     * @param item
+     * @return string icon
+     */
     vm.getIcon = function(item) {
       return itemConfig.attributes[item.type].icon;
+    };
+
+    vm.isContainer = function(nodeType) {
+      return _.contains(itemConfig.containers, nodeType);
     };
 
     var getRootNodesScope = function() {

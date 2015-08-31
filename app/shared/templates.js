@@ -74,7 +74,7 @@ define(function(require) {
     "\n" +
     "    <div class=\"form-group\">\n" +
     "      <div class=\"angular-ui-tree\" ui-tree=\"vm.treeOptions\" id=\"tree-root\" ng-model=\"vm.treeRoot\">\n" +
-    "        <ol ui-tree-nodes ng-model=\"vm.items\" class=\"angular-ui-tree-nodes\">\n" +
+    "        <ol ui-tree-nodes ng-model=\"vm.items\" data-node-type=\"cluster\" class=\"angular-ui-tree-nodes\">\n" +
     "          <li ng-repeat=\"item in vm.items\" class=\"angular-ui-tree-node\" ui-tree-node ng-include=\"vm.item_renderer\"></li>\n" +
     "        </ol>\n" +
     "      </div>\n" +
@@ -91,46 +91,54 @@ define(function(require) {
 
 
   $templateCache.put('components/items/items_renderer.html',
-    "<div ui-tree-handle ng-class=\"{'group': item.items.length}\" class=\"row tree-node tree-node-content\">\n" +
-    "  <div class=\"col-xs-1\">\n" +
-    "    <checkbox ng-model=\"vm.checkboxes[item.id]\" data-nodrag></checkbox>\n" +
-    "  </div>\n" +
+    "<div\n" +
+    "  ui-tree-handle\n" +
+    "  ng-class=\"{'group': vm.isContainer(item.type)}\"\n" +
+    "  class=\"row tree-node tree-node-content\">\n" +
     "\n" +
-    "  <div class=\"col-xs-5\">\n" +
-    "    <div data-nodrag class=\"row-label\" ng-click=\"vm.toggle(this)\">\n" +
-    "      <span ng-if=\"item.items.length\"\n" +
-    "            ng-class=\"{'glyphicon-chevron-right': collapsed, 'glyphicon-chevron-down': !collapsed}\"\n" +
-    "            class=\"glyphicon\">\n" +
-    "      </span>\n" +
-    "\n" +
-    "\n" +
-    "      <span class=\"glyphicon glyphicon-{{vm.getIcon(item)}} second-icon\"></span>\n" +
-    "\n" +
-    "      <span class=\"text\">{{item.uid}}</span>\n" +
-    "      <span class=\"badge\" ng-if=\"item.items.length\">{{vm.itemCount(this)}}</span>\n" +
+    "    <div class=\"col-xs-1\">\n" +
+    "      <checkbox ng-model=\"vm.checkboxes[item.id]\" data-nodrag></checkbox>\n" +
     "    </div>\n" +
-    "  </div>\n" +
     "\n" +
-    "  <div class=\"col-xs-4\">\n" +
-    "  </div>\n" +
+    "    <div class=\"col-xs-5\">\n" +
+    "      <div data-nodrag class=\"row-label\" ng-click=\"vm.toggle(this)\">\n" +
+    "        <span ng-if=\"item.items.length\"\n" +
+    "              ng-class=\"{'glyphicon-chevron-right': collapsed, 'glyphicon-chevron-down': !collapsed}\"\n" +
+    "              class=\"glyphicon\">\n" +
+    "        </span>\n" +
     "\n" +
-    "  <div class=\"col-xs-1\">\n" +
-    "    <span>1.0.0 ZC</span>\n" +
-    "  </div>\n" +
     "\n" +
-    "  <div class=\"col-xs-1\">\n" +
-    "    <a class=\"pull-right btn btn-danger btn-xs\" data-nodrag ng-click=\"vm.remove(this)\">\n" +
-    "      <span class=\"glyphicon glyphicon-remove\"></span>\n" +
-    "    </a>\n" +
+    "        <span class=\"glyphicon glyphicon-{{vm.getIcon(item)}} second-icon\"></span>\n" +
     "\n" +
-    "    <a class=\"pull-right btn btn-primary btn-xs\" data-nodrag ng-click=\"vm.newSubItem(this)\" style=\"margin-right: 8px;\">\n" +
-    "      <span class=\"glyphicon glyphicon-plus\"></span>\n" +
-    "    </a>\n" +
-    "  </div>\n" +
+    "        <span class=\"text\">{{item.uid}}</span>\n" +
+    "        <span class=\"badge\" ng-if=\"item.items.length\">{{vm.itemCount(this)}}</span>\n" +
+    "      </div>\n" +
+    "    </div>\n" +
+    "\n" +
+    "    <div class=\"col-xs-4\">\n" +
+    "    </div>\n" +
+    "\n" +
+    "    <div class=\"col-xs-1\">\n" +
+    "      <span>1.0.0 ZC</span>\n" +
+    "    </div>\n" +
+    "\n" +
+    "    <div class=\"col-xs-1\">\n" +
+    "      <a class=\"pull-right btn btn-danger btn-xs\" data-nodrag ng-click=\"vm.remove(this)\">\n" +
+    "        <span class=\"glyphicon glyphicon-remove\"></span>\n" +
+    "      </a>\n" +
+    "\n" +
+    "      <a class=\"pull-right btn btn-primary btn-xs\" data-nodrag ng-click=\"vm.newSubItem(this)\" style=\"margin-right: 8px;\">\n" +
+    "        <span class=\"glyphicon glyphicon-plus\"></span>\n" +
+    "      </a>\n" +
+    "    </div>\n" +
     "</div>\n" +
     "\n" +
-    "<ol ui-tree-nodes ng-model=\"item.items\" data-type=\"{{item.type}}\" ng-class=\"{hidden: collapsed}\">\n" +
-    "  <li ng-repeat=\"item in item.items\" ui-tree-node ng-include=\"vm.item_renderer\"></li>\n" +
+    "<ol\n" +
+    "  ui-tree-nodes\n" +
+    "  ng-model=\"item.items\"\n" +
+    "  data-node-type=\"{{item.type}}\"\n" +
+    "  ng-class=\"{hidden: collapsed}\">\n" +
+    "    <li ng-repeat=\"item in item.items\" ui-tree-node ng-include=\"vm.item_renderer\"></li>\n" +
     "</ol>\n"
   );
 
