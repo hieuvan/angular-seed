@@ -1,5 +1,3 @@
-$ui-tree-nested-padding: 40px;
-
 $nestingStep: 10px;
 $push: 15px;
 $nestingLabel:" ol";
@@ -20,18 +18,19 @@ ol.angular-ui-tree-nodes {
     }
 
     .angular-ui-tree-placeholder {
-      margin-left: $placeHolderMargin;
+      margin-left: $placeHolderMargin + $push;
     }
 
     @for $i from 1 through 6 {
       $currentPush: $push * ($i + 1);
+      $margin: $nestingStep * $i + $currentPush;
 
       #{$currentNestingLabel} .row-label {
-        margin-left:$nestingStep * $i + $currentPush;
+        margin-left: $margin;
       }
 
       #{$currentNestingLabel} .angular-ui-tree-placeholder {
-        margin-left: 40px * $i + $placeHolderMargin;
+        margin-left: $margin + $placeHolderMargin;
       }
 
       $currentNestingLabel: $currentNestingLabel + $nestingLabel;
