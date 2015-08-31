@@ -1,8 +1,8 @@
 'use strict';
 
 define(function(require) {
-  return ['form', '$modal', '$stateParams', 'attributes',
-    function(form, $modal, $stateParams, attributes) {
+  return ['form', '$modal', '$stateParams', 'items.config',
+    function(form, $modal, $stateParams, itemConfig) {
     var vm = this;
 
     vm.debug = false;
@@ -72,7 +72,7 @@ define(function(require) {
     };
 
     vm.getIcon = function(item) {
-      return attributes[item.type].icon;
+      return itemConfig.attributes[item.type].icon;
     };
 
     var getRootNodesScope = function() {

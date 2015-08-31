@@ -8,7 +8,7 @@ define(function(require) {
       ItemService = require('components/items/item.service'),
       AddItemsController = require('components/items/modal/add-items.controller'),
       RemoveItemsController = require('components/items/modal/remove-items.controller'),
-      attributes = require('components/items/attributes.constant');
+      attributes = require('components/items/items.config');
 
   return angular.module('app.items', ['ui.tree.decorated'])
 
@@ -18,5 +18,5 @@ define(function(require) {
   .controller('AddItemsController', AddItemsController)
   .controller('RemoveItemsController', RemoveItemsController)
 
-  .constant('attributes', attributes);
+  .constant('items.config', attributes);
 });

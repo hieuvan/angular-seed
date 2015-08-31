@@ -2,8 +2,8 @@
 
 define(function() {
 
-  return {
-   'Complex Multiple Choice': {
+  var attributes = {
+    'Complex Multiple Choice': {
      icon: 'book'
     },
    'Multiple Choice': {
@@ -18,6 +18,10 @@ define(function() {
    'cluster': {
      icon: 'folder-close'
    }
+  };
+
+  return {
+    attributes: attributes
   };
 
 });
