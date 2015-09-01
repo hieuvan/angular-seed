@@ -12,6 +12,11 @@ define(function(require) {
 
     vm.item_renderer = 'components/items/items_renderer.html';
 
+    /**
+     * Options for UI tree
+     *
+     * @return {Object}
+     */
     vm.treeOptions = {
       accept: function(sourceNodeScope, destNodeScope, destIndex) {
 
@@ -21,6 +26,12 @@ define(function(require) {
       }
     };
 
+    /**
+     * Display modal to insert a child node
+     *
+     * @param scope
+     * @return {void}
+     */
     vm.newSubItem = function(scope) {
       $modal.open({
         templateUrl: 'components/items/modal/add-items.html',
@@ -31,6 +42,12 @@ define(function(require) {
       });
     };
 
+    /**
+     * Display modal to remove a node
+     *
+     * @param scope
+     * @return {void}
+     */
     vm.remove = function(scope) {
 
       $modal.open({
@@ -42,14 +59,30 @@ define(function(require) {
       });
     };
 
+    /**
+     * Toggle collapse of a node
+     *
+     * @param scope
+     * @return {void}
+     */
     vm.toggle = function(scope) {
       scope.toggle();
     };
 
+    /**
+     * Collapse all nodes
+     *
+     * @return {undefined}
+     */
     vm.collapseAll = function() {
       getRootNodesScope().collapseAll();
     };
 
+    /**
+     * Expand all nodes
+     *
+     * @return {void}
+     */
     vm.expandAll = function() {
       getRootNodesScope().expandAll();
     };
@@ -66,6 +99,12 @@ define(function(require) {
       console.log('saving');
     };
 
+    /**
+     * Number of all child nodes in a node
+     *
+     * @param scope
+     * @return {integer}
+     */
     vm.itemCount = function(scope) {
       return scope.allChildNodesCount();
     };
@@ -80,10 +119,21 @@ define(function(require) {
       return itemConfig.attributes[item.type].icon;
     };
 
+    /**
+     * Check if node is a container
+     *
+     * @param nodeType
+     * @return {boolean}
+     */
     vm.isContainer = function(nodeType) {
       return _.contains(itemConfig.containers, nodeType);
     };
 
+    /**
+     * Get the root node scope
+     *
+     * @return {scope}
+     */
     var getRootNodesScope = function() {
       return angular.element(document.getElementById('tree-root')).scope();
     };
