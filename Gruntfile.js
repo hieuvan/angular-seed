@@ -382,7 +382,8 @@ module.exports = function (grunt) {
 
   grunt.registerTask('build', function(target) {
     if (target === 'dev') {
-      grunt.config('sass.dist.options.style', 'expanded')
+      grunt.config('sass.dist.options.style', 'expanded');
+      grunt.config('requirejs.compile.options.optimize', 'none');
     }
 
     grunt.task.run([
