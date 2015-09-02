@@ -49,7 +49,7 @@ define(function(require) {
     "        <a href class=\"btn btn-default pull-left\" ng-click=\"vm.$uiTree.collapseAll()\">Collapse all</a>\n" +
     "      </div>\n" +
     "\n" +
-    "      <a href class=\"btn btn-default\" ng-click=\"vm.options()\">Set options</a>\n" +
+    "      <a href class=\"btn btn-primary\" ng-click=\"vm.addFolder()\">Add Folder</a>\n" +
     "\n" +
     "      <div class=\"pull-right\">\n" +
     "        <a href class=\"btn btn-default\" ng-click=\"vm.preview()\">Preview</a>\n" +

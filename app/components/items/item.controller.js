@@ -53,6 +53,12 @@ define(function(require) {
       });
     };
 
+    vm.addFolder = function() {
+      vm.items.push({
+        type: 'folder',
+        uid: 'New Folder'
+      });
+    };
 
     vm.options = function() {
       console.log('setting options');
