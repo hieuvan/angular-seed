@@ -1,6 +1,6 @@
 <div
   ui-tree-handle
-  ng-class="{'group': vm.isContainer(item.type)}"
+  ng-class="{'group': vm.$item.isContainer(item.type)}"
   class="row tree-node tree-node-content">
 
     <div class="col-xs-1">
@@ -15,7 +15,7 @@
         </span>
 
 
-        <span class="glyphicon glyphicon-{{vm.getIcon(item)}} second-icon"></span>
+        <span class="glyphicon glyphicon-{{vm.$item.icon(item.type)}} second-icon"></span>
 
         <span class="text">{{item.uid}}</span>
         <span class="badge" ng-if="item.items.length">{{vm.itemCount(this)}}</span>

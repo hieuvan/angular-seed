@@ -93,7 +93,7 @@ define(function(require) {
   $templateCache.put('components/items/items_renderer.html',
     "<div\n" +
     "  ui-tree-handle\n" +
-    "  ng-class=\"{'group': vm.isContainer(item.type)}\"\n" +
+    "  ng-class=\"{'group': vm.$item.isContainer(item.type)}\"\n" +
     "  class=\"row tree-node tree-node-content\">\n" +
     "\n" +
     "    <div class=\"col-xs-1\">\n" +
@@ -108,7 +108,7 @@ define(function(require) {
     "        </span>\n" +
     "\n" +
     "\n" +
-    "        <span class=\"glyphicon glyphicon-{{vm.getIcon(item)}} second-icon\"></span>\n" +
+    "        <span class=\"glyphicon glyphicon-{{vm.$item.icon(item.type)}} second-icon\"></span>\n" +
     "\n" +
     "        <span class=\"text\">{{item.uid}}</span>\n" +
     "        <span class=\"badge\" ng-if=\"item.items.length\">{{vm.itemCount(this)}}</span>\n" +

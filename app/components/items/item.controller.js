@@ -1,8 +1,8 @@
 'use strict';
 
 define(function(require) {
-  return ['form', '$modal', '$stateParams', 'items.config',
-    function(form, $modal, $stateParams, itemConfig) {
+  return ['form', '$modal', '$stateParams', '$item', '$uiTree',
+    function(form, $modal, $stateParams, $item, $uiTree) {
     var vm = this;
 
     vm.debug = false;
@@ -14,17 +14,13 @@ define(function(require) {
 
     /**
      * Options for UI tree
-     *
-     * @return {Object}
      */
-    vm.treeOptions = {
-      accept: function(sourceNodeScope, destNodeScope, destIndex) {
+    vm.treeOptions = $uiTree.config;
 
-        var destType = destNodeScope.$element.attr('data-node-type');
-
-        return vm.isContainer(destType);
-      }
-    };
+    /**
+     * Options for each item types
+     */
+    vm.$item = $item;
 
     /**
      * Display modal to insert a child node
@@ -107,26 +103,6 @@ define(function(require) {
      */
     vm.itemCount = function(scope) {
       return scope.allChildNodesCount();
-    };
-
-    /**
-     * Get glyphicon class
-     *
-     * @param item
-     * @return string icon
-     */
-    vm.getIcon = function(item) {
-      return itemConfig.attributes[item.type].icon;
-    };
-
-    /**
-     * Check if node is a container
-     *
-     * @param nodeType
-     * @return {boolean}
-     */
-    vm.isContainer = function(nodeType) {
-      return _.contains(itemConfig.containers, nodeType);
     };
 
     /**
