@@ -335,10 +335,6 @@ module.exports = function (grunt) {
         'copy:fonts'
       ],
       test: [
-      ],
-      dist: [
-        'sass:dist',
-        'copy:dist'
       ]
     }
   });
@@ -384,17 +380,24 @@ module.exports = function (grunt) {
     ]);
   });
 
-  grunt.registerTask('build', [
-    'clean:dist',
-    'wiredep:sass',
-    'bowerRequirejs',
-    'concurrent:dist',
-    'autoprefixer:dist',
-    'processhtml:dist',
-    'ngtemplates',
-    'requirejs',
-    //'rev'
-  ]);
+  grunt.registerTask('build', function(target) {
+    if (target === 'dev') {
+      grunt.config('sass.dist.options.style', 'expanded')
+    }
+
+    grunt.task.run([
+      'clean:dist',
+      'wiredep:sass',
+      'bowerRequirejs',
+      'sass:dist',
+      'copy:dist',
+      'autoprefixer:dist',
+      'processhtml:dist',
+      'ngtemplates',
+      'requirejs',
+      //'rev'
+    ]);
+  });
 
   grunt.registerTask('default', [
     'newer:jshint',
