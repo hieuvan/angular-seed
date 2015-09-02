@@ -3,12 +3,12 @@
     <alert type="warning">There are no items.</alert>
   </div>
 
-  <div ng-show="vm.items.length" ng-class="vm.debug ? 'col-md-6' : 'col-md-12'">
+  <div ng-show="vm.items.length" ng-class="vm.$uiTree.debug ? 'col-md-6' : 'col-md-12'">
 
     <div class="form-group clearfix">
       <div class="btn-group">
-        <a href class="btn btn-default pull-left" ng-click="vm.expandAll()">Expand all</a>
-        <a href class="btn btn-default pull-left" ng-click="vm.collapseAll()">Collapse all</a>
+        <a href class="btn btn-default pull-left" ng-click="vm.$uiTree.expandAll()">Expand all</a>
+        <a href class="btn btn-default pull-left" ng-click="vm.$uiTree.collapseAll()">Collapse all</a>
       </div>
 
       <a href class="btn btn-default" ng-click="vm.options()">Set options</a>
@@ -35,7 +35,7 @@
     </div>
 
     <div class="form-group">
-      <div class="angular-ui-tree" ui-tree="vm.treeOptions" id="tree-root" ng-model="vm.treeRoot">
+      <div class="angular-ui-tree" ui-tree="vm.$uiTree.config" id="tree-root" ng-model="vm.treeRoot">
         <ol ui-tree-nodes ng-model="vm.items" data-node-type="cluster" class="angular-ui-tree-nodes">
           <li ng-repeat="item in vm.items" class="angular-ui-tree-node" ui-tree-node ng-include="vm.item_renderer"></li>
         </ol>
@@ -43,7 +43,7 @@
     </div>
   </div>
 
-  <div class="col-md-6" ng-show="vm.debug">
+  <div class="col-md-6" ng-show="vm.$uiTree.debug">
     <div class="info">Full tree data</div>
 
     <pre class="code">{{ vm.items | json }}</pre>

@@ -19,6 +19,10 @@ define(function(require) {
   .controller('AddItemsController', AddItemsController)
   .controller('RemoveItemsController', RemoveItemsController)
 
+  .config(['$uiTreeProvider', function($uiTreeProvider) {
+    //$uiTreeProvider.debug = true;
+  }])
+
   .provider('$uiTree', UiTreeProvider)
   .provider('$item', ItemProvider);
 });

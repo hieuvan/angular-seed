@@ -41,12 +41,12 @@ define(function(require) {
     "    <alert type=\"warning\">There are no items.</alert>\n" +
     "  </div>\n" +
     "\n" +
-    "  <div ng-show=\"vm.items.length\" ng-class=\"vm.debug ? 'col-md-6' : 'col-md-12'\">\n" +
+    "  <div ng-show=\"vm.items.length\" ng-class=\"vm.$uiTree.debug ? 'col-md-6' : 'col-md-12'\">\n" +
     "\n" +
     "    <div class=\"form-group clearfix\">\n" +
     "      <div class=\"btn-group\">\n" +
-    "        <a href class=\"btn btn-default pull-left\" ng-click=\"vm.expandAll()\">Expand all</a>\n" +
-    "        <a href class=\"btn btn-default pull-left\" ng-click=\"vm.collapseAll()\">Collapse all</a>\n" +
+    "        <a href class=\"btn btn-default pull-left\" ng-click=\"vm.$uiTree.expandAll()\">Expand all</a>\n" +
+    "        <a href class=\"btn btn-default pull-left\" ng-click=\"vm.$uiTree.collapseAll()\">Collapse all</a>\n" +
     "      </div>\n" +
     "\n" +
     "      <a href class=\"btn btn-default\" ng-click=\"vm.options()\">Set options</a>\n" +
@@ -73,7 +73,7 @@ define(function(require) {
     "    </div>\n" +
     "\n" +
     "    <div class=\"form-group\">\n" +
-    "      <div class=\"angular-ui-tree\" ui-tree=\"vm.treeOptions\" id=\"tree-root\" ng-model=\"vm.treeRoot\">\n" +
+    "      <div class=\"angular-ui-tree\" ui-tree=\"vm.$uiTree.config\" id=\"tree-root\" ng-model=\"vm.treeRoot\">\n" +
     "        <ol ui-tree-nodes ng-model=\"vm.items\" data-node-type=\"cluster\" class=\"angular-ui-tree-nodes\">\n" +
     "          <li ng-repeat=\"item in vm.items\" class=\"angular-ui-tree-node\" ui-tree-node ng-include=\"vm.item_renderer\"></li>\n" +
     "        </ol>\n" +
@@ -81,7 +81,7 @@ define(function(require) {
     "    </div>\n" +
     "  </div>\n" +
     "\n" +
-    "  <div class=\"col-md-6\" ng-show=\"vm.debug\">\n" +
+    "  <div class=\"col-md-6\" ng-show=\"vm.$uiTree.debug\">\n" +
     "    <div class=\"info\">Full tree data</div>\n" +
     "\n" +
     "    <pre class=\"code\">{{ vm.items | json }}</pre>\n" +
@@ -101,7 +101,7 @@ define(function(require) {
     "    </div>\n" +
     "\n" +
     "    <div class=\"col-xs-5\">\n" +
-    "      <div data-nodrag class=\"row-label\" ng-click=\"vm.toggle(this)\">\n" +
+    "      <div data-nodrag class=\"row-label\" ng-click=\"vm.$uiTree.toggle(this)\">\n" +
     "        <span ng-if=\"item.items.length\"\n" +
     "              ng-class=\"{'glyphicon-chevron-right': collapsed, 'glyphicon-chevron-down': !collapsed}\"\n" +
     "              class=\"glyphicon\">\n" +
@@ -111,7 +111,7 @@ define(function(require) {
     "        <span class=\"glyphicon glyphicon-{{vm.$item.icon(item.type)}} second-icon\"></span>\n" +
     "\n" +
     "        <span class=\"text\">{{item.uid}}</span>\n" +
-    "        <span class=\"badge\" ng-if=\"item.items.length\">{{vm.itemCount(this)}}</span>\n" +
+    "        <span class=\"badge\" ng-if=\"item.items.length\">{{vm.$uiTree.itemCount(this)}}</span>\n" +
     "      </div>\n" +
     "    </div>\n" +
     "\n" +

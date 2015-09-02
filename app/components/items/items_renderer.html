@@ -8,7 +8,7 @@
     </div>
 
     <div class="col-xs-5">
-      <div data-nodrag class="row-label" ng-click="vm.toggle(this)">
+      <div data-nodrag class="row-label" ng-click="vm.$uiTree.toggle(this)">
         <span ng-if="item.items.length"
               ng-class="{'glyphicon-chevron-right': collapsed, 'glyphicon-chevron-down': !collapsed}"
               class="glyphicon">
@@ -18,7 +18,7 @@
         <span class="glyphicon glyphicon-{{vm.$item.icon(item.type)}} second-icon"></span>
 
         <span class="text">{{item.uid}}</span>
-        <span class="badge" ng-if="item.items.length">{{vm.itemCount(this)}}</span>
+        <span class="badge" ng-if="item.items.length">{{vm.$uiTree.itemCount(this)}}</span>
       </div>
     </div>
 

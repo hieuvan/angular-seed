@@ -5,20 +5,18 @@ define(function(require) {
     function(form, $modal, $stateParams, $item, $uiTree) {
     var vm = this;
 
-    vm.debug = false;
-
     vm.form = form;
     vm.items = form.get('items');
 
     vm.item_renderer = 'components/items/items_renderer.html';
 
     /**
-     * Options for UI tree
+     * UI tree provider
      */
-    vm.treeOptions = $uiTree.config;
+    vm.$uiTree = $uiTree;
 
     /**
-     * Options for each item types
+     * Item provider
      */
     vm.$item = $item;
 
@@ -55,33 +53,6 @@ define(function(require) {
       });
     };
 
-    /**
-     * Toggle collapse of a node
-     *
-     * @param scope
-     * @return {void}
-     */
-    vm.toggle = function(scope) {
-      scope.toggle();
-    };
-
-    /**
-     * Collapse all nodes
-     *
-     * @return {undefined}
-     */
-    vm.collapseAll = function() {
-      getRootNodesScope().collapseAll();
-    };
-
-    /**
-     * Expand all nodes
-     *
-     * @return {void}
-     */
-    vm.expandAll = function() {
-      getRootNodesScope().expandAll();
-    };
 
     vm.options = function() {
       console.log('setting options');
@@ -93,25 +64,6 @@ define(function(require) {
 
     vm.save = function() {
       console.log('saving');
-    };
-
-    /**
-     * Number of all child nodes in a node
-     *
-     * @param scope
-     * @return {integer}
-     */
-    vm.itemCount = function(scope) {
-      return scope.allChildNodesCount();
-    };
-
-    /**
-     * Get the root node scope
-     *
-     * @return {scope}
-     */
-    var getRootNodesScope = function() {
-      return angular.element(document.getElementById('tree-root')).scope();
     };
 
   }];
