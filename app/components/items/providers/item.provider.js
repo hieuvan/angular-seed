@@ -5,6 +5,9 @@ define(function() {
   var containers = ['folder', 'cluster'];
 
   var attributes = {
+    'Free Form': {
+      icon: 'file-text'
+    },
     'Complex Multiple Choice': {
      icon: 'book'
     },
@@ -48,7 +51,9 @@ define(function() {
          * @return string icon
          */
         icon: function(type) {
-          return self.attributes[type].icon;
+          return self.attributes.hasOwnProperty(type)
+            ? self.attributes[type].icon
+            : '';
         }
       };
     };

@@ -9,6 +9,8 @@ define(function(require) {
     vm.itemSearchResults = false;
     vm.foundItems;
 
+    vm.item = node.$modelValue;
+
     vm.searchItem = function() {
       var formData = { query: vm.itemQuery };
 
@@ -33,7 +35,7 @@ define(function(require) {
       _.each(items.flatten(), function(item) {
         !item.hasOwnProperty('items') && (item.items = []);
 
-        node.$modelValue.items.push(item);
+        vm.item.items.push(item);
       });
 
       vm.foundItems.substract(items);
@@ -46,7 +48,7 @@ define(function(require) {
 
       _.each(getSelectedItems(), function(item, index) {
         formdata[item.get('id')] = {
-          parent_item_id: node.$modelValue.id,
+          parent_item_id: vm.item.id,
           position: node.depth() + index
         };
       });

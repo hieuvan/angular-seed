@@ -164,7 +164,7 @@ define(function(require) {
     "    <span class=\"sr-only\">Close</span>\n" +
     "  </button>\n" +
     "  <h3 class=\"modal-title\">\n" +
-    "    Add item to {{vm.item}}\n" +
+    "    Add item to {{vm.title}}\n" +
     "  </h3>\n" +
     "</div>\n" +
     "\n" +
@@ -215,6 +215,32 @@ define(function(require) {
     "        </tr>\n" +
     "        </tbody>\n" +
     "      </table>\n" +
+    "    </div>\n" +
+    "  </div>\n" +
+    "</div>\n" +
+    "\n" +
+    "<div class=\"modal-footer\">\n" +
+    "  <button class=\"btn btn-default\" ng-click=\"vm.cancel()\">Close</button>\n" +
+    "  <button class=\"btn btn-default\" ng-click=\"vm.addItems()\">Add Selected</button>\n" +
+    "</div>\n"
+  );
+
+
+  $templateCache.put('components/items/modal/configure-items.html',
+    "<div class=\"modal-header\">\n" +
+    "  <button type=\"button\" class=\"close\" ng-click=\"vm.cancel()\">\n" +
+    "    <span aria-hidden=\"true\">&times;</span>\n" +
+    "    <span class=\"sr-only\">Close</span>\n" +
+    "  </button>\n" +
+    "  <h3 class=\"modal-title\">\n" +
+    "    Add configuration to {{vm.item}}\n" +
+    "  </h3>\n" +
+    "</div>\n" +
+    "\n" +
+    "<div class=\"modal-body\">\n" +
+    "  <div ng-show=\"vm.success\">\n" +
+    "    <div class=\"alert alert-success\">\n" +
+    "      {{vm.success}}\n" +
     "    </div>\n" +
     "  </div>\n" +
     "</div>\n" +

@@ -8,6 +8,7 @@ define(function(require) {
       ItemService = require('components/items/item.service'),
       AddItemsController = require('components/items/modal/add-items.controller'),
       RemoveItemsController = require('components/items/modal/remove-items.controller'),
+      ConfigureItemsController = require('components/items/modal/configure-items.controller'),
       UiTreeProvider = require('components/items/providers/uitree.provider'),
       ItemProvider = require('components/items/providers/item.provider');
 
@@ -18,6 +19,7 @@ define(function(require) {
   .controller('ItemController', ItemController)
   .controller('AddItemsController', AddItemsController)
   .controller('RemoveItemsController', RemoveItemsController)
+  .controller('ConfigureItemsController', ConfigureItemsController)
 
   .config(['$uiTreeProvider', function($uiTreeProvider) {
     //$uiTreeProvider.debug = true;

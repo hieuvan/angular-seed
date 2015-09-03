@@ -64,8 +64,8 @@ define(function(require) {
      */
     vm.configure = function(scope) {
       $modal.open({
-        templateUrl: 'components/items/modal/remove-items.html',
-        controller: 'RemoveItemsController as vm',
+        templateUrl: 'components/items/modal/configure-items.html',
+        controller: 'ConfigureItemsController as vm',
         resolve: {
           node: function() { return scope; }
         }
