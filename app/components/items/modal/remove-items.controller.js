@@ -12,6 +12,8 @@ define(function() {
     vm.multipleItems = !_.isEmpty(currentNode.items);
 
     vm.removeItems = function() {
+      // @TODO: update this to use the function in the directive
+      // at the moment there is none, but add a new one
       var items = pluckItems(currentNode, 'id');
 
       vm.cancel();

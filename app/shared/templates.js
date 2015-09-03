@@ -100,15 +100,15 @@ define(function(require) {
     "      <checkbox ng-model=\"vm.checkboxes[item.id]\" data-nodrag></checkbox>\n" +
     "    </div>\n" +
     "\n" +
-    "    <div class=\"col-xs-5\">\n" +
+    "    <div class=\"col-xs-4\">\n" +
     "      <div data-nodrag class=\"row-label\" ng-click=\"vm.$uiTree.toggle(this)\">\n" +
     "        <span ng-if=\"item.items.length\"\n" +
-    "              ng-class=\"{'glyphicon-chevron-right': collapsed, 'glyphicon-chevron-down': !collapsed}\"\n" +
-    "              class=\"glyphicon\">\n" +
+    "              ng-class=\"{'fa-caret-right': collapsed, 'fa-caret-down': !collapsed}\"\n" +
+    "              class=\"fa\">\n" +
     "        </span>\n" +
     "\n" +
     "\n" +
-    "        <span class=\"glyphicon glyphicon-{{vm.$item.icon(item.type)}} second-icon\"></span>\n" +
+    "        <span class=\"fa fa-{{vm.$item.icon(item.type)}} second-icon\"></span>\n" +
     "\n" +
     "        <span class=\"text\">{{item.uid}}</span>\n" +
     "        <span class=\"badge\" ng-if=\"item.items.length\">{{vm.$uiTree.itemCount(this)}}</span>\n" +
@@ -122,13 +122,27 @@ define(function(require) {
     "      <span>1.0.0 ZC</span>\n" +
     "    </div>\n" +
     "\n" +
-    "    <div class=\"col-xs-1\">\n" +
-    "      <a class=\"pull-right btn btn-danger btn-xs\" data-nodrag ng-click=\"vm.remove(this)\">\n" +
-    "        <span class=\"glyphicon glyphicon-remove\"></span>\n" +
+    "    <div class=\"col-xs-2\">\n" +
+    "      <a\n" +
+    "        class=\"pull-right btn btn-danger btn-xs\"\n" +
+    "        data-nodrag\n" +
+    "        ng-click=\"vm.remove(this)\">\n" +
+    "          <span class=\"fa fa-trash-o\"></span>\n" +
     "      </a>\n" +
     "\n" +
-    "      <a class=\"pull-right btn btn-primary btn-xs\" data-nodrag ng-click=\"vm.newSubItem(this)\" style=\"margin-right: 8px;\">\n" +
-    "        <span class=\"glyphicon glyphicon-plus\"></span>\n" +
+    "      <a class=\"pull-right btn btn-default btn-xs\"\n" +
+    "        data-nodrag\n" +
+    "        ng-click=\"vm.configure(this)\"\n" +
+    "        style=\"margin-right: 8px;\">\n" +
+    "          <span class=\"fa fa-wrench\"></span>\n" +
+    "      </a>\n" +
+    "\n" +
+    "      <a class=\"pull-right btn btn-primary btn-xs\"\n" +
+    "        ng-if=\"vm.$item.isContainer(item.type)\"\n" +
+    "        data-nodrag\n" +
+    "        ng-click=\"vm.newSubItem(this)\"\n" +
+    "        style=\"margin-right: 8px;\">\n" +
+    "          <span class=\"fa fa-plus\"></span>\n" +
     "      </a>\n" +
     "    </div>\n" +
     "</div>\n" +

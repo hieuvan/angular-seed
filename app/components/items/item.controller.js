@@ -8,6 +8,9 @@ define(function(require) {
     vm.form = form;
     vm.items = form.get('items');
 
+    /**
+     *  Tempate path for tree nodes
+     */
     vm.item_renderer = 'components/items/items_renderer.html';
 
     /**
@@ -53,15 +56,32 @@ define(function(require) {
       });
     };
 
+    /**
+     * Display modal for item configuration
+     *
+     * @param scope
+     * @return {void}
+     */
+    vm.configure = function(scope) {
+      $modal.open({
+        templateUrl: 'components/items/modal/remove-items.html',
+        controller: 'RemoveItemsController as vm',
+        resolve: {
+          node: function() { return scope; }
+        }
+      });
+    };
+
+    /**
+     * Add empty container item in tree
+     *
+     * @return {void}
+     */
     vm.addFolder = function() {
       vm.items.push({
         type: 'folder',
         uid: 'New Folder'
       });
-    };
-
-    vm.options = function() {
-      console.log('setting options');
     };
 
     vm.preview = function() {
