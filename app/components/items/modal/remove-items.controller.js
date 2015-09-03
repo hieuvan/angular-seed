@@ -7,7 +7,7 @@ define(function() {
     var vm = this,
         currentNode = node.$modelValue;
 
-    vm.name = currentNode.uid;
+    vm.title = currentNode.uid;
 
     vm.multipleItems = !_.isEmpty(currentNode.items);
 

@@ -4,12 +4,12 @@ define(function(require) {
 
   return ['$stateParams', '$modalInstance', 'node', 'ItemService', 'ngToast',
     function($stateParams, $modalInstance, node, ItemService, ngToast) {
-    var vm = this;
+    var vm = this, currentNode = node.$modelValue;
 
     vm.itemSearchResults = false;
     vm.foundItems;
 
-    vm.item = node.$modelValue;
+    vm.title = currentNode.uid;
 
     vm.searchItem = function() {
       var formData = { query: vm.itemQuery };
@@ -35,7 +35,7 @@ define(function(require) {
       _.each(items.flatten(), function(item) {
         !item.hasOwnProperty('items') && (item.items = []);
 
-        vm.item.items.push(item);
+        currentNode.items.push(item);
       });
 
       vm.foundItems.substract(items);
@@ -48,7 +48,7 @@ define(function(require) {
 
       _.each(getSelectedItems(), function(item, index) {
         formdata[item.get('id')] = {
-          parent_item_id: vm.item.id,
+          parent_item_id: currentNode.id,
           position: node.depth() + index
         };
       });

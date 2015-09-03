@@ -4,19 +4,14 @@
     <span class="sr-only">Close</span>
   </button>
   <h3 class="modal-title">
-    Add configuration to {{vm.item}}
+    Add configuration to {{vm.title}}
   </h3>
 </div>
 
 <div class="modal-body">
-  <div ng-show="vm.success">
-    <div class="alert alert-success">
-      {{vm.success}}
-    </div>
-  </div>
 </div>
 
 <div class="modal-footer">
   <button class="btn btn-default" ng-click="vm.cancel()">Close</button>
-  <button class="btn btn-default" ng-click="vm.addItems()">Add Selected</button>
+  <button class="btn btn-primary" ng-click="vm.updateConfiguration()">Update Config</button>
 </div>

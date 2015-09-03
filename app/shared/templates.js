@@ -221,7 +221,7 @@ define(function(require) {
     "\n" +
     "<div class=\"modal-footer\">\n" +
     "  <button class=\"btn btn-default\" ng-click=\"vm.cancel()\">Close</button>\n" +
-    "  <button class=\"btn btn-default\" ng-click=\"vm.addItems()\">Add Selected</button>\n" +
+    "  <button class=\"btn btn-primary\" ng-click=\"vm.addItems()\">Add Selected</button>\n" +
     "</div>\n"
   );
 
@@ -233,28 +233,23 @@ define(function(require) {
     "    <span class=\"sr-only\">Close</span>\n" +
     "  </button>\n" +
     "  <h3 class=\"modal-title\">\n" +
-    "    Add configuration to {{vm.item}}\n" +
+    "    Add configuration to {{vm.title}}\n" +
     "  </h3>\n" +
     "</div>\n" +
     "\n" +
     "<div class=\"modal-body\">\n" +
-    "  <div ng-show=\"vm.success\">\n" +
-    "    <div class=\"alert alert-success\">\n" +
-    "      {{vm.success}}\n" +
-    "    </div>\n" +
-    "  </div>\n" +
     "</div>\n" +
     "\n" +
     "<div class=\"modal-footer\">\n" +
     "  <button class=\"btn btn-default\" ng-click=\"vm.cancel()\">Close</button>\n" +
-    "  <button class=\"btn btn-default\" ng-click=\"vm.addItems()\">Add Selected</button>\n" +
+    "  <button class=\"btn btn-primary\" ng-click=\"vm.updateConfiguration()\">Update Config</button>\n" +
     "</div>\n"
   );
 
 
   $templateCache.put('components/items/modal/remove-items.html',
     "<div class=\"modal-header\">\n" +
-    "  <h4 class=\"modal-title\">Are you sure you want to remove {{vm.name}}{{vm.multipleItems ? ' and all nested items' : ''}}?</h4>\n" +
+    "  <h4 class=\"modal-title\">Are you sure you want to remove {{vm.title}}{{vm.multipleItems ? ' and all nested items' : ''}}?</h4>\n" +
     "</div>\n" +
     "\n" +
     "<div class=\"modal-footer\">\n" +
