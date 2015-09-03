@@ -1,7 +1,13 @@
 'use strict';
 
 define(function(require) {
-  return [function() {
+  return ['$modalInstance', 'node',
+    function($modalInstance, node) {
+      var vm = this;
 
-  }];
+      vm.cancel = function() {
+        $modalInstance.close();
+      };
+
+    }];
 });
