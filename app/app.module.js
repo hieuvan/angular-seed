@@ -44,6 +44,8 @@ define(function(require) {
 
   .config(['$httpProvider', 'constant', '$resourceProvider', '$httpInterceptorProvider',
     function($httpProvider, constant, $resourceProvider, $httpInterceptorProvider) {
+      // configure $httpinterceptorprovider here
+      // $httpinterceptorprovider.defaults.stringify = true;
 
       $httpProvider.interceptors.push('$httpInterceptor');
 
