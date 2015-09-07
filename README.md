@@ -8,7 +8,7 @@ The following set up instruction will be same for linux or windows machine. Open
     $ git clone ssh://git@stash.inside:7999/oars/builder-client.git
     $ cd builder-client
     $ npm install
-    $ node_modules/bower/bin/bower install
+    $ node_modules/.bin/bower install
 
 Note: If `bower` asks for suitable version for angular, select the one associated with `Acer angular seed`.
 
@@ -19,7 +19,7 @@ The above will set up all the dependencies required for the application to run.
 
 Run the following command. The command does whole bunch stuff. Let it finish and you will have your site running at `http://localhost:8000`.
 
-    $ node_modules/grunt-cli/bin/grunt serve
+    $ node_modules/.bin/grunt serve
 
 You must have the `serve` task running while you are developing. Here are the things the above task does for you:
 
@@ -49,23 +49,23 @@ The structure of dist folder will look like following:
 
 **Optimised build:** Compressed and optimised files.
 
-    $ node_modules/grunt-cli/bin/grunt build
+    $ node_modules/.bin/grunt build
 
 
 **Expanded build:** Non compressed files that are ideal for debugging.
     
-    $ node_modules/grunt-cli/bin/grunt build
+    $ node_modules/.bin/grunt build
 
 
 **Deployment:** For deployment run grunt with no parameters. It runs all tests and builds the deployment ready build.
 
-    $ node_modules/grunt-cli/bin/grunt 
+    $ node_modules/.bin/grunt 
 
 ### Running Tests
 
 Tests are ran automatically while developing or as part of build task. However, if you need to run tests manually, you can do following:
 
-    $ node_modules/grunt-cli/bin/grunt test
+    $ node_modules/.bin/grunt test
 
 
 **IMPORTANT**
