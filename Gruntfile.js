@@ -348,6 +348,11 @@ module.exports = function (grunt) {
       return grunt.task.run(['build', 'connect:dist:keepalive']);
     }
 
+    if (target === 'windows') {
+      grunt.config.set('connect.options.hostname', 'localhost');
+      grunt.config.set('connect.options.port', '8888');
+    }
+
     grunt.task.run([
       'clean:tmp',
       'wiredep:sass',
