@@ -4,9 +4,9 @@
 @import "bootstrap-sass/assets/stylesheets/_bootstrap.scss";
 // endbower
 @import "font-awesome/scss/font-awesome";
-@import "vendor/angular-ui-tree.min";
-@import "vendor/ngToast";
-@import "vendor/ngToast-animations";
+@import "libs/angular-ui-tree.min";
+@import "libs/ngToast";
+@import "libs/ngToast-animations";
 
 @import "partials/angular";
 @import "partials/header";
