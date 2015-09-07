@@ -42,11 +42,10 @@ define(function(require) {
 
   .constant('constant', constant)
 
-  .config(['$httpProvider', 'constant', '$resourceProvider',
-    function($httpProvider, constant, $resourceProvider) {
+  .config(['$httpProvider', 'constant', '$resourceProvider', '$httpInterceptorProvider',
+    function($httpProvider, constant, $resourceProvider, $httpInterceptorProvider) {
 
-      $httpProvider.interceptors.push('HttpConfigProvider');
-      $httpProvider.defaults.withCredentials = true;
+      $httpProvider.interceptors.push('$httpInterceptor');
 
       $resourceProvider.apiUrl = constant.apiUrl;
   }])
@@ -56,7 +55,7 @@ define(function(require) {
   .factory('ItemCollection', function() { return ItemCollection; })
   .factory('FormModel', function() { return FormModel; })
 
-  .provider('HttpConfigProvider', HttpConfigProvider)
+  .provider('$httpInterceptor', HttpConfigProvider)
   .provider('$resource', ResourceProvider)
 
   .directive('title', TitleDirective)
