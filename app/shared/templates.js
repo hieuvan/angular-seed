@@ -97,7 +97,7 @@ define(function(require) {
     "  class=\"row tree-node tree-node-content\">\n" +
     "\n" +
     "    <div class=\"col-xs-1\">\n" +
-    "      <checkbox ng-model=\"vm.checkboxes[item.id]\" data-nodrag></checkbox>\n" +
+    "      <checkbox class=\"checkbox\" ng-model=\"vm.checkboxes[item.id]\" data-nodrag></checkbox>\n" +
     "    </div>\n" +
     "\n" +
     "    <div class=\"col-xs-4\">\n" +

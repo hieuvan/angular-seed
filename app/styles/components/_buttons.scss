@@ -49,3 +49,5 @@
 .btn-builder{
   @include button-variant(white, $orange, $orange - #080808);
 }
+
+.btn.checkbox { border-radius: 0; }
