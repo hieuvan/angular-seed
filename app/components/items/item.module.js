@@ -3,6 +3,7 @@
 define(function(require) {
   require('angular');
   require('angular-ui-tree-decorator');
+  require('schema-form');
 
   var ItemController = require('components/items/item.controller'),
       ItemService = require('components/items/item.service'),
@@ -12,7 +13,7 @@ define(function(require) {
       UiTreeProvider = require('components/items/providers/uitree.provider'),
       ItemProvider = require('components/items/providers/item.provider');
 
-  return angular.module('app.items', ['ui.tree.decorated'])
+  return angular.module('app.items', ['ui.tree.decorated', 'schemaForm'])
 
   .service('ItemService', ItemService)
 

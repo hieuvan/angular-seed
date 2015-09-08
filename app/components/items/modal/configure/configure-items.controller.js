@@ -7,9 +7,20 @@ define(function(require) {
 
       vm.title = currentNode.uid;
 
+      vm.tabs = {
+        Display: [
+
+        ],
+        Naviagtion: [
+
+        ],
+        Language: [
+
+        ],
+      };
+
       vm.cancel = function() {
         $modalInstance.close();
       };
-
     }];
 });

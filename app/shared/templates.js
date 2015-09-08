@@ -239,9 +239,7 @@ define(function(require) {
     "\n" +
     "<div class=\"modal-body\">\n" +
     "  <tabset class=\"tabbable tabs-left\">\n" +
-    "    <tab heading=\"tab-one\">this is tab content</tab>\n" +
-    "    <tab heading=\"tab-tow\">this is tab 2 content</tab>\n" +
-    "    <tab heading=\"tab-three\">this is tab 3 content</tab>\n" +
+    "    <tab ng-repeat=\"(heading, data) in vm.tabs\" heading=\"{{heading}}\">{{data}}</tab>\n" +
     "  </tabset>\n" +
     "</div>\n" +
     "\n" +
