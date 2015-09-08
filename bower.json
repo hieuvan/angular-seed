@@ -21,6 +21,7 @@
     "angular-ui-tree": "^2.5.0",
     "angular-httpi": "*",
     "ngtoast": "~1.5.5",
-    "angular-bootstrap-checkbox": "~0.3.1"
+    "angular-bootstrap-checkbox": "~0.3.1",
+    "angular-schema-form": "~0.8.8"
   }
 }
