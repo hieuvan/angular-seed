@@ -157,7 +157,7 @@ define(function(require) {
   );
 
 
-  $templateCache.put('components/items/modal/add-items.html',
+  $templateCache.put('components/items/modal/add/add-items.html',
     "<div class=\"modal-header\">\n" +
     "  <button type=\"button\" class=\"close\" ng-click=\"vm.cancel()\">\n" +
     "    <span aria-hidden=\"true\">&times;</span>\n" +
@@ -226,7 +226,7 @@ define(function(require) {
   );
 
 
-  $templateCache.put('components/items/modal/configure-items.html',
+  $templateCache.put('components/items/modal/configure/configure-items.html',
     "<div class=\"modal-header\">\n" +
     "  <button type=\"button\" class=\"close\" ng-click=\"vm.cancel()\">\n" +
     "    <span aria-hidden=\"true\">&times;</span>\n" +
@@ -238,6 +238,11 @@ define(function(require) {
     "</div>\n" +
     "\n" +
     "<div class=\"modal-body\">\n" +
+    "  <tabset class=\"tabbable tabs-left\">\n" +
+    "    <tab heading=\"tab-one\">this is tab content</tab>\n" +
+    "    <tab heading=\"tab-tow\">this is tab 2 content</tab>\n" +
+    "    <tab heading=\"tab-three\">this is tab 3 content</tab>\n" +
+    "  </tabset>\n" +
     "</div>\n" +
     "\n" +
     "<div class=\"modal-footer\">\n" +
@@ -247,7 +252,7 @@ define(function(require) {
   );
 
 
-  $templateCache.put('components/items/modal/remove-items.html',
+  $templateCache.put('components/items/modal/remove/remove-items.html',
     "<div class=\"modal-header\">\n" +
     "  <h4 class=\"modal-title\">Are you sure you want to remove {{vm.title}}{{vm.multipleItems ? ' and all nested items' : ''}}?</h4>\n" +
     "</div>\n" +

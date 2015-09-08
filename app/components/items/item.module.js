@@ -6,9 +6,9 @@ define(function(require) {
 
   var ItemController = require('components/items/item.controller'),
       ItemService = require('components/items/item.service'),
-      AddItemsController = require('components/items/modal/add-items.controller'),
-      RemoveItemsController = require('components/items/modal/remove-items.controller'),
-      ConfigureItemsController = require('components/items/modal/configure-items.controller'),
+      AddItemsController = require('components/items/modal/add/add-items.controller'),
+      RemoveItemsController = require('components/items/modal/remove/remove-items.controller'),
+      ConfigureItemsController = require('components/items/modal/configure/configure-items.controller'),
       UiTreeProvider = require('components/items/providers/uitree.provider'),
       ItemProvider = require('components/items/providers/item.provider');
 

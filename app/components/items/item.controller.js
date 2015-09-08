@@ -30,12 +30,9 @@ define(function(require) {
      * @return {void}
      */
     vm.newSubItem = function(scope) {
-      $modal.open({
-        templateUrl: 'components/items/modal/add-items.html',
+      modal(scope, {
+        templateUrl: 'add/add-items.html',
         controller: 'AddItemsController as vm',
-        resolve: {
-          node: function() { return scope; },
-        }
       });
     };
 
@@ -46,13 +43,9 @@ define(function(require) {
      * @return {void}
      */
     vm.remove = function(scope) {
-
-      $modal.open({
-        templateUrl: 'components/items/modal/remove-items.html',
+      modal(scope, {
+        templateUrl: 'remove/remove-items.html',
         controller: 'RemoveItemsController as vm',
-        resolve: {
-          node: function() { return scope; }
-        }
       });
     };
 
@@ -63,12 +56,9 @@ define(function(require) {
      * @return {void}
      */
     vm.configure = function(scope) {
-      $modal.open({
-        templateUrl: 'components/items/modal/configure-items.html',
+      modal(scope, {
+        templateUrl: 'configure/configure-items.html',
         controller: 'ConfigureItemsController as vm',
-        resolve: {
-          node: function() { return scope; }
-        }
       });
     };
 
@@ -90,6 +80,23 @@ define(function(require) {
 
     vm.save = function() {
       console.log('saving');
+    };
+
+    /**
+     * Display a modal
+     *
+     * @param scope
+     * @param config
+     * @return {undefined}
+     */
+    var modal = function(scope, config) {
+      config.templateUrl = 'components/items/modal/' + config.templateUrl;
+
+      $modal.open(_.extend({
+        resolve: {
+          node: function() { return scope; }
+        }
+      }, config));
     };
 
   }];

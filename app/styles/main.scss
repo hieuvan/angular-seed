@@ -7,16 +7,17 @@
 @import "libs/angular-ui-tree.min";
 @import "libs/ngToast";
 @import "libs/ngToast-animations";
+@import "libs/angular";
 
-@import "partials/angular";
 @import "partials/header";
 @import "partials/body";
-@import "partials/table";
 
+@import "components/table";
 @import "components/buttons";
+@import "components/tabs";
+@import "components/modal";
 @import "components/form-table";
 @import "components/uitree";
-
 
 @import "animations/pageload";
 
