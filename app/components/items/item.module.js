@@ -3,7 +3,8 @@
 define(function(require) {
   require('angular');
   require('angular-ui-tree-decorator');
-  require('schema-form');
+  require('bootstrap-decorator');
+  require('schemaForm');
 
   var ItemController = require('components/items/item.controller'),
       ItemService = require('components/items/item.service'),

@@ -9,8 +9,10 @@
 </div>
 
 <div class="modal-body">
-  <tabset class="tabbable tabs-left">
-    <tab ng-repeat="(heading, data) in vm.tabs" heading="{{heading}}">{{data}}</tab>
+  <tabset>
+    <tab ng-repeat="(heading, data) in vm.tabs" heading="{{heading}}">
+      <form sf-schema="vm.schema" sf-model="vm.model"></form>
+    </tab>
   </tabset>
 </div>
 

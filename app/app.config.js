@@ -51,11 +51,6 @@ require.config({
       'angular',
       'angular-ui-tree',
       'angular-bootstrap-checkbox'
-    ],
-    'schema-form': [
-      'angular',
-      'objectpath',
-      'tv4'
     ]
   },
   map: {
@@ -86,7 +81,7 @@ require.config({
     ngtoast: '../bower_components/ngtoast/dist/ngToast',
     'angular-bootstrap-checkbox': '../bower_components/angular-bootstrap-checkbox/angular-bootstrap-checkbox',
     'angular-ui-tree-decorator': 'shared/decorators/ui-tree-decorator',
-    'schema-form': '../bower_components/angular-schema-form/dist/schema-form',
+    'schemaForm': '../bower_components/angular-schema-form/dist/schema-form',
     'bootstrap-decorator': '../bower_components/angular-schema-form/dist/bootstrap-decorator',
     'objectpath': '../bower_components/objectpath/lib/ObjectPath',
     'tv4': '../bower_components/tv4/tv4'
