@@ -7,7 +7,7 @@ define(function(require) {
   require('schemaForm');
 
   var ItemController = require('components/items/item.controller'),
-      ItemService = require('components/items/item.service'),
+      ItemServiceProvider = require('components/items/providers/service.provider'),
       AddItemsController = require('components/items/modal/add/add-items.controller'),
       RemoveItemsController = require('components/items/modal/remove/remove-items.controller'),
       ConfigureItemsController = require('components/items/modal/configure/configure-items.controller'),
@@ -16,17 +16,17 @@ define(function(require) {
 
   return angular.module('app.items', ['ui.tree.decorated', 'schemaForm'])
 
-  .service('ItemService', ItemService)
-
   .controller('ItemController', ItemController)
   .controller('AddItemsController', AddItemsController)
   .controller('RemoveItemsController', RemoveItemsController)
   .controller('ConfigureItemsController', ConfigureItemsController)
 
-  .config(['$uiTreeProvider', function($uiTreeProvider) {
-    //$uiTreeProvider.debug = true;
-  }])
+  .config(['$uiTreeProvider', 'ItemServiceProvider',
+    function($uiTreeProvider, ItemServiceProvider) {
+      //$uiTreeProvider.debug = true;
+    }])
 
+  .provider('ItemService', ItemServiceProvider)
   .provider('$uiTree', UiTreeProvider)
   .provider('$item', ItemProvider);
 });
