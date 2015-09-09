@@ -7,7 +7,7 @@ define(function(require) {
 
     var formId = 2;
 
-    var getProjectTestForm = function() {
+    var getTestFormByTitle = function() {
       var params = {formId: formId}, // TODO: form id is hardcoded
           resource = $resource.url('forms/:formId/items');
 
@@ -52,7 +52,7 @@ define(function(require) {
     };
 
     return {
-      getProjectTestForm: getProjectTestForm,
+      getTestFormByTitle: getTestFormByTitle,
       searchItem: searchItem,
       addItemToForm: addItemToForm,
       removeFormItem: removeFormItem

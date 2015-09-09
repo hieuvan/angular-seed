@@ -41,7 +41,8 @@ define(function() {
       },
       resolve: {
         form: ['ItemService', '$stateParams', function(ItemService, $stateParams) {
-          return ItemService.getProjectTestForm($stateParams.projectId, $stateParams.testId, $stateParams.formId);
+          // FIXME hardcoded title
+          return ItemService.getTestFormByTitle('title');
         }]
       },
       data: {
