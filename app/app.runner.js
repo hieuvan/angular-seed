@@ -17,6 +17,5 @@ define(function() {
     function(event, toState, toParams, fromState, fromParams, error){
       console.log('There was a error => ' + error);
     });
-
   }];
 });

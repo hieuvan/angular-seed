@@ -23,7 +23,7 @@ define(function() {
 
     states.push({
       name: 'root.items',
-      url: '/items',
+      url: '/:title',
       abstract: true,
       data: {
         displayName: false
@@ -41,8 +41,7 @@ define(function() {
       },
       resolve: {
         form: ['ItemService', '$stateParams', function(ItemService, $stateParams) {
-          // FIXME hardcoded title
-          return ItemService.getTestFormByTitle('title');
+          return ItemService.getTestFormByTitle($stateParams.title);
         }]
       },
       data: {

@@ -11,7 +11,7 @@ define(function(require) {
   };
 
   return {
-    defaultUrl: '/items',
+    defaultUrl: '/',
     resourceType: 'rest',
     resource: function() {
       return resource[this.resourceType];
