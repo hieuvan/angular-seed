@@ -11,6 +11,7 @@ define(function(require) {
       AddItemsController = require('components/items/modal/add/add-items.controller'),
       RemoveItemsController = require('components/items/modal/remove/remove-items.controller'),
       ConfigureItemsController = require('components/items/modal/configure/configure-items.controller'),
+      TabDataFactory = require('components/items/services/tabdata.factory.js'),
       UiTreeProvider = require('components/items/providers/uitree.provider'),
       ItemProvider = require('components/items/providers/item.provider');
 
@@ -20,6 +21,8 @@ define(function(require) {
   .controller('AddItemsController', AddItemsController)
   .controller('RemoveItemsController', RemoveItemsController)
   .controller('ConfigureItemsController', ConfigureItemsController)
+
+  .factory('tabData', TabDataFactory)
 
   .config(['$uiTreeProvider', 'ItemServiceProvider',
     function($uiTreeProvider, ItemServiceProvider) {

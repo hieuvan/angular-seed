@@ -1,35 +1,13 @@
 'use strict';
 
 define(function(require) {
-  return ['$modalInstance', 'node', '$scope',
-    function($modalInstance, node, $scope) {
+  return ['$modalInstance', 'node', '$scope', 'tabData',
+    function($modalInstance, node, $scope, tabData) {
       var vm = this, currentNode = node.$modelValue;
 
       vm.title = currentNode.uid;
 
-      vm.tabs = {
-        display: {
-          form: {},
-          schema: {
-            type: "object",
-            properties: {
-              name: { type: "string", minLength: 2, title: "Name", description: "Name or alias" },
-              title: {
-                type: "string",
-                enum: ['dr','jr','sir','mrs','mr','NaN','dj']
-              }
-            }
-          }
-        },
-        navigation: {
-
-        },
-        language: {
-
-        },
-      };
-
-      vm.model = {};
+      vm.tabs = tabData;
 
       /**
        * close the modal
