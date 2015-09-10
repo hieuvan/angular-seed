@@ -77,6 +77,15 @@ define(function(require) {
   };
 
   /**
+   * check if the collection is empty
+   *
+   * @return {undefined}
+   */
+  prototype.isEmpty = function() {
+    return !this._collection.length > 0;
+  };
+
+  /**
    * Substract the items of the given collection from the collection
    *
    * @param collection Collection to intersect with

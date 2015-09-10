@@ -183,7 +183,7 @@ define(function(require) {
     "      <button class=\"btn btn-primary\" ng-click=\"vm.searchItem()\">Search</button>\n" +
     "    </div>\n" +
     "  </form>\n" +
-    "  <div class=\"table-container col-3\" ng-show=\"vm.itemSearchResults\">\n" +
+    "  <div class=\"table-container col-3\" ng-show=\"vm.foundItems.getAll().length\">\n" +
     "    <div class=\"table-container-header-fixed\">\n" +
     "      <table class=\"table table-condensed table-bordered\">\n" +
     "        <thead>\n" +
