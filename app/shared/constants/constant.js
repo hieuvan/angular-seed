@@ -6,7 +6,7 @@ define(function(require) {
       url: 'http://api.local-newbuilder/v1/'
     },
     sharepoint: {
-      url: '../WebServices/ItemsService.svc/'
+      url: '../WebServices/TestFormsService.svc/'
     }
   };
 
