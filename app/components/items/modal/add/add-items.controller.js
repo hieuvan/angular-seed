@@ -12,7 +12,10 @@ define(function(require) {
     vm.title = currentNode.uid;
 
     vm.searchItem = function() {
-      var formData = { query: vm.itemQuery };
+      var formData = {
+        query: vm.itemQuery,
+        title: $stateParams.title
+      };
 
       ItemService.searchItem(formData).then(function(items) {
         vm.foundItems = items;
@@ -27,7 +30,7 @@ define(function(require) {
     vm.addItems = function () {
 
       ItemService
-        .addItemToForm(getFormData())
+        .addItemToForm(getFormData(), $stateParams.title)
         .then(updateTree);
     };
 

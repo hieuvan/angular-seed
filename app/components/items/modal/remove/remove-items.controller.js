@@ -18,7 +18,7 @@ define(function() {
 
       vm.cancel();
 
-      ItemService.removeFormItem(items)
+      ItemService.removeFormItem(items, $stateParams.title)
         .then(function(items) {
           node.remove();
 

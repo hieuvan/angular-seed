@@ -5,9 +5,6 @@ define(function(require) {
   return ['$resource', 'FormModel', 'ItemCollection',
     function($resource, FormModel, ItemCollection) {
 
-    // FIXME remove this
-    var formId = 2;
-
     var getTestFormByTitle = function(title) {
       var params = {title: title},
           resource = $resource.url('GetTestFormByTitle');

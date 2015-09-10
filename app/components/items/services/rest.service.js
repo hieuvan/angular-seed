@@ -5,10 +5,8 @@ define(function(require) {
   return ['$resource', 'FormModel', 'ItemCollection',
     function($resource, FormModel, ItemCollection) {
 
-    var formId = 2;
-
-    var getTestFormByTitle = function() {
-      var params = {formId: formId}, // TODO: form id is hardcoded
+    var getTestFormByTitle = function(formId) {
+      var params = {formId: formId},
           resource = $resource.url('forms/:formId/items');
 
       return resource.get(params).then(function(form) {
@@ -17,7 +15,7 @@ define(function(require) {
     };
 
     var searchItem = function(data) {
-      var params = {q : data.query, formId: formId},
+      var params = {q : data.query, formId: data.title},
           resource = $resource.url('items?_q=:q&form_id=:formId');
 
       return resource.get(params, false).then(function(items) {
@@ -25,7 +23,7 @@ define(function(require) {
       });
     };
 
-    var addItemToForm = function(items) {
+    var addItemToForm = function(items, formId) {
       var params = {
         formId: formId,
         items: items
@@ -38,7 +36,7 @@ define(function(require) {
       });
     };
 
-    var removeFormItem = function(items) {
+    var removeFormItem = function(items, formId) {
       var params = {
         formId: formId,
         items: items
