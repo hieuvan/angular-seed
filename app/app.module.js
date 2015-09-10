@@ -20,6 +20,7 @@ define(function(require) {
       templates = require('shared/templates'),
       constant = require('shared/constants/constant'),
       Routes = require('app.routes'),
+      CapitalizeFilter = require('shared/filters/capitalize.filter'),
       HttpConfigProvider = require('shared/providers/http-config.provider'),
       ResourceProvider = require('shared/providers/resource.provider'),
       TitleDirective = require('shared/directives/title.directive'),
@@ -59,6 +60,8 @@ define(function(require) {
   .provider('$resource', ResourceProvider)
 
   .directive('title', TitleDirective)
+
+  .filter('capitalize', CapitalizeFilter)
 
   .run(templates)
   .run(AppRunner);

@@ -239,8 +239,8 @@ define(function(require) {
     "\n" +
     "<div class=\"modal-body\">\n" +
     "  <tabset>\n" +
-    "    <tab ng-repeat=\"(heading, data) in vm.tabs\" heading=\"{{heading}}\">\n" +
-    "      <form sf-schema=\"vm.schema\" sf-model=\"vm.model\"></form>\n" +
+    "    <tab ng-repeat=\"(title, data) in vm.tabs\" heading=\"{{title|capitalize}}\">\n" +
+    "      <form sf-schema=\"data.schema\" sf-model=\"vm.model\"></form>\n" +
     "    </tab>\n" +
     "  </tabset>\n" +
     "</div>\n" +

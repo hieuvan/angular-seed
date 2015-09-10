@@ -10,8 +10,8 @@
 
 <div class="modal-body">
   <tabset>
-    <tab ng-repeat="(heading, data) in vm.tabs" heading="{{heading}}">
-      <form sf-schema="vm.schema" sf-model="vm.model"></form>
+    <tab ng-repeat="(title, data) in vm.tabs" heading="{{title|capitalize}}">
+      <form sf-schema="data.schema" sf-model="vm.model"></form>
     </tab>
   </tabset>
 </div>
