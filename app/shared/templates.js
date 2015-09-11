@@ -100,7 +100,6 @@ define(function(require) {
 
   $templateCache.put('components/items/items_renderer.html',
     "<div\n" +
-    "  ng-init=\"itemCollection=item.get('items')\"\n" +
     "  ui-tree-handle\n" +
     "  ng-class=\"{'group': item.isContainer()}\"\n" +
     "  class=\"row tree-node tree-node-content\">\n" +
@@ -111,7 +110,7 @@ define(function(require) {
     "\n" +
     "    <div class=\"col-xs-4\">\n" +
     "      <div data-nodrag class=\"row-label\" ng-click=\"vm.$uiTree.toggle(this)\">\n" +
-    "        <span ng-if=\"!itemCollection.isEmpty()\"\n" +
+    "        <span ng-if=\"item.hasChild()\"\n" +
     "              ng-class=\"{'fa-caret-right': collapsed, 'fa-caret-down': !collapsed}\"\n" +
     "              class=\"fa\">\n" +
     "        </span>\n" +
@@ -119,7 +118,7 @@ define(function(require) {
     "        <span class=\"fa fa-{{item.getIcon()}} second-icon\"></span>\n" +
     "\n" +
     "        <span class=\"text\">{{item.get('uid')}}</span>\n" +
-    "        <span class=\"badge\" ng-if=\"!itemCollection.isEmpty()\">{{itemCollection.count()}}</span>\n" +
+    "        <span class=\"badge\" ng-if=\"item.hasChild()\">{{item.childCount()}}</span>\n" +
     "      </div>\n" +
     "    </div>\n" +
     "\n" +

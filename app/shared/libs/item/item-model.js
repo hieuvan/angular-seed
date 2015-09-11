@@ -45,7 +45,27 @@ define(function(require) {
    */
   prototype.isContainer = function() {
     return _.contains(containers, this._data.type);
-  },
+  };
+
+  /**
+   * Number of child item has
+   *
+   * @return {int}
+   */
+  prototype.childCount = function() {
+    return this.get('items').count();
+  };
+
+  /**
+   * Check if item has child
+   *
+   * @return {boolean}
+   */
+  prototype.hasChild = function() {
+    var items = this.get('items');
+
+    return items ? ! items.isEmpty() : false;
+  };
 
   /**
    * Get glyphicon class
