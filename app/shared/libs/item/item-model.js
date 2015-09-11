@@ -31,7 +31,7 @@ define(function(require) {
   var ItemModel = function(data, includes) {
     this._schema = schema;
 
-    model.call(this, data, includes);
+    model.call(this, data);
   };
 
   ItemModel.prototype = Object.create(model.prototype);

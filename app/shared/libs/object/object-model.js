@@ -27,6 +27,25 @@ define(function(require) {
     return this._data[key];
   };
 
+  /**
+   * Get flat array representation of model
+   * Flattens any Collection that it has recursively
+   *
+   * @return {object}
+   */
+  prototype.flatten = function() {
+    var data = {};
+
+    _.each(this._data, function(value, key) {
+
+      data[key] = value._className === 'ObjectCollection'
+                  ? value.flatten()
+                  : value;
+    });
+
+    return data;
+  };
+
   prototype.has = function(key) {
     return this._data.hasOwnProperty(key);
   };

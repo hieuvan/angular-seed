@@ -74,17 +74,25 @@ define(function(require) {
     "\n" +
     "    <div class=\"form-group\">\n" +
     "      <div class=\"angular-ui-tree\" ui-tree=\"vm.$uiTree.config\" id=\"tree-root\" ng-model=\"vm.treeRoot\">\n" +
-    "        <ol ui-tree-nodes ng-model=\"vm.items\" data-node-type=\"cluster\" class=\"angular-ui-tree-nodes\">\n" +
-    "          <li ng-repeat=\"item in vm.items.getAll()\" class=\"angular-ui-tree-node\" ui-tree-node ng-include=\"vm.item_renderer\"></li>\n" +
+    "        <ol ui-tree-nodes\n" +
+    "            ng-init=\"items=vm.items.getAll()\"\n" +
+    "            ng-model=\"items\"\n" +
+    "            class=\"angular-ui-tree-nodes\">\n" +
+    "\n" +
+    "              <li ng-repeat=\"item in items\"\n" +
+    "                  ui-tree-node\n" +
+    "                  class=\"angular-ui-tree-node\"\n" +
+    "                  ng-include=\"vm.item_renderer\">\n" +
+    "              </li>\n" +
     "        </ol>\n" +
     "      </div>\n" +
     "    </div>\n" +
     "  </div>\n" +
     "\n" +
-    "  <div class=\"col-md-6\" ng-show=\"vm.$uiTree.debug\">\n" +
+    "  <div class=\"col-md-6\" ng-if=\"vm.$uiTree.debug\">\n" +
     "    <div class=\"info\">Full tree data</div>\n" +
     "\n" +
-    "    <pre class=\"code\">{{ vm.items | json }}</pre>\n" +
+    "    <pre class=\"code\">{{ vm.items.flatten() | json }}</pre>\n" +
     "  </div>\n" +
     "</section>\n"
   );
@@ -98,16 +106,15 @@ define(function(require) {
     "  class=\"row tree-node tree-node-content\">\n" +
     "\n" +
     "    <div class=\"col-xs-1\">\n" +
-    "      <checkbox class=\"checkbox\" ng-model=\"vm.checkboxes[item.id]\" data-nodrag></checkbox>\n" +
+    "      <checkbox class=\"checkbox\" ng-model=\"vm.checkboxes[item.get('id')]\" data-nodrag></checkbox>\n" +
     "    </div>\n" +
     "\n" +
     "    <div class=\"col-xs-4\">\n" +
     "      <div data-nodrag class=\"row-label\" ng-click=\"vm.$uiTree.toggle(this)\">\n" +
-    "        <span ng-if=\"item.items.length\"\n" +
+    "        <span ng-if=\"!itemCollection.isEmpty()\"\n" +
     "              ng-class=\"{'fa-caret-right': collapsed, 'fa-caret-down': !collapsed}\"\n" +
     "              class=\"fa\">\n" +
     "        </span>\n" +
-    "\n" +
     "\n" +
     "        <span class=\"fa fa-{{item.getIcon()}} second-icon\"></span>\n" +
     "\n" +
@@ -150,10 +157,10 @@ define(function(require) {
     "\n" +
     "<ol\n" +
     "  ui-tree-nodes\n" +
-    "  ng-model=\"item.items\"\n" +
-    "  data-node-type=\"{{item.type}}\"\n" +
+    "  ng-init=\"items=item.get('items').getAll()\"\n" +
+    "  ng-model=\"items\"\n" +
     "  ng-class=\"{hidden: collapsed}\">\n" +
-    "    <li ng-repeat=\"item in item.get('items').getAll()\" ui-tree-node ng-include=\"vm.item_renderer\"></li>\n" +
+    "    <li ng-repeat=\"item in items\" ui-tree-node ng-include=\"vm.item_renderer\"></li>\n" +
     "</ol>\n"
   );
 

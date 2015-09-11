@@ -12,12 +12,12 @@ define(function(require) {
 
     this.$get = [function() {
       if (typeof self.config.accept !== 'function') {
-        // FIXME: $item is been replaced
         self.config.accept = function(sourceNodeScope, destNodeScope, destIndex) {
+          return true;
 
-          var destType = destNodeScope.$element.attr('data-node-type');
+          console.log(destNodeScope);
 
-          return $item.isContainer(destType);
+          //return $item.isContainer(destType);
         };
       }
 

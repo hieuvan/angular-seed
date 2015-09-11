@@ -36,16 +36,24 @@
 
     <div class="form-group">
       <div class="angular-ui-tree" ui-tree="vm.$uiTree.config" id="tree-root" ng-model="vm.treeRoot">
-        <ol ui-tree-nodes ng-model="vm.items" data-node-type="cluster" class="angular-ui-tree-nodes">
-          <li ng-repeat="item in vm.items.getAll()" class="angular-ui-tree-node" ui-tree-node ng-include="vm.item_renderer"></li>
+        <ol ui-tree-nodes
+            ng-init="items=vm.items.getAll()"
+            ng-model="items"
+            class="angular-ui-tree-nodes">
+
+              <li ng-repeat="item in items"
+                  ui-tree-node
+                  class="angular-ui-tree-node"
+                  ng-include="vm.item_renderer">
+              </li>
         </ol>
       </div>
     </div>
   </div>
 
-  <div class="col-md-6" ng-show="vm.$uiTree.debug">
+  <div class="col-md-6" ng-if="vm.$uiTree.debug">
     <div class="info">Full tree data</div>
 
-    <pre class="code">{{ vm.items | json }}</pre>
+    <pre class="code">{{ vm.items.flatten() | json }}</pre>
   </div>
 </section>

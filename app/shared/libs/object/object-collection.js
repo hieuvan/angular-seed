@@ -172,7 +172,7 @@ define(function(require) {
     var flattened = [];
 
     _.each(this.getAll(), function(model) {
-      flattened.push(model.get());
+      flattened.push(model.flatten());
     });
 
     return flattened;
