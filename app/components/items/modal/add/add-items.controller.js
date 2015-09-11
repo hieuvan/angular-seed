@@ -4,10 +4,10 @@ define(function(require) {
 
   return ['$stateParams', '$modalInstance', 'node', 'ItemService', 'ngToast',
     function($stateParams, $modalInstance, node, ItemService, ngToast) {
-    var vm = this, currentNode = node.$modelValue;
+    var vm = this, currentItem = node.$modelValue;
 
     vm.foundItems;
-    vm.title = currentNode.uid;
+    vm.title = currentItem.uid;
 
     /**
      * Search items with entered keyword
@@ -39,18 +39,14 @@ define(function(require) {
      *
      * @return {undefined}
      */
-    var addItems = function() {
+    vm.addItems = function() {
       var items = getSelectedItems();
-      console.log(items);
-      // _.each(items.flatten(), function(item) {
-      //   !item.hasOwnProperty('items') && (item.items = []);
 
-      //   currentNode.items.push(item);
-      // });
+      currentItem.get('items').add(items);
 
-      // vm.foundItems.substract(items);
+      vm.foundItems.substract(items);
 
-      // ngToast.success('Item added to tree.')
+      ngToast.success('Item added to tree.')
     };
 
     /**

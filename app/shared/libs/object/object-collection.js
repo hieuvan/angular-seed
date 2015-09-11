@@ -123,7 +123,7 @@ define(function(require) {
   /**
    * Substract the items of the given collection from the collection
    *
-   * @param collection Collection to intersect with
+   * @param {array} Collection to intersect with
    *
    * @return {ObjectCollection}
    */
@@ -132,7 +132,7 @@ define(function(require) {
 
     var self = this;
 
-    collection.each(function(model) {
+    _.each(collection, function(model) {
       if (!model.has(key)) {
         throw new Error(model.toString() + ' does not have property ' + key);
       }
