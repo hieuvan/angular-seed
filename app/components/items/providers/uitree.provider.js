@@ -10,8 +10,9 @@ define(function(require) {
 
     self.rootElementId = 'tree-root';
 
-    this.$get = ['$item', function($item) {
+    this.$get = [function() {
       if (typeof self.config.accept !== 'function') {
+        // FIXME: $item is been replaced
         self.config.accept = function(sourceNodeScope, destNodeScope, destIndex) {
 
           var destType = destNodeScope.$element.attr('data-node-type');

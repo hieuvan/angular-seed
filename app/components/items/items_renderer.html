@@ -1,6 +1,7 @@
 <div
+  ng-init="itemCollection=item.get('items')"
   ui-tree-handle
-  ng-class="{'group': vm.$item.isContainer(item.type)}"
+  ng-class="{'group': item.isContainer()}"
   class="row tree-node tree-node-content">
 
     <div class="col-xs-1">
@@ -15,10 +16,10 @@
         </span>
 
 
-        <span class="fa fa-{{vm.$item.icon(item.type)}} second-icon"></span>
+        <span class="fa fa-{{item.getIcon()}} second-icon"></span>
 
-        <span class="text">{{item.uid}}</span>
-        <span class="badge" ng-if="item.items.length">{{vm.$uiTree.itemCount(this)}}</span>
+        <span class="text">{{item.get('uid')}}</span>
+        <span class="badge" ng-if="!itemCollection.isEmpty()">{{itemCollection.count()}}</span>
       </div>
     </div>
 
@@ -45,7 +46,7 @@
       </a>
 
       <a class="pull-right btn btn-primary btn-xs"
-        ng-if="vm.$item.isContainer(item.type)"
+        ng-if="item.isContainer()"
         data-nodrag
         ng-click="vm.newSubItem(this)"
         style="margin-right: 8px;">
@@ -59,5 +60,5 @@
   ng-model="item.items"
   data-node-type="{{item.type}}"
   ng-class="{hidden: collapsed}">
-    <li ng-repeat="item in item.items" ui-tree-node ng-include="vm.item_renderer"></li>
+    <li ng-repeat="item in item.get('items').getAll()" ui-tree-node ng-include="vm.item_renderer"></li>
 </ol>

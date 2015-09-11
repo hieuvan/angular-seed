@@ -37,11 +37,11 @@ define(function(require) {
 
   $templateCache.put('components/items/item.html',
     "<section id=\"ui-tree\">\n" +
-    "  <div ng-hide=\"vm.items.length\" class=\"col-md-12\">\n" +
+    "  <div ng-show=\"vm.items.isEmpty()\" class=\"col-md-12\">\n" +
     "    <alert type=\"warning\">There are no items.</alert>\n" +
     "  </div>\n" +
     "\n" +
-    "  <div ng-show=\"vm.items.length\" ng-class=\"vm.$uiTree.debug ? 'col-md-6' : 'col-md-12'\">\n" +
+    "  <div ng-hide=\"vm.items.isEmpty()\" ng-class=\"vm.$uiTree.debug ? 'col-md-6' : 'col-md-12'\">\n" +
     "\n" +
     "    <div class=\"form-group clearfix\">\n" +
     "      <div class=\"btn-group\">\n" +
@@ -75,7 +75,7 @@ define(function(require) {
     "    <div class=\"form-group\">\n" +
     "      <div class=\"angular-ui-tree\" ui-tree=\"vm.$uiTree.config\" id=\"tree-root\" ng-model=\"vm.treeRoot\">\n" +
     "        <ol ui-tree-nodes ng-model=\"vm.items\" data-node-type=\"cluster\" class=\"angular-ui-tree-nodes\">\n" +
-    "          <li ng-repeat=\"item in vm.items\" class=\"angular-ui-tree-node\" ui-tree-node ng-include=\"vm.item_renderer\"></li>\n" +
+    "          <li ng-repeat=\"item in vm.items.getAll()\" class=\"angular-ui-tree-node\" ui-tree-node ng-include=\"vm.item_renderer\"></li>\n" +
     "        </ol>\n" +
     "      </div>\n" +
     "    </div>\n" +
@@ -92,8 +92,9 @@ define(function(require) {
 
   $templateCache.put('components/items/items_renderer.html',
     "<div\n" +
+    "  ng-init=\"itemCollection=item.get('items')\"\n" +
     "  ui-tree-handle\n" +
-    "  ng-class=\"{'group': vm.$item.isContainer(item.type)}\"\n" +
+    "  ng-class=\"{'group': item.isContainer()}\"\n" +
     "  class=\"row tree-node tree-node-content\">\n" +
     "\n" +
     "    <div class=\"col-xs-1\">\n" +
@@ -108,10 +109,10 @@ define(function(require) {
     "        </span>\n" +
     "\n" +
     "\n" +
-    "        <span class=\"fa fa-{{vm.$item.icon(item.type)}} second-icon\"></span>\n" +
+    "        <span class=\"fa fa-{{item.getIcon()}} second-icon\"></span>\n" +
     "\n" +
-    "        <span class=\"text\">{{item.uid}}</span>\n" +
-    "        <span class=\"badge\" ng-if=\"item.items.length\">{{vm.$uiTree.itemCount(this)}}</span>\n" +
+    "        <span class=\"text\">{{item.get('uid')}}</span>\n" +
+    "        <span class=\"badge\" ng-if=\"!itemCollection.isEmpty()\">{{itemCollection.count()}}</span>\n" +
     "      </div>\n" +
     "    </div>\n" +
     "\n" +
@@ -138,7 +139,7 @@ define(function(require) {
     "      </a>\n" +
     "\n" +
     "      <a class=\"pull-right btn btn-primary btn-xs\"\n" +
-    "        ng-if=\"vm.$item.isContainer(item.type)\"\n" +
+    "        ng-if=\"item.isContainer()\"\n" +
     "        data-nodrag\n" +
     "        ng-click=\"vm.newSubItem(this)\"\n" +
     "        style=\"margin-right: 8px;\">\n" +
@@ -152,7 +153,7 @@ define(function(require) {
     "  ng-model=\"item.items\"\n" +
     "  data-node-type=\"{{item.type}}\"\n" +
     "  ng-class=\"{hidden: collapsed}\">\n" +
-    "    <li ng-repeat=\"item in item.items\" ui-tree-node ng-include=\"vm.item_renderer\"></li>\n" +
+    "    <li ng-repeat=\"item in item.get('items').getAll()\" ui-tree-node ng-include=\"vm.item_renderer\"></li>\n" +
     "</ol>\n"
   );
 

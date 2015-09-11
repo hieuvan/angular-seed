@@ -2,15 +2,15 @@
 
 define(function(require) {
 
-  return ['$resource', 'FormModel', 'ItemCollection',
-    function($resource, FormModel, ItemCollection) {
+  return ['$resource', 'FormModel', 'ItemModel', 'ItemCollection',
+    function($resource, FormModel, ItemModel, ItemCollection) {
 
     var getTestFormByTitle = function(formId) {
       var params = {formId: formId},
           resource = $resource.url('forms/:formId/items');
 
       return resource.get(params).then(function(form) {
-        return new FormModel(form.data);
+        return new FormModel(form.data, { 'items' : ItemModel });
       });
     };
 

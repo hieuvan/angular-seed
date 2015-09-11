@@ -1,8 +1,8 @@
 'use strict';
 
 define(function(require) {
-  return ['form', '$modal', '$stateParams', '$item', '$uiTree',
-    function(form, $modal, $stateParams, $item, $uiTree) {
+  return ['form', '$modal', '$stateParams', '$uiTree',
+    function(form, $modal, $stateParams, $uiTree) {
     var vm = this;
 
     vm.form = form;
@@ -17,11 +17,6 @@ define(function(require) {
      * UI tree provider
      */
     vm.$uiTree = $uiTree;
-
-    /**
-     * Item provider
-     */
-    vm.$item = $item;
 
     /**
      * Display modal to insert a child node

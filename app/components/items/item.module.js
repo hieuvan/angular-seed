@@ -12,8 +12,7 @@ define(function(require) {
       RemoveItemsController = require('components/items/modal/remove/remove-items.controller'),
       ConfigureItemsController = require('components/items/modal/configure/configure-items.controller'),
       TabDataFactory = require('components/items/services/tabdata.factory.js'),
-      UiTreeProvider = require('components/items/providers/uitree.provider'),
-      ItemProvider = require('components/items/providers/item.provider');
+      UiTreeProvider = require('components/items/providers/uitree.provider');
 
   return angular.module('app.items', ['ui.tree.decorated', 'schemaForm'])
 
@@ -31,5 +30,4 @@ define(function(require) {
 
   .provider('ItemService', ItemServiceProvider)
   .provider('$uiTree', UiTreeProvider)
-  .provider('$item', ItemProvider);
 });
