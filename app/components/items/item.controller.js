@@ -25,7 +25,7 @@ define(function(require) {
      * @return {void}
      */
     vm.newSubItem = function(scope) {
-      modal(scope, {
+      var modalInstance = modal(scope, {
         templateUrl: 'add/add-items.html',
         controller: 'AddItemsController as vm',
       });
@@ -87,7 +87,7 @@ define(function(require) {
     var modal = function(scope, config) {
       config.templateUrl = 'components/items/modal/' + config.templateUrl;
 
-      $modal.open(_.extend({
+      return $modal.open(_.extend({
         resolve: {
           node: function() { return scope; }
         }

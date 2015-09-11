@@ -5,8 +5,14 @@ define(function(require) {
   return ['$resource', 'FormModel', 'ItemModel', 'ItemCollection',
     function($resource, FormModel, ItemModel, ItemCollection) {
 
-    var getTestFormByTitle = function(formId) {
-      var params = {formId: formId},
+    /**
+     * Get Test from by form title
+     *
+     * @param {string} title
+     * @return {promise}
+     */
+    var getTestFormByTitle = function(title) {
+      var params = {formId: title},
           resource = $resource.url('forms/:formId/items');
 
       return resource.get(params).then(function(form) {
@@ -14,6 +20,12 @@ define(function(require) {
       });
     };
 
+    /**
+     * Fuzzy search item
+     *
+     * @param {object} data
+     * @return {promise}
+     */
     var searchItem = function(data) {
       var params = {q : data.query, formId: data.title},
           resource = $resource.url('items?_q=:q&form_id=:formId');
@@ -23,37 +35,9 @@ define(function(require) {
       });
     };
 
-    var addItemToForm = function(items, formId) {
-      var params = {
-        formId: formId,
-        items: items
-      };
-
-      var resource = $resource.url('forms/:formId/items');
-
-      return resource.put(params).then(function(items) {
-        return new ItemCollection(items.data);
-      });
-    };
-
-    var removeFormItem = function(items, formId) {
-      var params = {
-        formId: formId,
-        items: items
-      };
-
-      var resource = $resource.url('forms/:formId/items');
-
-      return resource.delete(params).then(function(items) {
-        return items.data;
-      });
-    };
-
     return {
       getTestFormByTitle: getTestFormByTitle,
-      searchItem: searchItem,
-      addItemToForm: addItemToForm,
-      removeFormItem: removeFormItem
+      searchItem: searchItem
     };
   }];
 });

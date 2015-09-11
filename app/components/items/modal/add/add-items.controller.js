@@ -35,51 +35,22 @@ define(function(require) {
     };
 
     /**
-     * add selected items in the tree
+     * Add items to the tree
      *
      * @return {undefined}
      */
-    vm.addItems = function () {
+    var addItems = function() {
+      var items = getSelectedItems();
+      console.log(items);
+      // _.each(items.flatten(), function(item) {
+      //   !item.hasOwnProperty('items') && (item.items = []);
 
-      ItemService
-        .addItemToForm(getFormData(), $stateParams.title)
-        .then(updateTree);
-    };
+      //   currentNode.items.push(item);
+      // });
 
-    /**
-     * Update tree with the new items
-     *
-     * @param items
-     * @return {undefined}
-     */
-    var updateTree = function(items) {
-      _.each(items.flatten(), function(item) {
-        !item.hasOwnProperty('items') && (item.items = []);
+      // vm.foundItems.substract(items);
 
-        currentNode.items.push(item);
-      });
-
-      vm.foundItems.substract(items);
-
-      ngToast.success('Item added to tree.')
-    };
-
-    /**
-     * get data from the add item form
-     *
-     * @return {undefined}
-     */
-    var getFormData = function() {
-      var formdata = {};
-
-      _.each(getSelectedItems(), function(item, index) {
-        formdata[item.get('id')] = {
-          parent_item_id: currentNode.id,
-          position: node.depth() + index
-        };
-      });
-
-      return formdata;
+      // ngToast.success('Item added to tree.')
     };
 
     /**
@@ -90,6 +61,5 @@ define(function(require) {
     var getSelectedItems = function() {
       return _.where(vm.foundItems.getAll(), {selected: true});
     };
-
   }];
 });

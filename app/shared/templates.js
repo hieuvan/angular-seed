@@ -186,7 +186,7 @@ define(function(require) {
     "    <div class=\"form-group\">\n" +
     "      <div class=\"input-group\">\n" +
     "        <span class=\"input-group-addon\"><span class=\"fa fa-search\"></span></span>\n" +
-    "        <input type=\"search\" placeholder=\"Search items by uid or title\" class=\"default form-control\" autocomplete=\"off\" ng-model=\"vm.itemQuery\">\n" +
+    "        <input type=\"search\" placeholder=\"Search items by uid or title\" class=\"default form-control\" autocomplete=\"off\" ng-model=\"vm.itemQuery\" autofocus>\n" +
     "      </div>\n" +
     "      <button class=\"btn btn-primary\" ng-click=\"vm.searchItem()\">Search</button>\n" +
     "    </div>\n" +
