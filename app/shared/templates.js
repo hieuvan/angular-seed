@@ -124,13 +124,13 @@ define(function(require) {
     "\n" +
     "    <div class=\"col-xs-2\">\n" +
     "      <span\n" +
-    "        ng-repeat=\"config in item.getConfig().getAll()\"\n" +
+    "        ng-repeat=\"config in item.config().getAll()\"\n" +
     "        class=\"item-config fa fa-{{config.getIcon()}}\">\n" +
     "      </span>\n" +
     "    </div>\n" +
     "\n" +
     "    <div class=\"col-xs-1\">\n" +
-    "      <span data-nodrag ng-click=\"vm.config(this)\">1.0.0 ZC</span>\n" +
+    "      <span data-nodrag>1.0.0 ZC</span>\n" +
     "    </div>\n" +
     "\n" +
     "    <div class=\"col-xs-2\">\n" +

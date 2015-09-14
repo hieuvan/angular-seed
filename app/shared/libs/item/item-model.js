@@ -84,9 +84,9 @@ define(function(require) {
   /**
    * Get configuration collection
    *
-   * @return {object}
+   * @return {object} ConfigCollection
    */
-  prototype.getConfig = function() {
+  prototype.config = function() {
     return this._config;
   };
 
