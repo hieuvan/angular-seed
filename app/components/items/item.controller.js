@@ -1,6 +1,9 @@
 'use strict';
 
 define(function(require) {
+
+  var _ = require('underscore');
+
   return ['form', '$modal', '$stateParams', '$uiTree',
     function(form, $modal, $stateParams, $uiTree) {
     var vm = this;
@@ -11,7 +14,7 @@ define(function(require) {
     /**
      *  Tempate path for tree nodes
      */
-    vm.item_renderer = 'components/items/items_renderer.html';
+    vm.itemRenderer = 'components/items/items_renderer.html';
 
     /**
      * UI tree provider
@@ -25,7 +28,7 @@ define(function(require) {
      * @return {void}
      */
     vm.newSubItem = function(scope) {
-      var modalInstance = modal(scope, {
+      modal(scope, {
         templateUrl: 'add/add-items.html',
         controller: 'AddItemsController as vm',
       });
@@ -42,13 +45,6 @@ define(function(require) {
         templateUrl: 'remove/remove-items.html',
         controller: 'RemoveItemsController as vm',
       });
-    };
-
-    vm.config = function(scope) {
-      var item = scope.$modelValue;
-      var config = item.getConfig().getAll()[0];
-
-      console.log(config.getIcon());
     };
 
     /**

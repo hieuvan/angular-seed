@@ -11,6 +11,7 @@ define(function(require) {
         timer = new RadioButtonItem('timer'),
         radiobuttonProperty = {
           type: 'string',
+          default: 'select',
           enum: ['select', 'deselect']
         };
 

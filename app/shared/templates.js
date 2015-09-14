@@ -82,7 +82,7 @@ define(function(require) {
     "              <li ng-repeat=\"item in items\"\n" +
     "                  ui-tree-node\n" +
     "                  class=\"angular-ui-tree-node\"\n" +
-    "                  ng-include=\"vm.item_renderer\">\n" +
+    "                  ng-include=\"vm.itemRenderer\">\n" +
     "              </li>\n" +
     "        </ol>\n" +
     "      </div>\n" +
@@ -161,7 +161,7 @@ define(function(require) {
     "  ng-init=\"items=item.get('items').getAll()\"\n" +
     "  ng-model=\"items\"\n" +
     "  ng-class=\"{hidden: collapsed}\">\n" +
-    "    <li ng-repeat=\"item in items\" ui-tree-node ng-include=\"vm.item_renderer\"></li>\n" +
+    "    <li ng-repeat=\"item in items\" ui-tree-node ng-include=\"vm.itemRenderer\"></li>\n" +
     "</ol>\n"
   );
 
