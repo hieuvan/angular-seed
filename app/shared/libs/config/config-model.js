@@ -2,15 +2,15 @@
 
 define(function(require) {
   var model = require('shared/libs/object/object-model'),
-    schema = require('shared/libs/item/item-schema');
+    schema = require('shared/libs/config/config-schema');
 
-  var Config = function(type) {
-    this.type = type;
-    this.icon = 'wrench';
-    var data = {
-      type: type,
+  var Config = function(data) {
+    data = data || {
+      type: 'config',
       icon: 'wrench'
     };
+
+    this._schema = schema;
 
     model.call(this, data);
   };
@@ -18,6 +18,24 @@ define(function(require) {
   Config.prototype = Object.create(model.prototype);
 
   var prototype = Config.prototype;
+
+  /**
+   * Get icon for the config
+   *
+   * @return {string}
+   */
+  prototype.getIcon = function() {
+    return this.get('icon');
+  };
+
+  /**
+   * Get configuration type
+   *
+   * @return {string}
+   */
+  prototype.getType = function() {
+    return this.get('type');
+  };
 
   return Config;
 });

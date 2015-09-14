@@ -3,8 +3,13 @@
 define(function(require) {
   var config = require('shared/libs/config/config-model');
 
+  var data = {
+    type: 'calculator',
+    icon: 'calculator'
+  };
+
   var Calculator = function() {
-    this.icon = 'calc';
+    config.call(this, data);
   };
 
   Calculator.prototype = Object.create(config.prototype);

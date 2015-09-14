@@ -44,6 +44,13 @@ define(function(require) {
       });
     };
 
+    vm.config = function(scope) {
+      var item = scope.$modelValue;
+      var config = item.getConfig().getAll()[0];
+
+      console.log(config.getIcon());
+    };
+
     /**
      * Display modal for item configuration
      *

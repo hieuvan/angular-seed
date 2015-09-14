@@ -17,11 +17,7 @@ define(function(require) {
    * @return {object} Config Object
    */
   prototype.get = function(type) {
-    try {
-      return new configs[type]();
-    } catch (error) {
-      throw new Error('Config type "' + type + '" could not be found.');
-    }
+    return new configs[type]();
   };
 
   return new ConfigFactory();
