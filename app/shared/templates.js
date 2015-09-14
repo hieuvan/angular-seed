@@ -125,7 +125,7 @@ define(function(require) {
     "    <div class=\"col-xs-2\">\n" +
     "      <span\n" +
     "        ng-repeat=\"config in item.getConfig()\"\n" +
-    "        class=\"fa fa-wrench\">\n" +
+    "        class=\"item-config fa fa-wrench\">\n" +
     "      </span>\n" +
     "    </div>\n" +
     "\n" +

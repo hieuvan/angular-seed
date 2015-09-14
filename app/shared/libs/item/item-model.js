@@ -2,6 +2,7 @@
 
 define(function(require) {
   var model = require('shared/libs/object/object-model'),
+      ConfigCollection = require('shared/libs/config/config-collection'),
       schema = require('shared/libs/item/item-schema');
 
   var containers = ['folder', 'cluster'];
@@ -30,6 +31,7 @@ define(function(require) {
 
   var ItemModel = function(data, includes) {
     this._schema = schema;
+    this._config = new ConfigCollection;
 
     model.call(this, data);
   };
@@ -82,9 +84,15 @@ define(function(require) {
    * @return {object}
    */
   prototype.getConfig = function() {
+    console.log(this._config);
+    return [];
     return {
-      calculator: 'calculator',
-      timer: 'timer'
+      calculator: {
+        icon: 'wrench'
+      },
+      timer: {
+        icon: 'plus'
+      }
     };
   };
 

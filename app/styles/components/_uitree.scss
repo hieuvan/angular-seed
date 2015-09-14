@@ -80,11 +80,21 @@ ol.angular-ui-tree-nodes {
 
       a.btn {
         margin-right: 8px;
+
+        &.btn:first-child {
+          margin-right: 0;
+        }
+
       }
 
-      a.btn:first-child {
-        margin-right: 0;
+      .item-config {
+        margin-right: 5px;
+
+        &:last-child {
+          margin-right: 0;
+        }
       }
+
     }
   }
 
