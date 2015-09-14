@@ -1,21 +1,32 @@
 'use strict';
 
-define(function() {
+define(function(require) {
+  require('shared/helpers/string');
+
+  var RadioButtonItem = require('shared/libs/sf-form/radiobuttonitem');
+
   return [function(){
+
+    var calculator = new RadioButtonItem('calculator'),
+        timer = new RadioButtonItem('timer'),
+        radiobuttonProperty = {
+          type: 'string',
+          enum: ['select', 'deselect']
+        };
 
     var tabs = {};
 
     tabs.display = {
       model: {},
-      form: {},
+      form: [{
+        type: 'fieldset',
+        items: [calculator, timer]
+      }],
       schema: {
-        type: "object",
+        type: 'object',
         properties: {
-          name: { type: "string", minLength: 2, title: "Name", description: "Name or alias" },
-          title: {
-            type: "string",
-            enum: ['dr','jr','sir','mrs','mr','NaN','dj']
-          }
+          calculator: radiobuttonProperty,
+          timer: radiobuttonProperty
         }
       }
     };
