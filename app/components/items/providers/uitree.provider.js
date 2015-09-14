@@ -12,10 +12,10 @@ define(function(require) {
 
     this.$get = [function() {
       if (typeof self.config.accept !== 'function') {
-        self.config.accept = function(sourceNodeScope, destNodeScope, destIndex) {
-          var shallAccept = destNodeScope.$element.attr('data-drop-enabled');
+        self.config.accept = function(sourceNodeScope, destNodeScope) {
+          var item = destNodeScope.$nodeScope.$modelValue;
 
-          return destNodeScope.$eval(shallAccept);
+          return item.isContainer();
         };
       }
 

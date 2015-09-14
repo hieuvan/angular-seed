@@ -57,7 +57,6 @@
 
 <ol
   ui-tree-nodes
-  data-drop-enabled="{{item.isContainer()}}"
   ng-init="items=item.get('items').getAll()"
   ng-model="items"
   ng-class="{hidden: collapsed}">

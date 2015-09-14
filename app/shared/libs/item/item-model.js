@@ -1,7 +1,8 @@
 'use strict';
 
 define(function(require) {
-  var model = require('shared/libs/object/object-model'),
+  var _ = require('underscore'),
+      model = require('shared/libs/object/object-model'),
       ConfigCollection = require('shared/libs/config/config-collection'),
       ConfigFactory = require('shared/libs/config/config-factory'),
       schema = require('shared/libs/item/item-schema');
@@ -30,7 +31,7 @@ define(function(require) {
   };
 
 
-  var ItemModel = function(data, includes) {
+  var ItemModel = function(data) {
     this._schema = schema;
 
     this._config = setConfiguration(data.config);
@@ -96,9 +97,9 @@ define(function(require) {
    * @return {object} ConfigCollection
    */
   var setConfiguration = function(configuration) {
-    var collection = new ConfigCollection;
+    var collection = new ConfigCollection();
 
-    if (!configuration) return collection;
+    if (!configuration) { return collection; }
 
     for (var i in configuration) {
       collection.add(ConfigFactory.get(configuration[i]));

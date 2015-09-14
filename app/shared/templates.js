@@ -158,7 +158,6 @@ define(function(require) {
     "\n" +
     "<ol\n" +
     "  ui-tree-nodes\n" +
-    "  data-drop-enabled=\"{{item.isContainer()}}\"\n" +
     "  ng-init=\"items=item.get('items').getAll()\"\n" +
     "  ng-model=\"items\"\n" +
     "  ng-class=\"{hidden: collapsed}\">\n" +
