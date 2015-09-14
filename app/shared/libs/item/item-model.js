@@ -3,6 +3,7 @@
 define(function(require) {
   var model = require('shared/libs/object/object-model'),
       ConfigCollection = require('shared/libs/config/config-collection'),
+      ConfigFactory = require('shared/libs/config/config-factory'),
       schema = require('shared/libs/item/item-schema');
 
   var containers = ['folder', 'cluster'];
@@ -31,7 +32,8 @@ define(function(require) {
 
   var ItemModel = function(data, includes) {
     this._schema = schema;
-    this._config = new ConfigCollection;
+
+    this._config = setConfiguration(data.config);
 
     model.call(this, data);
   };
@@ -84,16 +86,25 @@ define(function(require) {
    * @return {object}
    */
   prototype.getConfig = function() {
-    console.log(this._config);
-    return [];
-    return {
-      calculator: {
-        icon: 'wrench'
-      },
-      timer: {
-        icon: 'plus'
-      }
-    };
+    return this._config;
+  };
+
+  /**
+   * Set the configuration of items
+   *
+   * @param configuration
+   * @return {object} ConfigCollection
+   */
+  var setConfiguration = function(configuration) {
+    var collection = new ConfigCollection;
+
+    if (!configuration) return collection;
+
+    for (var i in configuration) {
+      collection.add(ConfigFactory.get(configuration[i]));
+    }
+
+    return collection;
   };
 
   return ItemModel;
