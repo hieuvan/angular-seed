@@ -74,7 +74,19 @@ define(function(require) {
    */
   prototype.getIcon = function() {
     return attributes[this._data.type].icon;
-  }
+  };
+
+  /**
+   * Get configuration collection
+   *
+   * @return {object}
+   */
+  prototype.getConfig = function() {
+    return {
+      calculator: 'calculator',
+      timer: 'timer'
+    };
+  };
 
   return ItemModel;
 });

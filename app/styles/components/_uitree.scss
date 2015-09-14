@@ -78,6 +78,13 @@ ol.angular-ui-tree-nodes {
         background:#fafafa;
       }
 
+      a.btn {
+        margin-right: 8px;
+      }
+
+      a.btn:first-child {
+        margin-right: 0;
+      }
     }
   }
 

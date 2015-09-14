@@ -7,7 +7,7 @@
       <checkbox class="checkbox" ng-model="vm.checkboxes[item.get('id')]" data-nodrag></checkbox>
     </div>
 
-    <div class="col-xs-4">
+    <div class="col-xs-6">
       <div data-nodrag class="row-label" ng-click="vm.$uiTree.toggle(this)">
         <span ng-if="item.hasChild()"
               ng-class="{'fa-caret-right': collapsed, 'fa-caret-down': !collapsed}"
@@ -21,7 +21,11 @@
       </div>
     </div>
 
-    <div class="col-xs-4">
+    <div class="col-xs-2">
+      <span
+        ng-repeat="config in item.getConfig()"
+        class="fa fa-wrench">
+      </span>
     </div>
 
     <div class="col-xs-1">
@@ -38,16 +42,14 @@
 
       <a class="pull-right btn btn-default btn-xs"
         data-nodrag
-        ng-click="vm.configure(this)"
-        style="margin-right: 8px;">
+        ng-click="vm.configure(this)">
           <span class="fa fa-wrench"></span>
       </a>
 
       <a class="pull-right btn btn-primary btn-xs"
         ng-if="item.isContainer()"
         data-nodrag
-        ng-click="vm.newSubItem(this)"
-        style="margin-right: 8px;">
+        ng-click="vm.newSubItem(this)">
           <span class="fa fa-plus"></span>
       </a>
     </div>

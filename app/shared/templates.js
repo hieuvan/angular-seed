@@ -61,10 +61,10 @@ define(function(require) {
     "      <div class=\"col-md-1\">\n" +
     "\n" +
     "      </div>\n" +
-    "      <div class=\"col-md-5\">\n" +
+    "      <div class=\"col-md-6\">\n" +
     "        Title\n" +
     "      </div>\n" +
-    "      <div class=\"col-md-4\">\n" +
+    "      <div class=\"col-md-2\">\n" +
     "        Configuration\n" +
     "      </div>\n" +
     "      <div class=\"col-md-1\">\n" +
@@ -108,7 +108,7 @@ define(function(require) {
     "      <checkbox class=\"checkbox\" ng-model=\"vm.checkboxes[item.get('id')]\" data-nodrag></checkbox>\n" +
     "    </div>\n" +
     "\n" +
-    "    <div class=\"col-xs-4\">\n" +
+    "    <div class=\"col-xs-6\">\n" +
     "      <div data-nodrag class=\"row-label\" ng-click=\"vm.$uiTree.toggle(this)\">\n" +
     "        <span ng-if=\"item.hasChild()\"\n" +
     "              ng-class=\"{'fa-caret-right': collapsed, 'fa-caret-down': !collapsed}\"\n" +
@@ -122,7 +122,11 @@ define(function(require) {
     "      </div>\n" +
     "    </div>\n" +
     "\n" +
-    "    <div class=\"col-xs-4\">\n" +
+    "    <div class=\"col-xs-2\">\n" +
+    "      <span\n" +
+    "        ng-repeat=\"config in item.getConfig()\"\n" +
+    "        class=\"fa fa-wrench\">\n" +
+    "      </span>\n" +
     "    </div>\n" +
     "\n" +
     "    <div class=\"col-xs-1\">\n" +
@@ -139,16 +143,14 @@ define(function(require) {
     "\n" +
     "      <a class=\"pull-right btn btn-default btn-xs\"\n" +
     "        data-nodrag\n" +
-    "        ng-click=\"vm.configure(this)\"\n" +
-    "        style=\"margin-right: 8px;\">\n" +
+    "        ng-click=\"vm.configure(this)\">\n" +
     "          <span class=\"fa fa-wrench\"></span>\n" +
     "      </a>\n" +
     "\n" +
     "      <a class=\"pull-right btn btn-primary btn-xs\"\n" +
     "        ng-if=\"item.isContainer()\"\n" +
     "        data-nodrag\n" +
-    "        ng-click=\"vm.newSubItem(this)\"\n" +
-    "        style=\"margin-right: 8px;\">\n" +
+    "        ng-click=\"vm.newSubItem(this)\">\n" +
     "          <span class=\"fa fa-plus\"></span>\n" +
     "      </a>\n" +
     "    </div>\n" +
