@@ -37,5 +37,15 @@ define(function(require) {
     return this.get('type');
   };
 
+  /**
+   * Flat representation of Object
+   *
+   * @overrides
+   * @return {string}
+   */
+  prototype.flatten = function() {
+    return this.getType();
+  };
+
   return Config;
 });

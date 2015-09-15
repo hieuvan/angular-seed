@@ -82,7 +82,7 @@ define(function(require) {
 
       vm.cancel();
       ngToast.success('Configuration is updated.');
-      console.log(item.flatten());
+      //console.log(item.flatten());
     };
 
     /**

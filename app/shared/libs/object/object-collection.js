@@ -127,7 +127,9 @@ define(function(require) {
    * @return {ObjectCollection}
    */
   prototype.substract = function(collection, key) {
-    if (_.isUndefined(key)) key = 'id';
+    if (_.isUndefined(key)) {
+      key = 'id';
+    }
 
     var self = this;
 
@@ -316,8 +318,8 @@ define(function(require) {
       case 'get':
         throw new Error('You cannot call update function on get method.');
       default:
-        valid = _.isFunction(candidate[fn])
-    };
+        valid = _.isFunction(candidate[fn]);
+    }
 
     return valid;
   };
