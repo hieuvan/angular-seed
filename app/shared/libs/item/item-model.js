@@ -34,7 +34,7 @@ define(function(require) {
   var ItemModel = function(data) {
     this._schema = schema;
 
-    this._config = this.setConfig(data.config);
+    this.setConfig(data.config);
 
     model.call(this, data);
   };

@@ -20,11 +20,11 @@ define(function(require) {
   .controller('RemoveItemsController', RemoveItemsController)
   .controller('ConfigureItemsController', ConfigureItemsController)
 
-  .config(['$uiTreeProvider', 'ItemServiceProvider',
-    function($uiTreeProvider, ItemServiceProvider) {
-      //$uiTreeProvider.debug = true;
+  .config(['$uiTreeProvider',
+    function($uiTreeProvider) {
+      $uiTreeProvider.debug = true;
     }])
 
   .provider('ItemService', ItemServiceProvider)
-  .provider('$uiTree', UiTreeProvider)
+  .provider('$uiTree', UiTreeProvider);
 });
