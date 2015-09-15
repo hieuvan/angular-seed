@@ -2,11 +2,11 @@
 
 define(function(require) {
   var Collection = require('shared/libs/object/object-collection'),
-      schema = require('shared/libs/object/object-schema'),
+      Schema = require('shared/libs/object/object-schema'),
       _ = require('underscore');
 
   var ObjectModel = function(data, includes) {
-    this._schema = this._schema || new schema;
+    this._schema = this._schema || new Schema();
 
     data = this._processIncludes(data, includes);
 
@@ -21,7 +21,9 @@ define(function(require) {
   prototype = ObjectModel.prototype;
 
   prototype.get = function(key) {
-    if (_.isUndefined(key)) return this._data;
+    if (_.isUndefined(key)) {
+      return this._data;
+    }
 
     this._schema.validateKey(key);
 
@@ -108,19 +110,23 @@ define(function(require) {
   prototype._processIncludes = function(data, includes) {
     var self = this;
 
-    if (_.isUndefined(includes)) return data;
+    if (_.isUndefined(includes)) {
+      return data;
+    }
 
     for (var i in includes) {
       var toInclude = data[i], model = includes[i];
 
-      if (_.isUndefined(toInclude)) continue;
+      if (_.isUndefined(toInclude)) {
+        continue;
+      }
 
       // recursively process each collection
       for (var j in toInclude) {
         toInclude[j] = self._processIncludes(toInclude[j], includes);
       }
 
-      data[i] = new Collection(model, toInclude)
+      data[i] = new Collection(model, toInclude);
     }
 
     return data;

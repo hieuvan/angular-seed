@@ -1,9 +1,9 @@
 'use strict';
 
-define(function(require) {
+define(function() {
 
-  return ['$resource', 'FormModel', 'ItemModel', 'ItemCollection',
-    function($resource, FormModel, ItemModel, ItemCollection) {
+  return ['$resource', 'FormModel', 'ItemModel', 'ConfigFactory', 'ItemCollection',
+    function($resource, FormModel, ItemModel, ConfigFactory, ItemCollection) {
 
     /**
      * Get Test from by form title
@@ -16,7 +16,7 @@ define(function(require) {
           resource = $resource.url('GetTestFormByTitle');
 
       return resource.post(params).then(function(form) {
-        return new FormModel(form.data, { 'items' : ItemModel });
+        return new FormModel(form.data, { items : ItemModel, config: ConfigFactory });
       });
     };
 
@@ -27,7 +27,7 @@ define(function(require) {
      * @return {promise}
      */
     var searchItem = function(data) {
-      var params = {q : data.query, formId: formId},
+      var params = {q : data.query, formId: data.title},
           resource = $resource.url('items?_q=:q&form_id=:formId');
 
       return resource.get(params, false).then(function(items) {
