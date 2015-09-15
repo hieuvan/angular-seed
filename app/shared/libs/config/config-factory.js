@@ -1,24 +1,18 @@
 'use strict';
 
 define(function(require) {
-  var configs = {
-    timer: require('shared/libs/config/types/timer'),
-    calculator: require('shared/libs/config/types/calculator')
+  var factory = require('shared/libs/object/object-factory');
+
+  var ConfigFactory = function() {
+    this.classes = {
+      timer: require('shared/libs/config/types/timer'),
+      calculator: require('shared/libs/config/types/calculator')
+    };
+
+    factory.call(this);
   };
 
-  var ConfigFactory = function() {},
-
-  prototype = ConfigFactory.prototype;
-
-  /**
-   * Get the configuration Object
-   *
-   * @param type
-   * @return {object} Config Object
-   */
-  prototype.get = function(type) {
-    return new configs[type]();
-  };
+  ConfigFactory.prototype = Object.create(factory.prototype);
 
   return new ConfigFactory();
 });

@@ -26,6 +26,7 @@ define(function(require) {
       TitleDirective = require('shared/directives/title.directive'),
       FormModel = require('shared/libs/form/form-model'),
       ItemModel = require('shared/libs/item/item-model'),
+      ConfigFactory = require('shared/libs/config/config-factory'),
       ItemCollection = require('shared/libs/item/item-collection');
 
 
@@ -57,6 +58,7 @@ define(function(require) {
   .factory('ItemCollection', function() { return ItemCollection; })
   .factory('FormModel', function() { return FormModel; })
   .factory('ItemModel', function() { return ItemModel; })
+  .factory('ConfigFactory', function() { return ConfigFactory; })
 
   .provider('$httpInterceptor', HttpConfigProvider)
   .provider('$resource', ResourceProvider)

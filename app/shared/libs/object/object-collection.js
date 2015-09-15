@@ -1,22 +1,22 @@
 'use strict';
 
 define(function(require) {
+  var _ = require('underscore');
 
-  var ObjectCollection = function(objectModel, data, includes) {
+  var ObjectCollection = function(ObjectModel, data, includes) {
     data = data || [];
     var self = this;
 
-    // TODO: check if objectModel is actually instance of ObjectModel
-    //       atm we just check if it is function, which isnt roboust
-    if (!_.isFunction(objectModel)) {
-      throw new Error('First parameter passed to Object collection must be instance of ObjectModel.');
-    }
+//     if (!_.isFunction(ObjectModel) || ObjectModel.className !== 'factory') {
+//       console.log(ObjectModel);
+//       throw new Error('First parameter passed to Object collection must be instance of ObjectModel.');
+//     }
 
     this._className = this._className || 'ObjectCollection';
-    this._model = objectModel;
+    this._model = ObjectModel;
 
     self._collection = _.chain(data).map(function(eachData) {
-      var model = new objectModel(eachData, includes);
+      var model = self._getModel(ObjectModel, eachData, includes);
 
       if (_.isFunction(self.iterator)) {
         model = self.iterator(model);
@@ -29,6 +29,16 @@ define(function(require) {
   },
 
   prototype = ObjectCollection.prototype;
+
+  prototype._getModel = function(Model, data, includes) {
+    if (_.isObject(Model) && Model.className === 'factory') {
+      Model = Model.get(data);
+    }
+
+    var model = new Model(data, includes);
+
+    return model;
+  };
 
   /**
    * Get all items in collection
@@ -77,8 +87,7 @@ define(function(require) {
    * @return {array}
    */
   prototype.pluck = function(properties) {
-    var self = this,
-        properties = _.isArray(properties) ? properties : [properties];
+    properties = _.isArray(properties) ? properties : [properties];
 
     return _.map(this._collection, function(model){
       var result = {};
@@ -258,7 +267,7 @@ define(function(require) {
    * @return {boolean}
    */
   prototype.isEmpty = function() {
-    return !this.count() > 0;
+    return this.count() <= 0;
   };
 
   /**
@@ -277,16 +286,6 @@ define(function(require) {
    */
   prototype.toString = function() {
     return this._className;
-  };
-
-  /**
-   * Validate data
-   *
-   * @param data
-   * @return {undefined}
-   */
-  var validateData = function(data) {
-    // STUB
   };
 
   /**

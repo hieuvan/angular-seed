@@ -10,6 +10,7 @@ define(function(require) {
     { key: 'uid', type: 'string' },
     { key: 'unit_title', type: 'string', required: false },
     { key: 'unit_uid', type: 'string', required: false },
+    { key: 'config', type: 'array', required: false },
     { key: 'items', type: 'array', required: false }
   ];
 
@@ -22,6 +23,6 @@ define(function(require) {
 
   ItemSchema.prototype = Object.create(schema.prototype);
 
-  return new ItemSchema;
+  return new ItemSchema();
 
 });
