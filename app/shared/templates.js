@@ -249,14 +249,14 @@ define(function(require) {
     "<div class=\"modal-body\">\n" +
     "  <tabset>\n" +
     "    <tab ng-repeat=\"(title, data) in vm.tabs\" heading=\"{{title|capitalize}}\">\n" +
-    "      <form sf-schema=\"data.schema\" sf-model=\"data.model\" sf-form=\"data.form\"></form>\n" +
+    "      <form sf-schema=\"data.schema\" sf-model=\"vm.config\" sf-form=\"data.form\"></form>\n" +
     "    </tab>\n" +
     "  </tabset>\n" +
     "</div>\n" +
     "\n" +
     "<div class=\"modal-footer\">\n" +
     "  <button class=\"btn btn-default\" ng-click=\"vm.cancel()\">Close</button>\n" +
-    "  <button class=\"btn btn-primary\" ng-click=\"vm.updateConfiguration()\">Update Config</button>\n" +
+    "  <button class=\"btn btn-primary\" ng-click=\"vm.update()\">Update Config</button>\n" +
     "</div>\n"
   );
 

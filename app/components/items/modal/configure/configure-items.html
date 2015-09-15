@@ -11,12 +11,12 @@
 <div class="modal-body">
   <tabset>
     <tab ng-repeat="(title, data) in vm.tabs" heading="{{title|capitalize}}">
-      <form sf-schema="data.schema" sf-model="data.model" sf-form="data.form"></form>
+      <form sf-schema="data.schema" sf-model="vm.config" sf-form="data.form"></form>
     </tab>
   </tabset>
 </div>
 
 <div class="modal-footer">
   <button class="btn btn-default" ng-click="vm.cancel()">Close</button>
-  <button class="btn btn-primary" ng-click="vm.updateConfiguration()">Update Config</button>
+  <button class="btn btn-primary" ng-click="vm.update()">Update Config</button>
 </div>
