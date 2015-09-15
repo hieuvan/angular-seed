@@ -12,7 +12,5 @@ define(function(require) {
 
   ItemCollection.prototype = Object.create(collection.prototype);
 
-  var prototype = ItemCollection.prototype;
-
   return ItemCollection;
 });

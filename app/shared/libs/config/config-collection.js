@@ -6,12 +6,12 @@ define(function(require) {
       model = require('shared/libs/config/config-model');
 
   var ConfigCollection = function(data) {
+    this._className = 'ConfigCollection';
+
     collection.call(this, model, data);
   };
 
   ConfigCollection.prototype = Object.create(collection.prototype);
-
-  var prototype = ConfigCollection.prototype;
 
   return ConfigCollection;
 });

@@ -1,6 +1,8 @@
 'use strict';
 
-define(function() {
+define(function(require) {
+  var _ = require('underscore');
+
   var ObjectFactory = function() {
     this.className = 'factory';
   },
@@ -10,11 +12,23 @@ define(function() {
   /**
    * Get the configuration Object
    *
-   * @param type
-   * @return {object} Config Object
+   * @param {string|array} type
+   * @return {object|array} Config Object
    */
   prototype.get = function(type) {
-    return this.classes[type];
+    if (typeof type === 'string') {
+      return this.classes[type];
+    }
+
+    var result = [];
+    if (_.isArray(type)) {
+      for (var i in type) {
+        var Model = this.classes[type[i]];
+        result.push(new Model());
+      }
+    }
+
+    return result;
   };
 
   return ObjectFactory;

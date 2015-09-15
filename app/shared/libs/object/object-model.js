@@ -2,7 +2,8 @@
 
 define(function(require) {
   var Collection = require('shared/libs/object/object-collection'),
-      schema = require('shared/libs/object/object-schema');
+      schema = require('shared/libs/object/object-schema'),
+      _ = require('underscore');
 
   var ObjectModel = function(data, includes) {
     this._schema = this._schema || new schema;
@@ -37,10 +38,8 @@ define(function(require) {
     var data = {};
 
     _.each(this._data, function(value, key) {
-
-      data[key] = value._className === 'ObjectCollection'
-                  ? value.flatten()
-                  : value;
+      data[key] = value instanceof Collection ?
+                  value.flatten() : value;
     });
 
     return data;
@@ -51,7 +50,7 @@ define(function(require) {
   };
 
   prototype.isType = function(className) {
-    return this.toString() == className;
+    return this.toString() === className;
   };
 
   prototype.set = function(key, value) {

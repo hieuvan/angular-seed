@@ -3,8 +3,8 @@
 define(function(require) {
   var _ = require('underscore'),
       model = require('shared/libs/object/object-model'),
-      ConfigCollection = require('shared/libs/config/config-collection'),
       ConfigFactory = require('shared/libs/config/config-factory'),
+      ConfigCollection = require('shared/libs/config/config-collection'),
       schema = require('shared/libs/item/item-schema');
 
   var containers = ['folder', 'cluster'];
@@ -96,10 +96,12 @@ define(function(require) {
    * @return {undefined}
    */
   prototype.setConfig = function(configuration) {
-    console.log(this);
-    //this.set('config', configuration);
-    //this.setConfigCollection();
-    //this._config = getConfig(configuration);
+    var config = ConfigFactory.get(configuration);
+
+    var collection = new ConfigCollection();
+    collection.add(config);
+
+    this.set('config', collection);
   };
 
   return ItemModel;

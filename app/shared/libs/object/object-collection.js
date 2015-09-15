@@ -113,7 +113,7 @@ define(function(require) {
    */
   prototype.removeById = function(id) {
     this._collection = _.filter(this._collection, function(model) {
-      return model.get('id') != id
+      return model.get('id') !== id;
     });
 
     return this;

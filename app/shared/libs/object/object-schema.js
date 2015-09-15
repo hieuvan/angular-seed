@@ -47,6 +47,7 @@ define(function(require) {
 
     if (attributeType.startsWith('_')) {
       attributeType = attributeType.slice(1);
+
       valid = _.isEqual(value.toString(), attributeType);
     }
 
