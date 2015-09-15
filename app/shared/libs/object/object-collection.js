@@ -30,7 +30,6 @@ define(function(require) {
 
   prototype = ObjectCollection.prototype;
 
-
   /**
    * Get all items in collection
    *
@@ -279,7 +278,7 @@ define(function(require) {
     return this._className;
   };
 
-  /**
+   /**
    * Get respective model.
    * Will resolve model from factory if it has to
    *
@@ -298,7 +297,7 @@ define(function(require) {
     return model;
   };
 
-  /**
+   /**
    * Check if invoked function is valid
    *
    * @param candidate
