@@ -1,6 +1,7 @@
 'use strict';
 define(function(require) {
   require('shared/helpers/string');
+  var _ = require('underscore');
 
   var Schema = function() {
     this._className = this._className || 'ObjectModel';
@@ -36,9 +37,8 @@ define(function(require) {
   };
 
   prototype.validateType = function(key, value) {
-
     var attributeType = this.getType(key),
-        givenType = typeof value,
+        givenType = value instanceof Array ? 'array' : typeof value,
         valid = _.isEqual(attributeType, givenType);
 
     if (attributeType === 'number') {
@@ -47,7 +47,7 @@ define(function(require) {
 
     if (attributeType.startsWith('_')) {
       attributeType = attributeType.slice(1);
-      valid = _.isEqual(value.toString(), attributeType)
+      valid = _.isEqual(value.toString(), attributeType);
     }
 
     if (!valid) {
