@@ -10,7 +10,7 @@ define(function(require) {
     { key: 'uid', type: 'string' },
     { key: 'unit_title', type: 'string', required: false },
     { key: 'unit_uid', type: 'string', required: false },
-    { key: 'config', type: '_ConfigCollection' },
+    { key: 'config', type: '_ConfigCollection', required: false },
     { key: 'items', type: '_ItemCollection' }
   ];
 
