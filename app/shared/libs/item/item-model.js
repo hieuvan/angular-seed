@@ -34,8 +34,6 @@ define(function(require) {
   var ItemModel = function(data) {
     this._schema = schema;
 
-    this.setConfig(data.config);
-
     model.call(this, data);
   };
 
@@ -87,7 +85,7 @@ define(function(require) {
    * @return {object} ConfigCollection
    */
   prototype.config = function() {
-    return this._config;
+    return this.get('config');
   };
 
   /**
@@ -98,27 +96,10 @@ define(function(require) {
    * @return {undefined}
    */
   prototype.setConfig = function(configuration) {
-    this._config = getConfig(configuration);
-  };
-
-  /**
-   * Get the configuration collection
-   *
-   * @param {array|string} configuration
-   * @return {object} ConfigCollection
-   */
-  var getConfig = function(configuration) {
-    var collection = new ConfigCollection();
-
-    if (!configuration) { return collection; }
-
-    configuration = _.isArray(configuration) ? configuration : [configuration];
-
-    for (var i in configuration) {
-      collection.add(ConfigFactory.get(configuration[i]));
-    }
-
-    return collection;
+    console.log(this);
+    //this.set('config', configuration);
+    //this.setConfigCollection();
+    //this._config = getConfig(configuration);
   };
 
   return ItemModel;

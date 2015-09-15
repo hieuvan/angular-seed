@@ -1,9 +1,9 @@
 'use strict';
 
-define(function(require) {
+define(function() {
 
-  return ['$resource', 'FormModel', 'ItemModel', 'ItemCollection',
-    function($resource, FormModel, ItemModel, ItemCollection) {
+  return ['$resource', 'FormModel', 'ItemModel', 'ConfigFactory', 'ItemCollection',
+    function($resource, FormModel, ItemModel, ConfigFactory, ItemCollection) {
 
     /**
      * Get Test from by form title
@@ -16,7 +16,7 @@ define(function(require) {
           resource = $resource.url('forms/:formId/items');
 
       return resource.get(params).then(function(form) {
-        return new FormModel(form.data, { 'items' : ItemModel });
+        return new FormModel(form.data, { items : ItemModel, config: ConfigFactory });
       });
     };
 
