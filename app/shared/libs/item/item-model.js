@@ -34,7 +34,7 @@ define(function(require) {
   var ItemModel = function(data) {
     this._schema = schema;
 
-    this._config = setConfiguration(data.config);
+    this._config = this.setConfig(data.config);
 
     model.call(this, data);
   };
@@ -91,15 +91,28 @@ define(function(require) {
   };
 
   /**
-   * Set the configuration of items
+   * Set configuration of item
+   * Overrides existing configuration
    *
-   * @param configuration
+   * @param {array|string} configuration
+   * @return {undefined}
+   */
+  prototype.setConfig = function(configuration) {
+    this._config = getConfig(configuration);
+  };
+
+  /**
+   * Get the configuration collection
+   *
+   * @param {array|string} configuration
    * @return {object} ConfigCollection
    */
-  var setConfiguration = function(configuration) {
+  var getConfig = function(configuration) {
     var collection = new ConfigCollection();
 
     if (!configuration) { return collection; }
+
+    configuration = _.isArray(configuration) ? configuration : [configuration];
 
     for (var i in configuration) {
       collection.add(ConfigFactory.get(configuration[i]));
