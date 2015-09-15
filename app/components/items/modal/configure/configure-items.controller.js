@@ -8,18 +8,30 @@ define(function(require) {
       RadioButtonItem = require('shared/libs/sf-form/radiobuttonitem');
 
   return ['$modalInstance', 'node', 'ngToast', function($modalInstance, node, ngToast) {
-    var vm = this,
-        item = node.$modelValue;
+    var vm = this, item = node.$modelValue, tabs = {};
 
     vm.title = item.uid;
     vm.config = {};
 
-    var tabs = {},
-        radiobuttonProperty = {
-          type: 'string',
-          default: 'select',
-          enum: ['select', 'deselect']
-        };
+    /**
+     * Get the radio button property
+     *
+     * @param type
+     * @return {object}
+     */
+    var radiobuttonProperty = function(type) {
+      var config = item.config();
+
+      var configSelected = !_.isUndefined(config) && _.contains(config.flatten(), type);
+
+      var value = configSelected ? 'select' : 'deselect';
+
+      return {
+        type: 'string',
+        default: value,
+        enum: ['select', 'deselect']
+      };
+    };
 
     /**
      * Form Items on display tab
@@ -35,8 +47,8 @@ define(function(require) {
       schema: {
         type: 'object',
         properties: {
-          calculator: radiobuttonProperty,
-          timer: radiobuttonProperty
+          calculator: radiobuttonProperty('calculator'),
+          timer: radiobuttonProperty('timer')
         }
       }
     };
@@ -66,7 +78,6 @@ define(function(require) {
         }
       }
     };
-
 
     vm.tabs = tabs;
 
@@ -104,5 +115,6 @@ define(function(require) {
         return vm.config[type] === 'select';
       });
     };
+
   }];
 });
