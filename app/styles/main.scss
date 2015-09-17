@@ -3,6 +3,7 @@
 // bower:scss
 @import "bootstrap-sass/assets/stylesheets/_bootstrap.scss";
 // endbower
+
 @import "font-awesome/scss/font-awesome";
 @import "libs/angular-ui-tree.min";
 @import "libs/ngToast";
@@ -10,6 +11,7 @@
 @import "libs/angular";
 @import "libs/angular-loading-bar";
 
+@import "components/spinner";
 @import "animations/pageload";
 
 @import "partials/header";

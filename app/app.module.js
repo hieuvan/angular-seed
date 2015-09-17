@@ -41,13 +41,14 @@ define(function(require) {
     'httpi'
   ])
 
-  // TODO: add page load animation later
-
   .constant('constant', constant)
 
-  .config(['$httpProvider', 'constant', '$resourceProvider', '$httpInterceptorProvider',
-    function($httpProvider, constant, $resourceProvider, $httpInterceptorProvider) {
+  .config(['$httpProvider', 'constant', '$resourceProvider', 'cfpLoadingBarProvider',
+    function($httpProvider, constant, $resourceProvider, cfpLoadingBarProvider) {
       $httpProvider.interceptors.push('$httpInterceptor');
+
+      cfpLoadingBarProvider.includeSpinner = false;
+      cfpLoadingBarProvider.spinnerTemplate = '<div id="loading-bar-spinner"><div class="sk-folding-cube"><div class="sk-cube1 sk-cube"></div><div class="sk-cube2 sk-cube"></div><div class="sk-cube4 sk-cube"></div><div class="sk-cube3 sk-cube"></div></div></div>';
 
       $resourceProvider.type = constant.resourceType;
       $resourceProvider.apiUrl = constant.resource().url;
