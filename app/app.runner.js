@@ -7,10 +7,6 @@ define(function() {
     $rootScope.$state = $state;
     $rootScope.$stateParams = $stateParams;
 
-    $rootScope.$on('$stateChangeStart', function() {
-      $rootScope.stateLoading = true;
-    });
-
     $rootScope.$on('$stateChangeSuccess', function() {
       $rootScope.stateLoading = false;
     });
@@ -20,11 +16,9 @@ define(function() {
       $rootScope.currentState = to.name;
     });
 
-    // @TODO: send to error page
     $rootScope.$on('$stateChangeError',
     function(event, toState, toParams, fromState, fromParams, error){
-      $state.go('error', {message: error});
-      console.log('There was a error => ' + error);
+      $state.go('error', {error: error});
     });
   }];
 });

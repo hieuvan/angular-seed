@@ -1,6 +1,8 @@
 'use strict';
 
 define(function() {
+  var _ = require('underscore');
+
   return [function() {
     this.apiUrl = '';
     this.type = 'rest';
@@ -30,7 +32,9 @@ define(function() {
        * @return object Promise with resolved data
        */
       var get = function(params, cache) {
-        if (_.isUndefined(cache)) cache = true;
+        if (_.isUndefined(cache)) {
+          cache = true;
+        }
 
         return resource.get({ params: params, cache: cache })
           .then(handleSuccess, handleError);
@@ -83,38 +87,19 @@ define(function() {
        * @param object response Response from server
        */
       var handleError = function(response) {
+        var statusText = response.statusText,
+            status = response.status,
+            error = {status: status, statusText: statusText};
+
+        console.debug(statusText, status);
+
         if (_.isObject(response.data) && _.isObject(response.data.error)) {
-          console.debug(response.data.error);
-          return( $q.reject(response.data.error) );
+          error.error = response.data.error;
+
+          return( $q.reject(error) );
         }
 
         return($q.reject({message: response.statusText}));
-      };
-
-      /**
-       * Get Post headers
-       *
-       * @return object Header
-       */
-      var getPostConfig = function() {
-        return getCsrf().then(function(csrf) {
-          return { headers : { 'X-XSRF-TOKEN' : csrf } };
-        });
-      };
-
-      /**
-       * Get CSRF token from the api
-       *
-       * @return string csrf
-       */
-      var getCsrf = function() {
-        if (!csrf) {
-          csrf = get('csrf').then(function(response) {
-            return response.data;
-          });
-        }
-
-        return csrf;
       };
 
       return {

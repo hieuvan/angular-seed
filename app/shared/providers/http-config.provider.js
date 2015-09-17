@@ -1,6 +1,9 @@
 'use strict';
 
 define(function(require) {
+
+  var _ = require('underscore');
+
   return [function() {
 
     this.defaults = {
@@ -15,7 +18,7 @@ define(function(require) {
      * Provider Constructor
      * Provide the default config for post requests
      */
-    this.$get = [function() {
+    this.$get = ['$q', function($q) {
       var self = this;
 
       return {
@@ -28,7 +31,9 @@ define(function(require) {
         */
         request: function(config) {
 
-          if(_.contains(self.defaults.allowedMethods, config.method)) return config;
+          if(_.contains(self.defaults.allowedMethods, config.method)) {
+            return config;
+          }
 
           config.withCredentials = self.defaults.withCredentials;
 
@@ -53,6 +58,7 @@ define(function(require) {
          */
         requestError: function(rejection) {
           // STUB
+          return rejection;
         },
 
         /**
@@ -74,6 +80,7 @@ define(function(require) {
          */
         responseError: function(rejection) {
           // STUB
+          return $q.reject(rejection);
         }
       };
     }];
@@ -88,10 +95,10 @@ define(function(require) {
       var str = [];
 
       str = _.map(obj, function(key, value) {
-        return encodeURIComponent(value) + "=" + encodeURIComponent(key);
+        return encodeURIComponent(value) + '=' + encodeURIComponent(key);
       });
 
-      return str.join("&");
+      return str.join('&');
     };
   }];
 });
