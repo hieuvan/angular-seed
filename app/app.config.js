@@ -51,6 +51,10 @@ require.config({
       'angular',
       'angular-ui-tree',
       'angular-bootstrap-checkbox'
+    ],
+    'angular-loading-bar': [
+      'angular',
+      'angular-animate'
     ]
   },
   map: {
@@ -85,7 +89,8 @@ require.config({
     'bootstrap-decorator': '../bower_components/angular-schema-form/dist/bootstrap-decorator',
     objectpath: '../bower_components/objectpath/lib/ObjectPath',
     tv4: '../bower_components/tv4/tv4',
-    'schema-form': '../bower_components/angular-schema-form/dist/schema-form'
+    'schema-form': '../bower_components/angular-schema-form/dist/schema-form',
+    'angular-loading-bar': '../bower_components/angular-loading-bar/build/loading-bar'
   },
   packages: [
 

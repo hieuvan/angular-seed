@@ -6,11 +6,10 @@ define(function(require) {
   require('angular-ui-router');
   require('angular-ui-bootstrap-bower');
   require('angular-ui-bootstrap-tpls-bower');
-  require('angular-debounce');
-  require('angular-cookies');
   require('angular-httpi');
   require('angular-sanitize');
   require('angular-toast');
+  require('angular-loading-bar');
 
   // app components
   require('components/header/header.module');
@@ -33,6 +32,7 @@ define(function(require) {
   // app level module that depends on app view and components
   return angular.module('app', [
     'ngAnimate',
+    'angular-loading-bar',
     'ngToast',
     'ui.router',
     'ui.bootstrap',
