@@ -2,6 +2,31 @@ define(function(require) {
 	return ['$templateCache', function($templateCache) {
   'use strict';
 
+  $templateCache.put('components/error/error.html',
+    "<div id=\"error\">\n" +
+    "  <header><h4>Assessment Builder</h4></header>\n" +
+    "\n" +
+    "  <article>\n" +
+    "    <h1>{{vm.code}}</h1>\n" +
+    "    <h4>{{vm.message}}</h4>\n" +
+    "    <p>{{vm.description}}</p>\n" +
+    "  </article>\n" +
+    "\n" +
+    "  <footer ng-if=\"vm.showFooter()\">\n" +
+    "    <ul class=\"tabs clearfix\">\n" +
+    "        <li>\n" +
+    "          <a href><i class=\"fa fa-exclamation-triangle\"></i> Report Error</a>\n" +
+    "        </li>\n" +
+    "\n" +
+    "        <li>\n" +
+    "        <a href ui-sref=\"root.items.detail({title: vm.title})\"><i class=\"fa fa-home\"></i> Back to Home</a>\n" +
+    "        </li>\n" +
+    "      </ul>\n" +
+    "  </footer>\n" +
+    "</div>\n"
+  );
+
+
   $templateCache.put('components/footer/footer.html',
     "<div id=\"wrapper-push\"></div>\n" +
     "\n" +

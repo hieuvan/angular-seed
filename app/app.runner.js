@@ -18,7 +18,7 @@ define(function() {
 
     $rootScope.$on('$stateChangeError',
     function(event, toState, toParams, fromState, fromParams, error){
-      $state.go('error', {error: error});
+      return $state.go('error', {error: error});
     });
   }];
 });

@@ -1,10 +1,14 @@
 'use strict';
 
 define(function() {
-  return [function() {
-    var vm = this;
+  return ['$state', '$stateParams', function($state, $stateParams) {
+    var vm = this, error = $stateParams.error;
 
-    vm.code = '404';
+    if (!error) {
+      return $state.go('root.items.detail');
+    }
+
+    vm.code = error.status;
 
     vm.message = 'Sorry - Page not found!';
 
