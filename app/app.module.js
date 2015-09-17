@@ -32,7 +32,7 @@ define(function(require) {
 
   // app level module that depends on app view and components
   return angular.module('app', [
-    'ngCookies',
+    'ngAnimate',
     'ngToast',
     'ui.router',
     'ui.bootstrap',

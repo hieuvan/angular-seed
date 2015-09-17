@@ -9,6 +9,8 @@
 @import "libs/ngToast-animations";
 @import "libs/angular";
 
+@import "animations/pageload";
+
 @import "partials/header";
 @import "partials/body";
 
@@ -18,8 +20,6 @@
 @import "components/modal";
 @import "components/form-table";
 @import "components/uitree";
-
-@import "animations/pageload";
 
 /*# sourceMappingURL=main.css.map */
 
