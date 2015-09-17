@@ -1,0 +1,21 @@
+<div id="error">
+  <header>Assessment Builder</header>
+
+  <article>
+    <h1>{{vm.code}}</h1>
+    <h4>{{vm.message}}</h4>
+    <p>{{vm.description}}</p>
+  </article>
+
+  <footer ng-if="vm.showFooter()">
+    <ul class="tabs clearfix">
+        <li>
+          <a href><i class="fa fa-exclamation-triangle"></i> Report Error</a>
+        </li>
+
+        <li>
+        <a href ui-sref="root.items.detail({title: vm.title})"><i class="fa fa-home"></i> Back to Home</a>
+        </li>
+      </ul>
+  </footer>
+</div>

@@ -69,7 +69,7 @@ require.config({
     angular: '../bower_components/angular/angular',
     'angular-validation': '../bower_components/angular-validation/dist/angular-validation',
     jquery: '../bower_components/jquery/dist/jquery',
-    'requirejs-text': '../bower_components/requirejs-text/text',
+    'text': '../bower_components/requirejs-text/text',
     'angular-ui-router': '../bower_components/angular-ui-router/release/angular-ui-router',
     'angular-ui-bootstrap-bower': '../bower_components/angular-ui-bootstrap-bower/ui-bootstrap-tpls',
     'angular-ui-bootstrap-tpls-bower': '../bower_components/angular-ui-bootstrap-bower/ui-bootstrap-tpls.min',

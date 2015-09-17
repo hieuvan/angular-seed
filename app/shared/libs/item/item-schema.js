@@ -11,7 +11,7 @@ define(function(require) {
     { key: 'unit_title', type: 'string', required: false },
     { key: 'unit_uid', type: 'string', required: false },
     { key: 'config', type: '_ConfigCollection', required: false },
-    { key: 'items', type: '_ItemCollection' }
+    { key: 'items', type: '_ItemCollection', required: false }
   ];
 
   var ItemSchema = function() {

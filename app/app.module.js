@@ -14,6 +14,7 @@ define(function(require) {
   // app components
   require('components/header/header.module');
   require('components/items/item.module');
+  require('components/error/error.module');
 
   var AppRunner = require('app.runner'),
       templates = require('shared/templates'),
@@ -28,7 +29,6 @@ define(function(require) {
       ConfigFactory = require('shared/libs/config/config-factory'),
       ItemCollection = require('shared/libs/item/item-collection');
 
-
   // app level module that depends on app view and components
   return angular.module('app', [
     'ngAnimate',
@@ -38,6 +38,7 @@ define(function(require) {
     'ui.bootstrap',
     'app.header',
     'app.items',
+    'app.error',
     'httpi'
   ])
 
@@ -48,7 +49,6 @@ define(function(require) {
       $httpProvider.interceptors.push('$httpInterceptor');
 
       cfpLoadingBarProvider.includeSpinner = false;
-      cfpLoadingBarProvider.spinnerTemplate = '<div id="loading-bar-spinner"><div class="sk-folding-cube"><div class="sk-cube1 sk-cube"></div><div class="sk-cube2 sk-cube"></div><div class="sk-cube4 sk-cube"></div><div class="sk-cube3 sk-cube"></div></div></div>';
 
       $resourceProvider.type = constant.resourceType;
       $resourceProvider.apiUrl = constant.resource().url;

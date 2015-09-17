@@ -22,6 +22,17 @@ define(function() {
     });
 
     states.push({
+      name: 'error',
+      url: '/error',
+      views: {
+        'content@': {
+          controller: 'ErrorController as vm',
+          templateUrl: 'components/error/error.html'
+        }
+      }
+    });
+
+    states.push({
       name: 'root.items',
       url: '/:title',
       abstract: true,
