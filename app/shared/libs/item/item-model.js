@@ -34,9 +34,7 @@ define(function(require) {
   var ItemModel = function(data) {
     this._schema = schema;
 
-    if (!data.title) {
-      data.title = 'Untitled';
-    }
+    data.title = data.title || 'Untitled';
 
     model.call(this, data);
   };
