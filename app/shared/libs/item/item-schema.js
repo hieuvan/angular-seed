@@ -4,10 +4,10 @@ define(function(require) {
   var schema = require('shared/libs/object/object-schema');
 
   var _properties = [
-    { key: 'id', type: 'int' },
+    { key: 'id', type: 'int', required: false },
     { key: 'title', type: 'string' },
     { key: 'type', type: 'string', required: false },
-    { key: 'uid', type: 'string' },
+    { key: 'uid', type: 'string', required: false },
     { key: 'unit_title', type: 'string', required: false },
     { key: 'unit_uid', type: 'string', required: false },
     { key: 'config', type: '_ConfigCollection', required: false },

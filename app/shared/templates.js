@@ -59,7 +59,7 @@ define(function(require) {
   $templateCache.put('components/items/item.html',
     "<section id=\"ui-tree\">\n" +
     "  <div ng-show=\"vm.items.isEmpty()\" class=\"col-md-12\">\n" +
-    "    <alert type=\"warning\">There are no items.</alert>\n" +
+    "    <alert type=\"warning\">There are no items. Get started by adding <a href ng-click=\"vm.addFolder()\">new folder</a>.</alert>\n" +
     "  </div>\n" +
     "\n" +
     "  <div ng-hide=\"vm.items.isEmpty()\" ng-class=\"vm.$uiTree.debug ? 'col-md-6' : 'col-md-12'\">\n" +
@@ -138,7 +138,7 @@ define(function(require) {
     "\n" +
     "        <span class=\"fa fa-{{item.getIcon()}} second-icon\"></span>\n" +
     "\n" +
-    "        <span class=\"text\">{{item.get('uid')}}</span>\n" +
+    "        <span class=\"text\">{{item.get('title')}}</span>\n" +
     "        <span class=\"badge\" ng-if=\"item.hasChild()\">{{item.childCount()}}</span>\n" +
     "      </div>\n" +
     "    </div>\n" +

@@ -1,6 +1,6 @@
 <section id="ui-tree">
   <div ng-show="vm.items.isEmpty()" class="col-md-12">
-    <alert type="warning">There are no items.</alert>
+    <alert type="warning">There are no items. Get started by adding <a href ng-click="vm.addFolder()">new folder</a>.</alert>
   </div>
 
   <div ng-hide="vm.items.isEmpty()" ng-class="vm.$uiTree.debug ? 'col-md-6' : 'col-md-12'">

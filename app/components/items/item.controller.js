@@ -4,8 +4,8 @@ define(function(require) {
 
   var _ = require('underscore');
 
-  return ['form', '$modal', '$stateParams', '$uiTree',
-    function(form, $modal, $stateParams, $uiTree) {
+  return ['form', '$modal', '$stateParams', '$uiTree', 'ItemModel',
+    function(form, $modal, $stateParams, $uiTree, ItemModel) {
     var vm = this;
 
     vm.form = form;
@@ -66,10 +66,12 @@ define(function(require) {
      * @return {void}
      */
     vm.addFolder = function() {
-      vm.items.push({
-        type: 'folder',
-        uid: 'New Folder'
+      var newFolder = new ItemModel({
+        title: 'New Folder',
+        type: 'folder'
       });
+
+      vm.items.add(newFolder);
     };
 
     vm.preview = function() {
