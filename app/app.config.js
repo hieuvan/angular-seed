@@ -91,7 +91,8 @@ require.config({
     tv4: '../bower_components/tv4/tv4',
     'schema-form': '../bower_components/angular-schema-form/dist/schema-form',
     'angular-loading-bar': '../bower_components/angular-loading-bar/build/loading-bar',
-    'requirejs-text': '../bower_components/requirejs-text/text'
+    'requirejs-text': '../bower_components/requirejs-text/text',
+    editable: 'shared/libs/editable/editable'
   },
   packages: [
 
