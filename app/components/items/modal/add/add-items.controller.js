@@ -2,11 +2,13 @@
 
 define(function(require) {
 
+  var _ = require('underscore');
+
   return ['$stateParams', '$modalInstance', 'node', 'ItemService', 'ngToast',
     function($stateParams, $modalInstance, node, ItemService, ngToast) {
     var vm = this, currentItem = node.$modelValue;
 
-    vm.foundItems;
+    vm.foundItems = [];
     vm.title = currentItem.uid;
 
     /**
@@ -46,7 +48,7 @@ define(function(require) {
 
       vm.foundItems.substract(items);
 
-      ngToast.success('Item added to tree.')
+      ngToast.success('Item added to tree.');
     };
 
     /**

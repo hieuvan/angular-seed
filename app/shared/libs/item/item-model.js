@@ -4,6 +4,7 @@ define(function(require) {
   var _ = require('underscore'),
       model = require('shared/libs/object/object-model'),
       ConfigFactory = require('shared/libs/config/config-factory'),
+      ObjectCollection = require('shared/libs/object/object-collection'),
       ConfigCollection = require('shared/libs/config/config-collection'),
       schema = require('shared/libs/item/item-schema');
 
@@ -31,12 +32,13 @@ define(function(require) {
   };
 
 
-  var ItemModel = function(data) {
+  var ItemModel = function(data, includes) {
     this._schema = schema;
 
     data.title = data.title || 'Untitled';
+    data.items = data.items || [];
 
-    model.call(this, data);
+    model.call(this, data, includes);
   };
 
   ItemModel.prototype = Object.create(model.prototype);
@@ -69,7 +71,11 @@ define(function(require) {
   prototype.hasChild = function() {
     var items = this.get('items');
 
-    return items ? ! items.isEmpty() : false;
+    if (items instanceof ObjectCollection) {
+      return ! items.isEmpty();
+    }
+
+    return false;
   };
 
   /**

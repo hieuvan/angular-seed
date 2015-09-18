@@ -66,10 +66,12 @@ define(function(require) {
      * @return {void}
      */
     vm.addFolder = function() {
-      var newFolder = new ItemModel({
+      var item = {
         title: 'New Folder',
         type: 'folder'
-      });
+      };
+
+      var newFolder = new ItemModel(item, {items: ItemModel});
 
       vm.items.add(newFolder);
     };

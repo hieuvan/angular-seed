@@ -22,7 +22,7 @@ define(function(require) {
 
   .config(['$uiTreeProvider',
     function($uiTreeProvider) {
-      //$uiTreeProvider.debug = true;
+      $uiTreeProvider.debug = true;
     }])
 
   .provider('ItemService', ItemServiceProvider)
