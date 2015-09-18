@@ -1,8 +1,8 @@
 'use strict';
 
 define(function() {
-  return ['$stateProvider', '$urlRouterProvider', 'constant',
-  function($stateProvider, $urlRouterProvider, constant) {
+  return ['$stateProvider', '$urlRouterProvider', 'config',
+  function($stateProvider, $urlRouterProvider, config) {
     var states = [];
 
     states.push({
@@ -61,7 +61,7 @@ define(function() {
       }
     });
 
-    $urlRouterProvider.otherwise(constant.defaultUrl);
+    $urlRouterProvider.otherwise(config.defaultUrl);
 
     angular.forEach(states, function(state) {
        $stateProvider.state(state);

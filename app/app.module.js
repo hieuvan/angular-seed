@@ -18,7 +18,6 @@ define(function(require) {
 
   var AppRunner = require('app.runner'),
       templates = require('shared/templates'),
-      constant = require('shared/constants/constant'),
       Routes = require('app.routes'),
       CapitalizeFilter = require('shared/filters/capitalize.filter'),
       HttpConfigProvider = require('shared/providers/http-config.provider'),
@@ -42,16 +41,14 @@ define(function(require) {
     'httpi'
   ])
 
-  .constant('constant', constant)
-
-  .config(['$httpProvider', 'constant', '$resourceProvider', 'cfpLoadingBarProvider',
-    function($httpProvider, constant, $resourceProvider, cfpLoadingBarProvider) {
+  .config(['$httpProvider', '$resourceProvider', 'cfpLoadingBarProvider', 'config',
+    function($httpProvider, $resourceProvider, cfpLoadingBarProvider, config) {
       $httpProvider.interceptors.push('$httpInterceptor');
 
       cfpLoadingBarProvider.includeSpinner = false;
 
-      $resourceProvider.type = constant.resourceType;
-      $resourceProvider.apiUrl = constant.resource().url;
+      $resourceProvider.type = config.resourceType;
+      $resourceProvider.apiUrl = config.resource().url;
   }])
 
   .config(Routes)

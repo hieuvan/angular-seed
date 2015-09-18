@@ -1,6 +1,6 @@
 'use strict';
 
-define(function(require) {
+define(function() {
   var resource = {
     rest: {
       url: 'http://api.local-newbuilder/v1/'
@@ -10,8 +10,10 @@ define(function(require) {
     }
   };
 
+  var defaultUrl = window.location.hash.substr(1) || '/';
+
   return {
-    defaultUrl: '/',
+    defaultUrl: defaultUrl,
     resourceType: 'rest',
     resource: function() {
       return resource[this.resourceType];
