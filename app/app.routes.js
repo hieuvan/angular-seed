@@ -22,6 +22,15 @@ define(function() {
     });
 
     states.push({
+      name: 'root.items',
+      url: '/:title',
+      abstract: true,
+      data: {
+        displayName: false
+      }
+    });
+
+    states.push({
       name: 'error',
       url: '/error',
       params: {error: null},
@@ -30,15 +39,6 @@ define(function() {
           controller: 'ErrorController as vm',
           templateUrl: 'components/error/error.html'
         }
-      }
-    });
-
-    states.push({
-      name: 'root.items',
-      url: '/:title',
-      abstract: true,
-      data: {
-        displayName: false
       }
     });
 

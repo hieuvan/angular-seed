@@ -7,10 +7,6 @@ define(function() {
     $rootScope.$state = $state;
     $rootScope.$stateParams = $stateParams;
 
-    $rootScope.$on('$stateChangeSuccess', function() {
-      $rootScope.stateLoading = false;
-    });
-
     $rootScope.$on('$stateChangeSuccess', function(ev, to, toParams, from) {
       $rootScope.previousState = from.name || '/';
       $rootScope.currentState = to.name;

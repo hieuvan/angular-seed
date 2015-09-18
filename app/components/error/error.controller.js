@@ -1,23 +1,23 @@
 'use strict';
 
 define(function() {
-  return ['$state', '$stateParams', function($state, $stateParams) {
-    var vm = this, error = $stateParams.error;
+  return ['$state', 'config', 'ErrorService', function($state, config, ErrorService) {
+    var vm = this, error = ErrorService.error();
 
+    vm.defaultTitle = config.formTitle;
+
+    /**
+     * Redirect back to homepage
+     * Users probably might have visited this page directly
+     */
     if (!error) {
-      return $state.go('root.items.detail');
+      return $state.go('root.items.detail', { title: vm.defaultTitle });
     }
 
-    vm.code = error.status;
+    vm.code = error.code;
 
-    vm.message = 'Sorry - Page not found!';
+    vm.message = error.message;
 
-    vm.description = 'The page you are looking for was moved, removed, renamed or might never existed.';
-
-    vm.title = '2';
-
-    vm.showFooter = function() {
-      return true;
-    };
+    vm.description = error.description;
   }];
 });

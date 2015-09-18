@@ -12,14 +12,10 @@ define(function(require) {
     "    <p>{{vm.description}}</p>\n" +
     "  </article>\n" +
     "\n" +
-    "  <footer ng-if=\"vm.showFooter()\">\n" +
+    "  <footer>\n" +
     "    <ul class=\"tabs clearfix\">\n" +
     "        <li>\n" +
-    "          <a href><i class=\"fa fa-exclamation-triangle\"></i> Report Error</a>\n" +
-    "        </li>\n" +
-    "\n" +
-    "        <li>\n" +
-    "        <a href ui-sref=\"root.items.detail({title: vm.title})\"><i class=\"fa fa-home\"></i> Back to Home</a>\n" +
+    "        <a href ui-sref=\"root.items.detail({title: vm.defaultTitle})\"><i class=\"fa fa-home\"></i> Back to Home</a>\n" +
     "        </li>\n" +
     "      </ul>\n" +
     "  </footer>\n" +

@@ -14,6 +14,7 @@ define(function() {
 
   return {
     defaultUrl: defaultUrl,
+    formTitle: defaultUrl.substr(1) || '',
     resourceType: 'rest',
     resource: function() {
       return resource[this.resourceType];

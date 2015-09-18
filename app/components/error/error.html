@@ -7,14 +7,10 @@
     <p>{{vm.description}}</p>
   </article>
 
-  <footer ng-if="vm.showFooter()">
+  <footer>
     <ul class="tabs clearfix">
         <li>
-          <a href><i class="fa fa-exclamation-triangle"></i> Report Error</a>
-        </li>
-
-        <li>
-        <a href ui-sref="root.items.detail({title: vm.title})"><i class="fa fa-home"></i> Back to Home</a>
+        <a href ui-sref="root.items.detail({title: vm.defaultTitle})"><i class="fa fa-home"></i> Back to Home</a>
         </li>
       </ul>
   </footer>

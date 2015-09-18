@@ -91,15 +91,13 @@ define(function() {
             status = response.status,
             error = {status: status, statusText: statusText};
 
-        console.debug(statusText, status);
-
         if (_.isObject(response.data) && _.isObject(response.data.error)) {
           error.error = response.data.error;
 
           return( $q.reject(error) );
         }
 
-        return($q.reject({message: response.statusText}));
+        return($q.reject(response));
       };
 
       return {
