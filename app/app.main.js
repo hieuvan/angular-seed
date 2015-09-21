@@ -1,9 +1,11 @@
 'use strict';
 
 define(function(require) {
-  require('app.module');
+  var app = require('app.module'),
+      config = require('app.config'),
+      angular = require('angular');
 
-  var angular = require('angular');
+  app.constant('config', config);
 
   angular.element().ready(function() {
     var $html = angular.element(document.getElementsByTagName('html'));
