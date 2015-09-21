@@ -33,7 +33,7 @@ require.config({
     'angular-sanitize': [
       'angular'
     ],
-    'ngtoast': [
+    ngtoast: [
       'angular',
       'angular-sanitize',
       'angular-animate'

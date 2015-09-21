@@ -8,25 +8,20 @@ define(function(require) {
   require('angular-ui-bootstrap-tpls-bower');
   require('angular-httpi');
   require('angular-sanitize');
-  require('angular-toast');
+  require('ngtoast');
   require('angular-loading-bar');
 
   // app components
   require('components/header/header.module');
-  require('components/items/item.module');
   require('components/error/error.module');
 
   var AppRunner = require('app.runner'),
       templates = require('shared/templates'),
       Routes = require('app.routes'),
-      CapitalizeFilter = require('shared/filters/capitalize.filter'),
       HttpConfigProvider = require('shared/providers/http-config.provider'),
       ResourceProvider = require('shared/providers/resource.provider'),
-      TitleDirective = require('shared/directives/title.directive'),
-      FormModel = require('shared/libs/form/form-model'),
-      ItemModel = require('shared/libs/item/item-model'),
-      ConfigFactory = require('shared/libs/config/config-factory'),
-      ItemCollection = require('shared/libs/item/item-collection');
+      AppConfig = require('shared/config/config'),
+      TitleDirective = require('shared/directives/title.directive');
 
   // app level module that depends on app view and components
   return angular.module('app', [
@@ -36,34 +31,24 @@ define(function(require) {
     'ui.router',
     'ui.bootstrap',
     'app.header',
-    'app.items',
     'app.error',
     'httpi'
   ])
 
-  .config(['$httpProvider', '$resourceProvider', 'cfpLoadingBarProvider', 'config', 'ngToastProvider',
-    function($httpProvider, $resourceProvider, cfpLoadingBarProvider, config, ngToastProvider) {
+  .config(['$httpProvider', 'cfpLoadingBarProvider',
+    function($httpProvider, cfpLoadingBarProvider) {
       $httpProvider.interceptors.push('$httpInterceptor');
 
       cfpLoadingBarProvider.includeSpinner = false;
-
-      $resourceProvider.type = config.resourceType;
-      $resourceProvider.apiUrl = config.resource().url;
   }])
 
   .config(Routes)
 
-  .factory('ItemCollection', function() { return ItemCollection; })
-  .factory('FormModel', function() { return FormModel; })
-  .factory('ItemModel', function() { return ItemModel; })
-  .factory('ConfigFactory', function() { return ConfigFactory; })
-
   .provider('$httpInterceptor', HttpConfigProvider)
   .provider('$resource', ResourceProvider)
+  .constant('config', AppConfig)
 
   .directive('title', TitleDirective)
-
-  .filter('capitalize', CapitalizeFilter)
 
   .run(templates)
   .run(AppRunner);

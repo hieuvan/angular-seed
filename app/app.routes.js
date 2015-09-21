@@ -18,15 +18,19 @@ define(function() {
           templateUrl: 'components/footer/footer.html',
           controller: 'FooterController as vm'
         }
+      },
+      resolve: {
+        config: ['config', function(config) {
+          return config;
+        }]
       }
     });
 
     states.push({
-      name: 'root.items',
-      url: '/:title',
-      abstract: true,
+      name: 'root.home',
+      url: '/',
       data: {
-        displayName: false
+        displayName: '{{ config.siteTitle }}'
       }
     });
 
@@ -39,25 +43,6 @@ define(function() {
           controller: 'ErrorController as vm',
           templateUrl: 'components/error/error.html'
         }
-      }
-    });
-
-    states.push({
-      name: 'root.items.detail',
-      url: '',
-      views: {
-        'content@': {
-          controller: 'ItemController as vm',
-          templateUrl: 'components/items/item.html'
-        }
-      },
-      resolve: {
-        form: ['ItemService', '$stateParams', function(ItemService, $stateParams) {
-          return ItemService.getTestFormByTitle($stateParams.title);
-        }]
-      },
-      data: {
-        displayName: '{{ form.get("name") }}'
       }
     });
 

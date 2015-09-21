@@ -1,15 +1,9 @@
 'use strict';
 
 define(function(require) {
-  require('underscore');
+  require('app.module');
 
-  var angular = require('angular'),
-      app = require('app.module'),
-      config = require('shared/config/config');
-
-  app.constant('config', config);
-
-  config.defaultUrl = window.location.hash.substr(1);
+  var angular = require('angular');
 
   angular.element().ready(function() {
     var $html = angular.element(document.getElementsByTagName('html'));

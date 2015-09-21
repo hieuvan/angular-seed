@@ -1,7 +1,6 @@
 'use strict';
 
 define(function() {
-  var _ = require('underscore');
 
   return [function() {
     this.apiUrl = '';
@@ -32,7 +31,7 @@ define(function() {
        * @return object Promise with resolved data
        */
       var get = function(params, cache) {
-        if (_.isUndefined(cache)) {
+        if (typeof cache === 'undefined') {
           cache = true;
         }
 
@@ -91,7 +90,7 @@ define(function() {
             status = response.status,
             error = {status: status, statusText: statusText};
 
-        if (_.isObject(response.data) && _.isObject(response.data.error)) {
+        if (response.data && response.data.error) {
           error.error = response.data.error;
 
           return( $q.reject(error) );

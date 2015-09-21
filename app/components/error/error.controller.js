@@ -4,14 +4,14 @@ define(function() {
   return ['$state', 'config', 'ErrorService', function($state, config, ErrorService) {
     var vm = this, error = ErrorService.error();
 
-    vm.defaultTitle = config.formTitle;
+    vm.siteTitle = config.siteTitle;
 
     /**
      * Redirect back to homepage
      * Users probably might have visited this page directly
      */
     if (!error) {
-      return $state.go('root.items.detail', { title: vm.defaultTitle });
+      return $state.go('root.home');
     }
 
     vm.code = error.code;

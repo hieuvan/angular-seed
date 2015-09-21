@@ -5,27 +5,16 @@
 // endbower
 
 @import "font-awesome/scss/font-awesome";
-@import "libs/angular-ui-tree.min";
 @import "libs/ngToast";
 @import "libs/ngToast-animations";
 @import "libs/angular";
 @import "libs/angular-loading-bar";
 
-@import "components/spinner";
 @import "animations/pageload";
 
 @import "partials/header";
 @import "partials/body";
 @import "partials/error";
-
-@import "components/table";
-@import "components/buttons";
-@import "components/tabs";
-@import "components/modal";
-@import "components/form-table";
-@import "components/uitree";
-
-@import "libs/editable";
 
 /*# sourceMappingURL=main.css.map */
 
