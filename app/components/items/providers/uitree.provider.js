@@ -1,6 +1,6 @@
 'use strict';
 
-define(function(require) {
+define(function() {
   return [function() {
     var self = this;
 
@@ -13,9 +13,11 @@ define(function(require) {
     this.$get = [function() {
       if (typeof self.config.accept !== 'function') {
         self.config.accept = function(sourceNodeScope, destNodeScope) {
-          var item = destNodeScope.$nodeScope.$modelValue;
+          var node = destNodeScope.$nodeScope;
 
-          return item.isContainer();
+          if (!node) { return false; }
+
+          return node.$modelValue.isContainer();
         };
       }
 
