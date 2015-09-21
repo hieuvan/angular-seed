@@ -8,6 +8,6 @@
 define(function() {
   return {
     defaultUrl: '/',
-    siteTitle: 'Assessment Builder'
+    siteTitle: 'Angular Requirejs Seed'
   };
 });
