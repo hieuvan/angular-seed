@@ -13,12 +13,13 @@ define(function(require) {
     module.isRegistered();
 
     module.hasDependencies([
-      'ngCookies',
+      'ngAnimate',
+      'angular-loading-bar',
       'ngToast',
       'ui.router',
       'ui.bootstrap',
       'app.header',
-      'app.items',
+      'app.error',
       'httpi'
     ]);
 

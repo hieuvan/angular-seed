@@ -26,7 +26,7 @@
 })(window);
 
 // get the app config and modify to fit test settings
-require(['base/app/app.config'], function(config) {
+require(['base/app/rjs.config'], function(config) {
   config.baseUrl = 'base/app';
 
   config.deps = window.tests;
