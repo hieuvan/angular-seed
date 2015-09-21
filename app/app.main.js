@@ -1,9 +1,10 @@
 'use strict';
 
-define(function(require) {
-  var app = require('app.module'),
-      config = require('app.config'),
-      angular = require('angular');
+require([
+  'angular',
+  'app.module',
+  'app.config'
+], function(angular, app, config) {
 
   app.constant('config', config);
 
