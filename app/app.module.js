@@ -20,7 +20,7 @@ define(function(require) {
       Routes = require('app.routes'),
       HttpConfigProvider = require('shared/providers/http-config.provider'),
       ResourceProvider = require('shared/providers/resource.provider'),
-      AppConfig = require('shared/config/config'),
+      AppConfig = require('app.config'),
       TitleDirective = require('shared/directives/title.directive');
 
   // app level module that depends on app view and components
