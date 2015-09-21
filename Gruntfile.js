@@ -262,7 +262,7 @@ module.exports = function (grunt) {
     // automatically inject bower dependencies to rjs config
     bowerRequirejs: {
       target: {
-        rjsConfig: '<%= config.app %>/app.config.js',
+        rjsConfig: '<%= config.app %>/rjs.config.js',
         options: {
           exclude: ['requirejs', 'bootstrap-sass', 'font-awesome']
         }
@@ -274,7 +274,7 @@ module.exports = function (grunt) {
       compile: {
         options: {
           baseUrl: '<%= config.app %>',
-          mainConfigFile: '<%= config.app %>/app.config.js',
+          mainConfigFile: '<%= config.app %>/rjs.config.js',
           name: 'app.main',
           preserveLicenseComments: false,
           //optimize: 'none',
