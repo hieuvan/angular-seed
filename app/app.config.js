@@ -11,9 +11,6 @@ require.config({
     'angular-ui-router': [
       'angular'
     ],
-    'angular-validation': [
-      'angular'
-    ],
     'angular-ui-bootstrap-bower': [
       'angular'
     ],
@@ -27,9 +24,6 @@ require.config({
     'angular-cookies': [
       'angular'
     ],
-    'angular-ui-tree': [
-      'angular'
-    ],
     'angular-httpi': [
       'angular'
     ],
@@ -39,18 +33,10 @@ require.config({
     'angular-sanitize': [
       'angular'
     ],
-    'angular-toast': [
+    'ngtoast': [
       'angular',
       'angular-sanitize',
       'angular-animate'
-    ],
-    'angular-bootstrap-checkbox': [
-      'angular'
-    ],
-    'angular-ui-tree-decorator': [
-      'angular',
-      'angular-ui-tree',
-      'angular-bootstrap-checkbox'
     ],
     'angular-loading-bar': [
       'angular',
@@ -62,13 +48,10 @@ require.config({
   },
   priority: [
     'angular',
-    'jquery',
     'underscore'
   ],
   paths: {
     angular: '../bower_components/angular/angular',
-    'angular-validation': '../bower_components/angular-validation/dist/angular-validation',
-    jquery: '../bower_components/jquery/dist/jquery',
     text: '../bower_components/requirejs-text/text',
     'angular-ui-router': '../bower_components/angular-ui-router/release/angular-ui-router',
     'angular-ui-bootstrap-bower': '../bower_components/angular-ui-bootstrap-bower/ui-bootstrap-tpls',
@@ -81,18 +64,13 @@ require.config({
     'angular-ui-tree': '../bower_components/angular-ui-tree/dist/angular-ui-tree',
     'angular-httpi': '../bower_components/angular-httpi/lib/httpi',
     'angular-sanitize': '../bower_components/angular-sanitize/angular-sanitize',
-    'angular-toast': '../bower_components/ngtoast/dist/ngToast',
-    ngtoast: '../bower_components/ngtoast/dist/ngToast',
-    'angular-bootstrap-checkbox': '../bower_components/angular-bootstrap-checkbox/angular-bootstrap-checkbox',
-    'angular-ui-tree-decorator': 'shared/decorators/ui-tree-decorator',
-    schemaForm: '../bower_components/angular-schema-form/dist/schema-form',
     'bootstrap-decorator': '../bower_components/angular-schema-form/dist/bootstrap-decorator',
     objectpath: '../bower_components/objectpath/lib/ObjectPath',
     tv4: '../bower_components/tv4/tv4',
-    'schema-form': '../bower_components/angular-schema-form/dist/schema-form',
     'angular-loading-bar': '../bower_components/angular-loading-bar/build/loading-bar',
     'requirejs-text': '../bower_components/requirejs-text/text',
-    editable: 'shared/libs/editable/editable'
+    'schema-form': '../bower_components/angular-schema-form/dist/schema-form',
+    ngtoast: '../bower_components/ngtoast/dist/ngToast'
   },
   packages: [
 
