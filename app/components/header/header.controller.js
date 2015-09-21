@@ -1,9 +1,8 @@
 'use strict';
 
 define(function() {
-  return ['config', function(config) {
+  return [function() {
     var vm = this;
 
-    vm.siteTitle = config.siteTitle;
   }];
 });
