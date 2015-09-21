@@ -14,6 +14,7 @@ define(function(require) {
   // app components
   require('components/header/header.module');
   require('components/error/error.module');
+  require('components/footer/footer.module');
 
   var AppRunner = require('app.runner'),
       templates = require('shared/templates'),
@@ -31,6 +32,7 @@ define(function(require) {
     'ui.bootstrap',
     'app.header',
     'app.error',
+    'app.footer',
     'httpi'
   ])
 
