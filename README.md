@@ -1,11 +1,11 @@
-# Assessment Builder App
+# Angular Requirejs Seed
 
 
 **Before you continue**, make sure that you have [nodejs], [ruby] and [sass] installed in your machine. Please go to the respective websites to find installation instructions.
 
 The following set up instruction will be same for linux or windows machine. Open your preferred CLI and run:
 
-    $ git clone ssh://git@stash.inside:7999/oars/builder-client.git
+    $ git clone https://bitbucket.org/subash1232/angular-seed.git
     $ cd builder-client
     $ npm install
     $ node_modules/.bin/bower install
