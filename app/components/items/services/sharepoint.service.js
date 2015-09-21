@@ -43,7 +43,7 @@ define(function() {
      */
     var save = function(title, data) {
       var params = { data: data },
-          resource = $resource.url('save');
+          resource = $resource.url('SaveTestForm');
 
       return resource.put(params);
     };
