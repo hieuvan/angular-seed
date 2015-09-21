@@ -35,9 +35,23 @@ define(function() {
       });
     };
 
+    /**
+     * save the form data
+     *
+     * @param data
+     * @return {object} $http
+     */
+    var save = function(title, data) {
+      var params = { data: data },
+          resource = $resource.url('forms/:title');
+
+      return resource.put(params);
+    };
+
     return {
       getTestFormByTitle: getTestFormByTitle,
-      searchItem: searchItem
+      searchItem: searchItem,
+      save: save
     };
   }];
 });
