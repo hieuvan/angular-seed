@@ -36,7 +36,6 @@ define(function() {
 
     states.push({
       name: 'error',
-      url: '/error',
       params: {error: null},
       views: {
         'content@': {
