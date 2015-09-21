@@ -41,8 +41,8 @@ define(function(require) {
     'httpi'
   ])
 
-  .config(['$httpProvider', '$resourceProvider', 'cfpLoadingBarProvider', 'config',
-    function($httpProvider, $resourceProvider, cfpLoadingBarProvider, config) {
+  .config(['$httpProvider', '$resourceProvider', 'cfpLoadingBarProvider', 'config', 'ngToastProvider',
+    function($httpProvider, $resourceProvider, cfpLoadingBarProvider, config, ngToastProvider) {
       $httpProvider.interceptors.push('$httpInterceptor');
 
       cfpLoadingBarProvider.includeSpinner = false;

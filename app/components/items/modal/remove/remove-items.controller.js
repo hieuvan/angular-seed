@@ -1,8 +1,8 @@
 'use strict';
 
 define(function() {
-  return ['node', '$modalInstance', 'ngToast',
-    function(node, $modalInstance, ngToast) {
+  return ['node', '$modalInstance', 'ngToast', 'ToastService',
+    function(node, $modalInstance, ngToast, ToastService) {
 
     var vm = this,
         currentNode = node.$modelValue;
@@ -12,7 +12,7 @@ define(function() {
     vm.removeItems = function() {
       node.remove();
 
-      ngToast.danger('Item removed from tree.')
+      ngToast.danger(ToastService.removeItem);
 
       vm.cancel();
     };

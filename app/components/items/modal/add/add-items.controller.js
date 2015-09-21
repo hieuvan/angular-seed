@@ -4,8 +4,8 @@ define(function(require) {
 
   var _ = require('underscore');
 
-  return ['$stateParams', '$modalInstance', 'node', 'ItemService', 'ngToast',
-    function($stateParams, $modalInstance, node, ItemService, ngToast) {
+  return ['$stateParams', '$modalInstance', 'node', 'ItemService', 'ngToast', 'ToastService',
+    function($stateParams, $modalInstance, node, ItemService, ngToast, ToastService) {
     var vm = this, currentItem = node.$modelValue;
 
     vm.foundItems = [];
@@ -48,7 +48,7 @@ define(function(require) {
 
       vm.foundItems.substract(items);
 
-      ngToast.success('Item added to tree.');
+      ngToast.success(ToastService.addItem);
     };
 
     /**

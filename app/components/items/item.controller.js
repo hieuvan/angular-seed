@@ -4,8 +4,8 @@ define(function(require) {
 
   var _ = require('underscore');
 
-  return ['form', '$modal', '$stateParams', '$uiTree', 'ItemModel', 'ItemService', 'ngToast',
-    function(form, $modal, $stateParams, $uiTree, ItemModel, ItemService, ngToast) {
+  return ['form', '$modal', '$stateParams', '$uiTree', 'ItemModel', 'ItemService', 'ngToast', 'ToastService',
+    function(form, $modal, $stateParams, $uiTree, ItemModel, ItemService, ngToast, ToastService) {
     var vm = this;
 
     vm.form = form;
@@ -74,6 +74,8 @@ define(function(require) {
       var newFolder = new ItemModel(item, { items: ItemModel });
 
       vm.items.add(newFolder);
+
+      ngToast.success(ToastService.newFolder);
     };
 
     vm.preview = function() {
@@ -90,9 +92,9 @@ define(function(require) {
           data = vm.items.flatten();
 
       ItemService.save(title, data).then(function() {
-        ngToast.success('Form was saved successfully.');
+        ngToast.success(ToastService.save);
       }, function() {
-        ngToast.danger('Form could not be saved.');
+        ngToast.danger(ToastService.saveError);
       });
 
     };

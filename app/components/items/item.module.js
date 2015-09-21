@@ -8,6 +8,7 @@ define(function(require) {
 
   var ItemController = require('components/items/item.controller'),
       ItemServiceProvider = require('components/items/providers/service.provider'),
+      ToastService = require('components/items/services/toast.service'),
       AddItemsController = require('components/items/modal/add/add-items.controller'),
       RemoveItemsController = require('components/items/modal/remove/remove-items.controller'),
       ConfigureItemsController = require('components/items/modal/configure/configure-items.controller'),
@@ -20,7 +21,9 @@ define(function(require) {
   .controller('RemoveItemsController', RemoveItemsController)
   .controller('ConfigureItemsController', ConfigureItemsController)
 
-  .config(['$uiTreeProvider',
+  .service('ToastService', ToastService)
+
+  .config(['$uiTreeProvider', 'ngToastProvider',
     function($uiTreeProvider) {
       //$uiTreeProvider.debug = true;
     }])
