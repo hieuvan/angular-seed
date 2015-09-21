@@ -68,10 +68,6 @@ Tests are ran automatically while developing or as part of build task. However, 
     $ node_modules/.bin/grunt test
 
 
-**IMPORTANT**
-The project is using `editorconfig` for consistant standard on the file line-endings, spacing, tabs, etc. So, please make sure to install [editorconfig] before making any modification or commiting project files.
-
-
 ## Useful links
 
 [yeoman](http://yeoman.io/)
