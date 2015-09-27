@@ -1,5 +1,6 @@
 'use strict';
 
+// TODO: add image optimizer
 module.exports = function (grunt) {
 
   require('time-grunt')(grunt);
@@ -134,7 +135,7 @@ module.exports = function (grunt) {
           dest: '<%= config.dist %>',
           src: [
             '*.{ico,png,txt}',
-            'images/{,*/}*.webp',
+            'images/{,*/}*.*',
             '{,*/}*.html',
             'styles/fonts/{,*/}*.*'
           ]
