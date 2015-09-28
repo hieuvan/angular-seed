@@ -1,6 +1,7 @@
-[ui-view]{
+[ui-view="content"]{
 
   &.ng-enter, &.ng-leave {
+    position: absolute;
     left: 0;
     right: 0;
     -webkit-transition:all .5s ease-in-out;
