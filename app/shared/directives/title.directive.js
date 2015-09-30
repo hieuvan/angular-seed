@@ -1,22 +1,41 @@
 'use strict';
 
 define(function(require) {
-  return ['$rootScope', '$timeout', function($rootScope, $timeout) {
-    var link = function() {
-      $rootScope.title = "Assessment Builder";
-
-      $rootScope.$on('$stateChangeSuccess', function(event, toState) {
-        $timeout(function() {
-          $rootScope.title = (toState.data && toState.data.displayName)
-          ? toState.data.displayName
-          : 'Page Title';
-        });
-      });
-    };
+  return ['$rootScope', '$state', '$interpolate', function($rootScope, $state, $interpolate) {
 
     return {
-      link: link
-    }
+      restrict: 'E',
+      scope: {
+        default: '&'
+      },
+      link: function(scope, elem) {
+
+        var $elem = angular.element(elem),
+            defaultTitle = scope.default(),
+            hasDefaultTitle = typeof defaultTitle !== 'undefined';
+
+
+        $rootScope.$on('$stateChangeSuccess', function(event, toState) {
+
+          if (typeof toState.data.title !== 'undefined') {
+
+            var expression = $interpolate(toState.data.title),
+                title = expression($state.$current.locals.globals);
+
+            if (hasDefaultTitle) {
+              title = title + ' - ' + defaultTitle;
+            }
+
+            $elem.text(title);
+          } else if (hasDefaultTitle) {
+            $elem.text(defaultTitle);
+          }
+
+        });
+
+      }
+    };
+
   }];
 });
 
