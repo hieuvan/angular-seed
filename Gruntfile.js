@@ -125,6 +125,25 @@ module.exports = function (grunt) {
       }
     },
 
+    ngconstant: {
+      options: {
+        space: '  ',
+        wrap: '"use strict"; \n\n {%= __ngModule %}',
+        dest: '<%= config.app %>/app.env.js',
+        name: 'app.env'
+      },
+      development: {
+        constants: {
+          ENV: 'development'
+        }
+      },
+      production: {
+        constants: {
+          ENV: 'production'
+        }
+      }
+    },
+
     // Copies remaining files to places other tasks can use
     copy: {
       dist: {
@@ -358,6 +377,7 @@ module.exports = function (grunt) {
       'clean:tmp',
       'wiredep:sass',
       'ngtemplates',
+      'ngconstant:development',
       'bowerRequirejs',
       'concurrent:server',
       'autoprefixer:server',
@@ -395,6 +415,7 @@ module.exports = function (grunt) {
     grunt.task.run([
       'clean:dist',
       'wiredep:sass',
+      'ngconstant:production',
       'bowerRequirejs',
       'sass:dist',
       'copy:dist',

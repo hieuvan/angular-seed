@@ -12,6 +12,7 @@ define(function(require) {
   require('angular-loading-bar');
 
   // app components
+  require('app-environment');
   require('components/header/header.module');
   require('components/error/error.module');
   require('components/footer/footer.module');
@@ -25,6 +26,7 @@ define(function(require) {
 
   // app level module that depends on app view and components
   return angular.module('app', [
+    'app.env',
     'ngAnimate',
     'angular-loading-bar',
     'ngToast',

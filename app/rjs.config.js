@@ -8,6 +8,9 @@ require.config({
     angular: {
       exports: 'angular'
     },
+    'app-environment': [
+      'angular'
+    ],
     'angular-ui-router': [
       'angular'
     ],
@@ -52,6 +55,7 @@ require.config({
   ],
   paths: {
     angular: '../bower_components/angular/angular',
+    'app-environment': 'app.env',
     text: '../bower_components/requirejs-text/text',
     'angular-ui-router': '../bower_components/angular-ui-router/release/angular-ui-router',
     'angular-ui-bootstrap-bower': '../bower_components/angular-ui-bootstrap-bower/ui-bootstrap-tpls',
