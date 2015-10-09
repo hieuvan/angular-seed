@@ -25,4 +25,5 @@ dist
 vendor
 *.sln
 *.suo
+app.env.js
 
