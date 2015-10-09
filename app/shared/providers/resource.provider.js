@@ -4,10 +4,9 @@ define(function() {
 
   return [function() {
     this.apiUrl = '';
-    this.type = 'rest';
 
     this.$get = ['httpi', '$q', function(httpi, $q) {
-      var type = this.type, apiUrl = this.apiUrl, resource;
+      var apiUrl = this.apiUrl, resource;
 
       /**
        * Set the resource url
@@ -101,7 +100,6 @@ define(function() {
 
       return {
         apiUrl: apiUrl,
-        type: type,
         url: url,
         get: get,
         post: post,

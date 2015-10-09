@@ -38,9 +38,12 @@ define(function(require) {
     'httpi'
   ])
 
-  .config(['$httpProvider', 'cfpLoadingBarProvider',
-    function($httpProvider, cfpLoadingBarProvider) {
+  .config(['$httpProvider', 'cfpLoadingBarProvider', '$resourceProvider',
+    function($httpProvider, cfpLoadingBarProvider, $resourceProvider) {
       $httpProvider.interceptors.push('$httpInterceptor');
+
+      // update this to whatever is your api url
+      $resourceProvider.apiUrl = 'localhost:8000';
 
       cfpLoadingBarProvider.includeSpinner = false;
   }])
