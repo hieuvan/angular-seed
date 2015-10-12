@@ -75,7 +75,8 @@ require.config({
     'angular-loading-bar': '../bower_components/angular-loading-bar/build/loading-bar',
     'requirejs-text': '../bower_components/requirejs-text/text',
     'schema-form': '../bower_components/angular-schema-form/dist/schema-form',
-    ngtoast: '../bower_components/ngtoast/dist/ngToast'
+    ngtoast: '../bower_components/ngtoast/dist/ngToast',
+    'angular-page-title': '../bower_components/angular-page-title/angular-page-title'
   },
   packages: [
 
