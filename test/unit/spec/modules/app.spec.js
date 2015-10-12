@@ -13,14 +13,17 @@ define(function(require) {
     module.isRegistered();
 
     module.hasDependencies([
-      'ngAnimate',
-      'angular-loading-bar',
-      'ngToast',
-      'ui.router',
-      'ui.bootstrap',
+      'app.env',
       'app.header',
       'app.error',
-      'httpi'
+      'app.footer',
+      'angular-loading-bar',
+      'ngAnimate',
+      'ngToast',
+      'sa.pageTitle',
+      'sa.http',
+      'ui.router',
+      'ui.bootstrap'
     ]);
 
   });

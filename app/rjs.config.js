@@ -67,6 +67,7 @@ require.config({
     'angular-animate': '../bower_components/angular-animate/angular-animate',
     'angular-ui-tree': '../bower_components/angular-ui-tree/dist/angular-ui-tree',
     'angular-httpi': '../bower_components/angular-httpi/lib/httpi',
+    'angular-http': '../bower_components/angular-http/angular-http.min',
     'angular-sanitize': '../bower_components/angular-sanitize/angular-sanitize',
     'bootstrap-decorator': '../bower_components/angular-schema-form/dist/bootstrap-decorator',
     objectpath: '../bower_components/objectpath/lib/ObjectPath',
