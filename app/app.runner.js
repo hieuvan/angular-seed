@@ -10,7 +10,7 @@ define(function() {
     $rootScope.config = config;
 
     $rootScope.$on('$stateChangeSuccess', function(ev, to, toParams, from) {
-      $rootScope.previousState = from.name || '/';
+      $rootScope.previousState = from.name;
       $rootScope.currentState = to.name;
     });
 
