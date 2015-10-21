@@ -31,6 +31,9 @@ require(['base/app/rjs.config'], function(config) {
 
   config.deps = window.tests;
 
+  config.shim['angular-mocks'] = ['angular'];
+  config.paths['angular-mocks'] = '../bower_components/angular-mocks/angular-mocks';
+
   config.paths.test = '../test/unit';
 
   config.callback = window.__karma__.start;

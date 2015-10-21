@@ -284,7 +284,7 @@ module.exports = function (grunt) {
       target: {
         rjsConfig: '<%= config.app %>/rjs.config.js',
         options: {
-          exclude: ['requirejs', 'bootstrap-sass', 'font-awesome']
+          exclude: ['requirejs', 'bootstrap-sass', 'font-awesome', 'angular-mocks']
         }
       }
     },
