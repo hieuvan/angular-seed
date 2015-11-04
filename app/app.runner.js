@@ -1,13 +1,11 @@
 'use strict';
 
 define(function() {
-  return ['$rootScope', '$state', '$stateParams', 'config',
-  function($rootScope, $state, $stateParams, config) {
+  return ['$rootScope', '$state', '$stateParams',
+  function($rootScope, $state, $stateParams) {
 
     $rootScope.$state = $state;
     $rootScope.$stateParams = $stateParams;
-
-    $rootScope.config = config;
 
     $rootScope.$on('$stateChangeSuccess', function(ev, to, toParams, from) {
       $rootScope.previousState = from.name;

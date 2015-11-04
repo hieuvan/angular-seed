@@ -46,7 +46,7 @@ define(function(require) {
   $templateCache.put('components/header/header.html',
     "<header class=\"navbar navbar-static-top navbar-shadow\">\n" +
     "  <div class=\"container-fluid\">\n" +
-    "    <h4 class=\"navbar-header\">{{config.siteTitle}}</h4>\n" +
+    "    <h4 class=\"navbar-header\">{{vm.siteTitle}}</h4>\n" +
     "  </div>\n" +
     "</header>\n"
   );
