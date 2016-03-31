@@ -6,7 +6,7 @@
 The following set up instruction will be same for linux or windows machine. Open your preferred CLI and run:
 
     $ git clone https://bitbucket.org/subash1232/angular-seed.git
-    $ cd builder-client
+    $ cd angular-seed
     $ npm install
     $ node_modules/.bin/bower install
 
