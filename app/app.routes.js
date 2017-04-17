@@ -28,9 +28,48 @@ define(function() {
 
     states.push({
       name: 'root.home',
-      url: '/',
-      data: {
-        displayName: '{{ config.siteTitle }}'
+      url: '/home',
+      views: {
+        'content@': {
+          templateUrl: 'components/home/home.html',
+          controller: 'HomeController as vm'
+        }
+      },
+      data: {authenticate: true}
+    });
+    states.push({
+      name: 'root.sites',
+      url: '/sites',
+      views: {
+        'content@': {
+          templateUrl: 'components/site-list/site-list.html',
+          controller: 'SiteListController as vm'
+        }
+      },
+      data: {authenticate: true}
+    });
+
+    states.push({
+      name: 'root.site',
+      url: '/sites/:siteId',
+      views: {
+        'content@': {
+          templateUrl: 'components/site-detail/site-detail.html',
+          controller: 'SiteDetailController as vm'
+        }
+      },
+      data: {authenticate: true}
+    });
+
+
+    states.push({
+      name: 'login',
+      url: '/login',
+      views: {
+        'content@': {
+          templateUrl: 'components/login/login.html',
+          controller: 'LoginController as vm'
+        }
       }
     });
 

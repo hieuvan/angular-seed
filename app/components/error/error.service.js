@@ -11,6 +11,11 @@ define(function(require) {
         message: 'Sorry - Page not found!',
         description: 'The page you are looking for was moved, removed, renamed or might never existed.'
       },
+      401: {
+        code: '401',
+        message: 'Unauthorised content',
+        description: 'Unauthorised content'
+      },
       500: {
         code: '500',
         message: 'Sorry - There was error in the API!!',

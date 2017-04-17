@@ -7,9 +7,9 @@ define(function(require) {
   return [function() {
 
     this.defaults = {
-      allowedMethods: ['GET'], // ['GET', 'POST', 'PUT', 'PATCH', 'DELETE']
+      allowedMethods: ['GET', 'POST'], // ['GET', 'POST', 'PUT', 'PATCH', 'DELETE']
       stringify: false, // true || false
-      withCredentials: true, // true || false
+      withCredentials: false, // true || false
       headers: {},
       contentType: 'application/json; charset=utf-8'
     };
@@ -18,7 +18,7 @@ define(function(require) {
      * Provider Constructor
      * Provide the default config for post requests
      */
-    this.$get = ['$q', function($q) {
+    this.$get = ['$q', 'localStorageService', function($q, localStorageService) {
       var self = this;
 
       return {
@@ -31,7 +31,7 @@ define(function(require) {
         */
         request: function(config) {
 
-          if(_.contains(self.defaults.allowedMethods, config.method)) {
+          if(!_.contains(self.defaults.allowedMethods, config.method)) {
             return config;
           }
 
@@ -42,6 +42,8 @@ define(function(require) {
           }
 
           config.headers['Content-Type'] = self.defaults.contentType;
+
+          config.headers['token'] = localStorageService.get('_token');
 
           if (self.defaults.stringify) {
             config.transformRequest = stringify;

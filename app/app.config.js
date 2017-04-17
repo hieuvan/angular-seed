@@ -13,8 +13,8 @@ define(function() {
   var production = {};
 
   return {
-    defaultUrl: '/',
-    siteTitle: 'Angular Requirejs Seed',
+    defaultUrl: '/login',
+    siteTitle: 'AHS Inspection App',
     development: development,
     production: production
   };
