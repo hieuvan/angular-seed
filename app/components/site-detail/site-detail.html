@@ -1,1 +1,41 @@
-<h4 class="navbar-header">{{ vm.hotel.name }}</h4>
+<h2>{{ vm.hotel.name }}</h2>
+<div>
+    <div class="btn-group">
+        <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Assure Quality<span class="caret"></span>
+        </button>
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                <li><a ui-sref="root.site.document({section_id: 2, sub_section_id: 6, title: 'Assure Manual', section_name: 'assure-manual'})">Assure Manual</a></li>
+                <li><a ui-sref="root.site.assure-inspection-start">Assure Inspection</a></li>
+                <li><a ui-sref="root.site.document({section_id: 2, sub_section_id: 8, title: 'Assure Reporting', section_name: 'assure-reporting'})">Assure Reporting</a></li>
+                <li role="separator" class="divider"></li>
+                <li><a ui-sref="root.site.brand-standards">Brand Standards</a></li>
+                <li><a ui-sref="root.site.document({section_id: 2, sub_section_id: 10, title: 'Internal Quality', section_name: 'internal-quality'})">Internal Quality</a></li>
+                <li><a ui-sref="root.site.document({section_id: 2, sub_section_id: 11, title: 'Trip Advisor', section_name: 'trip-advisor'})">Trip Advisor</a></li>
+            </ul>
+    </div>
+    <div class="btn-group">
+        <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Safety<span class="caret"></span>
+        </button>
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenu2">
+                <li><a ui-sref="root.site.document({section_id: 1, sub_section_id: 1, title: 'Policy', section_name: 'policy'})">Policy</a></li>
+                <li><a ui-sref="root.site.document({section_id: 1, sub_section_id: 2, title: 'Safety Observations', section_name: 'safety-observations'})">Safety Observations</a></li>
+                <li><a ui-sref="root.site.document({section_id: 1, sub_section_id: 3, title: 'View safety documents', section_name: 'safety-documents'})">View safety documents</a></li>
+                <li role="separator" class="divider"></li>
+                <li><a ui-sref="root.site.document({section_id: 1, sub_section_id: 4, title: 'Safety scorecard', section_name: 'safety-scorecard'})">Safety scorecard</a></li>
+                <li><a ui-sref="root.site.document({section_id: 1, sub_section_id: 5, title: 'Compliance audits', section_name: 'compliance-audits'})">Compliance audits</a></li>
+            </ul>
+    </div>
+    <div class="btn-group">
+        <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu3" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+            Service Delivery<span class="caret"></span>
+        </button>
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenu3">
+                <li><a ui-sref="root.site.document({section_id: 3, sub_section_id: 12, title: 'Contract', section_name: 'contract'})">Contract</a></li>
+                <li><a ui-sref="root.site.document({section_id: 3, sub_section_id: 13, title: 'Work scope', section_name: 'work-scope'})">Work scope</a></li>
+                <li><a ui-sref="root.site.document({section_id: 3, sub_section_id: 14, title: 'SOPs', section_name: 'sops'})">SOPs</a></li>
+            </ul>
+    </div>
+</div>
+<div ui-view></div>

@@ -1,0 +1,16 @@
+<h3>{{vm.title}}</h3>
+<div ng-show="vm.sectionDocuments.length">
+    <table datatable="ng" class="table table-striped table-bordered">
+        <thead>
+            <tr><th>Document Name</th>
+                <th>Document Url</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="document in vm.sectionDocuments">
+                <td>{{ document.name }}</td>
+                <td>{{ document.url }}</td></tr>
+        </tbody>
+    </table>
+</div>
+<div ng-show="!vm.sectionDocuments.length" class="alert alert-warning" role="alert">No permission</div>

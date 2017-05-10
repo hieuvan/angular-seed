@@ -161,7 +161,7 @@ define(function(require) {
     "\n" +
     "  <div class=\"container-fluid\">\r" +
     "\n" +
-    "    <h4 class=\"navbar-header\">{{vm.siteTitle}}</h4>\r" +
+    "    <h1 class=\"navbar-header\">{{vm.siteTitle}}</h1>\r" +
     "\n" +
     "  </div>\r" +
     "\n" +
@@ -223,10 +223,47 @@ define(function(require) {
 
 
   $templateCache.put('components/home/home.html',
-    "<div>Selected site</div>\r" +
+    "<h4>Select site</h4>\r" +
     "\n" +
-    "<a ui-sref=\"root.sites\">Select site</a>\r" +
-    "\n"
+    "<div class=\"row\">\r" +
+    "\n" +
+    "    <table ng-if=\"vm.showDT\" datatable=\"ng\" dt-options=\"vm.dtOptions\" dt-column-defs=\"vm.dtColumnDefs\" class=\"table table-striped table-bordered\">\r" +
+    "\n" +
+    "        <thead>\r" +
+    "\n" +
+    "        <tr>\r" +
+    "\n" +
+    "            <th>Name</th>\r" +
+    "\n" +
+    "            <th>Address</th>\r" +
+    "\n" +
+    "            <th>Select</th>\r" +
+    "\n" +
+    "        </tr>\r" +
+    "\n" +
+    "        </thead>\r" +
+    "\n" +
+    "        <tbody>\r" +
+    "\n" +
+    "        <tr ng-repeat=\"hotel in vm.hotels\">\r" +
+    "\n" +
+    "            <td>{{ hotel.name }}</td>\r" +
+    "\n" +
+    "            <td>{{ hotel.address.number }} {{ hotel.address.street }},\r" +
+    "\n" +
+    "                {{ hotel.address.suburb }} {{ hotel.address.city }},\r" +
+    "\n" +
+    "                {{ hotel.address.state }} {{ hotel.address.postcode }}</td>\r" +
+    "\n" +
+    "            <td><a ui-sref=\"root.site({siteId: hotel.id})\"> > </a></td>\r" +
+    "\n" +
+    "        </tr>\r" +
+    "\n" +
+    "        </tbody>\r" +
+    "\n" +
+    "    </table>\r" +
+    "\n" +
+    "</div>"
   );
 
 
@@ -307,7 +344,47 @@ define(function(require) {
 
 
   $templateCache.put('components/site-detail/site-detail.html',
-    "<h4 class=\"navbar-header\">{{ vm.hotel.name }}</h4>"
+    "<h2>{{ vm.hotel.name }}</h2>\n" +
+    "<div>\n" +
+    "    <div class=\"btn-group\">\n" +
+    "        <button class=\"btn btn-default dropdown-toggle\" type=\"button\" id=\"dropdownMenu1\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">\n" +
+    "            Assure Quality<span class=\"caret\"></span>\n" +
+    "        </button>\n" +
+    "            <ul class=\"dropdown-menu\" aria-labelledby=\"dropdownMenu1\">\n" +
+    "                <li><a ui-sref=\"root.site.document({section_id: 2, sub_section_id: 6, title: 'Assure Manual', section_name: 'assure-manual'})\">Assure Manual</a></li>\n" +
+    "                <li><a ui-sref=\"root.site.assure-inspection-start\">Assure Inspection</a></li>\n" +
+    "                <li><a ui-sref=\"root.site.document({section_id: 2, sub_section_id: 8, title: 'Assure Reporting', section_name: 'assure-reporting'})\">Assure Reporting</a></li>\n" +
+    "                <li role=\"separator\" class=\"divider\"></li>\n" +
+    "                <li><a ui-sref=\"root.site.brand-standards\">Brand Standards</a></li>\n" +
+    "                <li><a ui-sref=\"root.site.document({section_id: 2, sub_section_id: 10, title: 'Internal Quality', section_name: 'internal-quality'})\">Internal Quality</a></li>\n" +
+    "                <li><a ui-sref=\"root.site.document({section_id: 2, sub_section_id: 11, title: 'Trip Advisor', section_name: 'trip-advisor'})\">Trip Advisor</a></li>\n" +
+    "            </ul>\n" +
+    "    </div>\n" +
+    "    <div class=\"btn-group\">\n" +
+    "        <button class=\"btn btn-default dropdown-toggle\" type=\"button\" id=\"dropdownMenu2\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">\n" +
+    "            Safety<span class=\"caret\"></span>\n" +
+    "        </button>\n" +
+    "            <ul class=\"dropdown-menu\" aria-labelledby=\"dropdownMenu2\">\n" +
+    "                <li><a ui-sref=\"root.site.document({section_id: 1, sub_section_id: 1, title: 'Policy', section_name: 'policy'})\">Policy</a></li>\n" +
+    "                <li><a ui-sref=\"root.site.document({section_id: 1, sub_section_id: 2, title: 'Safety Observations', section_name: 'safety-observations'})\">Safety Observations</a></li>\n" +
+    "                <li><a ui-sref=\"root.site.document({section_id: 1, sub_section_id: 3, title: 'View safety documents', section_name: 'safety-documents'})\">View safety documents</a></li>\n" +
+    "                <li role=\"separator\" class=\"divider\"></li>\n" +
+    "                <li><a ui-sref=\"root.site.document({section_id: 1, sub_section_id: 4, title: 'Safety scorecard', section_name: 'safety-scorecard'})\">Safety scorecard</a></li>\n" +
+    "                <li><a ui-sref=\"root.site.document({section_id: 1, sub_section_id: 5, title: 'Compliance audits', section_name: 'compliance-audits'})\">Compliance audits</a></li>\n" +
+    "            </ul>\n" +
+    "    </div>\n" +
+    "    <div class=\"btn-group\">\n" +
+    "        <button class=\"btn btn-default dropdown-toggle\" type=\"button\" id=\"dropdownMenu3\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"true\">\n" +
+    "            Service Delivery<span class=\"caret\"></span>\n" +
+    "        </button>\n" +
+    "            <ul class=\"dropdown-menu\" aria-labelledby=\"dropdownMenu3\">\n" +
+    "                <li><a ui-sref=\"root.site.document({section_id: 3, sub_section_id: 12, title: 'Contract', section_name: 'contract'})\">Contract</a></li>\n" +
+    "                <li><a ui-sref=\"root.site.document({section_id: 3, sub_section_id: 13, title: 'Work scope', section_name: 'work-scope'})\">Work scope</a></li>\n" +
+    "                <li><a ui-sref=\"root.site.document({section_id: 3, sub_section_id: 14, title: 'SOPs', section_name: 'sops'})\">SOPs</a></li>\n" +
+    "            </ul>\n" +
+    "    </div>\n" +
+    "</div>\n" +
+    "<div ui-view></div>\n"
   );
 
 

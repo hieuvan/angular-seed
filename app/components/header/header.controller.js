@@ -7,10 +7,11 @@ define(function() {
     vm.siteTitle = config.siteTitle;
     vm.loggedInUser = $Auth.isAuthenticated();
     vm.logout = function() {
-      var isLoggedOut = $Auth.logout();
-      if (isLoggedOut) {
-        $state.go('login');
-      }
+      $Auth.logout().then(function(val) {
+        if (val) {
+          $state.go('login');
+        }
+      });
     };
   }];
 });

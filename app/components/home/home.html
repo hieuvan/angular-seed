@@ -1,2 +1,21 @@
-<div>Selected site</div>
-<a ui-sref="root.sites">Select site</a>
+<h4>Select site</h4>
+<div class="row">
+    <table ng-if="vm.showDT" datatable="ng" dt-options="vm.dtOptions" dt-column-defs="vm.dtColumnDefs" class="table table-striped table-bordered">
+        <thead>
+        <tr>
+            <th>Name</th>
+            <th>Address</th>
+            <th>Select</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="hotel in vm.hotels">
+            <td>{{ hotel.name }}</td>
+            <td>{{ hotel.address.number }} {{ hotel.address.street }},
+                {{ hotel.address.suburb }} {{ hotel.address.city }},
+                {{ hotel.address.state }} {{ hotel.address.postcode }}</td>
+            <td><a ui-sref="root.site({siteId: hotel.id})"> > </a></td>
+        </tr>
+        </tbody>
+    </table>
+</div>

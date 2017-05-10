@@ -1,14 +1,14 @@
 'use strict';
 
 define(function() {
-  return ['config', 'SiteService', '$stateParams', function(config, SiteService, $stateParams) {
+  return ['config', 'SiteService', '$stateParams', '$state', 'hotel', 'sharedProperties', function(config, SiteService, $stateParams, $state, hotel) {
     var vm = this;
     var hotelId = $stateParams.siteId;
-    vm.hotel = null;
+    vm.hotel = hotel;
 
-    SiteService.getHotel(hotelId).then(function(value) {
-      vm.hotel = value;
-    });
+    if (_.isEmpty(hotelId)) {
+      $state.go('root.home');
+    }
 
   }];
 });

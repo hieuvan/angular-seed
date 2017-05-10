@@ -23,6 +23,7 @@ define(function(require) {
       var login = function(formdata) {
         return $http.post(($resourceProvider.apiUrl + self.loginUrl), formdata)
           .then(function(response) {
+              if (response.data.token) {
             var token = response.data.token;
             var payload = $jwt.getPayload(token);
             var id = payload.id;
@@ -31,9 +32,13 @@ define(function(require) {
             setToken(id + '.' +'firstName', response.data.firstname);
             setToken(id + '.' + 'lastName', response.data.surname);
             //setToken(id + '.' + 'hotels', response.data.hotels);
-              $rootScope.hotels = response.data.hotels;
+              //$rootScope.hotels = response.data.hotels;
+                sharedProperties.setProperty('hotels', response.data.hotels);
 
               return getUser(response.data);
+              } else {
+                return null;
+              }
             }, function errorCallback(response) {
               //@todo: show error message
           });

@@ -35,6 +35,18 @@ define(function() {
           controller: 'HomeController as vm'
         }
       },
+      resolve: {
+        hotels: ['SiteService', 'sharedProperties', function(SiteService, sharedProperties) {
+          if (!_.isEmpty(sharedProperties.getProperty('hotels'))) {
+            return sharedProperties.getProperty('hotels');
+          }
+          return SiteService.getHotels().then(function(val) {
+            if (val) {
+              return val;
+            }
+          });
+        }]
+      },
       data: {authenticate: true}
     });
     states.push({
@@ -58,8 +70,43 @@ define(function() {
           controller: 'SiteDetailController as vm'
         }
       },
+      resolve: {
+        hotel: ['SiteService', '$stateParams', 'sharedProperties', function(SiteService, $stateParams, sharedProperties) {
+          return SiteService.getHotel($stateParams.siteId).then(function(val) {
+            if (val) {
+              sharedProperties.setProperty('hotel', val);
+              return val;
+            }
+          });
+        }]
+      },
       data: {authenticate: true}
     });
+
+    states.push({
+      name: 'root.site.brand-standards',
+      url: '/brand-standards',
+      parent:"root.site",
+      templateUrl:"components/image-gallery/image-gallery.html",
+      controller:"ImageGalleryController as vm",
+      data: {authenticate: true}
+    });
+
+    states.push({
+      name: 'root.site.document',
+      url: '/:section_name',
+      parent:"root.site",
+      templateUrl:"components/documents/documents.html",
+      controller:"DocumentsController as vm",
+      params:{
+        section_id:null,
+        sub_section_id:null,
+        title:null,
+        section_name:null
+      },
+      data: {authenticate: true}
+    });
+
 
 
     states.push({

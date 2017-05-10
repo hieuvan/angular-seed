@@ -25,10 +25,11 @@ define(function(require) {
   require('components/header/header.module');
   require('components/error/error.module');
   require('components/footer/footer.module');
-  require('components/site-list/site-list.module');
+  require('components/documents/documents.module');
   require('components/site-detail/site-detail.module');
   require('components/login/login.module');
   require('components/home/home.module');
+  require('components/image-gallery/image-gallery.module');
 
   var AppRunner = require('app.runner'),
       templates = require('shared/templates'),
@@ -46,8 +47,9 @@ define(function(require) {
     'app.header',
     'app.error',
     'app.footer',
-    'app.site-list',
     'app.site-detail',
+    'app.image-gallery',
+    'app.documents',
     'app.login',
     'app.home',
     'angular-loading-bar',
