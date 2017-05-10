@@ -35,7 +35,10 @@ define(function(require) {
       Routes = require('app.routes'),
       HttpConfigProvider = require('shared/providers/http-config.provider'),
       AuthProvider = require('shared/providers/auth.provider'),
-      JwtProvider = require('shared/providers/jwt.provider');
+      JwtProvider = require('shared/providers/jwt.provider'),
+      CryptoProvider = require('shared/providers/crypto.provider'),
+      SiteService = require('shared/services/site.service'),
+      GetStorageService = require('shared/services/get.storage.service');
 
   // app level module that depends on app view and components
   return angular.module('app', [
@@ -83,9 +86,28 @@ define(function(require) {
 
   .provider('$jwt', JwtProvider)
 
+  .provider('$crypto', CryptoProvider)
+
   .run(templates)
 
-  .run(AppRunner);
+  .run(AppRunner)
+
+  .service('sharedProperties', function () {
+    var data = {};
+
+    return {
+      getProperty: function(key) {
+        return data[key];
+      },
+      setProperty: function(key, value) {
+        data[key] = value;
+      }
+    };
+  })
+
+  .service('SiteService', SiteService)
+
+  .service('GetStorageService', GetStorageService)
 
 });
 

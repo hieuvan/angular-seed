@@ -1,0 +1,27 @@
+<h3>Assure inspection</h3>
+<div ng-show="vm.questions.length">
+    <uib-accordion close-others="false">
+        <div uib-accordion-group class="panel-default" ng-repeat="group in vm.questionsInCategories" is-open="vm.status.isCustomHeaderOpen">
+        <uib-accordion-heading>
+            {{group.category}} <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': vm.status.isCustomHeaderOpen, 'glyphicon-chevron-right': !vm.status.isCustomHeaderOpen}"></i>
+        </uib-accordion-heading>
+            <div>
+                <ul class="list-group">
+                    <li class="list-group-item" ng-repeat="item in group.items"><a ui-sref="root.site.assure-inspection-question({questionId:item.number})">{{item.text}}</a></li>
+                </ul>
+            </div>
+        </div>
+    </uib-accordion>
+</div>
+<div ng-show="vm.currentQuestion" style="height: 305px">
+    <div class="container slider">
+        <div class="row">
+            <p>{{vm.currentQuestion.category}}</p>
+            <p>{{vm.currentQuestion.number}} of {{vm.questions.length}}</p>
+            <p>{{vm.currentQuestion.text}}</p>
+        </div>
+        <!-- prev / next controls -->
+        <a ng-show="vm.currentQuestion.number>1" class="arrow prev" ui-sref="root.site.assure-inspection-question({questionId:vm.previousQuestionNumber})"></a>
+        <a ng-show="vm.currentQuestion.number<vm.questions.length" class="arrow next" ui-sref="root.site.assure-inspection-question({questionId:vm.nextQuestionNumber})"></a>
+    </div>
+</div>

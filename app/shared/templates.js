@@ -2,6 +2,90 @@ define(function(require) {
 	return ['$templateCache', function($templateCache) {
   'use strict';
 
+  $templateCache.put('components/assure-inspection/assure-inspection-question.html',
+    "<h3>Assure inspection</h3>\r" +
+    "\n" +
+    "<div ng-show=\"vm.questions.length\">\r" +
+    "\n" +
+    "    <uib-accordion close-others=\"false\">\r" +
+    "\n" +
+    "        <div uib-accordion-group class=\"panel-default\" ng-repeat=\"group in vm.questionsInCategories\" is-open=\"vm.status.isCustomHeaderOpen\">\r" +
+    "\n" +
+    "        <uib-accordion-heading>\r" +
+    "\n" +
+    "            {{group.category}} <i class=\"pull-right glyphicon\" ng-class=\"{'glyphicon-chevron-down': vm.status.isCustomHeaderOpen, 'glyphicon-chevron-right': !vm.status.isCustomHeaderOpen}\"></i>\r" +
+    "\n" +
+    "        </uib-accordion-heading>\r" +
+    "\n" +
+    "            <div>\r" +
+    "\n" +
+    "                <ul class=\"list-group\">\r" +
+    "\n" +
+    "                    <li class=\"list-group-item\" ng-repeat=\"item in group.items\"><a ui-sref=\"root.site.assure-inspection-question({questionId:item.number})\">{{item.text}}</a></li>\r" +
+    "\n" +
+    "                </ul>\r" +
+    "\n" +
+    "            </div>\r" +
+    "\n" +
+    "        </div>\r" +
+    "\n" +
+    "    </uib-accordion>\r" +
+    "\n" +
+    "</div>\r" +
+    "\n" +
+    "<div ng-show=\"vm.currentQuestion\" style=\"height: 305px\">\r" +
+    "\n" +
+    "    <div class=\"container slider\">\r" +
+    "\n" +
+    "        <div class=\"row\">\r" +
+    "\n" +
+    "            <p>{{vm.currentQuestion.category}}</p>\r" +
+    "\n" +
+    "            <p>{{vm.currentQuestion.number}} of {{vm.questions.length}}</p>\r" +
+    "\n" +
+    "            <p>{{vm.currentQuestion.text}}</p>\r" +
+    "\n" +
+    "        </div>\r" +
+    "\n" +
+    "        <!-- prev / next controls -->\r" +
+    "\n" +
+    "        <a ng-show=\"vm.currentQuestion.number>1\" class=\"arrow prev\" ui-sref=\"root.site.assure-inspection-question({questionId:vm.previousQuestionNumber})\"></a>\r" +
+    "\n" +
+    "        <a ng-show=\"vm.currentQuestion.number<vm.questions.length\" class=\"arrow next\" ui-sref=\"root.site.assure-inspection-question({questionId:vm.nextQuestionNumber})\"></a>\r" +
+    "\n" +
+    "    </div>\r" +
+    "\n" +
+    "</div>\r" +
+    "\n"
+  );
+
+
+  $templateCache.put('components/assure-inspection/assure-inspection-start.html',
+    "<h3>Assure Inspection</h3>\n" +
+    "<div class=\"container\">\n" +
+    "    <div class=\"row\">\n" +
+    "        <div class=\"form-group\">\n" +
+    "            <label class=\"sr-only\" for=\"form-inspection-user\">Inspected by</label>\n" +
+    "            <input type=\"text\" required ng-model=\"vm.inspectionUser\" name=\"form-inspection-user\" class=\"form-control\" id=\"form-inspection-user\">\n" +
+    "        </div>\n" +
+    "        <div class=\"form-group\">\n" +
+    "            <label class=\"sr-only\" for=\"form-room-number\">Room number</label>\n" +
+    "            <input type=\"password\" required ng-model=\"vm.roomNumber\" name=\"form-room-number\" placeholder=\"Room number\" class=\"form-control\" id=\"form-room-number\">\n" +
+    "        </div>\n" +
+    "        <div class=\"form-group\">\n" +
+    "            <label class=\"sr-only\" for=\"form-cleaned-by\">Cleaned by</label>\n" +
+    "            <input type=\"password\" required ng-model=\"vm.cleanedBy\" name=\"form-cleaned-by\" placeholder=\" Cleaned by\" class=\"form-control\" id=\"form-cleaned-by\">\n" +
+    "        </div>\n" +
+    "        <div class=\"form-group\">\n" +
+    "            <label class=\"sr-only\" for=\"form-comments\">Comments</label>\n" +
+    "            <input type=\"password\" ng-model=\"vm.comments\" name=\"form-comments\" placeholder=\"Enter your comments\" class=\"form-control\" id=\"form-comments\">\n" +
+    "        </div>\n" +
+    "        <button type=\"button\" class=\"btn\" ng-disabled=\"startInspection.$invalid\">Start Inspection</button>\n" +
+    "    </div>\n" +
+    "</div>\n"
+  );
+
+
   $templateCache.put('components/error/error.html',
     "<div id=\"error\">\r" +
     "\n" +
@@ -83,9 +167,7 @@ define(function(require) {
     "\n" +
     "\r" +
     "\n" +
-    "<div class=\"container\">\r" +
-    "\n" +
-    "  <div class=\"navbar navbar-static-top navbar-shadow\" role=\"navigation\">\r" +
+    "  <div class=\"navbar navbar-static-top navbar-shadow navbar-top-ahs\" role=\"navigation\">\r" +
     "\n" +
     "    <div class=\"container-fluid\">\r" +
     "\n" +
@@ -135,8 +217,6 @@ define(function(require) {
     "\n" +
     "  </div>\r" +
     "\n" +
-    "</div><!-- /container -->\r" +
-    "\n" +
     "</header>\r" +
     "\n"
   );
@@ -171,13 +251,13 @@ define(function(require) {
     "\n" +
     "                            <h3>Login to AHS Inspection</h3>\r" +
     "\n" +
-    "                            <p>Enter your username and password to log on:</p>\r" +
+    "                            <p>Enter your email and password to log on:</p>\r" +
     "\n" +
     "                        </div>\r" +
     "\n" +
     "                        <div class=\"form-top-right\">\r" +
     "\n" +
-    "                            <i class=\"fa fa-lock\"></i>\r" +
+    "                            <i class=\"fa fa-key\"></i>\r" +
     "\n" +
     "                        </div>\r" +
     "\n" +
@@ -185,13 +265,15 @@ define(function(require) {
     "\n" +
     "                    <div class=\"form-bottom\">\r" +
     "\n" +
-    "                        <form role=\"form\" class=\"login-form\">\r" +
+    "                        <div ng-show=\"vm.errorLoggedIn\" class=\"alert alert-danger\" role=\"alert\">Incorrect email/password. Please try again</div>\r" +
+    "\n" +
+    "                        <form name=\"loginForm\" role=\"form\" class=\"login-form\">\r" +
     "\n" +
     "                            <div class=\"form-group\">\r" +
     "\n" +
-    "                                <label class=\"sr-only\" for=\"form-username\">Username</label>\r" +
+    "                                <label class=\"sr-only\" for=\"form-username\">Email</label>\r" +
     "\n" +
-    "                                <input type=\"text\" ng-model=\"vm.username\" name=\"form-username\" placeholder=\"Username...\" class=\"form-username form-control\" id=\"form-username\">\r" +
+    "                                <input type=\"text\" required ng-model=\"vm.username\" name=\"form-username\" placeholder=\"Email...\" class=\"form-username form-control\" id=\"form-username\">\r" +
     "\n" +
     "                            </div>\r" +
     "\n" +
@@ -199,11 +281,11 @@ define(function(require) {
     "\n" +
     "                                <label class=\"sr-only\" for=\"form-password\">Password</label>\r" +
     "\n" +
-    "                                <input type=\"password\" ng-model=\"vm.password\" name=\"form-password\" placeholder=\"Password...\" class=\"form-password form-control\" id=\"form-password\">\r" +
+    "                                <input type=\"password\" required ng-model=\"vm.password\" name=\"form-password\" placeholder=\"Password...\" class=\"form-password form-control\" id=\"form-password\">\r" +
     "\n" +
     "                            </div>\r" +
     "\n" +
-    "                            <button type=\"button\" class=\"btn\" ng-click=\"vm.login()\">Sign in!</button>\r" +
+    "                            <button type=\"button\" class=\"btn\" ng-disabled=\"loginForm.$invalid\" ng-click=\"vm.login()\">Sign in!</button>\r" +
     "\n" +
     "                        </form>\r" +
     "\n" +
@@ -219,7 +301,8 @@ define(function(require) {
     "\n" +
     "\r" +
     "\n" +
-    "</div>"
+    "</div>\r" +
+    "\n"
   );
 
 
@@ -229,26 +312,46 @@ define(function(require) {
 
 
   $templateCache.put('components/site-list/site-list.html',
-    "<h4>Select site</h4>\n" +
-    "<div class=\"row\">\n" +
-    "    <table ng-if=\"vm.showDT\" datatable=\"ng\" dt-options=\"vm.dtOptions\" dt-column-defs=\"vm.dtColumnDefs\" class=\"table table-striped table-bordered\">\n" +
-    "        <thead>\n" +
-    "        <tr>\n" +
-    "            <th>Name</th>\n" +
-    "            <th>Address</th>\n" +
-    "            <th>Select</th>\n" +
-    "        </tr>\n" +
-    "        </thead>\n" +
-    "        <tbody>\n" +
-    "        <tr ng-repeat=\"hotel in vm.hotels\">\n" +
-    "            <td>{{ hotel.name }}</td>\n" +
-    "            <td>{{ hotel.address.number }} {{ hotel.address.street }},\n" +
-    "                {{ hotel.address.suburb }} {{ hotel.address.city }},\n" +
-    "                {{ hotel.address.state }} {{ hotel.address.postcode }}</td>\n" +
-    "            <td><a ui-sref=\"root.site({siteId: hotel.id})\"> > </a></td>\n" +
-    "        </tr>\n" +
-    "        </tbody>\n" +
-    "    </table>\n" +
+    "<h4>Select site</h4>\r" +
+    "\n" +
+    "<div class=\"row\">\r" +
+    "\n" +
+    "    <table ng-if=\"vm.showDT\" datatable=\"ng\" dt-options=\"vm.dtOptions\" dt-column-defs=\"vm.dtColumnDefs\" class=\"table table-striped table-bordered\">\r" +
+    "\n" +
+    "        <thead>\r" +
+    "\n" +
+    "        <tr>\r" +
+    "\n" +
+    "            <th>Name</th>\r" +
+    "\n" +
+    "            <th>Address</th>\r" +
+    "\n" +
+    "            <th>Select</th>\r" +
+    "\n" +
+    "        </tr>\r" +
+    "\n" +
+    "        </thead>\r" +
+    "\n" +
+    "        <tbody>\r" +
+    "\n" +
+    "        <tr ng-repeat=\"hotel in vm.hotels\">\r" +
+    "\n" +
+    "            <td>{{ hotel.name }}</td>\r" +
+    "\n" +
+    "            <td>{{ hotel.address.number }} {{ hotel.address.street }},\r" +
+    "\n" +
+    "                {{ hotel.address.suburb }} {{ hotel.address.city }},\r" +
+    "\n" +
+    "                {{ hotel.address.state }} {{ hotel.address.postcode }}</td>\r" +
+    "\n" +
+    "            <td><a ui-sref=\"root.site({siteId: hotel.id})\"> > </a></td>\r" +
+    "\n" +
+    "        </tr>\r" +
+    "\n" +
+    "        </tbody>\r" +
+    "\n" +
+    "    </table>\r" +
+    "\n" +
     "</div>"
   );
 

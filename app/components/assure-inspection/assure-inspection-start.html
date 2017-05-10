@@ -1,0 +1,22 @@
+<h3>Assure Inspection</h3>
+<div class="container">
+    <div class="row">
+        <div class="form-group">
+            <label class="sr-only" for="form-inspection-user">Inspected by</label>
+            <input type="text" required ng-model="vm.inspectionUser" name="form-inspection-user" class="form-control" id="form-inspection-user">
+        </div>
+        <div class="form-group">
+            <label class="sr-only" for="form-room-number">Room number</label>
+            <input type="password" required ng-model="vm.roomNumber" name="form-room-number" placeholder="Room number" class="form-control" id="form-room-number">
+        </div>
+        <div class="form-group">
+            <label class="sr-only" for="form-cleaned-by">Cleaned by</label>
+            <input type="password" required ng-model="vm.cleanedBy" name="form-cleaned-by" placeholder=" Cleaned by" class="form-control" id="form-cleaned-by">
+        </div>
+        <div class="form-group">
+            <label class="sr-only" for="form-comments">Comments</label>
+            <input type="password" ng-model="vm.comments" name="form-comments" placeholder="Enter your comments" class="form-control" id="form-comments">
+        </div>
+        <button type="button" class="btn" ng-disabled="startInspection.$invalid">Start Inspection</button>
+    </div>
+</div>

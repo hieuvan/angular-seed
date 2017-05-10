@@ -68,7 +68,7 @@ require.config({
       'angular-datatables',
       'jquery'
     ],
-    'bootstrap': [
+    bootstrap: [
       'jquery'
     ]
   },
@@ -85,7 +85,7 @@ require.config({
     'app-environment': 'app.env',
     text: '../bower_components/requirejs-text/text',
     jquery: '../bower_components/jquery/dist/jquery',
-    'bootstrap': '../bower_components/bootstrap/dist/js/bootstrap',
+    bootstrap: '../bower_components/bootstrap/dist/js/bootstrap',
     'angular-ui-router': '../bower_components/angular-ui-router/release/angular-ui-router',
     'angular-ui-bootstrap-bower': '../bower_components/angular-ui-bootstrap-bower/ui-bootstrap-tpls',
     'angular-ui-bootstrap-tpls-bower': '../bower_components/angular-ui-bootstrap-bower/ui-bootstrap-tpls.min',
@@ -119,7 +119,10 @@ require.config({
     'angular-datatables.scroller': '../bower_components/angular-datatables/dist/plugins/scroller/angular-datatables.scroller',
     'angular-datatables.tabletools': '../bower_components/angular-datatables/dist/plugins/tabletools/angular-datatables.tabletools',
     'angular-datatables.buttons': '../bower_components/angular-datatables/dist/plugins/buttons/angular-datatables.buttons',
-    'angular-datatables.select': '../bower_components/angular-datatables/dist/plugins/select/angular-datatables.select'
+    'angular-datatables.select': '../bower_components/angular-datatables/dist/plugins/select/angular-datatables.select',
+    'angular-bootstrap': '../bower_components/angular-bootstrap/ui-bootstrap-tpls',
+    'angular-touch': '../bower_components/angular-touch/angular-touch',
+    'crypto-js': '../bower_components/crypto-js/crypto-js'
   },
   packages: [
 
