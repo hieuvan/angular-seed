@@ -64,9 +64,10 @@ define(function(require) {
     "<h3>Assure Inspection</h3>\n" +
     "<div class=\"container\">\n" +
     "    <div class=\"row\">\n" +
+    "        <form name=\"startInspection\" role=\"form\">\n" +
     "        <div class=\"form-group\">\n" +
     "            <label class=\"sr-only\" for=\"form-inspection-user\">Inspected by</label>\n" +
-    "            <input type=\"text\" required ng-model=\"vm.inspectionUser\" name=\"form-inspection-user\" class=\"form-control\" id=\"form-inspection-user\">\n" +
+    "            <input type=\"text\" required disabled ng-model=\"vm.inspectionUser\" name=\"form-inspection-user\" class=\"form-control\" id=\"form-inspection-user\">\n" +
     "        </div>\n" +
     "        <div class=\"form-group\">\n" +
     "            <label class=\"sr-only\" for=\"form-room-number\">Room number</label>\n" +
@@ -74,15 +75,36 @@ define(function(require) {
     "        </div>\n" +
     "        <div class=\"form-group\">\n" +
     "            <label class=\"sr-only\" for=\"form-cleaned-by\">Cleaned by</label>\n" +
-    "            <input type=\"password\" required ng-model=\"vm.cleanedBy\" name=\"form-cleaned-by\" placeholder=\" Cleaned by\" class=\"form-control\" id=\"form-cleaned-by\">\n" +
+    "            <input type=\"password\" ng-model=\"vm.cleanedBy\" name=\"form-cleaned-by\" placeholder=\" Cleaned by\" class=\"form-control\" id=\"form-cleaned-by\">\n" +
     "        </div>\n" +
     "        <div class=\"form-group\">\n" +
     "            <label class=\"sr-only\" for=\"form-comments\">Comments</label>\n" +
     "            <input type=\"password\" ng-model=\"vm.comments\" name=\"form-comments\" placeholder=\"Enter your comments\" class=\"form-control\" id=\"form-comments\">\n" +
     "        </div>\n" +
-    "        <button type=\"button\" class=\"btn\" ng-disabled=\"startInspection.$invalid\">Start Inspection</button>\n" +
+    "            </form>\n" +
+    "        <button type=\"button\" class=\"btn\" ng-disabled=\"startInspection.$invalid\" ng-click=\"vm.startInspection()\">Start Inspection</button>\n" +
     "    </div>\n" +
     "</div>\n"
+  );
+
+
+  $templateCache.put('components/documents/documents.html',
+    "<h3>{{vm.title}}</h3>\n" +
+    "<div ng-show=\"vm.sectionDocuments.length\">\n" +
+    "    <table datatable=\"ng\" class=\"table table-striped table-bordered\">\n" +
+    "        <thead>\n" +
+    "            <tr><th>Document Name</th>\n" +
+    "                <th>Document Url</th>\n" +
+    "            </tr>\n" +
+    "        </thead>\n" +
+    "        <tbody>\n" +
+    "            <tr ng-repeat=\"document in vm.sectionDocuments\">\n" +
+    "                <td>{{ document.name }}</td>\n" +
+    "                <td>{{ document.url }}</td></tr>\n" +
+    "        </tbody>\n" +
+    "    </table>\n" +
+    "</div>\n" +
+    "<div ng-show=\"!vm.sectionDocuments.length\" class=\"alert alert-warning\" role=\"alert\">No permission</div>\n"
   );
 
 
@@ -264,6 +286,23 @@ define(function(require) {
     "    </table>\r" +
     "\n" +
     "</div>"
+  );
+
+
+  $templateCache.put('components/image-gallery/image-gallery.html',
+    "<div class=\"container slider\">\n" +
+    "    <!-- enumerate all photos -->\n" +
+    "    <img ng-repeat=\"photo in vm.photos\" class=\"slide img-responsive\" ng-swipe-right=\"vm.showPrev()\" ng-swipe-left=\"vm.showNext()\" ng-show=\"vm.isActive($index)\" ng-src=\"{{photo.src}}\" />\n" +
+    "    <!-- prev / next controls -->\n" +
+    "    <a class=\"arrow prev\" ng-click=\"vm.showPrev()\"></a>\n" +
+    "    <a class=\"arrow next\" ng-click=\"vm.showNext()\"></a>\n" +
+    "    <!-- extra navigation controls -->\n" +
+    "    <ul class=\"slider-nav\">\n" +
+    "        <li ng-repeat=\"photo in vm.photos\" ng-class=\"{'active':vm.isActive($index)}\">\n" +
+    "            <img ng-src=\"{{photo.src}}\" class=\"img-thumbnail\" alt=\"{{photo.desc}}\" title=\"{{photo.desc}}\" ng-click=\"vm.showPhoto($index);\" />\n" +
+    "        </li>\n" +
+    "    </ul>\n" +
+    "</div>\n"
   );
 
 

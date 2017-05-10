@@ -84,6 +84,24 @@ define(function() {
     });
 
     states.push({
+      name: 'root.site.assure-inspection-start',
+      url: '/assure-inspection/start',
+      parent:"root.site",
+      templateUrl:"components/assure-inspection/assure-inspection-start.html",
+      controller:"AssureInspectionController as vm",
+      data: {authenticate: true}
+    });
+
+    states.push({
+      name: 'root.site.assure-inspection-question',
+      url: '/assure-inspection/:questionId',
+      parent:"root.site",
+      templateUrl:"components/assure-inspection/assure-inspection-question.html",
+      controller:"AssureInspectionController as vm",
+      data: {authenticate: true}
+    });
+
+    states.push({
       name: 'root.site.brand-standards',
       url: '/brand-standards',
       parent:"root.site",
@@ -130,6 +148,10 @@ define(function() {
         }
       }
     });
+
+    $urlRouterProvider.when("/sites/:siteId/assure-inspection","/sites/:siteId/assure-inspection/all");
+
+    $urlRouterProvider.when("/sites/:siteId/assure-inspection/","/sites/:siteId/assure-inspection/all");
 
     $urlRouterProvider.otherwise(config.defaultUrl);
 

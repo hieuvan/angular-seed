@@ -29,6 +29,7 @@ define(function(require) {
   require('components/site-detail/site-detail.module');
   require('components/login/login.module');
   require('components/home/home.module');
+  require('components/assure-inspection/assure-inspection.module');
   require('components/image-gallery/image-gallery.module');
 
   var AppRunner = require('app.runner'),
@@ -50,6 +51,7 @@ define(function(require) {
     'app.site-detail',
     'app.image-gallery',
     'app.documents',
+    'app.assure-inspection',
     'app.login',
     'app.home',
     'angular-loading-bar',
