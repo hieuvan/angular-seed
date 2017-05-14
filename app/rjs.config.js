@@ -17,12 +17,8 @@ require.config({
     'angular-ui-router': [
       'angular'
     ],
-    'angular-ui-bootstrap-bower': [
+    'angular-bootstrap': [
       'angular'
-    ],
-    'angular-ui-bootstrap-tpls-bower': [
-      'angular',
-      'angular-ui-bootstrap-bower'
     ],
     'angular-debounce': [
       'angular'
@@ -37,6 +33,9 @@ require.config({
       'angular'
     ],
     'angular-animate': [
+      'angular'
+    ],
+    'angular-touch': [
       'angular'
     ],
     'angular-sanitize': [
@@ -87,8 +86,6 @@ require.config({
     jquery: '../bower_components/jquery/dist/jquery',
     bootstrap: '../bower_components/bootstrap/dist/js/bootstrap',
     'angular-ui-router': '../bower_components/angular-ui-router/release/angular-ui-router',
-    'angular-ui-bootstrap-bower': '../bower_components/angular-ui-bootstrap-bower/ui-bootstrap-tpls',
-    'angular-ui-bootstrap-tpls-bower': '../bower_components/angular-ui-bootstrap-bower/ui-bootstrap-tpls.min',
     'angular-debounce': '../bower_components/angular-debounce/dist/angular-debounce',
     jasmine: '../bower_components/jasmine/lib/jasmine-core/jasmine',
     underscore: '../bower_components/underscore/underscore',
@@ -120,8 +117,8 @@ require.config({
     'angular-datatables.tabletools': '../bower_components/angular-datatables/dist/plugins/tabletools/angular-datatables.tabletools',
     'angular-datatables.buttons': '../bower_components/angular-datatables/dist/plugins/buttons/angular-datatables.buttons',
     'angular-datatables.select': '../bower_components/angular-datatables/dist/plugins/select/angular-datatables.select',
-    'angular-bootstrap': '../bower_components/angular-bootstrap/ui-bootstrap-tpls',
     'angular-touch': '../bower_components/angular-touch/angular-touch',
+    'angular-bootstrap': '../bower_components/angular-bootstrap/ui-bootstrap-tpls',
     'crypto-js': '../bower_components/crypto-js/crypto-js'
   },
   packages: [

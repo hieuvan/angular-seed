@@ -4,13 +4,14 @@ define(function(require) {
 
   // vendor libraries
   require('angular-ui-router');
-  require('angular-ui-bootstrap-bower');
-  require('angular-ui-bootstrap-tpls-bower');
+  require('angular-bootstrap');
   require('angular-http');
   require('angular-httpi');
   require('angular-cookies');
   require('angular-page-title');
   require('angular-sanitize');
+  require('angular-animate');
+  require('angular-touch');
   require('ngtoast');
   require('angular-loading-bar');
   require('app-environment');
@@ -56,6 +57,7 @@ define(function(require) {
     'app.home',
     'angular-loading-bar',
     'ngAnimate',
+    'ngTouch',
     'ngToast',
     'sa.pageTitle',
     'sa.http',

@@ -7,8 +7,8 @@ define(function(require) {
 
     this.loginUrl = 'loginJwt';
 
-    this.$get = ['$cookieStore', '$http', '$q', '$jwt', '$resource', 'localStorageService', '$rootScope',
-    function($cookies, $http, $q, $jwt, $resourceProvider, localStorageService, $rootScope) {
+    this.$get = ['$cookieStore', '$http', '$q', '$jwt', '$resource', 'localStorageService', '$rootScope', 'sharedProperties',
+    function($cookies, $http, $q, $jwt, $resourceProvider, localStorageService, $rootScope, sharedProperties) {
 
       var tokenName = '_token';
 
@@ -24,15 +24,14 @@ define(function(require) {
         return $http.post(($resourceProvider.apiUrl + self.loginUrl), formdata)
           .then(function(response) {
               if (response.data.token) {
-            var token = response.data.token;
-            var payload = $jwt.getPayload(token);
-            var id = payload.id;
+                var token = response.data.token;
+                var payload = $jwt.getPayload(token);
+                var id = payload.id;
 
-            setToken(tokenName, token);
-            setToken(id + '.' +'firstName', response.data.firstname);
-            setToken(id + '.' + 'lastName', response.data.surname);
-            //setToken(id + '.' + 'hotels', response.data.hotels);
-              //$rootScope.hotels = response.data.hotels;
+                setToken(tokenName, token);
+                setToken(id + '.' +'firstName', response.data.firstname);
+                setToken(id + '.' + 'lastName', response.data.surname);
+                //$rootScope.hotels = response.data.hotels;
                 sharedProperties.setProperty('hotels', response.data.hotels);
 
               return getUser(response.data);

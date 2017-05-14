@@ -375,7 +375,7 @@ module.exports = function (grunt) {
 
     grunt.task.run([
       'clean:tmp',
-      'wiredep:sass',
+      //'wiredep:sass',
       'ngtemplates',
       'ngconstant:development',
       //'bowerRequirejs',

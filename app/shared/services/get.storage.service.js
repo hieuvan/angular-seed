@@ -18,10 +18,24 @@ define(function(require) {
             return name;
         };
 
+        var getCurrentInspection = function(prefixKey) {
+            var inspection = localStorageService.get(prefixKey+'.inspection');
+            if (inspection) {
+                return JSON.parse(inspection);
+            }
+            return inspection;
+        };
+
+        var setCurrentInspection = function(prefixKey, value) {
+            localStorageService.set(prefixKey+'.inspection', JSON.stringify(value));
+        };
+
         // public api
         return {
             getIdFromPayload: getIdFromPayload,
-            getFullName: getFullName
+            getFullName: getFullName,
+            getCurrentInspection: getCurrentInspection,
+            setCurrentInspection: setCurrentInspection
         };
     }];
 });

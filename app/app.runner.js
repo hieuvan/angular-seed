@@ -30,6 +30,7 @@ define(function($Auth) {
 
       // NOT authenticated - wants any private stuff
       if (shouldLogin) {
+        //console.log('her');
         $state.go('login');
         event.preventDefault();
       }

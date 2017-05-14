@@ -5,23 +5,31 @@ define(function(require) {
   $templateCache.put('components/assure-inspection/assure-inspection-question.html',
     "<h3>Assure inspection</h3>\r" +
     "\n" +
+    "<ul class=\"list-group\">\r" +
+    "\n" +
+    "    <li class=\"list-group-item\">Score: {{vm.currentInspectionData.totalScore}} %</li>\r" +
+    "\n" +
+    "    <li class=\"list-group-item\">Required: {{vm.currentInspectionData.requiredScore}} %</li>\r" +
+    "\n" +
+    "</ul>\r" +
+    "\n" +
     "<div ng-show=\"vm.questions.length\">\r" +
     "\n" +
     "    <uib-accordion close-others=\"false\">\r" +
     "\n" +
-    "        <div uib-accordion-group class=\"panel-default\" ng-repeat=\"group in vm.questionsInCategories\" is-open=\"vm.status.isCustomHeaderOpen\">\r" +
+    "        <div uib-accordion-group class=\"panel-default\" ng-repeat=\"group in vm.questionsInCategories\" is-open=\"vm.status\">\r" +
     "\n" +
-    "        <uib-accordion-heading>\r" +
+    "            <uib-accordion-heading>\r" +
     "\n" +
-    "            {{group.category}} <i class=\"pull-right glyphicon\" ng-class=\"{'glyphicon-chevron-down': vm.status.isCustomHeaderOpen, 'glyphicon-chevron-right': !vm.status.isCustomHeaderOpen}\"></i>\r" +
+    "                {{group.category}} <i class=\"pull-right glyphicon\" ng-class=\"{'glyphicon-chevron-down': vm.status, 'glyphicon-chevron-right': !vm.status}\"></i>\r" +
     "\n" +
-    "        </uib-accordion-heading>\r" +
+    "            </uib-accordion-heading>\r" +
     "\n" +
     "            <div>\r" +
     "\n" +
     "                <ul class=\"list-group\">\r" +
     "\n" +
-    "                    <li class=\"list-group-item\" ng-repeat=\"item in group.items\"><a ui-sref=\"root.site.assure-inspection-question({questionId:item.number})\">{{item.text}}</a></li>\r" +
+    "                    <li class=\"list-group-item\" ng-repeat=\"item in group.items\"><a ui-sref=\"root.site.assure-inspection-question({questionId:item.number})\">{{item.text}}</a><span class=\"pull-right\">{{item.score}}</span></li>\r" +
     "\n" +
     "                </ul>\r" +
     "\n" +
@@ -39,19 +47,31 @@ define(function(require) {
     "\n" +
     "        <div class=\"row\">\r" +
     "\n" +
-    "            <p>{{vm.currentQuestion.category}}</p>\r" +
-    "\n" +
-    "            <p>{{vm.currentQuestion.number}} of {{vm.questions.length}}</p>\r" +
+    "            <p><strong>{{vm.currentQuestion.category}}</strong></p>\r" +
     "\n" +
     "            <p>{{vm.currentQuestion.text}}</p>\r" +
     "\n" +
+    "            <div class=\"radio\" ng-repeat=\"answerOption in vm.answerOptions\">\r" +
+    "\n" +
+    "                <label>\r" +
+    "\n" +
+    "                    <input type=\"radio\" name=\"optionsRadios\" value=\"{{answerOption.value}}\" ng-model=\"vm.currentQuestion.answer\">\r" +
+    "\n" +
+    "                    {{answerOption.label}}\r" +
+    "\n" +
+    "                </label>\r" +
+    "\n" +
+    "            </div>\r" +
+    "\n" +
     "        </div>\r" +
+    "\n" +
+    "        <p>{{vm.currentQuestion.number}} of {{vm.questions.length}}</p>\r" +
     "\n" +
     "        <!-- prev / next controls -->\r" +
     "\n" +
-    "        <a ng-show=\"vm.currentQuestion.number>1\" class=\"arrow prev\" ui-sref=\"root.site.assure-inspection-question({questionId:vm.previousQuestionNumber})\"></a>\r" +
+    "        <a ng-show=\"vm.currentQuestion.number>1\" class=\"arrow prev\" ng-click=\"vm.saveInspection(vm.previousQuestionNumber)\"></a>\r" +
     "\n" +
-    "        <a ng-show=\"vm.currentQuestion.number<vm.questions.length\" class=\"arrow next\" ui-sref=\"root.site.assure-inspection-question({questionId:vm.nextQuestionNumber})\"></a>\r" +
+    "        <a ng-show=\"vm.currentQuestion.number<vm.questions.length\" class=\"arrow next\" ng-click=\"vm.saveInspection(vm.nextQuestionNumber)\"></a>\r" +
     "\n" +
     "    </div>\r" +
     "\n" +
@@ -71,15 +91,15 @@ define(function(require) {
     "        </div>\n" +
     "        <div class=\"form-group\">\n" +
     "            <label class=\"sr-only\" for=\"form-room-number\">Room number</label>\n" +
-    "            <input type=\"password\" required ng-model=\"vm.roomNumber\" name=\"form-room-number\" placeholder=\"Room number\" class=\"form-control\" id=\"form-room-number\">\n" +
+    "            <input type=\"text\" required ng-model=\"vm.roomNumber\" name=\"form-room-number\" placeholder=\"Room number\" class=\"form-control\" id=\"form-room-number\">\n" +
     "        </div>\n" +
     "        <div class=\"form-group\">\n" +
     "            <label class=\"sr-only\" for=\"form-cleaned-by\">Cleaned by</label>\n" +
-    "            <input type=\"password\" ng-model=\"vm.cleanedBy\" name=\"form-cleaned-by\" placeholder=\" Cleaned by\" class=\"form-control\" id=\"form-cleaned-by\">\n" +
+    "            <input type=\"text\" ng-model=\"vm.cleanedBy\" name=\"form-cleaned-by\" placeholder=\" Cleaned by\" class=\"form-control\" id=\"form-cleaned-by\">\n" +
     "        </div>\n" +
     "        <div class=\"form-group\">\n" +
     "            <label class=\"sr-only\" for=\"form-comments\">Comments</label>\n" +
-    "            <input type=\"password\" ng-model=\"vm.comments\" name=\"form-comments\" placeholder=\"Enter your comments\" class=\"form-control\" id=\"form-comments\">\n" +
+    "            <input type=\"text\" ng-model=\"vm.comments\" name=\"form-comments\" placeholder=\"Enter your comments\" class=\"form-control\" id=\"form-comments\">\n" +
     "        </div>\n" +
     "            </form>\n" +
     "        <button type=\"button\" class=\"btn\" ng-disabled=\"startInspection.$invalid\" ng-click=\"vm.startInspection()\">Start Inspection</button>\n" +
@@ -189,7 +209,7 @@ define(function(require) {
     "\n" +
     "\r" +
     "\n" +
-    "  <div class=\"navbar navbar-static-top navbar-shadow navbar-top-ahs\" role=\"navigation\">\r" +
+    "  <div class=\"navbar navbar-static-top navbar-top-ahs\" role=\"navigation\">\r" +
     "\n" +
     "    <div class=\"container-fluid\">\r" +
     "\n" +

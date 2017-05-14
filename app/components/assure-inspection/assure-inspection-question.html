@@ -1,13 +1,17 @@
 <h3>Assure inspection</h3>
+<ul class="list-group">
+    <li class="list-group-item">Score: {{vm.currentInspectionData.totalScore}} %</li>
+    <li class="list-group-item">Required: {{vm.currentInspectionData.requiredScore}} %</li>
+</ul>
 <div ng-show="vm.questions.length">
     <uib-accordion close-others="false">
-        <div uib-accordion-group class="panel-default" ng-repeat="group in vm.questionsInCategories" is-open="vm.status.isCustomHeaderOpen">
-        <uib-accordion-heading>
-            {{group.category}} <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': vm.status.isCustomHeaderOpen, 'glyphicon-chevron-right': !vm.status.isCustomHeaderOpen}"></i>
-        </uib-accordion-heading>
+        <div uib-accordion-group class="panel-default" ng-repeat="group in vm.questionsInCategories" is-open="vm.status">
+            <uib-accordion-heading>
+                {{group.category}} <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': vm.status, 'glyphicon-chevron-right': !vm.status}"></i>
+            </uib-accordion-heading>
             <div>
                 <ul class="list-group">
-                    <li class="list-group-item" ng-repeat="item in group.items"><a ui-sref="root.site.assure-inspection-question({questionId:item.number})">{{item.text}}</a></li>
+                    <li class="list-group-item" ng-repeat="item in group.items"><a ui-sref="root.site.assure-inspection-question({questionId:item.number})">{{item.text}}</a><span class="pull-right">{{item.score}}</span></li>
                 </ul>
             </div>
         </div>
@@ -16,12 +20,18 @@
 <div ng-show="vm.currentQuestion" style="height: 305px">
     <div class="container slider">
         <div class="row">
-            <p>{{vm.currentQuestion.category}}</p>
-            <p>{{vm.currentQuestion.number}} of {{vm.questions.length}}</p>
+            <p><strong>{{vm.currentQuestion.category}}</strong></p>
             <p>{{vm.currentQuestion.text}}</p>
+            <div class="radio" ng-repeat="answerOption in vm.answerOptions">
+                <label>
+                    <input type="radio" name="optionsRadios" value="{{answerOption.value}}" ng-model="vm.currentQuestion.answer">
+                    {{answerOption.label}}
+                </label>
+            </div>
         </div>
+        <p>{{vm.currentQuestion.number}} of {{vm.questions.length}}</p>
         <!-- prev / next controls -->
-        <a ng-show="vm.currentQuestion.number>1" class="arrow prev" ui-sref="root.site.assure-inspection-question({questionId:vm.previousQuestionNumber})"></a>
-        <a ng-show="vm.currentQuestion.number<vm.questions.length" class="arrow next" ui-sref="root.site.assure-inspection-question({questionId:vm.nextQuestionNumber})"></a>
+        <a ng-show="vm.currentQuestion.number>1" class="arrow prev" ng-click="vm.saveInspection(vm.previousQuestionNumber)"></a>
+        <a ng-show="vm.currentQuestion.number<vm.questions.length" class="arrow next" ng-click="vm.saveInspection(vm.nextQuestionNumber)"></a>
     </div>
 </div>
