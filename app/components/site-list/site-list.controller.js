@@ -1,19 +1,17 @@
 'use strict';
 
 define(function() {
-  return ['config', '$rootScope', 'SiteService', 'DTOptionsBuilder', 'DTColumnDefBuilder', function(config, $rootScope, SiteService, DTOptionsBuilder, DTColumnDefBuilder) {
+  return ['config', '$rootScope', 'SiteService', 'DTOptionsBuilder', 'DTColumnDefBuilder', 'hotels', function(config, $rootScope, SiteService, DTOptionsBuilder, DTColumnDefBuilder, hotels) {
     var vm = this;
-    vm.showDT = false;
+    //vm.showDT = false;
 
     vm.siteTitle = config.siteTitle;
     if (!_.isEmpty($rootScope.hotels)) {
       vm.hotels = $rootScope.hotels;
-      vm.showDT = true;
+      //vm.showDT = true;
     } else {
-      SiteService.getHotels().then(function(value) {
-        vm.hotels = value;
-        vm.showDT = true;
-      });
+        vm.hotels = hotels;
+        //vm.showDT = true;
     }
 
     vm.dtOptions = DTOptionsBuilder.newOptions()

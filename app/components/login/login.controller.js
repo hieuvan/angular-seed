@@ -19,7 +19,7 @@ define(function() {
           vm.loggedInUser = val;
 
           if (!_.isEmpty(vm.loggedInUser)) {
-            $state.go('root.home');
+            $state.go('root.home', {}, { reload: true });
           }
         }
       });

@@ -1,24 +1,34 @@
 <h3>Assure Inspection</h3>
 <div class="container">
     <div class="row">
-        <form name="startInspection" role="form">
+        <div class="col-md-12">
+        <form name="startInspection" role="form" class="form-horizontal">
         <div class="form-group">
-            <label class="sr-only" for="form-inspection-user">Inspected by</label>
-            <input type="text" required disabled ng-model="vm.inspectionUser" name="form-inspection-user" class="form-control" id="form-inspection-user">
+            <label for="form-inspection-user" class="col-sm-3">Inspected by</label>
+            <div class="col-xs-12 col-sm-8 col-md-5">
+                <input class="form-control" type="text" required disabled ng-model="vm.inspectionUser" name="form-inspection-user" id="form-inspection-user">
+            </div>
         </div>
         <div class="form-group">
-            <label class="sr-only" for="form-room-number">Room number</label>
-            <input type="text" required ng-model="vm.roomNumber" name="form-room-number" placeholder="Room number" class="form-control" id="form-room-number">
+            <label for="form-room-number" class="col-sm-3">Room number</label>
+            <div class="col-xs-12 col-sm-8 col-md-5">
+                <input class="form-control" type="text" required ng-model="vm.roomNumber" name="form-room-number" placeholder="Room number" class="col-xs-12 col-sm-8 col-md-5 form-control" id="form-room-number">
+            </div>
         </div>
         <div class="form-group">
-            <label class="sr-only" for="form-cleaned-by">Cleaned by</label>
-            <input type="text" ng-model="vm.cleanedBy" name="form-cleaned-by" placeholder=" Cleaned by" class="form-control" id="form-cleaned-by">
+            <label for="form-cleaned-by" class="col-sm-3">Cleaned by</label>
+            <div class="col-xs-12 col-sm-8 col-md-5">
+                <input class="form-control" type="text" ng-model="vm.cleanedBy" name="form-cleaned-by" placeholder=" Cleaned by" class="col-xs-12 col-sm-8 col-md-5 form-control" id="form-cleaned-by">
+            </div>
         </div>
         <div class="form-group">
-            <label class="sr-only" for="form-comments">Comments</label>
-            <input type="text" ng-model="vm.comments" name="form-comments" placeholder="Enter your comments" class="form-control" id="form-comments">
+            <label for="form-comments" class="col-sm-3">Comments</label>
+            <div class="col-xs-12 col-sm-8 col-md-5">
+                <input class="form-control" type="text" ng-model="vm.comments" name="form-comments" placeholder="Enter your comments" class="col-xs-12 col-sm-8 col-md-5 form-control" id="form-comments">
+            </div>
         </div>
             </form>
         <button type="button" class="btn" ng-disabled="startInspection.$invalid" ng-click="vm.startInspection()">Start Inspection</button>
+        </div>
     </div>
 </div>

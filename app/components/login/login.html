@@ -1,36 +1,32 @@
 <!-- Top content -->
 <div class="top-content">
-
-    <div class="inner-bg">
-        <div class="container">
-            <div class="row">
-                <div class="col-sm-6 col-sm-offset-3 form-box">
-                    <div class="form-top">
-                        <div class="form-top-left">
-                            <h3>Login to AHS Inspection</h3>
-                            <p>Enter your email and password to log on:</p>
-                        </div>
-                        <div class="form-top-right">
-                            <i class="fa fa-key"></i>
-                        </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-6 col-sm-offset-3 form-box">
+                <div class="form-top">
+                    <div class="form-top-left">
+                        <h1>AHS Inspection</h1>
+                        <p>Enter your email and password to log on:</p>
                     </div>
-                    <div class="form-bottom">
-                        <div ng-show="vm.errorLoggedIn" class="alert alert-danger" role="alert">Incorrect email/password. Please try again</div>
-                        <form name="loginForm" role="form" class="login-form">
-                            <div class="form-group">
-                                <label class="sr-only" for="form-username">Email</label>
-                                <input type="text" required ng-model="vm.username" name="form-username" placeholder="Email..." class="form-username form-control" id="form-username">
-                            </div>
-                            <div class="form-group">
-                                <label class="sr-only" for="form-password">Password</label>
-                                <input type="password" required ng-model="vm.password" name="form-password" placeholder="Password..." class="form-password form-control" id="form-password">
-                            </div>
-                            <button type="button" class="btn" ng-disabled="loginForm.$invalid" ng-click="vm.login()">Sign in!</button>
-                        </form>
+                    <div class="form-top-right">
+                        <i class="fa fa-key"></i>
                     </div>
+                </div>
+                <div class="form-bottom">
+                    <div ng-show="vm.errorLoggedIn" class="alert alert-danger" role="alert">Incorrect email/password. Please try again</div>
+                    <form name="loginForm" role="form" class="login-form">
+                        <div class="form-group">
+                            <label class="sr-only" for="form-username">Email</label>
+                            <input type="text" required ng-model="vm.username" name="form-username" placeholder="Email..." class="form-username form-control" id="form-username">
+                        </div>
+                        <div class="form-group">
+                            <label class="sr-only" for="form-password">Password</label>
+                            <input type="password" required ng-model="vm.password" name="form-password" placeholder="Password..." class="form-password form-control" id="form-password">
+                        </div>
+                        <button type="button" class="btn" ng-disabled="loginForm.$invalid" ng-click="vm.login()">Log in</button>
+                    </form>
                 </div>
             </div>
         </div>
     </div>
-
 </div>

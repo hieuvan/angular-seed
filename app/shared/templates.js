@@ -2,16 +2,70 @@ define(function(require) {
 	return ['$templateCache', function($templateCache) {
   'use strict';
 
+  $templateCache.put('components/assure-inspection/assure-inspection-complete.html',
+    "<h3>Inspection Overview</h3>\n" +
+    "<div class=\"container\">\n" +
+    "    <div class=\"row\">\n" +
+    "        <form name=\"completeInspection\" role=\"form\" class=\"form-horizontal\">\n" +
+    "            <div class=\"form-group\">\n" +
+    "                <label for=\"form-room-number\" class=\"col-sm-3\">Room number</label>\n" +
+    "                <div class=\"col-xs-12 col-sm-8 col-md-5\">\n" +
+    "                    <input type=\"text\" disabled ng-model=\"vm.roomNumber\" name=\"form-room-number\" class=\"col-xs-12 col-sm-8 col-md-5 form-control\" id=\"form-room-number\">\n" +
+    "                </div>\n" +
+    "            </div>\n" +
+    "            <div class=\"form-group\">\n" +
+    "                <label for=\"form-cleaned-by\" class=\"col-sm-3\">Inspection Score</label>\n" +
+    "                <div class=\"col-xs-12 col-sm-8 col-md-5\">\n" +
+    "                    <input type=\"text\" disabled ng-model=\"vm.currentInspectionData.totalScore\" name=\"form-inspection-score\" class=\"col-xs-12 col-sm-8 col-md-5 form-control\" id=\"form-inspection-score\">\n" +
+    "                </div>\n" +
+    "            </div>\n" +
+    "            <div class=\"form-group\">\n" +
+    "                <label for=\"form-cleaned-by\" class=\"col-sm-3\">Required Score</label>\n" +
+    "                <div class=\"col-xs-12 col-sm-8 col-md-5\">\n" +
+    "                    <input type=\"text\" disabled ng-model=\"vm.currentInspectionData.requiredScore\" name=\"form-required-score\" class=\"col-xs-12 col-sm-8 col-md-5 form-control\" id=\"form-required-score\">\n" +
+    "                </div>\n" +
+    "            </div>\n" +
+    "            <div class=\"form-group\">\n" +
+    "                <label for=\"form-cleaned-by\" class=\"col-sm-3\">Cleaned by</label>\n" +
+    "                <div class=\"col-xs-12 col-sm-8 col-md-5\">\n" +
+    "                    <input type=\"text\" disabled ng-model=\"vm.cleanedBy\" name=\"form-cleaned-by\" placeholder=\" Cleaned by\" class=\"col-xs-12 col-sm-8 col-md-5 form-control\" id=\"form-cleaned-by\">\n" +
+    "                </div>\n" +
+    "            </div>\n" +
+    "            <div class=\"form-group\">\n" +
+    "                <label for=\"form-comments\" class=\"col-sm-3\">Comments</label>\n" +
+    "                <div class=\"col-xs-12 col-sm-8 col-md-5\">\n" +
+    "                    <input type=\"text\" ng-model=\"vm.comments\" name=\"form-comments\" placeholder=\"Enter your comments\" class=\"col-xs-12 col-sm-8 col-md-5 form-control\" id=\"form-comments\">\n" +
+    "                </div>\n" +
+    "            </div>\n" +
+    "            <div class=\"form-group\">\n" +
+    "                <label for=\"form-comments\" class=\"col-sm-3\">Email to</label>\n" +
+    "                <div class=\"col-xs-12 col-sm-8 col-md-5\">\n" +
+    "                    <input type=\"text\" ng-model=\"vm.emailTo\" name=\"form-email-to\" placeholder=\"abc@g.com,def@g.com\" class=\"col-xs-12 col-sm-8 col-md-5 form-control\" id=\"form-email-to\">\n" +
+    "                </div>\n" +
+    "            </div>\n" +
+    "        </form>\n" +
+    "        <button type=\"button\" class=\"btn\" ng-disabled=\"completeInspection.$invalid\" ng-click=\"vm.completeInspection()\">Submit</button>\n" +
+    "    </div>\n" +
+    "</div>\n"
+  );
+
+
   $templateCache.put('components/assure-inspection/assure-inspection-question.html',
     "<h3>Assure inspection</h3>\r" +
     "\n" +
-    "<ul class=\"list-group\">\r" +
+    "<p><a ui-sref=\"root.site.assure-inspection-complete\" class=\"btn btn-primary\" role=\"button\">Complete Inspection</a></p>\r" +
     "\n" +
-    "    <li class=\"list-group-item\">Score: {{vm.currentInspectionData.totalScore}} %</li>\r" +
+    "<div>\r" +
     "\n" +
-    "    <li class=\"list-group-item\">Required: {{vm.currentInspectionData.requiredScore}} %</li>\r" +
+    "    <ul class=\"list-group\">\r" +
     "\n" +
-    "</ul>\r" +
+    "        <li class=\"list-group-item\">Score: {{vm.currentInspectionData.totalScore}} %</li>\r" +
+    "\n" +
+    "        <li class=\"list-group-item\">Required: {{vm.currentInspectionData.requiredScore}} %</li>\r" +
+    "\n" +
+    "    </ul>\r" +
+    "\n" +
+    "</div>\r" +
     "\n" +
     "<div ng-show=\"vm.questions.length\">\r" +
     "\n" +
@@ -84,25 +138,35 @@ define(function(require) {
     "<h3>Assure Inspection</h3>\n" +
     "<div class=\"container\">\n" +
     "    <div class=\"row\">\n" +
-    "        <form name=\"startInspection\" role=\"form\">\n" +
+    "        <div class=\"col-md-12\">\n" +
+    "        <form name=\"startInspection\" role=\"form\" class=\"form-horizontal\">\n" +
     "        <div class=\"form-group\">\n" +
-    "            <label class=\"sr-only\" for=\"form-inspection-user\">Inspected by</label>\n" +
-    "            <input type=\"text\" required disabled ng-model=\"vm.inspectionUser\" name=\"form-inspection-user\" class=\"form-control\" id=\"form-inspection-user\">\n" +
+    "            <label for=\"form-inspection-user\" class=\"col-sm-3\">Inspected by</label>\n" +
+    "            <div class=\"col-xs-12 col-sm-8 col-md-5\">\n" +
+    "                <input class=\"form-control\" type=\"text\" required disabled ng-model=\"vm.inspectionUser\" name=\"form-inspection-user\" id=\"form-inspection-user\">\n" +
+    "            </div>\n" +
     "        </div>\n" +
     "        <div class=\"form-group\">\n" +
-    "            <label class=\"sr-only\" for=\"form-room-number\">Room number</label>\n" +
-    "            <input type=\"text\" required ng-model=\"vm.roomNumber\" name=\"form-room-number\" placeholder=\"Room number\" class=\"form-control\" id=\"form-room-number\">\n" +
+    "            <label for=\"form-room-number\" class=\"col-sm-3\">Room number</label>\n" +
+    "            <div class=\"col-xs-12 col-sm-8 col-md-5\">\n" +
+    "                <input class=\"form-control\" type=\"text\" required ng-model=\"vm.roomNumber\" name=\"form-room-number\" placeholder=\"Room number\" class=\"col-xs-12 col-sm-8 col-md-5 form-control\" id=\"form-room-number\">\n" +
+    "            </div>\n" +
     "        </div>\n" +
     "        <div class=\"form-group\">\n" +
-    "            <label class=\"sr-only\" for=\"form-cleaned-by\">Cleaned by</label>\n" +
-    "            <input type=\"text\" ng-model=\"vm.cleanedBy\" name=\"form-cleaned-by\" placeholder=\" Cleaned by\" class=\"form-control\" id=\"form-cleaned-by\">\n" +
+    "            <label for=\"form-cleaned-by\" class=\"col-sm-3\">Cleaned by</label>\n" +
+    "            <div class=\"col-xs-12 col-sm-8 col-md-5\">\n" +
+    "                <input class=\"form-control\" type=\"text\" ng-model=\"vm.cleanedBy\" name=\"form-cleaned-by\" placeholder=\" Cleaned by\" class=\"col-xs-12 col-sm-8 col-md-5 form-control\" id=\"form-cleaned-by\">\n" +
+    "            </div>\n" +
     "        </div>\n" +
     "        <div class=\"form-group\">\n" +
-    "            <label class=\"sr-only\" for=\"form-comments\">Comments</label>\n" +
-    "            <input type=\"text\" ng-model=\"vm.comments\" name=\"form-comments\" placeholder=\"Enter your comments\" class=\"form-control\" id=\"form-comments\">\n" +
+    "            <label for=\"form-comments\" class=\"col-sm-3\">Comments</label>\n" +
+    "            <div class=\"col-xs-12 col-sm-8 col-md-5\">\n" +
+    "                <input class=\"form-control\" type=\"text\" ng-model=\"vm.comments\" name=\"form-comments\" placeholder=\"Enter your comments\" class=\"col-xs-12 col-sm-8 col-md-5 form-control\" id=\"form-comments\">\n" +
+    "            </div>\n" +
     "        </div>\n" +
     "            </form>\n" +
     "        <button type=\"button\" class=\"btn\" ng-disabled=\"startInspection.$invalid\" ng-click=\"vm.startInspection()\">Start Inspection</button>\n" +
+    "        </div>\n" +
     "    </div>\n" +
     "</div>\n"
   );
@@ -199,17 +263,27 @@ define(function(require) {
 
 
   $templateCache.put('components/header/header.html',
-    "<header class=\"navbar navbar-static-top navbar-shadow\">\r" +
+    "<header class=\"navbar navbar-shadow\">\r" +
     "\n" +
-    "  <div class=\"container-fluid\">\r" +
+    "  <div class=\"container\">\r" +
     "\n" +
-    "    <h1 class=\"navbar-header\">{{vm.siteTitle}}</h1>\r" +
+    "    <div class=\"row\">\r" +
+    "\n" +
+    "      <div class=\"col-md-12\">\r" +
+    "\n" +
+    "        <div id=\"ahs-logo\" class=\"logo pull-left col-sm-3\">\r" +
+    "\n" +
+    "          <img src=\"//images.jxt.net.au/AHShospitality/images/logo.png\" alt=\"AHS\">\r" +
+    "\n" +
+    "        </div>\r" +
+    "\n" +
+    "      </div>\r" +
+    "\n" +
+    "    </div>\r" +
     "\n" +
     "  </div>\r" +
     "\n" +
-    "\r" +
-    "\n" +
-    "  <div class=\"navbar navbar-static-top navbar-top-ahs\" role=\"navigation\">\r" +
+    "  <div class=\"navbar navbar-top-ahs\" role=\"navigation\">\r" +
     "\n" +
     "    <div class=\"container-fluid\">\r" +
     "\n" +
@@ -247,7 +321,7 @@ define(function(require) {
     "\n" +
     "          <li><a ui-sref=\"contact-us\">Contact</a></li>\r" +
     "\n" +
-    "          <li ng-show=\"!vm.loggedInUser\"><a ui-sref=\"login\">Login</a></li>\r" +
+    "          <li ng-show=\"!vm.loggedInUser\"><a ui-sref=\"root.login\">Login</a></li>\r" +
     "\n" +
     "          <li ng-show=\"vm.loggedInUser\"><a ng-click=\"vm.logout()\">Log out</a></li>\r" +
     "\n" +
@@ -331,61 +405,55 @@ define(function(require) {
     "\n" +
     "<div class=\"top-content\">\r" +
     "\n" +
-    "\r" +
+    "    <div class=\"container\">\r" +
     "\n" +
-    "    <div class=\"inner-bg\">\r" +
+    "        <div class=\"row\">\r" +
     "\n" +
-    "        <div class=\"container\">\r" +
+    "            <div class=\"col-sm-6 col-sm-offset-3 form-box\">\r" +
     "\n" +
-    "            <div class=\"row\">\r" +
+    "                <div class=\"form-top\">\r" +
     "\n" +
-    "                <div class=\"col-sm-6 col-sm-offset-3 form-box\">\r" +
+    "                    <div class=\"form-top-left\">\r" +
     "\n" +
-    "                    <div class=\"form-top\">\r" +
+    "                        <h1>AHS Inspection</h1>\r" +
     "\n" +
-    "                        <div class=\"form-top-left\">\r" +
-    "\n" +
-    "                            <h3>Login to AHS Inspection</h3>\r" +
-    "\n" +
-    "                            <p>Enter your email and password to log on:</p>\r" +
-    "\n" +
-    "                        </div>\r" +
-    "\n" +
-    "                        <div class=\"form-top-right\">\r" +
-    "\n" +
-    "                            <i class=\"fa fa-key\"></i>\r" +
-    "\n" +
-    "                        </div>\r" +
+    "                        <p>Enter your email and password to log on:</p>\r" +
     "\n" +
     "                    </div>\r" +
     "\n" +
-    "                    <div class=\"form-bottom\">\r" +
+    "                    <div class=\"form-top-right\">\r" +
     "\n" +
-    "                        <div ng-show=\"vm.errorLoggedIn\" class=\"alert alert-danger\" role=\"alert\">Incorrect email/password. Please try again</div>\r" +
-    "\n" +
-    "                        <form name=\"loginForm\" role=\"form\" class=\"login-form\">\r" +
-    "\n" +
-    "                            <div class=\"form-group\">\r" +
-    "\n" +
-    "                                <label class=\"sr-only\" for=\"form-username\">Email</label>\r" +
-    "\n" +
-    "                                <input type=\"text\" required ng-model=\"vm.username\" name=\"form-username\" placeholder=\"Email...\" class=\"form-username form-control\" id=\"form-username\">\r" +
-    "\n" +
-    "                            </div>\r" +
-    "\n" +
-    "                            <div class=\"form-group\">\r" +
-    "\n" +
-    "                                <label class=\"sr-only\" for=\"form-password\">Password</label>\r" +
-    "\n" +
-    "                                <input type=\"password\" required ng-model=\"vm.password\" name=\"form-password\" placeholder=\"Password...\" class=\"form-password form-control\" id=\"form-password\">\r" +
-    "\n" +
-    "                            </div>\r" +
-    "\n" +
-    "                            <button type=\"button\" class=\"btn\" ng-disabled=\"loginForm.$invalid\" ng-click=\"vm.login()\">Sign in!</button>\r" +
-    "\n" +
-    "                        </form>\r" +
+    "                        <i class=\"fa fa-key\"></i>\r" +
     "\n" +
     "                    </div>\r" +
+    "\n" +
+    "                </div>\r" +
+    "\n" +
+    "                <div class=\"form-bottom\">\r" +
+    "\n" +
+    "                    <div ng-show=\"vm.errorLoggedIn\" class=\"alert alert-danger\" role=\"alert\">Incorrect email/password. Please try again</div>\r" +
+    "\n" +
+    "                    <form name=\"loginForm\" role=\"form\" class=\"login-form\">\r" +
+    "\n" +
+    "                        <div class=\"form-group\">\r" +
+    "\n" +
+    "                            <label class=\"sr-only\" for=\"form-username\">Email</label>\r" +
+    "\n" +
+    "                            <input type=\"text\" required ng-model=\"vm.username\" name=\"form-username\" placeholder=\"Email...\" class=\"form-username form-control\" id=\"form-username\">\r" +
+    "\n" +
+    "                        </div>\r" +
+    "\n" +
+    "                        <div class=\"form-group\">\r" +
+    "\n" +
+    "                            <label class=\"sr-only\" for=\"form-password\">Password</label>\r" +
+    "\n" +
+    "                            <input type=\"password\" required ng-model=\"vm.password\" name=\"form-password\" placeholder=\"Password...\" class=\"form-password form-control\" id=\"form-password\">\r" +
+    "\n" +
+    "                        </div>\r" +
+    "\n" +
+    "                        <button type=\"button\" class=\"btn\" ng-disabled=\"loginForm.$invalid\" ng-click=\"vm.login()\">Log in</button>\r" +
+    "\n" +
+    "                    </form>\r" +
     "\n" +
     "                </div>\r" +
     "\n" +
@@ -394,8 +462,6 @@ define(function(require) {
     "        </div>\r" +
     "\n" +
     "    </div>\r" +
-    "\n" +
-    "\r" +
     "\n" +
     "</div>\r" +
     "\n"
@@ -452,7 +518,7 @@ define(function(require) {
     "\n" +
     "<div class=\"row\">\r" +
     "\n" +
-    "    <table ng-if=\"vm.showDT\" datatable=\"ng\" dt-options=\"vm.dtOptions\" dt-column-defs=\"vm.dtColumnDefs\" class=\"table table-striped table-bordered\">\r" +
+    "    <table datatable=\"ng\" dt-options=\"vm.dtOptions\" dt-column-defs=\"vm.dtColumnDefs\" class=\"table table-striped table-bordered\">\r" +
     "\n" +
     "        <thead>\r" +
     "\n" +

@@ -1,9 +1,14 @@
-<header class="navbar navbar-static-top navbar-shadow">
-  <div class="container-fluid">
-    <h1 class="navbar-header">{{vm.siteTitle}}</h1>
+<header class="navbar navbar-shadow">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <div id="ahs-logo" class="logo pull-left col-sm-3">
+          <img src="//images.jxt.net.au/AHShospitality/images/logo.png" alt="AHS">
+        </div>
+      </div>
+    </div>
   </div>
-
-  <div class="navbar navbar-static-top navbar-top-ahs" role="navigation">
+  <div class="navbar navbar-top-ahs" role="navigation">
     <div class="container-fluid">
       <div class="navbar-header">
         <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse">
@@ -22,7 +27,7 @@
           <li><a ui-sref="news">News</a></li>
           <li><a ui-sref="about-us">About AHS</a></li>
           <li><a ui-sref="contact-us">Contact</a></li>
-          <li ng-show="!vm.loggedInUser"><a ui-sref="login">Login</a></li>
+          <li ng-show="!vm.loggedInUser"><a ui-sref="root.login">Login</a></li>
           <li ng-show="vm.loggedInUser"><a ng-click="vm.logout()">Log out</a></li>
         </ul>
       </div><!--/.nav-collapse -->

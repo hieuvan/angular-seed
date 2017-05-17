@@ -1,8 +1,4 @@
 header {
-  &.navbar {
-    border-color: $navbar-border-color;
-  }
-
   .navbar-header {
     padding-right: 15px;
   }
@@ -12,7 +8,30 @@ header {
     margin-top: $navbar-padding-vertical;
   }
   .navbar-top-ahs {
-    background: #00B4EF;
+    background: #455560;
+    margin-top: 0.5em;
+  }
+  .navbar-nav {
+    > li > a {
+      color: #ffffff;
+      &:hover,
+      &:focus {
+        color: #ffffff;
+        background-color: #00B4EF;
+      }
+    }
+  }
+  .navbar-top-ahs .navbar-toggle {
+    border-color: #ddd;
+    &:hover {
+      background-color: #f5f5f5;
+      .icon-bar {
+        border:1px solid #455560;
+      }
+    }
+    .icon-bar {
+      border:1px solid #fff;
+    }
   }
 }
 

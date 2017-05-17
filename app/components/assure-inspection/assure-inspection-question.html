@@ -1,8 +1,11 @@
 <h3>Assure inspection</h3>
-<ul class="list-group">
-    <li class="list-group-item">Score: {{vm.currentInspectionData.totalScore}} %</li>
-    <li class="list-group-item">Required: {{vm.currentInspectionData.requiredScore}} %</li>
-</ul>
+<p><a ui-sref="root.site.assure-inspection-complete" class="btn btn-primary" role="button">Complete Inspection</a></p>
+<div>
+    <ul class="list-group">
+        <li class="list-group-item">Score: {{vm.currentInspectionData.totalScore}} %</li>
+        <li class="list-group-item">Required: {{vm.currentInspectionData.requiredScore}} %</li>
+    </ul>
+</div>
 <div ng-show="vm.questions.length">
     <uib-accordion close-others="false">
         <div uib-accordion-group class="panel-default" ng-repeat="group in vm.questionsInCategories" is-open="vm.status">

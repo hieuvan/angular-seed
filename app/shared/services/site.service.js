@@ -24,7 +24,18 @@ define(function(require) {
             $http.get($resourceProvider.apiUrl + hotelUrl + '/' + hotelId, {'cache': true})
                 .then(function(response) {
                     deferred.resolve(response.data);
-                    //return response;
+                }, function errorCallback(response) {
+                    //@todo: show error message
+                });
+            return deferred.promise;
+        };
+
+        var submitInspection = function(data) {
+            var deferred = $q.defer();
+
+            $http.post($resourceProvider.apiUrl + 'inspections', data)
+                .then(function(response) {
+                    deferred.resolve(response.data);
                 }, function errorCallback(response) {
                     //@todo: show error message
                 });
@@ -33,7 +44,8 @@ define(function(require) {
         // public api
         return {
             getHotels: getHotels,
-            getHotel: getHotel
+            getHotel: getHotel,
+            submitInspection: submitInspection
         };
     }];
 });

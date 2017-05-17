@@ -1,13 +1,14 @@
 'use strict';
 
 define(function() {
-  return ['config', 'sharedProperties', '$state', '$stateParams', 'GetStorageService', function(config, sharedProperties, $state, $stateParams, GetStorageService) {
+  return ['config', 'sharedProperties', '$state', '$stateParams', 'GetStorageService', 'SiteService', function(config, sharedProperties, $state, $stateParams, GetStorageService, SiteService) {
     var vm = this;
     vm.inspectionUser = GetStorageService.getFullName();
     vm.questions = [];
     vm.currentQuestion = null;
 
     vm.hotel = sharedProperties.getProperty('hotel');
+    console.log(vm.hotel);
     vm.questions = vm.hotel.questionnaire.questions;
     vm.questionsInCategories = {};
     var questionId = $stateParams.questionId;
@@ -20,8 +21,7 @@ define(function() {
       vm.roomNumber = vm.currentInspectionData.roomNumber;
       vm.comments = vm.currentInspectionData.comments;
     }
-    console.log(vm.hotel);
-    console.log(vm.currentInspectionData);
+
     vm.startInspection = function() {
       if (_.isEmpty(vm.currentInspectionData)) {
         vm.currentInspectionData = {};
@@ -31,6 +31,7 @@ define(function() {
         vm.currentInspectionData.roomNumber = vm.roomNumber;
         vm.currentInspectionData.comments = vm.comments;
         vm.currentInspectionData.requiredScore = vm.hotel.questionnaire.passing_percentage;
+        vm.currentInspectionData.questionnaire_id = vm.hotel.questionnaire.id;
         vm.currentInspectionData.data = _.map(vm.questions, function(question) {
           question.answer = "1";
           if (question.is_rating_type_answer) {
@@ -47,6 +48,42 @@ define(function() {
       $state.go("root.site.assure-inspection-question");
     };
 
+    vm.completeInspection = function() {
+      console.log('completeInspection');
+      if (!_.isEmpty(vm.currentInspectionData)) {
+        var inspectionToSend = {};
+        inspectionToSend.user_id = GetStorageService.getIdFromPayload();
+        inspectionToSend.room = vm.currentInspectionData.roomNumber;
+        inspectionToSend.comments = vm.currentInspectionData.comments;
+        inspectionToSend.cleaned_by = vm.currentInspectionData.cleanedBy;
+        inspectionToSend.percentage_obtained = vm.currentInspectionData.totalScore;
+        inspectionToSend.questionnaire_id = vm.currentInspectionData.questionnaire_id;
+        inspectionToSend.email_to = [];
+        if (vm.emailTo) {
+          inspectionToSend.email_to = vm.emailTo.split(',');
+        }
+        inspectionToSend.date = Math.floor(Date.now() / 1000);
+        inspectionToSend.answers = [];
+        inspectionToSend.signature_image_data = '';
+        _.each(vm.currentInspectionData.data, function(question) {
+          var answer = {};
+          answer.question_id = question.id;
+          if (question.is_rating_type_answer) {
+            answer.yesno = false;
+          } else {
+            answer.yesno = true;
+          }
+          answer.rating = question.answer;
+          answer.comment = '';
+          inspectionToSend.answers.push(answer);
+        });
+        SiteService.submitInspection(inspectionToSend).then(function(val) {
+          GetStorageService.deleteCurrentInspection(vm.hotel.id);
+          $state.go("root.site.assure-inspection-start");
+        });
+      }
+    };
+
     var calculateTotalScore = function() {
       var totalWeighting = 0;
       var totalScore = 0;
@@ -58,7 +95,6 @@ define(function() {
           return;
         }
         totalWeighting += weighting;
-        console.log(totalScore, totalWeighting, question.number, question.is_rating_type_answer, weighting, answer);
         if (question.is_rating_type_answer) {
           if (answer > 0) {
             totalScore += answer;
@@ -69,7 +105,6 @@ define(function() {
           }
         }
       });
-      console.log(totalScore, totalWeighting);
       totalScore = totalScore * 100;
       return parseInt(Math.round(totalScore / totalWeighting));
     };
@@ -77,7 +112,7 @@ define(function() {
     var calculateEachScore = function(question) {
       var answer = parseInt(question.answer);
       var weighting = parseInt(question.weighting);
-var score = 0;
+      var score = 0;
       if (answer < 0) {
         return 'NA';
       }
@@ -104,18 +139,13 @@ var score = 0;
       $state.go("root.site.assure-inspection-question", {questionId: to});
     };
 
-    //console.log(vm.questions);
-
     if (!_.isEmpty(questionId)) {
-      //console.log(vm.currentInspectionData, vm.hotel.id);
       if (_.isEmpty(vm.currentInspectionData)) {
-        //console.log('is empty');
         $state.go("root.site.assure-inspection-start");
+        return;
       }
       if (!isNaN(questionId)) {
-        //vm.currentQuestion = _.findWhere(vm.questions, {number: questionId});
         vm.currentQuestion = _.findWhere(vm.currentInspectionData.data, {number: questionId});
-        console.log(vm.currentQuestion);
         if (vm.currentQuestion) {
           vm._Index = vm.currentQuestion.number;
           vm.previousQuestionNumber = parseInt(vm._Index) - 1;
@@ -149,6 +179,11 @@ var score = 0;
 
         });
         console.log(vm.questionsInCategories);
+      }
+    } else {
+      if (_.isEmpty(vm.currentInspectionData)) {
+        $state.go("root.site.assure-inspection-start");
+        return;
       }
     }
 

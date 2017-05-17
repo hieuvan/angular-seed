@@ -58,6 +58,15 @@ define(function() {
           controller: 'SiteListController as vm'
         }
       },
+      resolve: {
+        hotels: ['SiteService', function(SiteService) {
+          return SiteService.getHotels().then(function(val) {
+            if (val) {
+              return val;
+            }
+          });
+        }]
+      },
       data: {authenticate: true}
     });
 
@@ -94,9 +103,18 @@ define(function() {
 
     states.push({
       name: 'root.site.assure-inspection-question',
-      url: '/assure-inspection/:questionId',
+      url: '/assure-inspection-question/:questionId',
       parent:"root.site",
       templateUrl:"components/assure-inspection/assure-inspection-question.html",
+      controller:"AssureInspectionController as vm",
+      data: {authenticate: true}
+    });
+
+    states.push({
+      name: 'root.site.assure-inspection-complete',
+      url: '/assure-inspection/complete',
+      parent:"root.site",
+      templateUrl:"components/assure-inspection/assure-inspection-complete.html",
       controller:"AssureInspectionController as vm",
       data: {authenticate: true}
     });
@@ -128,7 +146,7 @@ define(function() {
 
 
     states.push({
-      name: 'login',
+      name: 'root.login',
       url: '/login',
       views: {
         'content@': {
@@ -149,9 +167,9 @@ define(function() {
       }
     });
 
-    $urlRouterProvider.when("/sites/:siteId/assure-inspection","/sites/:siteId/assure-inspection/all");
+    $urlRouterProvider.when("/sites/:siteId/assure-inspection-question","/sites/:siteId/assure-inspection-question/all");
 
-    $urlRouterProvider.when("/sites/:siteId/assure-inspection/","/sites/:siteId/assure-inspection/all");
+    $urlRouterProvider.when("/sites/:siteId/assure-inspection-question/","/sites/:siteId/assure-inspection-question/all");
 
     $urlRouterProvider.otherwise(config.defaultUrl);
 

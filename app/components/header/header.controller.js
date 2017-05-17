@@ -9,7 +9,7 @@ define(function() {
     vm.logout = function() {
       $Auth.logout().then(function(val) {
         if (val) {
-          $state.go('login');
+          $state.go('root.login', {}, { reload: true });
         }
       });
     };
