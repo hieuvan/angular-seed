@@ -2,6 +2,35 @@ define(function(require) {
 	return ['$templateCache', function($templateCache) {
   'use strict';
 
+  $templateCache.put('components/about-us/about-us.html',
+    "<div class=\"row\">\r" +
+    "\n" +
+    "    <h2>About AHS</h2>\r" +
+    "\n" +
+    "    <h3>Outsourcing with AHS - the best for your business</h3>\r" +
+    "\n" +
+    "    <p>Since 1993 AHS has been providing managed accommodation services to hotels and serviced apartments throughout Asia Pacific.\r" +
+    "\n" +
+    "        Our history is testament to our invaluable service offering. With an experienced management team, AHS continues to prove irreplaceable to hotels and serviced apartments.\r" +
+    "\n" +
+    "        We provide a range of management services including housekeeping, maintenance, human resources, minibar, portering and front office.\r" +
+    "\n" +
+    "    </p>\r" +
+    "\n" +
+    "    <p>At the heart of our business is our increasingly popular housekeeping services. It’s simple –\r" +
+    "\n" +
+    "        <strong>by allowing us to do what we do best, your team is free to do what they do best.</strong>\r" +
+    "\n" +
+    "        Hotel Management are able to redirect their energies to revenue generating goals, such as increasing occupancy and average rates.\r" +
+    "\n" +
+    "        Our staff integrate into your operation seamlessly, with AHS’s management working alongside your team to deliver a superior guest experience.\r" +
+    "\n" +
+    "    </p>\r" +
+    "\n" +
+    "</div>"
+  );
+
+
   $templateCache.put('components/assure-inspection/assure-inspection-complete.html',
     "<h3>Inspection Overview</h3>\n" +
     "<div class=\"container\">\n" +
@@ -10,7 +39,7 @@ define(function(require) {
     "            <div class=\"form-group\">\n" +
     "                <label for=\"form-room-number\" class=\"col-sm-3\">Room number</label>\n" +
     "                <div class=\"col-xs-12 col-sm-8 col-md-5\">\n" +
-    "                    <input type=\"text\" disabled ng-model=\"vm.roomNumber\" name=\"form-room-number\" class=\"col-xs-12 col-sm-8 col-md-5 form-control\" id=\"form-room-number\">\n" +
+    "                    <input type=\"text\" disabled ng-model=\"vm.currentInspectionData.roomNumber\" name=\"form-room-number\" class=\"col-xs-12 col-sm-8 col-md-5 form-control\" id=\"form-room-number\">\n" +
     "                </div>\n" +
     "            </div>\n" +
     "            <div class=\"form-group\">\n" +
@@ -28,13 +57,13 @@ define(function(require) {
     "            <div class=\"form-group\">\n" +
     "                <label for=\"form-cleaned-by\" class=\"col-sm-3\">Cleaned by</label>\n" +
     "                <div class=\"col-xs-12 col-sm-8 col-md-5\">\n" +
-    "                    <input type=\"text\" disabled ng-model=\"vm.cleanedBy\" name=\"form-cleaned-by\" placeholder=\" Cleaned by\" class=\"col-xs-12 col-sm-8 col-md-5 form-control\" id=\"form-cleaned-by\">\n" +
+    "                    <input type=\"text\" disabled ng-model=\"vm.currentInspectionData.cleanedBy\" name=\"form-cleaned-by\" placeholder=\" Cleaned by\" class=\"col-xs-12 col-sm-8 col-md-5 form-control\" id=\"form-cleaned-by\">\n" +
     "                </div>\n" +
     "            </div>\n" +
     "            <div class=\"form-group\">\n" +
     "                <label for=\"form-comments\" class=\"col-sm-3\">Comments</label>\n" +
     "                <div class=\"col-xs-12 col-sm-8 col-md-5\">\n" +
-    "                    <input type=\"text\" ng-model=\"vm.comments\" name=\"form-comments\" placeholder=\"Enter your comments\" class=\"col-xs-12 col-sm-8 col-md-5 form-control\" id=\"form-comments\">\n" +
+    "                    <input type=\"text\" ng-model=\"vm.currentInspectionData.comments\" name=\"form-comments\" placeholder=\"Enter your comments\" class=\"col-xs-12 col-sm-8 col-md-5 form-control\" id=\"form-comments\">\n" +
     "                </div>\n" +
     "            </div>\n" +
     "            <div class=\"form-group\">\n" +
@@ -53,9 +82,7 @@ define(function(require) {
   $templateCache.put('components/assure-inspection/assure-inspection-question.html',
     "<h3>Assure inspection</h3>\r" +
     "\n" +
-    "<p><a ui-sref=\"root.site.assure-inspection-complete\" class=\"btn btn-primary\" role=\"button\">Complete Inspection</a></p>\r" +
-    "\n" +
-    "<div>\r" +
+    "<div class=\"container\">\r" +
     "\n" +
     "    <ul class=\"list-group\">\r" +
     "\n" +
@@ -67,15 +94,15 @@ define(function(require) {
     "\n" +
     "</div>\r" +
     "\n" +
-    "<div ng-show=\"vm.questions.length\">\r" +
+    "<div class=\"container\" ng-show=\"vm.questions.length\">\r" +
     "\n" +
     "    <uib-accordion close-others=\"false\">\r" +
     "\n" +
-    "        <div uib-accordion-group class=\"panel-default\" ng-repeat=\"group in vm.questionsInCategories\" is-open=\"vm.status\">\r" +
+    "        <div uib-accordion-group class=\"panel-default\" ng-repeat=\"group in vm.questionsInCategories\" is-open=\"vm.accordionOpenStatus\">\r" +
     "\n" +
     "            <uib-accordion-heading>\r" +
     "\n" +
-    "                {{group.category}} <i class=\"pull-right glyphicon\" ng-class=\"{'glyphicon-chevron-down': vm.status, 'glyphicon-chevron-right': !vm.status}\"></i>\r" +
+    "                {{group.category}} <i class=\"pull-right glyphicon\" ng-class=\"{'glyphicon-chevron-down': vm.accordionOpenStatus, 'glyphicon-chevron-right': !vm.accordionOpenStatus}\"></i>\r" +
     "\n" +
     "            </uib-accordion-heading>\r" +
     "\n" +
@@ -95,11 +122,13 @@ define(function(require) {
     "\n" +
     "</div>\r" +
     "\n" +
-    "<div ng-show=\"vm.currentQuestion\" style=\"height: 305px\">\r" +
+    "<div ng-show=\"vm.currentQuestion\" class=\"container slider-question\">\r" +
     "\n" +
-    "    <div class=\"container slider\">\r" +
+    "    <div class=\"row\">\r" +
     "\n" +
-    "        <div class=\"row\">\r" +
+    "        <h3 class=\"question-number\">{{vm.currentQuestion.number}} of {{vm.questions.length}}</h3>\r" +
+    "\n" +
+    "        <div class=\"container-fluid clearfix question-container\">\r" +
     "\n" +
     "            <p><strong>{{vm.currentQuestion.category}}</strong></p>\r" +
     "\n" +
@@ -117,19 +146,31 @@ define(function(require) {
     "\n" +
     "            </div>\r" +
     "\n" +
+    "            <div class=\"form-group\">\r" +
+    "\n" +
+    "                <label for=\"form-question-comment\" class=\"col-sm-3\">Comment</label>\r" +
+    "\n" +
+    "                <div class=\"col-xs-12 col-sm-8 col-md-5\">\r" +
+    "\n" +
+    "                    <input class=\"form-control\" type=\"text\" ng-model=\"vm.currentQuestion.comment\" name=\"form-question-comment\" id=\"form-question-comment\">\r" +
+    "\n" +
+    "                </div>\r" +
+    "\n" +
+    "            </div>\r" +
+    "\n" +
     "        </div>\r" +
-    "\n" +
-    "        <p>{{vm.currentQuestion.number}} of {{vm.questions.length}}</p>\r" +
-    "\n" +
-    "        <!-- prev / next controls -->\r" +
-    "\n" +
-    "        <a ng-show=\"vm.currentQuestion.number>1\" class=\"arrow prev\" ng-click=\"vm.saveInspection(vm.previousQuestionNumber)\"></a>\r" +
-    "\n" +
-    "        <a ng-show=\"vm.currentQuestion.number<vm.questions.length\" class=\"arrow next\" ng-click=\"vm.saveInspection(vm.nextQuestionNumber)\"></a>\r" +
     "\n" +
     "    </div>\r" +
     "\n" +
+    "    <!-- prev / next controls -->\r" +
+    "\n" +
+    "    <a ng-show=\"vm.currentQuestion.number>1\" class=\"arrow-question prev\" ng-click=\"vm.saveInspection(vm.previousQuestionNumber)\"></a>\r" +
+    "\n" +
+    "    <a ng-show=\"vm.currentQuestion.number<vm.questions.length\" class=\"arrow-question next\" ng-click=\"vm.saveInspection(vm.nextQuestionNumber)\"></a>\r" +
+    "\n" +
     "</div>\r" +
+    "\n" +
+    "<div class=\"clearfix\"><a ng-click=\"vm.saveInspection('complete')\" class=\"btn btn-primary\" role=\"button\">Complete Inspection</a></div>\r" +
     "\n"
   );
 
@@ -139,36 +180,71 @@ define(function(require) {
     "<div class=\"container\">\n" +
     "    <div class=\"row\">\n" +
     "        <div class=\"col-md-12\">\n" +
-    "        <form name=\"startInspection\" role=\"form\" class=\"form-horizontal\">\n" +
-    "        <div class=\"form-group\">\n" +
-    "            <label for=\"form-inspection-user\" class=\"col-sm-3\">Inspected by</label>\n" +
-    "            <div class=\"col-xs-12 col-sm-8 col-md-5\">\n" +
-    "                <input class=\"form-control\" type=\"text\" required disabled ng-model=\"vm.inspectionUser\" name=\"form-inspection-user\" id=\"form-inspection-user\">\n" +
-    "            </div>\n" +
-    "        </div>\n" +
-    "        <div class=\"form-group\">\n" +
-    "            <label for=\"form-room-number\" class=\"col-sm-3\">Room number</label>\n" +
-    "            <div class=\"col-xs-12 col-sm-8 col-md-5\">\n" +
-    "                <input class=\"form-control\" type=\"text\" required ng-model=\"vm.roomNumber\" name=\"form-room-number\" placeholder=\"Room number\" class=\"col-xs-12 col-sm-8 col-md-5 form-control\" id=\"form-room-number\">\n" +
-    "            </div>\n" +
-    "        </div>\n" +
-    "        <div class=\"form-group\">\n" +
-    "            <label for=\"form-cleaned-by\" class=\"col-sm-3\">Cleaned by</label>\n" +
-    "            <div class=\"col-xs-12 col-sm-8 col-md-5\">\n" +
-    "                <input class=\"form-control\" type=\"text\" ng-model=\"vm.cleanedBy\" name=\"form-cleaned-by\" placeholder=\" Cleaned by\" class=\"col-xs-12 col-sm-8 col-md-5 form-control\" id=\"form-cleaned-by\">\n" +
-    "            </div>\n" +
-    "        </div>\n" +
-    "        <div class=\"form-group\">\n" +
-    "            <label for=\"form-comments\" class=\"col-sm-3\">Comments</label>\n" +
-    "            <div class=\"col-xs-12 col-sm-8 col-md-5\">\n" +
-    "                <input class=\"form-control\" type=\"text\" ng-model=\"vm.comments\" name=\"form-comments\" placeholder=\"Enter your comments\" class=\"col-xs-12 col-sm-8 col-md-5 form-control\" id=\"form-comments\">\n" +
-    "            </div>\n" +
-    "        </div>\n" +
+    "            <form name=\"startInspection\" role=\"form\" class=\"form-horizontal\">\n" +
+    "                <div class=\"form-group\">\n" +
+    "                    <label for=\"form-inspection-user\" class=\"col-sm-3\">Inspected by</label>\n" +
+    "                    <div class=\"col-xs-12 col-sm-8 col-md-5\">\n" +
+    "                        <input class=\"form-control\" type=\"text\" required disabled ng-model=\"vm.inspectionUser\" name=\"form-inspection-user\" id=\"form-inspection-user\">\n" +
+    "                    </div>\n" +
+    "                </div>\n" +
+    "                <div class=\"form-group\">\n" +
+    "                    <label for=\"form-room-number\" class=\"col-sm-3\">Room number</label>\n" +
+    "                    <div class=\"col-xs-12 col-sm-8 col-md-5\">\n" +
+    "                        <input class=\"form-control\" type=\"text\" required ng-model=\"vm.roomNumber\" name=\"form-room-number\" placeholder=\"Room number\" class=\"col-xs-12 col-sm-8 col-md-5 form-control\" id=\"form-room-number\">\n" +
+    "                    </div>\n" +
+    "                </div>\n" +
+    "                <div class=\"form-group\">\n" +
+    "                    <label for=\"form-cleaned-by\" class=\"col-sm-3\">Cleaned by</label>\n" +
+    "                    <div class=\"col-xs-12 col-sm-8 col-md-5\">\n" +
+    "                        <input class=\"form-control\" type=\"text\" ng-model=\"vm.cleanedBy\" name=\"form-cleaned-by\" placeholder=\" Cleaned by\" class=\"col-xs-12 col-sm-8 col-md-5 form-control\" id=\"form-cleaned-by\">\n" +
+    "                    </div>\n" +
+    "                </div>\n" +
     "            </form>\n" +
-    "        <button type=\"button\" class=\"btn\" ng-disabled=\"startInspection.$invalid\" ng-click=\"vm.startInspection()\">Start Inspection</button>\n" +
+    "            <button type=\"button\" class=\"btn\" ng-disabled=\"startInspection.$invalid\" ng-click=\"vm.startInspection()\">Start Inspection</button>\n" +
     "        </div>\n" +
     "    </div>\n" +
     "</div>\n"
+  );
+
+
+  $templateCache.put('components/contact-us/contact-us.html',
+    "<div class=\"row\">\r" +
+    "\n" +
+    "    <h2>Contact Us</h2>\r" +
+    "\n" +
+    "    <p>It’s our job to make you look good. At AHS Hospitality we offer hotels the complete outsourcing partnership.\r" +
+    "\n" +
+    "        In addition to our core focus of housekeeping we are also happy to take care of staff, HR and laundry, whilst giving you the benefit of our vast experience in hospitality.\r" +
+    "\n" +
+    "        You’ll wonder how you ever did without us.\r" +
+    "\n" +
+    "\r" +
+    "\n" +
+    "    For more information on AHS Hospitality, please free call 1800 026 036 or email <a href=\"mailto:info@ahshospitality.com.au\">info@ahshospitality.com.au</a>\r" +
+    "\n" +
+    "    </p>\r" +
+    "\n" +
+    "    <div id=\"map\" class=\"container-fluid\"></div>\r" +
+    "\n" +
+    "    <div class=\"address panel panel-default\" ng-repeat=\"marker in vm.markers\">\r" +
+    "\n" +
+    "        <div class=\"panel-heading\">\r" +
+    "\n" +
+    "            <h3 class=\"panel-title\">{{marker.title}}</h3>\r" +
+    "\n" +
+    "        </div>\r" +
+    "\n" +
+    "        <div class=\"panel-body\">\r" +
+    "\n" +
+    "            <p><a ng-click=\"vm.openInfoWindow($event, marker)\">{{marker.address}}</a></p>\r" +
+    "\n" +
+    "            <p>Phone: {{marker.phone}}</p>\r" +
+    "\n" +
+    "        </div>\r" +
+    "\n" +
+    "    </div>\r" +
+    "\n" +
+    "</div>"
   );
 
 
@@ -231,13 +307,29 @@ define(function(require) {
 
 
   $templateCache.put('components/footer/footer.html',
-    "<div id=\"wrapper-push\"></div>\r" +
+    "<footer class=\"footer\">\r" +
     "\n" +
-    "\r" +
+    "    <div id=\"ahs-footer-content\" class=\"container\">\r" +
     "\n" +
-    "<footer class=\"footer navbar-fixed-bottom\">\r" +
+    "        <div class=\"row\">\r" +
     "\n" +
-    "    Footer goes here\r" +
+    "            <div class=\"col-md-12\">\r" +
+    "\n" +
+    "                <nav>\r" +
+    "\n" +
+    "                    <ul>\r" +
+    "\n" +
+    "                        <li><a ui-sref=\"contact-us\">Contact Us</a></li>\r" +
+    "\n" +
+    "                    </ul>\r" +
+    "\n" +
+    "                </nav>\r" +
+    "\n" +
+    "            </div>\r" +
+    "\n" +
+    "        </div>\r" +
+    "\n" +
+    "    </div>\r" +
     "\n" +
     "</footer>\r" +
     "\n"
@@ -307,19 +399,13 @@ define(function(require) {
     "\n" +
     "        <ul class=\"nav navbar-nav\">\r" +
     "\n" +
-    "          <li ng-show=\"vm.loggedInUser\" class=\"active\"><a href=\"#\"><span class=\"glyphicon glyphicon-home\"></span> Home</a></li>\r" +
+    "          <li ng-show=\"vm.loggedInUser\" class=\"active\"><a ui-sref=\"root.home\"><span class=\"glyphicon glyphicon-home\"></span> Home</a></li>\r" +
     "\n" +
-    "          <li ng-show=\"vm.loggedInUser\"><a ui-sref=\"assure-quality\">Assure Quality</a></li>\r" +
+    "          <li><a ui-sref=\"root.news\">News</a></li>\r" +
     "\n" +
-    "          <li ng-show=\"vm.loggedInUser\"><a ui-sref=\"safety\">Safety</a></li>\r" +
+    "          <li><a ui-sref=\"root.about-us\">About AHS</a></li>\r" +
     "\n" +
-    "          <li ng-show=\"vm.loggedInUser\"><a ui-sref=\"service-delivery\">Service Delivery</a></li>\r" +
-    "\n" +
-    "          <li><a ui-sref=\"news\">News</a></li>\r" +
-    "\n" +
-    "          <li><a ui-sref=\"about-us\">About AHS</a></li>\r" +
-    "\n" +
-    "          <li><a ui-sref=\"contact-us\">Contact</a></li>\r" +
+    "          <li><a ui-sref=\"root.contact-us\">Contact Us</a></li>\r" +
     "\n" +
     "          <li ng-show=\"!vm.loggedInUser\"><a ui-sref=\"root.login\">Login</a></li>\r" +
     "\n" +
@@ -339,7 +425,7 @@ define(function(require) {
 
 
   $templateCache.put('components/home/home.html',
-    "<h4>Select site</h4>\r" +
+    "<h3>Select site</h3>\r" +
     "\n" +
     "<div class=\"row\">\r" +
     "\n" +
@@ -465,6 +551,33 @@ define(function(require) {
     "\n" +
     "</div>\r" +
     "\n"
+  );
+
+
+  $templateCache.put('components/news/news.html',
+    "<div class=\"row\">\r" +
+    "\n" +
+    "    <h2>News</h2>\r" +
+    "\n" +
+    "    <div class=\"address panel panel-default\" ng-repeat=\"news in vm.news | orderBy : '-sortedDate'\">\r" +
+    "\n" +
+    "        <div class=\"panel-heading\">\r" +
+    "\n" +
+    "            <h3 class=\"panel-title\">{{news.title}}</h3>\r" +
+    "\n" +
+    "            <div class=\"link-color\">{{news.published_date}}</div>\r" +
+    "\n" +
+    "        </div>\r" +
+    "\n" +
+    "        <div class=\"panel-body\">\r" +
+    "\n" +
+    "            <p>{{news.description}}<a target=\"_blank\" href=\"{{news.url}}\">...</a></p>\r" +
+    "\n" +
+    "        </div>\r" +
+    "\n" +
+    "    </div>\r" +
+    "\n" +
+    "</div>"
   );
 
 

@@ -27,6 +27,59 @@ define(function() {
     });
 
     states.push({
+      name: 'root.login',
+      url: '/login',
+      views: {
+        'content@': {
+          templateUrl: 'components/login/login.html',
+          controller: 'LoginController as vm'
+        }
+      }
+    });
+
+    states.push({
+      name: 'root.news',
+      url: '/news',
+      views: {
+        'content@': {
+          templateUrl: 'components/news/news.html',
+          controller: 'NewsController as vm'
+        }
+      },
+      resolve: {
+        news: ['NewsService', function(NewsService) {
+          return NewsService.getNews().then(function(val) {
+            if (val) {
+              return val;
+            }
+          });
+        }]
+      },
+    });
+
+    states.push({
+      name: 'root.contact-us',
+      url: '/contact-us',
+      views: {
+        'content@': {
+          templateUrl: 'components/contact-us/contact-us.html',
+          controller: 'ContactUsController as vm'
+        }
+      }
+    });
+
+    states.push({
+      name: 'root.about-us',
+      url: '/about-us',
+      views: {
+        'content@': {
+          templateUrl: 'components/about-us/about-us.html',
+          controller: 'AboutUsController as vm'
+        }
+      }
+    });
+
+    states.push({
       name: 'root.home',
       url: '/home',
       views: {
@@ -49,6 +102,7 @@ define(function() {
       },
       data: {authenticate: true}
     });
+
     states.push({
       name: 'root.sites',
       url: '/sites',
@@ -141,19 +195,6 @@ define(function() {
         section_name:null
       },
       data: {authenticate: true}
-    });
-
-
-
-    states.push({
-      name: 'root.login',
-      url: '/login',
-      views: {
-        'content@': {
-          templateUrl: 'components/login/login.html',
-          controller: 'LoginController as vm'
-        }
-      }
     });
 
     states.push({

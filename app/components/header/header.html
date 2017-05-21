@@ -20,13 +20,10 @@
       </div>
       <div class="navbar-collapse collapse">
         <ul class="nav navbar-nav">
-          <li ng-show="vm.loggedInUser" class="active"><a href="#"><span class="glyphicon glyphicon-home"></span> Home</a></li>
-          <li ng-show="vm.loggedInUser"><a ui-sref="assure-quality">Assure Quality</a></li>
-          <li ng-show="vm.loggedInUser"><a ui-sref="safety">Safety</a></li>
-          <li ng-show="vm.loggedInUser"><a ui-sref="service-delivery">Service Delivery</a></li>
-          <li><a ui-sref="news">News</a></li>
-          <li><a ui-sref="about-us">About AHS</a></li>
-          <li><a ui-sref="contact-us">Contact</a></li>
+          <li ng-show="vm.loggedInUser" class="active"><a ui-sref="root.home"><span class="glyphicon glyphicon-home"></span> Home</a></li>
+          <li><a ui-sref="root.news">News</a></li>
+          <li><a ui-sref="root.about-us">About AHS</a></li>
+          <li><a ui-sref="root.contact-us">Contact Us</a></li>
           <li ng-show="!vm.loggedInUser"><a ui-sref="root.login">Login</a></li>
           <li ng-show="vm.loggedInUser"><a ng-click="vm.logout()">Log out</a></li>
         </ul>

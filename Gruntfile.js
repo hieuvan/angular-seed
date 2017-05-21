@@ -414,7 +414,7 @@ module.exports = function (grunt) {
 
     grunt.task.run([
       'clean:dist',
-      'wiredep:sass',
+      //'wiredep:sass',
       'ngconstant:production',
       //'bowerRequirejs',
       'sass:dist',

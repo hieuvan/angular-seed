@@ -3,8 +3,26 @@ html, body {
 }
 .angular-app-container {
   min-height: 100%;
+  position:relative;
 }
 .nav-tabs {
   margin-bottom: 15px;
 }
+.body {
+  padding-bottom: 80px;
+}
+#map {
+  height:320px;
+  width:500px;
+  margin: 20px 0 20px 0;
+}
+.address {
+  a:hover {
+    cursor: pointer;
+  }
+}
+.link-color {
+  color: #00B4EF;
+}
+
 

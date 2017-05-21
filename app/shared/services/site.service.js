@@ -1,8 +1,6 @@
 'use strict';
 
 define(function(require) {
-
-
     return ['$q', '$http', '$resource', function($q, $http, $resourceProvider) {
         var hotelsUrl = 'hotelList';
         var hotelUrl = 'hotels';

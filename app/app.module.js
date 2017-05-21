@@ -29,6 +29,9 @@ define(function(require) {
   require('components/documents/documents.module');
   require('components/site-detail/site-detail.module');
   require('components/login/login.module');
+  require('components/about-us/about-us.module');
+  require('components/contact-us/contact-us.module');
+  require('components/news/news.module');
   require('components/home/home.module');
   require('components/assure-inspection/assure-inspection.module');
   require('components/image-gallery/image-gallery.module');
@@ -41,6 +44,7 @@ define(function(require) {
       JwtProvider = require('shared/providers/jwt.provider'),
       CryptoProvider = require('shared/providers/crypto.provider'),
       SiteService = require('shared/services/site.service'),
+      NewsService = require('shared/services/news.service'),
       GetStorageService = require('shared/services/get.storage.service');
 
   // app level module that depends on app view and components
@@ -54,6 +58,9 @@ define(function(require) {
     'app.documents',
     'app.assure-inspection',
     'app.login',
+    'app.about-us',
+    'app.contact-us',
+    'app.news',
     'app.home',
     'angular-loading-bar',
     'ngAnimate',
@@ -69,13 +76,12 @@ define(function(require) {
     'datatables.bootstrap'
   ])
 
-  .config(['$httpProvider', 'cfpLoadingBarProvider', '$resourceProvider', 'localStorageServiceProvider',
-    function($httpProvider, cfpLoadingBarProvider, $resourceProvider, localStorageServiceProvider) {
+  .config(['$httpProvider', 'cfpLoadingBarProvider', '$resourceProvider', 'localStorageServiceProvider', 'ENV', 'config',
+    function($httpProvider, cfpLoadingBarProvider, $resourceProvider, localStorageServiceProvider, ENV, config) {
       $httpProvider.interceptors.push('$httpInterceptor');
 
       // update this to whatever is your api url
-      $resourceProvider.apiUrl = 'http://localhost/ahs/web/index.php/api/v1/';
-      //$resourceProvider.apiUrl = 'http://ahs.hieuvan.net/web/api.php/api/v1/';
+      $resourceProvider.apiUrl = config[ENV].url;
 
       cfpLoadingBarProvider.includeSpinner = true;
       localStorageServiceProvider
@@ -112,6 +118,8 @@ define(function(require) {
   })
 
   .service('SiteService', SiteService)
+
+  .service('NewsService', NewsService)
 
   .service('GetStorageService', GetStorageService)
 
