@@ -39,11 +39,24 @@ define(function(require) {
                 });
             return deferred.promise;
         };
+
+        var getInspections = function(data) {
+            var deferred = $q.defer();
+
+            $http.post($resourceProvider.apiUrl + 'getInspections', data)
+                .then(function(response) {
+                    deferred.resolve(response.data);
+                }, function errorCallback(response) {
+                    //@todo: show error message
+                });
+            return deferred.promise;
+        };
         // public api
         return {
             getHotels: getHotels,
             getHotel: getHotel,
-            submitInspection: submitInspection
+            submitInspection: submitInspection,
+            getInspections: getInspections
         };
     }];
 });

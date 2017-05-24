@@ -3,7 +3,7 @@ define(function(require) {
   'use strict';
 
   $templateCache.put('components/about-us/about-us.html',
-    "<div class=\"row\">\r" +
+    "<div>\r" +
     "\n" +
     "    <h2>About AHS</h2>\r" +
     "\n" +
@@ -184,31 +184,151 @@ define(function(require) {
     "                <div class=\"form-group\">\n" +
     "                    <label for=\"form-inspection-user\" class=\"col-sm-3\">Inspected by</label>\n" +
     "                    <div class=\"col-xs-12 col-sm-8 col-md-5\">\n" +
-    "                        <input class=\"form-control\" type=\"text\" required disabled ng-model=\"vm.inspectionUser\" name=\"form-inspection-user\" id=\"form-inspection-user\">\n" +
+    "                        <input class=\"col-xs-12 col-sm-8 col-md-5 form-control\" type=\"text\" required disabled ng-model=\"vm.inspectionUser\" name=\"form-inspection-user\" id=\"form-inspection-user\">\n" +
     "                    </div>\n" +
     "                </div>\n" +
     "                <div class=\"form-group\">\n" +
     "                    <label for=\"form-room-number\" class=\"col-sm-3\">Room number</label>\n" +
     "                    <div class=\"col-xs-12 col-sm-8 col-md-5\">\n" +
-    "                        <input class=\"form-control\" type=\"text\" required ng-model=\"vm.roomNumber\" name=\"form-room-number\" placeholder=\"Room number\" class=\"col-xs-12 col-sm-8 col-md-5 form-control\" id=\"form-room-number\">\n" +
+    "                        <input type=\"text\" required ng-model=\"vm.roomNumber\" name=\"form-room-number\" placeholder=\"Room number\" class=\"col-xs-12 col-sm-8 col-md-5 form-control\" id=\"form-room-number\">\n" +
     "                    </div>\n" +
     "                </div>\n" +
     "                <div class=\"form-group\">\n" +
     "                    <label for=\"form-cleaned-by\" class=\"col-sm-3\">Cleaned by</label>\n" +
     "                    <div class=\"col-xs-12 col-sm-8 col-md-5\">\n" +
-    "                        <input class=\"form-control\" type=\"text\" ng-model=\"vm.cleanedBy\" name=\"form-cleaned-by\" placeholder=\" Cleaned by\" class=\"col-xs-12 col-sm-8 col-md-5 form-control\" id=\"form-cleaned-by\">\n" +
+    "                        <input type=\"text\" ng-model=\"vm.cleanedBy\" name=\"form-cleaned-by\" placeholder=\" Cleaned by\" class=\"col-xs-12 col-sm-8 col-md-5 form-control\" id=\"form-cleaned-by\">\n" +
     "                    </div>\n" +
     "                </div>\n" +
     "            </form>\n" +
-    "            <button type=\"button\" class=\"btn\" ng-disabled=\"startInspection.$invalid\" ng-click=\"vm.startInspection()\">Start Inspection</button>\n" +
+    "            <button type=\"button\" class=\"btn button-site-color\" ng-disabled=\"startInspection.$invalid\" ng-click=\"vm.startInspection()\">Start Inspection</button>\n" +
     "        </div>\n" +
     "    </div>\n" +
     "</div>\n"
   );
 
 
+  $templateCache.put('components/completed-inspections/completed-inspections.html',
+    "<h3>Completed Inspections</h3>\r" +
+    "\n" +
+    "<div class=\"container\">\r" +
+    "\n" +
+    "    <div class=\"row\">\r" +
+    "\n" +
+    "        <div class=\"col-md-12\">\r" +
+    "\n" +
+    "            <form name=\"viewCompletedInspections\" role=\"form\" class=\"form-horizontal\">\r" +
+    "\n" +
+    "                <div class=\"form-group\">\r" +
+    "\n" +
+    "                    <label for=\"form-from-date\" class=\"col-sm-3\">From</label>\r" +
+    "\n" +
+    "                    <div class=\"col-xs-12 col-sm-8 col-md-5\">\r" +
+    "\n" +
+    "                        <div class=\"input-group\">\r" +
+    "\n" +
+    "                            <input type=\"text\" uib-datepicker-popup=\"{{vm.format}}\" datepicker-options=\"vm.dateOptions\" is-open=\"vm.popup1.opened\" close-text=\"Close\" ng-required=\"true\" ng-model=\"vm.dateFrom\" name=\"form-from-date\" class=\"form-control\" id=\"form-from-date\">\r" +
+    "\n" +
+    "                            <span class=\"input-group-btn\">\r" +
+    "\n" +
+    "                                <button type=\"button\" class=\"btn btn-default\" ng-click=\"vm.open1()\"><i class=\"glyphicon glyphicon-calendar\"></i></button>\r" +
+    "\n" +
+    "                            </span>\r" +
+    "\n" +
+    "                        </div>\r" +
+    "\n" +
+    "                    </div>\r" +
+    "\n" +
+    "                </div>\r" +
+    "\n" +
+    "                <div class=\"form-group\">\r" +
+    "\n" +
+    "                    <label for=\"form-to-date\" class=\"col-sm-3\">To</label>\r" +
+    "\n" +
+    "                    <div class=\"col-xs-12 col-sm-8 col-md-5\">\r" +
+    "\n" +
+    "                        <div class=\"input-group\">\r" +
+    "\n" +
+    "                            <input type=\"text\" uib-datepicker-popup=\"{{vm.format}}\" datepicker-options=\"vm.dateOptions\" is-open=\"vm.popup2.opened\" close-text=\"Close\" ng-required=\"true\" ng-model=\"vm.dateTo\" name=\"form-to-date\" class=\"form-control\" id=\"form-to-date\">\r" +
+    "\n" +
+    "                            <span class=\"input-group-btn\">\r" +
+    "\n" +
+    "                                <button type=\"button\" class=\"btn btn-default\" ng-click=\"vm.open2()\"><i class=\"glyphicon glyphicon-calendar\"></i></button>\r" +
+    "\n" +
+    "                            </span>\r" +
+    "\n" +
+    "                        </div>\r" +
+    "\n" +
+    "                    </div>\r" +
+    "\n" +
+    "                </div>\r" +
+    "\n" +
+    "            </form>\r" +
+    "\n" +
+    "            <button type=\"button\" class=\"btn button-site-color\" ng-disabled=\"viewCompletedInspections.$invalid\" ng-click=\"vm.showInspections()\">Submit</button>\r" +
+    "\n" +
+    "        </div>\r" +
+    "\n" +
+    "    </div>\r" +
+    "\n" +
+    "    <div class=\"row\" ng-show=\"vm.completedInspections\">\r" +
+    "\n" +
+    "        <div class=\"col-md-12\">\r" +
+    "\n" +
+    "            <table datatable=\"ng\" dt-options=\"vm.dtOptions\" dt-column-defs=\"vm.dtColumnDefs\" class=\"table table-striped table-bordered\">\r" +
+    "\n" +
+    "                <thead>\r" +
+    "\n" +
+    "                    <tr>\r" +
+    "\n" +
+    "                        <th>Hotel</th>\r" +
+    "\n" +
+    "                        <th>Inspection Date</th>\r" +
+    "\n" +
+    "                        <th>Score</th>\r" +
+    "\n" +
+    "                        <th>Inspected By</th>\r" +
+    "\n" +
+    "                        <th>Room</th>\r" +
+    "\n" +
+    "                        <th>Link to PDF</th>\r" +
+    "\n" +
+    "                    </tr>\r" +
+    "\n" +
+    "                </thead>\r" +
+    "\n" +
+    "                <tbody>\r" +
+    "\n" +
+    "                    <tr ng-repeat=\"inspection in vm.completedInspections\">\r" +
+    "\n" +
+    "                        <td>{{ inspection.hotel_name }}</td>\r" +
+    "\n" +
+    "                        <td>{{ inspection.date }}</td>\r" +
+    "\n" +
+    "                        <td>{{ inspection.percentage_obtained }}</td>\r" +
+    "\n" +
+    "                        <td>{{ inspection.inspected_by }}</td>\r" +
+    "\n" +
+    "                        <td>{{ inspection.room_number }}</td>\r" +
+    "\n" +
+    "                        <td><a target=\"_blank\" href=\"{{ inspection.url }}\">View</a></td>\r" +
+    "\n" +
+    "                    </tr>\r" +
+    "\n" +
+    "                </tbody>\r" +
+    "\n" +
+    "            </table>\r" +
+    "\n" +
+    "        </div>\r" +
+    "\n" +
+    "    </div>\r" +
+    "\n" +
+    "</div>\r" +
+    "\n"
+  );
+
+
   $templateCache.put('components/contact-us/contact-us.html',
-    "<div class=\"row\">\r" +
+    "<div class=\"container-fluid\">\r" +
     "\n" +
     "    <h2>Contact Us</h2>\r" +
     "\n" +
@@ -226,19 +346,27 @@ define(function(require) {
     "\n" +
     "    <div id=\"map\" class=\"container-fluid\"></div>\r" +
     "\n" +
-    "    <div class=\"address panel panel-default\" ng-repeat=\"marker in vm.markers\">\r" +
+    "    <div class=\"row\">\r" +
     "\n" +
-    "        <div class=\"panel-heading\">\r" +
+    "        <div class=\"col-md-6\" ng-repeat=\"marker in vm.markers\">\r" +
     "\n" +
-    "            <h3 class=\"panel-title\">{{marker.title}}</h3>\r" +
+    "            <div class=\"address panel panel-default\">\r" +
     "\n" +
-    "        </div>\r" +
+    "                <div class=\"panel-heading\">\r" +
     "\n" +
-    "        <div class=\"panel-body\">\r" +
+    "                    <h3 class=\"panel-title\">{{marker.title}}</h3>\r" +
     "\n" +
-    "            <p><a ng-click=\"vm.openInfoWindow($event, marker)\">{{marker.address}}</a></p>\r" +
+    "                </div>\r" +
     "\n" +
-    "            <p>Phone: {{marker.phone}}</p>\r" +
+    "                <div class=\"panel-body\">\r" +
+    "\n" +
+    "                    <p><a ng-click=\"vm.openInfoWindow($event, marker)\">{{marker.address}}</a></p>\r" +
+    "\n" +
+    "                    <p>Phone: {{marker.phone}}</p>\r" +
+    "\n" +
+    "                </div>\r" +
+    "\n" +
+    "            </div>\r" +
     "\n" +
     "        </div>\r" +
     "\n" +
@@ -309,23 +437,15 @@ define(function(require) {
   $templateCache.put('components/footer/footer.html',
     "<footer class=\"footer\">\r" +
     "\n" +
-    "    <div id=\"ahs-footer-content\" class=\"container\">\r" +
+    "    <div id=\"ahs-footer-content\" class=\"navbar navbar-default\">\r" +
     "\n" +
-    "        <div class=\"row\">\r" +
+    "        <div class=\"container\">\r" +
     "\n" +
-    "            <div class=\"col-md-12\">\r" +
+    "            <ul>\r" +
     "\n" +
-    "                <nav>\r" +
+    "                <li><a ui-sref=\"contact-us\">Contact Us</a></li>\r" +
     "\n" +
-    "                    <ul>\r" +
-    "\n" +
-    "                        <li><a ui-sref=\"contact-us\">Contact Us</a></li>\r" +
-    "\n" +
-    "                    </ul>\r" +
-    "\n" +
-    "                </nav>\r" +
-    "\n" +
-    "            </div>\r" +
+    "            </ul>\r" +
     "\n" +
     "        </div>\r" +
     "\n" +
@@ -537,7 +657,7 @@ define(function(require) {
     "\n" +
     "                        </div>\r" +
     "\n" +
-    "                        <button type=\"button\" class=\"btn\" ng-disabled=\"loginForm.$invalid\" ng-click=\"vm.login()\">Log in</button>\r" +
+    "                        <button type=\"button\" class=\"btn button-site-color\" ng-disabled=\"loginForm.$invalid\" ng-click=\"vm.login()\">Log in</button>\r" +
     "\n" +
     "                    </form>\r" +
     "\n" +
@@ -555,7 +675,7 @@ define(function(require) {
 
 
   $templateCache.put('components/news/news.html',
-    "<div class=\"row\">\r" +
+    "<div>\r" +
     "\n" +
     "    <h2>News</h2>\r" +
     "\n" +
@@ -592,6 +712,7 @@ define(function(require) {
     "                <li><a ui-sref=\"root.site.document({section_id: 2, sub_section_id: 6, title: 'Assure Manual', section_name: 'assure-manual'})\">Assure Manual</a></li>\n" +
     "                <li><a ui-sref=\"root.site.assure-inspection-start\">Assure Inspection</a></li>\n" +
     "                <li><a ui-sref=\"root.site.document({section_id: 2, sub_section_id: 8, title: 'Assure Reporting', section_name: 'assure-reporting'})\">Assure Reporting</a></li>\n" +
+    "                <li><a ui-sref=\"root.site.view-completed-inspections\">View Completed Inspections</a></li>\n" +
     "                <li role=\"separator\" class=\"divider\"></li>\n" +
     "                <li><a ui-sref=\"root.site.brand-standards\">Brand Standards</a></li>\n" +
     "                <li><a ui-sref=\"root.site.document({section_id: 2, sub_section_id: 10, title: 'Internal Quality', section_name: 'internal-quality'})\">Internal Quality</a></li>\n" +

@@ -105,10 +105,12 @@ define(function() {
     };
     // save inspection
     vm.saveInspection = function(to) {
-      vm.currentQuestion.score = calculateEachScore(vm.currentQuestion);
-      vm.currentInspectionData.totalScore = calculateTotalScore();
+      if (vm.currentQuestion) {
+        vm.currentQuestion.score = calculateEachScore(vm.currentQuestion);
+        vm.currentInspectionData.totalScore = calculateTotalScore();
 
-      GetStorageService.setCurrentInspection(vm.hotel.id, vm.currentInspectionData);
+        GetStorageService.setCurrentInspection(vm.hotel.id, vm.currentInspectionData);
+      }
       if (isNaN(to) && to == 'complete') {
         $state.go("root.site.assure-inspection-complete");
       } else {

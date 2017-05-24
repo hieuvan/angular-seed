@@ -147,6 +147,15 @@ define(function() {
     });
 
     states.push({
+      name: 'root.site.view-completed-inspections',
+      url: '/view-completed-inspections',
+      parent:"root.site",
+      templateUrl:"components/completed-inspections/completed-inspections.html",
+      controller:"CompletedInspectionsController as vm",
+      data: {authenticate: true}
+    });
+
+    states.push({
       name: 'root.site.assure-inspection-start',
       url: '/assure-inspection/start',
       parent:"root.site",

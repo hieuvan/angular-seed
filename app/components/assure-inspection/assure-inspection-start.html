@@ -6,23 +6,23 @@
                 <div class="form-group">
                     <label for="form-inspection-user" class="col-sm-3">Inspected by</label>
                     <div class="col-xs-12 col-sm-8 col-md-5">
-                        <input class="form-control" type="text" required disabled ng-model="vm.inspectionUser" name="form-inspection-user" id="form-inspection-user">
+                        <input class="col-xs-12 col-sm-8 col-md-5 form-control" type="text" required disabled ng-model="vm.inspectionUser" name="form-inspection-user" id="form-inspection-user">
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="form-room-number" class="col-sm-3">Room number</label>
                     <div class="col-xs-12 col-sm-8 col-md-5">
-                        <input class="form-control" type="text" required ng-model="vm.roomNumber" name="form-room-number" placeholder="Room number" class="col-xs-12 col-sm-8 col-md-5 form-control" id="form-room-number">
+                        <input type="text" required ng-model="vm.roomNumber" name="form-room-number" placeholder="Room number" class="col-xs-12 col-sm-8 col-md-5 form-control" id="form-room-number">
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="form-cleaned-by" class="col-sm-3">Cleaned by</label>
                     <div class="col-xs-12 col-sm-8 col-md-5">
-                        <input class="form-control" type="text" ng-model="vm.cleanedBy" name="form-cleaned-by" placeholder=" Cleaned by" class="col-xs-12 col-sm-8 col-md-5 form-control" id="form-cleaned-by">
+                        <input type="text" ng-model="vm.cleanedBy" name="form-cleaned-by" placeholder=" Cleaned by" class="col-xs-12 col-sm-8 col-md-5 form-control" id="form-cleaned-by">
                     </div>
                 </div>
             </form>
-            <button type="button" class="btn" ng-disabled="startInspection.$invalid" ng-click="vm.startInspection()">Start Inspection</button>
+            <button type="button" class="btn button-site-color" ng-disabled="startInspection.$invalid" ng-click="vm.startInspection()">Start Inspection</button>
         </div>
     </div>
 </div>

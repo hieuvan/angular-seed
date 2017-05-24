@@ -35,6 +35,7 @@ define(function(require) {
   require('components/home/home.module');
   require('components/assure-inspection/assure-inspection.module');
   require('components/image-gallery/image-gallery.module');
+  require('components/completed-inspections/completed-inspections.module');
 
   var AppRunner = require('app.runner'),
       templates = require('shared/templates'),
@@ -62,6 +63,7 @@ define(function(require) {
     'app.contact-us',
     'app.news',
     'app.home',
+    'app.completed-inspections',
     'angular-loading-bar',
     'ngAnimate',
     'ngTouch',
