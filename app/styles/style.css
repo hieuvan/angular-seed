@@ -1,7 +1,9 @@
 body {
     font-family: 'Roboto', sans-serif;
-    font-size: 16px;
     font-weight: 300;
+}
+header, footer {
+    font-size: 16px;
 }
 
 strong { font-weight: 500; }
@@ -10,6 +12,12 @@ a, a:hover, a:focus {
     color: #00B4EF;
     text-decoration: none;
     -o-transition: all .3s; -moz-transition: all .3s; -webkit-transition: all .3s; -ms-transition: all .3s; transition: all .3s;
+}
+.link-color {
+    color: #00B4EF;
+}
+.dropdown-menu.left-adjust {
+    left: 15px;
 }
 
 h1, h2 {
@@ -32,7 +40,7 @@ h3 {
 }
 
 h4 {
-    font-size: 14px;
+    font-size: 18px;
     font-weight: 300;
     color: #555;
     line-height: 20px;
@@ -191,10 +199,9 @@ h4 {
 .slider-question {
     border: 10px solid #e6e6e6;
     border-radius: 5px;
-    height: 330px;
     margin: 20px auto;
     position: relative;
-    width: 600px;
+    padding-bottom: 20px;
     -webkit-perspective: 1000px;
     -moz-perspective: 1000px;
     -ms-perspective: 1000px;
@@ -243,6 +250,34 @@ max-height:100px;
 overflow:hidden;
 display:block;
 border:1px solid red;
+}
+button.button-site-color {
+    height: 30px;
+    margin: 0;
+    padding: 0 10px;
+    vertical-align: middle;
+    background: #00B4EF;
+    border: 0;
+    font-family: 'Roboto', sans-serif;
+    font-size: 14px;
+    font-weight: 300;
+    color: #fff;
+    -moz-border-radius: 4px; -webkit-border-radius: 4px; border-radius: 4px;
+    text-shadow: none;
+    -moz-box-shadow: none; -webkit-box-shadow: none; box-shadow: none;
+    -o-transition: all .3s; -moz-transition: all .3s; -webkit-transition: all .3s; -ms-transition: all .3s; transition: all .3s;
+}
+button.button-site-color:hover { opacity: 0.6; color: #fff; }
+button.button-site-color[disabled] { background: darkgrey; }
+.full button span {
+    background-color: limegreen;
+    border-radius: 32px;
+    color: black;
+}
+.partially button span {
+    background-color: orange;
+    border-radius: 32px;
+    color: black;
 }
 
 

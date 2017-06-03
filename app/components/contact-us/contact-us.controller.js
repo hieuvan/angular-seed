@@ -34,13 +34,6 @@ define(function() {
         long : 153.0287663
       },
       {
-        office : 'NT',
-        address : 'Level 1, 84 Smith Street, Darwin NT 0800',
-        phone: '+61 8 8943 1111',
-        lat : -12.46037,
-        long : 130.839208
-      },
-      {
         office : 'CHRISTCHURCH',
         address : 'Level 1, 22 Papanoi Road Merivale, Christchurch 8014',
         phone: '+64 2 1817 988',
@@ -81,7 +74,7 @@ define(function() {
       vm.markers.push(marker);
 
     };
-console.log(vm.offices);
+
     for (var i = 0; i < vm.offices.length; i++){
       createMarker(vm.offices[i]);
     }

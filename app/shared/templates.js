@@ -73,6 +73,7 @@ define(function(require) {
     "                </div>\n" +
     "            </div>\n" +
     "        </form>\n" +
+    "        <button type=\"button\" class=\"btn\"><a ui-sref=\"root.site.assure-inspection-question({questionId:'all'})\">Back</a></button>\n" +
     "        <button type=\"button\" class=\"btn\" ng-disabled=\"completeInspection.$invalid\" ng-click=\"vm.completeInspection()\">Submit</button>\n" +
     "    </div>\n" +
     "</div>\n"
@@ -82,19 +83,19 @@ define(function(require) {
   $templateCache.put('components/assure-inspection/assure-inspection-question.html',
     "<h3>Assure inspection</h3>\r" +
     "\n" +
-    "<div class=\"container\">\r" +
+    "<div>\r" +
     "\n" +
     "    <ul class=\"list-group\">\r" +
     "\n" +
-    "        <li class=\"list-group-item\">Score: {{vm.currentInspectionData.totalScore}} %</li>\r" +
+    "        <li class=\"list-group-item\"><strong>Score:</strong> {{vm.currentInspectionData.totalScore}} %</li>\r" +
     "\n" +
-    "        <li class=\"list-group-item\">Required: {{vm.currentInspectionData.requiredScore}} %</li>\r" +
+    "        <li class=\"list-group-item\"><strong>Required:</strong> {{vm.currentInspectionData.requiredScore}} %</li>\r" +
     "\n" +
     "    </ul>\r" +
     "\n" +
     "</div>\r" +
     "\n" +
-    "<div class=\"container\" ng-show=\"vm.questions.length\">\r" +
+    "<div ng-show=\"vm.questions.length\">\r" +
     "\n" +
     "    <uib-accordion close-others=\"false\">\r" +
     "\n" +
@@ -122,51 +123,65 @@ define(function(require) {
     "\n" +
     "</div>\r" +
     "\n" +
-    "<div ng-show=\"vm.currentQuestion\" class=\"container slider-question\">\r" +
+    "<div ng-show=\"vm.currentQuestion\">\r" +
     "\n" +
-    "    <div class=\"row\">\r" +
+    "    <div class=\"clearfix\"><a ui-sref=\"root.site.assure-inspection-question({questionId:'all'})\" class=\"btn btn-primary\" role=\"button\">Back to All</a></div>\r" +
     "\n" +
-    "        <h3 class=\"question-number\">{{vm.currentQuestion.number}} of {{vm.questions.length}}</h3>\r" +
+    "    <div class=\"container\">\r" +
     "\n" +
-    "        <div class=\"container-fluid clearfix question-container\">\r" +
+    "        <div class=\"row\">\r" +
     "\n" +
-    "            <p><strong>{{vm.currentQuestion.category}}</strong></p>\r" +
+    "            <div class=\"col-md-6 slider-question\">\r" +
     "\n" +
-    "            <p>{{vm.currentQuestion.text}}</p>\r" +
+    "                <h3 class=\"question-number\">{{vm.currentQuestion.number}} of {{vm.questions.length}}</h3>\r" +
     "\n" +
-    "            <div class=\"radio\" ng-repeat=\"answerOption in vm.answerOptions\">\r" +
+    "                <div class=\"container-fluid clearfix question-container\">\r" +
     "\n" +
-    "                <label>\r" +
+    "                    <div class=\"form-group\">\r" +
     "\n" +
-    "                    <input type=\"radio\" name=\"optionsRadios\" value=\"{{answerOption.value}}\" ng-model=\"vm.currentQuestion.answer\">\r" +
+    "                        <p><strong>{{vm.currentQuestion.category}}</strong></p>\r" +
     "\n" +
-    "                    {{answerOption.label}}\r" +
+    "                        <p>{{vm.currentQuestion.text}}</p>\r" +
     "\n" +
-    "                </label>\r" +
+    "                        <div class=\"radio\" ng-repeat=\"answerOption in vm.answerOptions\">\r" +
     "\n" +
-    "            </div>\r" +
+    "                            <label>\r" +
     "\n" +
-    "            <div class=\"form-group\">\r" +
+    "                                <input type=\"radio\" name=\"optionsRadios\" value=\"{{answerOption.value}}\" ng-model=\"vm.currentQuestion.answer\">\r" +
     "\n" +
-    "                <label for=\"form-question-comment\" class=\"col-sm-3\">Comment</label>\r" +
+    "                                {{answerOption.label}}\r" +
     "\n" +
-    "                <div class=\"col-xs-12 col-sm-8 col-md-5\">\r" +
+    "                            </label>\r" +
     "\n" +
-    "                    <input class=\"form-control\" type=\"text\" ng-model=\"vm.currentQuestion.comment\" name=\"form-question-comment\" id=\"form-question-comment\">\r" +
+    "                        </div>\r" +
+    "\n" +
+    "                    </div>\r" +
+    "\n" +
+    "                    <div class=\"form-group\">\r" +
+    "\n" +
+    "                        <label for=\"form-question-comment\" class=\"col-sm-3\">Comment</label>\r" +
+    "\n" +
+    "                        <div class=\"col-xs-12 col-sm-8 col-md-5\">\r" +
+    "\n" +
+    "                            <input class=\"form-control\" type=\"text\" ng-model=\"vm.currentQuestion.comment\" name=\"form-question-comment\" id=\"form-question-comment\">\r" +
+    "\n" +
+    "                        </div>\r" +
+    "\n" +
+    "                    </div>\r" +
     "\n" +
     "                </div>\r" +
+    "\n" +
+    "                <!-- prev / next controls -->\r" +
+    "\n" +
+    "                <a ng-show=\"vm.currentQuestion.number>1\" class=\"arrow-question prev\" ng-click=\"vm.saveInspection(vm.previousQuestionNumber)\"></a>\r" +
+    "\n" +
+    "                <a ng-show=\"vm.currentQuestion.number<vm.questions.length\" class=\"arrow-question next\" ng-click=\"vm.saveInspection(vm.nextQuestionNumber)\"></a>\r" +
     "\n" +
     "            </div>\r" +
     "\n" +
     "        </div>\r" +
     "\n" +
     "    </div>\r" +
-    "\n" +
-    "    <!-- prev / next controls -->\r" +
-    "\n" +
-    "    <a ng-show=\"vm.currentQuestion.number>1\" class=\"arrow-question prev\" ng-click=\"vm.saveInspection(vm.previousQuestionNumber)\"></a>\r" +
-    "\n" +
-    "    <a ng-show=\"vm.currentQuestion.number<vm.questions.length\" class=\"arrow-question next\" ng-click=\"vm.saveInspection(vm.nextQuestionNumber)\"></a>\r" +
     "\n" +
     "</div>\r" +
     "\n" +
@@ -328,7 +343,7 @@ define(function(require) {
 
 
   $templateCache.put('components/contact-us/contact-us.html',
-    "<div class=\"container-fluid\">\r" +
+    "<div>\r" +
     "\n" +
     "    <h2>Contact Us</h2>\r" +
     "\n" +
@@ -382,17 +397,19 @@ define(function(require) {
     "    <table datatable=\"ng\" class=\"table table-striped table-bordered\">\n" +
     "        <thead>\n" +
     "            <tr><th>Document Name</th>\n" +
-    "                <th>Document Url</th>\n" +
     "            </tr>\n" +
     "        </thead>\n" +
     "        <tbody>\n" +
     "            <tr ng-repeat=\"document in vm.sectionDocuments\">\n" +
-    "                <td>{{ document.name }}</td>\n" +
-    "                <td>{{ document.url }}</td></tr>\n" +
+    "                <td><a target=\"_blank\" href=\"{{ document.url }}\">{{ document.name }}</a></td>\n" +
+    "            </tr>\n" +
     "        </tbody>\n" +
     "    </table>\n" +
     "</div>\n" +
-    "<div ng-show=\"!vm.sectionDocuments.length\" class=\"alert alert-warning\" role=\"alert\">No permission</div>\n"
+    "<div ng-show=\"!vm.sectionDocuments.length\" class=\"alert alert-warning\" role=\"alert\">\n" +
+    "    <h4>Unable to access content</h4>\n" +
+    "    <p>You do not have sufficient permissions to access this content. Please contact your system administrator.</p>\n" +
+    "</div>\n"
   );
 
 
@@ -437,15 +454,19 @@ define(function(require) {
   $templateCache.put('components/footer/footer.html',
     "<footer class=\"footer\">\r" +
     "\n" +
-    "    <div id=\"ahs-footer-content\" class=\"navbar navbar-default\">\r" +
+    "    <div id=\"ahs-footer-content\" class=\"container navbar navbar-default\">\r" +
     "\n" +
-    "        <div class=\"container\">\r" +
+    "        <div class=\"row\">\r" +
     "\n" +
-    "            <ul>\r" +
+    "            <div class=\"col-md-12\">\r" +
     "\n" +
-    "                <li><a ui-sref=\"contact-us\">Contact Us</a></li>\r" +
+    "                <ul>\r" +
     "\n" +
-    "            </ul>\r" +
+    "                    <li><a ui-sref=\"contact-us\">Contact Us</a></li>\r" +
+    "\n" +
+    "                </ul>\r" +
+    "\n" +
+    "            </div>\r" +
     "\n" +
     "        </div>\r" +
     "\n" +
@@ -479,19 +500,15 @@ define(function(require) {
     "\n" +
     "  <div class=\"container\">\r" +
     "\n" +
-    "    <div class=\"row\">\r" +
+    "      <div class=\"row\">\r" +
     "\n" +
-    "      <div class=\"col-md-12\">\r" +
+    "          <div id=\"ahs-logo\" class=\"pull-left col-xs-6 col-sm-3 col-md-2\">\r" +
     "\n" +
-    "        <div id=\"ahs-logo\" class=\"logo pull-left col-sm-3\">\r" +
+    "              <img class=\"img-responsive\" src=\"//images.jxt.net.au/AHShospitality/images/logo.png\" alt=\"AHS\">\r" +
     "\n" +
-    "          <img src=\"//images.jxt.net.au/AHShospitality/images/logo.png\" alt=\"AHS\">\r" +
-    "\n" +
-    "        </div>\r" +
+    "          </div>\r" +
     "\n" +
     "      </div>\r" +
-    "\n" +
-    "    </div>\r" +
     "\n" +
     "  </div>\r" +
     "\n" +
@@ -545,45 +562,51 @@ define(function(require) {
 
 
   $templateCache.put('components/home/home.html',
-    "<h3>Select site</h3>\r" +
+    "<h2>Select site</h2>\r" +
     "\n" +
     "<div class=\"row\">\r" +
     "\n" +
-    "    <table ng-if=\"vm.showDT\" datatable=\"ng\" dt-options=\"vm.dtOptions\" dt-column-defs=\"vm.dtColumnDefs\" class=\"table table-striped table-bordered\">\r" +
+    "    <div class=\"col-md-12\">\r" +
     "\n" +
-    "        <thead>\r" +
+    "        <table datatable=\"ng\" dt-options=\"vm.dtOptions\" dt-column-defs=\"vm.dtColumnDefs\" class=\"table table-striped table-bordered\">\r" +
     "\n" +
-    "        <tr>\r" +
+    "            <thead>\r" +
     "\n" +
-    "            <th>Name</th>\r" +
+    "            <tr>\r" +
     "\n" +
-    "            <th>Address</th>\r" +
+    "                <th>Site</th>\r" +
     "\n" +
-    "            <th>Select</th>\r" +
+    "                <th>Select</th>\r" +
     "\n" +
-    "        </tr>\r" +
+    "            </tr>\r" +
     "\n" +
-    "        </thead>\r" +
+    "            </thead>\r" +
     "\n" +
-    "        <tbody>\r" +
+    "            <tbody>\r" +
     "\n" +
-    "        <tr ng-repeat=\"hotel in vm.hotels\">\r" +
+    "            <tr ng-repeat=\"hotel in vm.hotels\">\r" +
     "\n" +
-    "            <td>{{ hotel.name }}</td>\r" +
+    "                <td><p>{{ hotel.name }}</p>\r" +
     "\n" +
-    "            <td>{{ hotel.address.number }} {{ hotel.address.street }},\r" +
+    "                    <p class=\"link-color\">{{ hotel.address.number }} {{ hotel.address.street }},\r" +
     "\n" +
-    "                {{ hotel.address.suburb }} {{ hotel.address.city }},\r" +
+    "                        {{ hotel.address.suburb }} {{ hotel.address.city }},\r" +
     "\n" +
-    "                {{ hotel.address.state }} {{ hotel.address.postcode }}</td>\r" +
+    "                        {{ hotel.address.state }} {{ hotel.address.postcode }}\r" +
     "\n" +
-    "            <td><a ui-sref=\"root.site({siteId: hotel.id})\"> > </a></td>\r" +
+    "                    </p>\r" +
     "\n" +
-    "        </tr>\r" +
+    "                </td>\r" +
     "\n" +
-    "        </tbody>\r" +
+    "                <td><a ui-sref=\"root.site({siteId: hotel.id})\"> > </a></td>\r" +
     "\n" +
-    "    </table>\r" +
+    "            </tr>\r" +
+    "\n" +
+    "            </tbody>\r" +
+    "\n" +
+    "        </table>\r" +
+    "\n" +
+    "    </div>\r" +
     "\n" +
     "</div>"
   );
@@ -616,24 +639,6 @@ define(function(require) {
     "        <div class=\"row\">\r" +
     "\n" +
     "            <div class=\"col-sm-6 col-sm-offset-3 form-box\">\r" +
-    "\n" +
-    "                <div class=\"form-top\">\r" +
-    "\n" +
-    "                    <div class=\"form-top-left\">\r" +
-    "\n" +
-    "                        <h1>AHS Inspection</h1>\r" +
-    "\n" +
-    "                        <p>Enter your email and password to log on:</p>\r" +
-    "\n" +
-    "                    </div>\r" +
-    "\n" +
-    "                    <div class=\"form-top-right\">\r" +
-    "\n" +
-    "                        <i class=\"fa fa-key\"></i>\r" +
-    "\n" +
-    "                    </div>\r" +
-    "\n" +
-    "                </div>\r" +
     "\n" +
     "                <div class=\"form-bottom\">\r" +
     "\n" +
@@ -703,47 +708,47 @@ define(function(require) {
 
   $templateCache.put('components/site-detail/site-detail.html',
     "<h2>{{ vm.hotel.name }}</h2>\n" +
-    "<div>\n" +
-    "    <div class=\"btn-group\">\n" +
-    "        <button class=\"btn btn-default dropdown-toggle\" type=\"button\" id=\"dropdownMenu1\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">\n" +
-    "            Assure Quality<span class=\"caret\"></span>\n" +
+    "<div class=\"row\">\n" +
+    "    <div class=\"col-md-2 col-sm-3 col-xs-4\">\n" +
+    "        <button class=\"btn btn-default btn-block dropdown-toggle\" type=\"button\" id=\"dropdownMenu1\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">\n" +
+    "            Assure Quality <span class=\"caret\"></span>\n" +
     "        </button>\n" +
-    "            <ul class=\"dropdown-menu\" aria-labelledby=\"dropdownMenu1\">\n" +
-    "                <li><a ui-sref=\"root.site.document({section_id: 2, sub_section_id: 6, title: 'Assure Manual', section_name: 'assure-manual'})\">Assure Manual</a></li>\n" +
-    "                <li><a ui-sref=\"root.site.assure-inspection-start\">Assure Inspection</a></li>\n" +
-    "                <li><a ui-sref=\"root.site.document({section_id: 2, sub_section_id: 8, title: 'Assure Reporting', section_name: 'assure-reporting'})\">Assure Reporting</a></li>\n" +
-    "                <li><a ui-sref=\"root.site.view-completed-inspections\">View Completed Inspections</a></li>\n" +
-    "                <li role=\"separator\" class=\"divider\"></li>\n" +
-    "                <li><a ui-sref=\"root.site.brand-standards\">Brand Standards</a></li>\n" +
-    "                <li><a ui-sref=\"root.site.document({section_id: 2, sub_section_id: 10, title: 'Internal Quality', section_name: 'internal-quality'})\">Internal Quality</a></li>\n" +
-    "                <li><a ui-sref=\"root.site.document({section_id: 2, sub_section_id: 11, title: 'Trip Advisor', section_name: 'trip-advisor'})\">Trip Advisor</a></li>\n" +
-    "            </ul>\n" +
+    "        <ul class=\"dropdown-menu left-adjust\" aria-labelledby=\"dropdownMenu1\">\n" +
+    "            <li><a ui-sref=\"root.site.document({section_id: 2, sub_section_id: 6, title: 'Assure Manual', section_name: 'assure-manual'})\">Assure Manual</a></li>\n" +
+    "            <li><a ui-sref=\"root.site.assure-inspection-start\">Assure Inspection</a></li>\n" +
+    "            <li><a ui-sref=\"root.site.document({section_id: 2, sub_section_id: 8, title: 'Assure Reporting', section_name: 'assure-reporting'})\">Assure Reporting</a></li>\n" +
+    "            <li><a ui-sref=\"root.site.view-completed-inspections\">View Completed Inspections</a></li>\n" +
+    "            <li role=\"separator\" class=\"divider\"></li>\n" +
+    "            <li><a ui-sref=\"root.site.brand-standards\">Brand Standards</a></li>\n" +
+    "            <li><a ui-sref=\"root.site.document({section_id: 2, sub_section_id: 10, title: 'Internal Quality', section_name: 'internal-quality'})\">Internal Quality</a></li>\n" +
+    "            <li><a ui-sref=\"root.site.document({section_id: 2, sub_section_id: 11, title: 'Trip Advisor', section_name: 'trip-advisor'})\">Trip Advisor</a></li>\n" +
+    "        </ul>\n" +
     "    </div>\n" +
-    "    <div class=\"btn-group\">\n" +
-    "        <button class=\"btn btn-default dropdown-toggle\" type=\"button\" id=\"dropdownMenu2\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">\n" +
-    "            Safety<span class=\"caret\"></span>\n" +
+    "    <div class=\"col-md-2 col-sm-3 col-xs-4\">\n" +
+    "        <button class=\"btn btn-default btn-block dropdown-toggle\" type=\"button\" id=\"dropdownMenu2\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">\n" +
+    "            Safety <span class=\"caret\"></span>\n" +
     "        </button>\n" +
-    "            <ul class=\"dropdown-menu\" aria-labelledby=\"dropdownMenu2\">\n" +
-    "                <li><a ui-sref=\"root.site.document({section_id: 1, sub_section_id: 1, title: 'Policy', section_name: 'policy'})\">Policy</a></li>\n" +
-    "                <li><a ui-sref=\"root.site.document({section_id: 1, sub_section_id: 2, title: 'Safety Observations', section_name: 'safety-observations'})\">Safety Observations</a></li>\n" +
-    "                <li><a ui-sref=\"root.site.document({section_id: 1, sub_section_id: 3, title: 'View safety documents', section_name: 'safety-documents'})\">View safety documents</a></li>\n" +
-    "                <li role=\"separator\" class=\"divider\"></li>\n" +
-    "                <li><a ui-sref=\"root.site.document({section_id: 1, sub_section_id: 4, title: 'Safety scorecard', section_name: 'safety-scorecard'})\">Safety scorecard</a></li>\n" +
-    "                <li><a ui-sref=\"root.site.document({section_id: 1, sub_section_id: 5, title: 'Compliance audits', section_name: 'compliance-audits'})\">Compliance audits</a></li>\n" +
-    "            </ul>\n" +
+    "        <ul class=\"dropdown-menu left-adjust\" aria-labelledby=\"dropdownMenu2\">\n" +
+    "            <li><a ui-sref=\"root.site.document({section_id: 1, sub_section_id: 1, title: 'Policy', section_name: 'policy'})\">Policy</a></li>\n" +
+    "            <li><a ui-sref=\"root.site.document({section_id: 1, sub_section_id: 2, title: 'Safety Observations', section_name: 'safety-observations'})\">Safety Observations</a></li>\n" +
+    "            <li><a ui-sref=\"root.site.document({section_id: 1, sub_section_id: 3, title: 'View safety documents', section_name: 'safety-documents'})\">View safety documents</a></li>\n" +
+    "            <li role=\"separator\" class=\"divider\"></li>\n" +
+    "            <li><a ui-sref=\"root.site.document({section_id: 1, sub_section_id: 4, title: 'Safety scorecard', section_name: 'safety-scorecard'})\">Safety scorecard</a></li>\n" +
+    "            <li><a ui-sref=\"root.site.document({section_id: 1, sub_section_id: 5, title: 'Compliance audits', section_name: 'compliance-audits'})\">Compliance audits</a></li>\n" +
+    "        </ul>\n" +
     "    </div>\n" +
-    "    <div class=\"btn-group\">\n" +
-    "        <button class=\"btn btn-default dropdown-toggle\" type=\"button\" id=\"dropdownMenu3\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"true\">\n" +
-    "            Service Delivery<span class=\"caret\"></span>\n" +
+    "    <div class=\"col-md-2\">\n" +
+    "        <button class=\"btn btn-default btn-block dropdown-toggle\" type=\"button\" id=\"dropdownMenu3\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"true\">\n" +
+    "            Service Delivery <span class=\"caret\"></span>\n" +
     "        </button>\n" +
-    "            <ul class=\"dropdown-menu\" aria-labelledby=\"dropdownMenu3\">\n" +
-    "                <li><a ui-sref=\"root.site.document({section_id: 3, sub_section_id: 12, title: 'Contract', section_name: 'contract'})\">Contract</a></li>\n" +
-    "                <li><a ui-sref=\"root.site.document({section_id: 3, sub_section_id: 13, title: 'Work scope', section_name: 'work-scope'})\">Work scope</a></li>\n" +
-    "                <li><a ui-sref=\"root.site.document({section_id: 3, sub_section_id: 14, title: 'SOPs', section_name: 'sops'})\">SOPs</a></li>\n" +
-    "            </ul>\n" +
+    "        <ul class=\"dropdown-menu left-adjust\" aria-labelledby=\"dropdownMenu3\">\n" +
+    "            <li><a ui-sref=\"root.site.document({section_id: 3, sub_section_id: 12, title: 'Contract', section_name: 'contract'})\">Contract</a></li>\n" +
+    "            <li><a ui-sref=\"root.site.document({section_id: 3, sub_section_id: 13, title: 'Work scope', section_name: 'work-scope'})\">Work scope</a></li>\n" +
+    "            <li><a ui-sref=\"root.site.document({section_id: 3, sub_section_id: 14, title: 'SOPs', section_name: 'sops'})\">SOPs</a></li>\n" +
+    "        </ul>\n" +
     "    </div>\n" +
     "</div>\n" +
-    "<div ui-view></div>\n"
+    "<div ui-view><h4 class=\"link-color\">Please select option from the drop down list.</h4></div>\n"
   );
 
 
@@ -758,9 +763,7 @@ define(function(require) {
     "\n" +
     "        <tr>\r" +
     "\n" +
-    "            <th>Name</th>\r" +
-    "\n" +
-    "            <th>Address</th>\r" +
+    "            <th>Site</th>\r" +
     "\n" +
     "            <th>Select</th>\r" +
     "\n" +
@@ -772,13 +775,17 @@ define(function(require) {
     "\n" +
     "        <tr ng-repeat=\"hotel in vm.hotels\">\r" +
     "\n" +
-    "            <td>{{ hotel.name }}</td>\r" +
+    "            <td>{{ hotel.name }}\r" +
     "\n" +
-    "            <td>{{ hotel.address.number }} {{ hotel.address.street }},\r" +
+    "                <p>{{ hotel.address.number }} {{ hotel.address.street }},\r" +
     "\n" +
-    "                {{ hotel.address.suburb }} {{ hotel.address.city }},\r" +
+    "                    {{ hotel.address.suburb }} {{ hotel.address.city }},\r" +
     "\n" +
-    "                {{ hotel.address.state }} {{ hotel.address.postcode }}</td>\r" +
+    "                    {{ hotel.address.state }} {{ hotel.address.postcode }}\r" +
+    "\n" +
+    "                </p>\r" +
+    "\n" +
+    "            </td>\r" +
     "\n" +
     "            <td><a ui-sref=\"root.site({siteId: hotel.id})\"> > </a></td>\r" +
     "\n" +
