@@ -1,11 +1,11 @@
 <!doctype html>
 <html class="no-js">
   <head>
-    <title>{{vm.siteTitle}}</title>
+    <title>AHS Inspection</title>
 
     <meta charset="utf-8">
-    <meta name="description" content="">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="AHS Inspection">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 
     <link rel="shortcut icon" href="styles/images/favicon.ico">
 
@@ -16,8 +16,6 @@
     <link rel="stylesheet" href="styles/main.css">
 
     <link rel="stylesheet" href="styles/angular-datatables/datatables.bootstrap.min.css">
-
-    <link rel="stylesheet" href="styles/style.css">
 
     <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:400,100,300,500">
 
@@ -31,15 +29,15 @@
 
     <toast></toast>
 
-    <div class="container angular-app-container">
+    <div class="angular-app-container">
       <div ui-view="header"></div>
 
       <!-- ui-view-container is require for page transition animation -->
       <div class="ui-view-container body">
-        <div class="container-fluid" ui-view="content"></div>
+        <div class="container" ui-view="content"></div>
       </div>
 
-      <div ui-view="footer"></div>
+      <!--<div ui-view="footer"></div>-->
     </div>
 
     <!-- build:js js/main.js -->

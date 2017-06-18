@@ -3,6 +3,10 @@ header {
     padding-right: 15px;
   }
 
+  &.navbar {
+    margin-bottom: 0;
+  }
+
   span.pull-right {
     display: block;
     margin-top: $navbar-padding-vertical;
@@ -10,6 +14,9 @@ header {
   .navbar-top-ahs {
     background: #455560;
     margin-top: 0.5em;
+    &.navbar {
+      margin-bottom: 0;
+    }
   }
   .navbar-nav {
     > li > a {
@@ -33,5 +40,16 @@ header {
       border:1px solid #fff;
     }
   }
+}
+
+@media (min-width: 768px) {
+  .navbar-toggle-menu {
+    display: none;
+  }
+}
+.navbar-toggle-menu {
+  float: right;
+  color: #FFFFFF;
+  margin-top: 9px;
 }
 

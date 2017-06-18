@@ -1,5 +1,5 @@
 <h3>Assure Inspection</h3>
-<div class="container">
+<div class="container" ng-if="!vm.incompleteInspection">
     <div class="row">
         <div class="col-md-12">
             <form name="startInspection" role="form" class="form-horizontal">
@@ -22,7 +22,8 @@
                     </div>
                 </div>
             </form>
-            <button type="button" class="btn button-site-color" ng-disabled="startInspection.$invalid" ng-click="vm.startInspection()">Start Inspection</button>
+            <button type="button" class="btn button-site-color" ng-disabled="startInspection.$invalid" ng-click="vm.startInspection()">{{vm.startResumeButton}}</button>
         </div>
     </div>
 </div>
+<p ng-if="vm.incompleteInspection">There is incomplete inspection. <a ui-sref="root.site.assure-inspection-start({siteId:vm.incompleteInspection})">Finish</a> it first before starting the new inspection.</p>

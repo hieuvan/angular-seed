@@ -10,7 +10,8 @@
   <footer>
     <ul class="tabs clearfix">
         <li>
-        <a href ui-sref="root.home"><i class="fa fa-home"></i> Back to Home</a>
+          <a ng-if="!vm.invalidToken" ui-sref="root.home"><i class="fa fa-home"></i> Back to Home</a>
+          <div ng-if="vm.invalidToken">This account has been logged in another device. <a ng-click="vm.clearToken()">Log out now</a></div>
         </li>
       </ul>
   </footer>

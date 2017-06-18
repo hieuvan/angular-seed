@@ -38,6 +38,12 @@ define(function() {
     });
 
     states.push({
+      name: 'logout',
+      url: '/logout',
+      controller: 'LogOutController as vm'
+    });
+
+    states.push({
       name: 'root.news',
       url: '/news',
       views: {
@@ -94,9 +100,7 @@ define(function() {
             return sharedProperties.getProperty('hotels');
           }
           return SiteService.getHotels().then(function(val) {
-            if (val) {
-              return val;
-            }
+            return val;
           });
         }]
       },
@@ -147,11 +151,20 @@ define(function() {
     });
 
     states.push({
-      name: 'root.site.view-completed-inspections',
-      url: '/view-completed-inspections',
+      name: 'root.site.completed-inspections',
+      url: '/completed-inspections',
       parent:"root.site",
       templateUrl:"components/completed-inspections/completed-inspections.html",
       controller:"CompletedInspectionsController as vm",
+      data: {authenticate: true}
+    });
+
+    states.push({
+      name: 'root.site.safety-documents',
+      url: '/safety-documents',
+      parent:"root.site",
+      templateUrl:"components/safety-documents/safety-documents.html",
+      controller:"SafetyDocumentsController as vm",
       data: {authenticate: true}
     });
 

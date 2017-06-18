@@ -1,0 +1,74 @@
+<h3>Submit Safety Documents</h3>
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <form name="submitSafetyDocuments" role="form" class="ng-pristine ng-invalid ng-invalid-required form-horizontal">
+                <div class="form-group">
+                    <label for="form-document-type" class="col-sm-3">Type</label>
+                    <div class="col-xs-12 col-sm-8 col-md-5">
+                        <div class="input-group">
+                            <select class="form-control" required name="form-document-type" ng-model="vm.documentType" id="form-document-type">
+                                <option>Monthly WGD</option>
+                                <option>Quarterly Safety Checklist</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="form-document-type" class="col-sm-3">Period/Quarter</label>
+                    <div class="col-xs-12 col-sm-8 col-md-5">
+                        <div class="input-group">
+                            <select class="form-control" required name="form-period-quarter" ng-model="vm.documentPeriod" id="form-period-quarter">
+                                <option>P1</option>
+                                <option>P2</option>
+                                <option>P3</option>
+                                <option>Quarter 1</option>
+                                <option>P4</option>
+                                <option>P5</option>
+                                <option>P6</option>
+                                <option>Quarter 2</option>
+                                <option>P7</option>
+                                <option>P8</option>
+                                <option>P9</option>
+                                <option>Quarter 3</option>
+                                <option>P10</option>
+                                <option>P11</option>
+                                <option>P12</option>
+                                <option>Quarter 4</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="form-document-type" class="col-sm-3">Year</label>
+                    <div class="col-xs-12 col-sm-8 col-md-5">
+                        <div class="input-group">
+                            <select class="form-control" required name="form-year" ng-model="vm.documentYear" id="form-year">
+                                <option>Jul17-Jun18</option>
+                                <option>Jul17-Jun19</option>
+                                <option>Jul17-Jun20</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="form-document-file" class="col-sm-3">Document File</label>
+                    <div class="col-xs-12 col-sm-8 col-md-5">
+                        <div class="input-group">
+                            <input class="ng-pristine ng-invalid ng-invalid-required" name="file" type="file" id="form-document-file" ng-model="vm.safetyDocument" required ngf-select ngf-capture="'camera'" ngf-accept="'image/*,application/pdf'">
+                            <p class="help-block">Images and PDFs</p>
+                        </div>
+                    </div>
+                </div>
+            </form>
+            <div class="form-group">
+                <button type="button" class="btn button-site-color" disabled="disabled" ng-disabled="submitSafetyDocuments.$invalid" ng-click="vm.submitDocuments()">Submit</button>
+            </div>
+        </div>
+
+    </div>
+    <div class="row" ng-if="vm.formSubmitted">
+        <div class="alert alert-success col-md-6" role="alert" ng-if="vm.documentSubmitted == true">Document submitted successfully</div>
+        <div class="alert alert-danger col-md-6" role="alert" ng-if="vm.documentSubmitted == false">Fail to submit document</div>
+    </div>
+</div>

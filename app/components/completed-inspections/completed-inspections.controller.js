@@ -1,7 +1,7 @@
 'use strict';
 
 define(function() {
-  return ['config', 'SiteService', 'DTOptionsBuilder', 'DTColumnDefBuilder', function(config, SiteService, DTOptionsBuilder, DTColumnDefBuilder) {
+  return ['config', 'SiteService', 'DTOptionsBuilder', 'DTColumnDefBuilder', '$stateParams', function(config, SiteService, DTOptionsBuilder, DTColumnDefBuilder, $stateParams) {
     var vm = this;
 
     vm.title = config.siteTitle;
@@ -67,13 +67,10 @@ define(function() {
       var params = {};
       var dateFrom = new Date(vm.dateFrom);
       var dateTo = new Date(vm.dateTo);
+      var hotelId = $stateParams.siteId;
       params.dateFrom = dateFrom.getTime();
       params.dateTo = dateTo.getTime();
-      //console.log(params);
-      //var d = new Date(vm.dateFrom);
-      //console.log(d.getTime());
-      //console.log(vm.dateTo.getMilliseconds());
-      //console.log(vm.dateFro)
+      params.hotelId = hotelId;
       SiteService.getInspections(params).then(function(val) {
         if (val) {
           vm.completedInspections = val;

@@ -41,7 +41,7 @@ define(function(require) {
             config.headers = self.defaults.headers;
           }
 
-          config.headers['Content-Type'] = self.defaults.contentType;
+          //config.headers['Content-Type'] = self.defaults.contentType;
 
           config.headers['token'] = localStorageService.get('_token');
 

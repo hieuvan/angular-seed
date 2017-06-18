@@ -69,6 +69,9 @@ require.config({
     ],
     bootstrap: [
       'jquery'
+    ],
+    'ng-file-upload': [
+      'angular'
     ]
   },
   map: {
@@ -119,7 +122,8 @@ require.config({
     'angular-datatables.select': '../bower_components/angular-datatables/dist/plugins/select/angular-datatables.select',
     'angular-touch': '../bower_components/angular-touch/angular-touch',
     'angular-bootstrap': '../bower_components/angular-bootstrap/ui-bootstrap-tpls',
-    'crypto-js': '../bower_components/crypto-js/crypto-js'
+    'crypto-js': '../bower_components/crypto-js/crypto-js',
+    'ng-file-upload': '../bower_components/ng-file-upload/ng-file-upload'
   },
   packages: [
 

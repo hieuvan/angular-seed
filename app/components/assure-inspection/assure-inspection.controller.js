@@ -13,12 +13,20 @@ define(function() {
     var questionId = $stateParams.questionId;
 
     vm.imageIndex = 0;
-    vm.accordionOpenStatus = false;
-    vm.currentInspectionData = GetStorageService.getCurrentInspection(vm.hotel.id);
-    if (!_.isEmpty(vm.currentInspectionData) && vm.currentInspectionData.hotelId == vm.hotel.id) {
-      vm.cleanedBy = vm.currentInspectionData.cleanedBy;
-      vm.roomNumber = vm.currentInspectionData.roomNumber;
-      vm.comments = vm.currentInspectionData.comments;
+    vm.accordionArray = [];
+    vm.startResumeButton = "Start";
+    vm.currentInspectionData = GetStorageService.getCurrentInspection();
+    if (!_.isEmpty(vm.currentInspectionData)) {
+      if (vm.currentInspectionData.hotelId == vm.hotel.id) {
+        vm.cleanedBy = vm.currentInspectionData.cleanedBy;
+        vm.roomNumber = vm.currentInspectionData.roomNumber;
+        vm.comments = vm.currentInspectionData.comments;
+        vm.startResumeButton = "Resume";
+      } else {
+        // finish the incomplete inspection before
+        // starting new inspection
+        vm.incompleteInspection = vm.currentInspectionData.hotelId;
+      }
     }
 
     var calculateTotalScore = function() {
@@ -96,7 +104,7 @@ define(function() {
           answer.comment = question.comment;
           inspectionToSend.answers.push(answer);
         });
-        //console.log(inspectionToSend);
+
         SiteService.submitInspection(inspectionToSend).then(function(val) {
           GetStorageService.deleteCurrentInspection(vm.hotel.id);
           $state.go("root.site.assure-inspection-start");
@@ -109,13 +117,14 @@ define(function() {
         vm.currentQuestion.score = calculateEachScore(vm.currentQuestion);
         vm.currentInspectionData.totalScore = calculateTotalScore();
 
-        GetStorageService.setCurrentInspection(vm.hotel.id, vm.currentInspectionData);
+        GetStorageService.setCurrentInspection(vm.currentInspectionData);
       }
-      if (isNaN(to) && to == 'complete') {
+      if (to == 'complete') {
         $state.go("root.site.assure-inspection-complete");
       } else {
         $state.go("root.site.assure-inspection-question", {questionId: to});
       }
+
       return;
     };
 
@@ -144,6 +153,8 @@ define(function() {
               {"label": "N/A", "value": "-1"}
             ];
           }
+          vm.emailSubject = 'AHS Assure Quality Inspection Follow Up';
+          vm.emailBody = 'An AHS Assure Quality has been completed at ' + vm.hotel.name + '. This refers to question (' + vm.currentQuestion.text + '). ' + vm.inspectionUser + ' has made the following comments...';
         } else {
           $state.go("root.site.assure-inspection-question", {questionId: "all"});
         }
@@ -187,7 +198,7 @@ define(function() {
           return question;
         });
         vm.currentInspectionData.totalScore = calculateTotalScore();
-        GetStorageService.setCurrentInspection(vm.hotel.id, vm.currentInspectionData);
+        GetStorageService.setCurrentInspection(vm.currentInspectionData);
       }
 
       $state.go("root.site.assure-inspection-question");

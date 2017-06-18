@@ -142,7 +142,8 @@ define(function(require) {
         getUser: getUser,
         login: login,
         logout: logout,
-        isAuthenticated: isAuthenticated
+        isAuthenticated: isAuthenticated,
+        removeToken: removeToken
       };
     }];
 

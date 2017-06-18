@@ -1,7 +1,6 @@
 'use strict';
 
 define(function(require) {
-  var _ = require('underscore');
 
   return ['$stateParams', function($stateParams) {
 
@@ -47,7 +46,12 @@ define(function(require) {
       var result = errors[error.status];
 
       // we have custom error for the error
-      if (!_.isUndefined(result)) { return result; }
+      if (!_.isUndefined(result)) {
+        if (error.status == '401') {
+          result.description = error.data.error
+        }
+        return result;
+      }
 
       return {
         code: error.status,

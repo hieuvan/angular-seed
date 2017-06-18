@@ -8,10 +8,10 @@ define(function() {
     vm.loggedInUser = $Auth.isAuthenticated();
     vm.logout = function() {
       $Auth.logout().then(function(val) {
-        if (val) {
-          $state.go('root.login', {}, { reload: true });
-        }
+
       });
+      $Auth.removeToken();
+      $state.go('root.login', {}, { reload: true });
     };
   }];
 });

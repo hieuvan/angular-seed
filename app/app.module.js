@@ -21,6 +21,7 @@ define(function(require) {
   require('angular-datatables.bootstrap');
   require('angular-datatables.tabletools');
   require('bootstrap');
+  require('ng-file-upload');
 
   // app components
   require('components/header/header.module');
@@ -29,6 +30,7 @@ define(function(require) {
   require('components/documents/documents.module');
   require('components/site-detail/site-detail.module');
   require('components/login/login.module');
+  require('components/logout/logout.module');
   require('components/about-us/about-us.module');
   require('components/contact-us/contact-us.module');
   require('components/news/news.module');
@@ -36,6 +38,7 @@ define(function(require) {
   require('components/assure-inspection/assure-inspection.module');
   require('components/image-gallery/image-gallery.module');
   require('components/completed-inspections/completed-inspections.module');
+  require('components/safety-documents/safety-documents.module');
 
   var AppRunner = require('app.runner'),
       templates = require('shared/templates'),
@@ -59,11 +62,13 @@ define(function(require) {
     'app.documents',
     'app.assure-inspection',
     'app.login',
+    'app.logout',
     'app.about-us',
     'app.contact-us',
     'app.news',
     'app.home',
     'app.completed-inspections',
+    'app.safety-documents',
     'angular-loading-bar',
     'ngAnimate',
     'ngTouch',
@@ -75,7 +80,8 @@ define(function(require) {
     'ngCookies',
     'LocalStorageModule',
     'datatables',
-    'datatables.bootstrap'
+    'datatables.bootstrap',
+    'ngFileUpload'
   ])
 
   .config(['$httpProvider', 'cfpLoadingBarProvider', '$resourceProvider', 'localStorageServiceProvider', 'ENV', 'config',

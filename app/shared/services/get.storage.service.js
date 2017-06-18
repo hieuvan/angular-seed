@@ -14,20 +14,20 @@ define(function(require) {
             return name;
         };
 
-        var getCurrentInspection = function(prefixKey) {
-            var inspection = localStorageService.get(prefixKey+'.inspection');
+        var getCurrentInspection = function() {
+            var inspection = localStorageService.get('inspection');
             if (inspection) {
                 return JSON.parse(inspection);
             }
             return inspection;
         };
 
-        var setCurrentInspection = function(prefixKey, value) {
-            localStorageService.set(prefixKey+'.inspection', JSON.stringify(value));
+        var setCurrentInspection = function(value) {
+            localStorageService.set('inspection', JSON.stringify(value));
         };
 
-        var deleteCurrentInspection = function(prefixKey) {
-            localStorageService.remove(prefixKey+'.inspection');
+        var deleteCurrentInspection = function() {
+            localStorageService.remove('inspection');
         };
 
         // public api

@@ -14,7 +14,7 @@ define(function($Auth) {
     });
 
     $rootScope.$on('$stateChangeStart', function(event, toState, toParams, fromState, fromParams) {
-      var isLogin = toState.name === "login";
+      var isLogin = toState.name === "root.login";
       if (isLogin) {
         if (!$Auth.isAuthenticated()) {
           return; // no need to redirect
@@ -37,6 +37,7 @@ define(function($Auth) {
 
     $rootScope.$on('$stateChangeError',
     function(event, toState, toParams, fromState, fromParams, error){
+      event.preventDefault();
       return $state.go('error', {error: error});
     });
   }];

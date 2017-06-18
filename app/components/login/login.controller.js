@@ -24,17 +24,5 @@ define(function() {
         }
       });
     };
-
-    /*var login = function(formdata) {
-
-      return $http.post(self.loginUrl, formdata)
-          .then(function(response) {
-            var token = response.data;
-
-            setToken(token);
-
-            return getUser();
-          });
-    };*/
   }];
 });

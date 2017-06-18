@@ -3,7 +3,7 @@
 define(function() {
   return ['config', function(config) {
     var vm = this;
-    vm.title = config.siteTitle;
+    vm.siteTitle = config.siteTitle;
     vm.offices = [
       {
         office : 'VIC/TAS (Head Office)',

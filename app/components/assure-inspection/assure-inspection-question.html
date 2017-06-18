@@ -5,22 +5,26 @@
         <li class="list-group-item"><strong>Required:</strong> {{vm.currentInspectionData.requiredScore}} %</li>
     </ul>
 </div>
-<div ng-show="vm.questions.length">
-    <uib-accordion close-others="false">
-        <div uib-accordion-group class="panel-default" ng-repeat="group in vm.questionsInCategories" is-open="vm.accordionOpenStatus">
-            <uib-accordion-heading>
-                {{group.category}} <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': vm.accordionOpenStatus, 'glyphicon-chevron-right': !vm.accordionOpenStatus}"></i>
-            </uib-accordion-heading>
-            <div>
-                <ul class="list-group">
-                    <li class="list-group-item" ng-repeat="item in group.items"><a ui-sref="root.site.assure-inspection-question({questionId:item.number})">{{item.text}}</a><span class="pull-right">{{item.score}}</span></li>
-                </ul>
+<div ng-show="vm.questions.length && !vm.currentQuestion">
+    <div class="clearfix"><a ui-sref="root.site.assure-inspection-start" class="btn btn-primary" role="button">Back</a></div>
+    <p>&nbsp;</p>
+    <div class="clearfix">
+        <uib-accordion>
+            <div uib-accordion-group class="panel-default" ng-repeat="group in vm.questionsInCategories track by $index" is-open="vm.accordionArray[$index]">
+                <uib-accordion-heading>
+                    {{group.category}} <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': vm.accordionArray[$index], 'glyphicon-chevron-right': !vm.accordionArray[$index]}"></i>
+                </uib-accordion-heading>
+                <div>
+                    <ul class="list-group">
+                        <li class="list-group-item" ng-repeat="item in group.items"><a ui-sref="root.site.assure-inspection-question({questionId:item.number})">{{item.text}}</a><span class="pull-right">{{item.score}}</span></li>
+                    </ul>
+                </div>
             </div>
-        </div>
-    </uib-accordion>
+        </uib-accordion>
+    </div>
 </div>
 <div ng-show="vm.currentQuestion">
-    <div class="clearfix"><a ui-sref="root.site.assure-inspection-question({questionId:'all'})" class="btn btn-primary" role="button">Back to All</a></div>
+    <div class="clearfix"><a ng-click="vm.saveInspection('all')" class="btn btn-primary" role="button">Show all questions</a></div>
     <div class="container">
         <div class="row">
             <div class="col-md-6 slider-question">
@@ -37,15 +41,19 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="form-question-comment" class="col-sm-3">Comment</label>
-                        <div class="col-xs-12 col-sm-8 col-md-5">
+                        <label for="form-question-comment" class="col-sm-3 col-no-pad-left">Comment</label>
+                        <div class="col-xs-12 col-sm-8 col-md-6">
                             <input class="form-control" type="text" ng-model="vm.currentQuestion.comment" name="form-question-comment" id="form-question-comment">
                         </div>
                     </div>
+                    <div class="clearfix"></div>
+                    <div class="form-group">
+                        <p><i class="fa fa-envelope-o" aria-hidden="true"></i> <a href="mailto:?subject={{vm.emailSubject}}&body={{vm.emailBody}}">Email</a></p>
+                    </div>
                 </div>
                 <!-- prev / next controls -->
-                <a ng-show="vm.currentQuestion.number>1" class="arrow-question prev" ng-click="vm.saveInspection(vm.previousQuestionNumber)"></a>
-                <a ng-show="vm.currentQuestion.number<vm.questions.length" class="arrow-question next" ng-click="vm.saveInspection(vm.nextQuestionNumber)"></a>
+                <a ng-show="vm.currentQuestion.number>1" class="arrow-question prev" ng-click="vm.saveInspection(vm.previousQuestionNumber)"><i class="fa fa-arrow-left fa-lg" aria-hidden="true"></i></a>
+                <a ng-show="vm.currentQuestion.number<vm.questions.length" class="arrow-question next" ng-click="vm.saveInspection(vm.nextQuestionNumber)"><i class="fa fa-arrow-right fa-lg" aria-hidden="true"></i></a>
             </div>
         </div>
     </div>

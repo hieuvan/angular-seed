@@ -26,10 +26,10 @@
                     </div>
                 </div>
             </form>
-            <button type="button" class="btn button-site-color" ng-disabled="viewCompletedInspections.$invalid" ng-click="vm.showInspections()">Submit</button>
+            <button type="button" class="btn button-site-color" ng-disabled="viewCompletedInspections.$invalid" ng-click="vm.showInspections()">View</button>
         </div>
     </div>
-    <div class="row" ng-show="vm.completedInspections">
+    <div class="row" ng-if="vm.completedInspections.length > 0">
         <div class="col-md-12">
             <table datatable="ng" dt-options="vm.dtOptions" dt-column-defs="vm.dtColumnDefs" class="table table-striped table-bordered">
                 <thead>

@@ -50,7 +50,7 @@ h4 {
 
 .form-top {
     overflow: hidden;
-    padding: 0 25px 15px 25px;
+    padding: 0 15px 5px 15px;
     background: #fff;
     -moz-border-radius: 4px 4px 0 0; -webkit-border-radius: 4px 4px 0 0; border-radius: 4px 4px 0 0;
     text-align: left;
@@ -126,24 +126,27 @@ h4 {
 .arrow-question {
     cursor: pointer;
     display: block;
-    height: 64px;
     outline: medium none;
     position: absolute;
-    top: 0;
-    width: 64px;
-    z-index: 5;
+    top: 10px;
 }
-.arrow.prev,.arrow-question.prev  {
+.arrow.prev {
     background-image: url("images/prev.png");
     left: 20px;
     opacity: 0.2;
     transition: all 0.2s linear 0s;
 }
-.arrow.next,.arrow-question.next {
+.arrow-question.prev {
+    left: 30px;
+}
+.arrow.next {
     background-image: url("images/next.png");
     opacity: 0.2;
     right: 20px;
     transition: all 0.2s linear 0s;
+}
+.arrow-question.next {
+    right: 30px;
 }
 .arrow.prev:hover{
     opacity:1;
@@ -241,15 +244,15 @@ h4 {
     left: 0;
 }
 .question_carousel {
-width:150px;
-height:100px;
-min-width:150px;
-min-height:100px;
-max-width:200px;
-max-height:100px;
-overflow:hidden;
-display:block;
-border:1px solid red;
+    width:150px;
+    height:100px;
+    min-width:150px;
+    min-height:100px;
+    max-width:200px;
+    max-height:100px;
+    overflow:hidden;
+    display:block;
+    border:1px solid red;
 }
 button.button-site-color {
     height: 30px;
@@ -269,15 +272,6 @@ button.button-site-color {
 }
 button.button-site-color:hover { opacity: 0.6; color: #fff; }
 button.button-site-color[disabled] { background: darkgrey; }
-.full button span {
-    background-color: limegreen;
-    border-radius: 32px;
-    color: black;
-}
-.partially button span {
-    background-color: orange;
-    border-radius: 32px;
-    color: black;
-}
+
 
 

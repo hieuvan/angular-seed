@@ -1,7 +1,7 @@
 'use strict';
 
 define(function() {
-  return ['$state', 'config', 'ErrorService', function($state, config, ErrorService) {
+  return ['$state', 'config', 'ErrorService', '$Auth', function($state, config, ErrorService, $Auth) {
     var vm = this, error = ErrorService.error();
 
     vm.siteTitle = config.siteTitle;
@@ -19,5 +19,12 @@ define(function() {
     vm.message = error.message;
 
     vm.description = error.description;
+
+    vm.invalidToken = (vm.code == '401');
+
+    vm.clearToken = function() {
+      $Auth.removeToken();
+      $state.go('root.login', {}, { reload: true });
+    };
   }];
 });
