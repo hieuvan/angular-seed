@@ -39,6 +39,8 @@ define(function(require) {
   require('components/image-gallery/image-gallery.module');
   require('components/completed-inspections/completed-inspections.module');
   require('components/safety-documents/safety-documents.module');
+  require('components/forgot-password/forgot-password.module');
+
 
   var AppRunner = require('app.runner'),
       templates = require('shared/templates'),
@@ -69,6 +71,7 @@ define(function(require) {
     'app.home',
     'app.completed-inspections',
     'app.safety-documents',
+    'app.forgot-password',
     'angular-loading-bar',
     'ngAnimate',
     'ngTouch',

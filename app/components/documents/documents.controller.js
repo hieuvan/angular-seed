@@ -14,9 +14,8 @@ define(function() {
     var documents = vm.hotel.documents;
     vm.sectionDocuments = [];
 
-    console.log(vm.title, section_id, sub_section_id, $stateParams.section_name);
     if (!_.isEmpty(documents)) {
-      _.each(documents,function(document) {
+      _.each(documents, function(document) {
         if (document.section_id == section_id && document.subsection_id==sub_section_id) {
           vm.sectionDocuments.push(document);
         }

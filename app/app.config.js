@@ -13,7 +13,7 @@ define(function() {
     url: 'http://localhost/ahs/web/index.php/api/v1/'
   };
   var production = {
-    url: 'http://ahs.hieuvan.net/web/api.php/api/v1/'
+    url: 'http://app.ahshospitality.com.au/web/api.php/api/v1/'
   };
 
   return {

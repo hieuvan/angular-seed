@@ -67,7 +67,7 @@ define(function() {
       marker.content = '<div class="infoWindowContent">' + info.address + '</div>';
 
       google.maps.event.addListener(marker, 'click', function(){
-        infoWindow.setContent('<h2>' + marker.title + '</h2>' + marker.content);
+        infoWindow.setContent('<h3>' + marker.title + '</h3>' + marker.content);
         infoWindow.open(vm.map, marker);
       });
 

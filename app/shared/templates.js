@@ -117,7 +117,7 @@ define(function(require) {
     "\n" +
     "                    <ul class=\"list-group\">\r" +
     "\n" +
-    "                        <li class=\"list-group-item\" ng-repeat=\"item in group.items\"><a ui-sref=\"root.site.assure-inspection-question({questionId:item.number})\">{{item.text}}</a><span class=\"pull-right\">{{item.score}}</span></li>\r" +
+    "                        <li class=\"list-group-item\" ng-repeat=\"item in group.items\"><a ui-sref=\"root.site.assure-inspection-question({questionId:item.counter})\">{{item.text}}</a><span class=\"pull-right\">{{item.score}}</span></li>\r" +
     "\n" +
     "                    </ul>\r" +
     "\n" +
@@ -141,7 +141,7 @@ define(function(require) {
     "\n" +
     "            <div class=\"col-md-6 slider-question\">\r" +
     "\n" +
-    "                <h3 class=\"question-number\">{{vm.currentQuestion.number}} of {{vm.questions.length}}</h3>\r" +
+    "                <h3 class=\"question-number\">{{vm.currentQuestion.counter}} of {{vm.questions.length}}</h3>\r" +
     "\n" +
     "                <div class=\"container-fluid clearfix question-container\">\r" +
     "\n" +
@@ -189,9 +189,9 @@ define(function(require) {
     "\n" +
     "                <!-- prev / next controls -->\r" +
     "\n" +
-    "                <a ng-show=\"vm.currentQuestion.number>1\" class=\"arrow-question prev\" ng-click=\"vm.saveInspection(vm.previousQuestionNumber)\"><i class=\"fa fa-arrow-left fa-lg\" aria-hidden=\"true\"></i></a>\r" +
+    "                <a ng-show=\"vm.currentQuestion.counter>1\" class=\"arrow-question prev\" ng-click=\"vm.saveInspection(vm.previousQuestionNumber)\"><i class=\"fa fa-arrow-left fa-lg\" aria-hidden=\"true\"></i></a>\r" +
     "\n" +
-    "                <a ng-show=\"vm.currentQuestion.number<vm.questions.length\" class=\"arrow-question next\" ng-click=\"vm.saveInspection(vm.nextQuestionNumber)\"><i class=\"fa fa-arrow-right fa-lg\" aria-hidden=\"true\"></i></a>\r" +
+    "                <a ng-show=\"vm.currentQuestion.counter<vm.questions.length\" class=\"arrow-question next\" ng-click=\"vm.saveInspection(vm.nextQuestionNumber)\"><i class=\"fa fa-arrow-right fa-lg\" aria-hidden=\"true\"></i></a>\r" +
     "\n" +
     "            </div>\r" +
     "\n" +
@@ -242,7 +242,7 @@ define(function(require) {
   $templateCache.put('components/completed-inspections/completed-inspections.html',
     "<h3>Completed Inspections</h3>\r" +
     "\n" +
-    "<div class=\"container\">\r" +
+    "<div class=\"container\" ng-show=\"vm.permissionAccessable\">\r" +
     "\n" +
     "    <div class=\"row\">\r" +
     "\n" +
@@ -353,6 +353,14 @@ define(function(require) {
     "        </div>\r" +
     "\n" +
     "    </div>\r" +
+    "\n" +
+    "</div>\r" +
+    "\n" +
+    "<div ng-show=\"!vm.permissionAccessable\" class=\"alert alert-warning\" role=\"alert\">\r" +
+    "\n" +
+    "    <h4>Unable to access content</h4>\r" +
+    "\n" +
+    "    <p>You do not have sufficient permissions to access this content. Please contact your system administrator.</p>\r" +
     "\n" +
     "</div>\r" +
     "\n"
@@ -508,6 +516,48 @@ define(function(require) {
     "    </div>\r" +
     "\n" +
     "</footer>\r" +
+    "\n"
+  );
+
+
+  $templateCache.put('components/forgot-password/forgot-password.html',
+    "<h3>Reset Password</h3>\r" +
+    "\n" +
+    "\r" +
+    "\n" +
+    "    <div class=\"row\">\r" +
+    "\n" +
+    "        <div class=\"col-md-6\">\r" +
+    "\n" +
+    "            <form name=\"resetPasswordForm\" role=\"form\" class=\"reset-password-form\">\r" +
+    "\n" +
+    "                <div class=\"form-group\">\r" +
+    "\n" +
+    "                    <div class=\"alert alert-info\" role=\"alert\">Forgot your password? Enter your email address and we will send you an instruction email to reset your password.</div>\r" +
+    "\n" +
+    "                    <div class=\"alert alert-success\" role=\"alert\" ng-if=\"vm.resetPasswordSuccessfully\">An email has been sent to your email address with instructions on how to reset your password.</div>\r" +
+    "\n" +
+    "                    <div class=\"alert alert-danger\" role=\"alert\" ng-if=\"vm.errorResetPassword\">Email address is invalid.</div>\r" +
+    "\n" +
+    "                    <label class=\"sr-only\" for=\"form-email\">Email</label>\r" +
+    "\n" +
+    "                    <input type=\"email\" spellcheck=\"false\" autocapitalize=\"off\" autocorrect=\"off\" required ng-model=\"vm.email\" name=\"form-email\" placeholder=\"Email...\" class=\"form-email form-control\" id=\"form-email\">\r" +
+    "\n" +
+    "                </div>\r" +
+    "\n" +
+    "                <div class=\"form-group\">\r" +
+    "\n" +
+    "                    <button type=\"button\" class=\"btn button-site-color\" ng-disabled=\"resetPasswordForm.$invalid\" ng-click=\"vm.resetPassword()\">Reset password</button>\r" +
+    "\n" +
+    "                </div>\r" +
+    "\n" +
+    "            </form>\r" +
+    "\n" +
+    "        </div>\r" +
+    "\n" +
+    "    </div>\r" +
+    "\n" +
+    "\r" +
     "\n"
   );
 
@@ -704,7 +754,13 @@ define(function(require) {
     "\n" +
     "                        </div>\r" +
     "\n" +
-    "                        <button type=\"button\" class=\"btn button-site-color\" ng-disabled=\"loginForm.$invalid\" ng-click=\"vm.login()\">Log in</button>\r" +
+    "                        <div class=\"form-group\">\r" +
+    "\n" +
+    "                            <button type=\"button\" class=\"btn button-site-color\" ng-disabled=\"loginForm.$invalid\" ng-click=\"vm.login()\">Log in</button>\r" +
+    "\n" +
+    "                        </div>\r" +
+    "\n" +
+    "                        <a ui-sref=\"root.forgot-password\">Forgot password?</a>\r" +
     "\n" +
     "                    </form>\r" +
     "\n" +
@@ -751,7 +807,7 @@ define(function(require) {
   $templateCache.put('components/safety-documents/safety-documents.html',
     "<h3>Submit Safety Documents</h3>\r" +
     "\n" +
-    "<div class=\"container\">\r" +
+    "<div class=\"container\" ng-show=\"vm.permissionAccessable\">\r" +
     "\n" +
     "    <div class=\"row\">\r" +
     "\n" +
@@ -843,9 +899,9 @@ define(function(require) {
     "\n" +
     "                                <option>Jul17-Jun18</option>\r" +
     "\n" +
-    "                                <option>Jul17-Jun19</option>\r" +
+    "                                <option>Jul18-Jun19</option>\r" +
     "\n" +
-    "                                <option>Jul17-Jun20</option>\r" +
+    "                                <option>Jul19-Jun20</option>\r" +
     "\n" +
     "                            </select>\r" +
     "\n" +
@@ -896,6 +952,14 @@ define(function(require) {
     "    </div>\r" +
     "\n" +
     "</div>\r" +
+    "\n" +
+    "<div ng-show=\"!vm.permissionAccessable\" class=\"alert alert-warning\" role=\"alert\">\r" +
+    "\n" +
+    "    <h4>Unable to access content</h4>\r" +
+    "\n" +
+    "    <p>You do not have sufficient permissions to access this content. Please contact your system administrator.</p>\r" +
+    "\n" +
+    "</div>\r" +
     "\n"
   );
 
@@ -911,11 +975,11 @@ define(function(require) {
     "            <li><a ui-sref=\"root.site.document({section_id: 2, sub_section_id: 6, title: 'Assure Manual', section_name: 'assure-manual'})\">Assure Manual</a></li>\n" +
     "            <li><a ui-sref=\"root.site.assure-inspection-start\">Assure Inspection</a></li>\n" +
     "            <li><a ui-sref=\"root.site.document({section_id: 2, sub_section_id: 8, title: 'Assure Reporting', section_name: 'assure-reporting'})\">Assure Reporting</a></li>\n" +
-    "            <li><a ui-sref=\"root.site.completed-inspections\">View Completed Inspections</a></li>\n" +
+    "            <li><a ui-sref=\"root.site.completed-inspections({section_id: 2, sub_section_id: 19})\">View Completed Inspections</a></li>\n" +
     "            <li role=\"separator\" class=\"divider\"></li>\n" +
     "            <li><a ui-sref=\"root.site.brand-standards\">Brand Standards</a></li>\n" +
-    "            <li><a ui-sref=\"root.site.document({section_id: 2, sub_section_id: 10, title: 'Internal Quality', section_name: 'internal-quality'})\">Internal Quality</a></li>\n" +
-    "            <li><a ui-sref=\"root.site.document({section_id: 2, sub_section_id: 11, title: 'Trip Advisor', section_name: 'trip-advisor'})\">Trip Advisor</a></li>\n" +
+    "            <li><a ui-sref=\"root.site.document({section_id: 2, sub_section_id: 11, title: 'Internal Quality', section_name: 'internal-quality'})\">Internal Quality</a></li>\n" +
+    "            <li><a ui-sref=\"root.site.document({section_id: 2, sub_section_id: 10, title: 'Trip Advisor', section_name: 'trip-advisor'})\">Trip Advisor</a></li>\n" +
     "        </ul>\n" +
     "    </div>\n" +
     "    <div class=\"col-md-2 col-sm-4 col-xs-12\">\n" +
@@ -925,10 +989,9 @@ define(function(require) {
     "        <ul class=\"dropdown-menu left-adjust\" aria-labelledby=\"dropdownMenu2\">\n" +
     "            <li><a ui-sref=\"root.site.document({section_id: 1, sub_section_id: 1, title: 'Policy', section_name: 'policy'})\">Policy</a></li>\n" +
     "            <li><a ui-sref=\"root.site.document({section_id: 1, sub_section_id: 2, title: 'Safety Observations', section_name: 'safety-observations'})\">Safety Observations</a></li>\n" +
-    "            <li><a ui-sref=\"root.site.document({section_id: 1, sub_section_id: 3, title: 'View safety documents', section_name: 'safety-documents'})\">View safety documents</a></li>\n" +
+    "            <li><a ui-sref=\"root.site.document({section_id: 1, sub_section_id: 3, title: 'View safety documents', section_name: 'view-safety-documents'})\">View safety documents</a></li>\n" +
     "            <li role=\"separator\" class=\"divider\"></li>\n" +
-    "            <li><a ui-sref=\"root.site.document({section_id: 1, sub_section_id: 4, title: 'Safety scorecard', section_name: 'safety-scorecard'})\">Safety scorecard</a></li>\n" +
-    "            <li><a ui-sref=\"root.site.safety-documents\">Submit safety documents</a></li>\n" +
+    "            <li><a ui-sref=\"root.site.safety-documents({section_id: 1, sub_section_id: 20})\">Submit safety documents</a></li>\n" +
     "            <li><a ui-sref=\"root.site.document({section_id: 1, sub_section_id: 5, title: 'Compliance audits', section_name: 'compliance-audits'})\">Compliance audits</a></li>\n" +
     "        </ul>\n" +
     "    </div>\n" +

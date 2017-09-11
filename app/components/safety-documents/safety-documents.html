@@ -1,5 +1,5 @@
 <h3>Submit Safety Documents</h3>
-<div class="container">
+<div class="container" ng-show="vm.permissionAccessable">
     <div class="row">
         <div class="col-md-12">
             <form name="submitSafetyDocuments" role="form" class="ng-pristine ng-invalid ng-invalid-required form-horizontal">
@@ -45,8 +45,8 @@
                         <div class="input-group">
                             <select class="form-control" required name="form-year" ng-model="vm.documentYear" id="form-year">
                                 <option>Jul17-Jun18</option>
-                                <option>Jul17-Jun19</option>
-                                <option>Jul17-Jun20</option>
+                                <option>Jul18-Jun19</option>
+                                <option>Jul19-Jun20</option>
                             </select>
                         </div>
                     </div>
@@ -71,4 +71,8 @@
         <div class="alert alert-success col-md-6" role="alert" ng-if="vm.documentSubmitted == true">Document submitted successfully</div>
         <div class="alert alert-danger col-md-6" role="alert" ng-if="vm.documentSubmitted == false">Fail to submit document</div>
     </div>
+</div>
+<div ng-show="!vm.permissionAccessable" class="alert alert-warning" role="alert">
+    <h4>Unable to access content</h4>
+    <p>You do not have sufficient permissions to access this content. Please contact your system administrator.</p>
 </div>

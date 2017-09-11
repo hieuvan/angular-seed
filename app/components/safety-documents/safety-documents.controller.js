@@ -1,10 +1,19 @@
 'use strict';
 
 define(function() {
-  return ['config', 'SiteService', '$stateParams', function(config, SiteService, $stateParams) {
+  return ['config', 'SiteService', '$stateParams', 'sharedProperties', '$state', function(config, SiteService, $stateParams, sharedProperties, $state) {
     var vm = this;
 
     vm.siteTitle = config.siteTitle;
+    var section_id = $stateParams.section_id;
+    var sub_section_id = $stateParams.sub_section_id;
+
+    if (_.isNull(section_id) || _.isNull(sub_section_id)) {
+      $state.go('root.site');
+    }
+    vm.hotel = sharedProperties.getProperty('hotel');
+    vm.permissionAccessable = vm.hotel.submit_safety_documents;
+
     vm.documentSubmitted = null;
     vm.formSubmitted = false;
 

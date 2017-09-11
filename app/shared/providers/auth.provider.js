@@ -58,6 +58,18 @@ define(function(require) {
             });
 
       };
+      /**
+       * Reset password
+       */
+      var resetPassword = function(formdata) {
+        return $http.post(($resourceProvider.apiUrl + 'password/reset'), formdata)
+            .then(function(response) {
+              return true;
+            }, function errorCallback(response) {
+              //@todo: show error message
+              return false;
+            });
+      };
 
       /**
        * Get the user associated with the current token
@@ -143,7 +155,8 @@ define(function(require) {
         login: login,
         logout: logout,
         isAuthenticated: isAuthenticated,
-        removeToken: removeToken
+        removeToken: removeToken,
+        resetPassword: resetPassword
       };
     }];
 

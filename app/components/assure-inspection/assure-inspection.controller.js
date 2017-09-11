@@ -134,9 +134,10 @@ define(function() {
         return;
       }
       if (!isNaN(questionId)) {
-        vm.currentQuestion = _.findWhere(vm.currentInspectionData.data, {number: questionId});
+        vm.currentQuestion = _.findWhere(vm.currentInspectionData.data, {counter: questionId});
+
         if (vm.currentQuestion) {
-          vm.imageIndex = vm.currentQuestion.number;
+          vm.imageIndex = vm.currentQuestion.counter;
           vm.previousQuestionNumber = parseInt(vm.imageIndex) - 1;
           vm.nextQuestionNumber = parseInt(vm.imageIndex) + 1;
           if (vm.currentQuestion.is_rating_type_answer) {
@@ -160,11 +161,15 @@ define(function() {
         }
       } else if (questionId == 'all') {
         vm.currentQuestion = null;
+
         _.each(vm.currentInspectionData.data, function(question) {
           if (_.isEmpty(vm.questionsInCategories[question.category_id])) {
             vm.questionsInCategories[question.category_id] = {};
             vm.questionsInCategories[question.category_id]['category'] = question.category;
             vm.questionsInCategories[question.category_id]['items'] = [];
+            if (_.isEmpty(vm.questionsInCategories[question.category_id]['items'])) {
+
+            }
           }
           vm.questionsInCategories[question.category_id]['items'].push(question);
 
@@ -188,15 +193,26 @@ define(function() {
         vm.currentInspectionData.comments = vm.comments;
         vm.currentInspectionData.requiredScore = vm.hotel.questionnaire.passing_percentage;
         vm.currentInspectionData.questionnaire_id = vm.hotel.questionnaire.id;
-        vm.currentInspectionData.data = _.map(vm.questions, function(question) {
+
+        var groupBy = _.groupBy(vm.questions, 'category_id');
+        var groupAndSort = [];
+        _.each(groupBy, function(question) {
+          groupAndSort = groupAndSort.concat(_.flatten(question));
+        });
+        var counter = 1;
+
+        vm.currentInspectionData.data = _.map(groupAndSort, function(question) {
           question.answer = "1";
           if (question.is_rating_type_answer) {
             question.answer = question.weighting;
           }
           question.score = calculateEachScore(question);
           question.comment = '';
+          question.counter = '' + counter;
+          counter++;
           return question;
         });
+
         vm.currentInspectionData.totalScore = calculateTotalScore();
         GetStorageService.setCurrentInspection(vm.currentInspectionData);
       }

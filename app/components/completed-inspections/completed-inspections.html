@@ -1,5 +1,5 @@
 <h3>Completed Inspections</h3>
-<div class="container">
+<div class="container" ng-show="vm.permissionAccessable">
     <div class="row">
         <div class="col-md-12">
             <form name="viewCompletedInspections" role="form" class="form-horizontal">
@@ -55,4 +55,8 @@
             </table>
         </div>
     </div>
+</div>
+<div ng-show="!vm.permissionAccessable" class="alert alert-warning" role="alert">
+    <h4>Unable to access content</h4>
+    <p>You do not have sufficient permissions to access this content. Please contact your system administrator.</p>
 </div>

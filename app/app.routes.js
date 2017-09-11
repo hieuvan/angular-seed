@@ -38,6 +38,17 @@ define(function() {
     });
 
     states.push({
+      name: 'root.forgot-password',
+      url: '/forgot-password',
+      views: {
+        'content@': {
+          templateUrl: 'components/forgot-password/forgot-password.html',
+          controller: 'ForgotPasswordController as vm'
+        }
+      }
+    });
+
+    states.push({
       name: 'logout',
       url: '/logout',
       controller: 'LogOutController as vm'
@@ -156,6 +167,10 @@ define(function() {
       parent:"root.site",
       templateUrl:"components/completed-inspections/completed-inspections.html",
       controller:"CompletedInspectionsController as vm",
+      params:{
+        section_id:null,
+        sub_section_id:null
+      },
       data: {authenticate: true}
     });
 
@@ -165,6 +180,10 @@ define(function() {
       parent:"root.site",
       templateUrl:"components/safety-documents/safety-documents.html",
       controller:"SafetyDocumentsController as vm",
+      params:{
+        section_id:null,
+        sub_section_id:null
+      },
       data: {authenticate: true}
     });
 

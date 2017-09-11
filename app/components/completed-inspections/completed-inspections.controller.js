@@ -1,10 +1,19 @@
 'use strict';
 
 define(function() {
-  return ['config', 'SiteService', 'DTOptionsBuilder', 'DTColumnDefBuilder', '$stateParams', function(config, SiteService, DTOptionsBuilder, DTColumnDefBuilder, $stateParams) {
+  return ['config', 'SiteService', 'DTOptionsBuilder', 'DTColumnDefBuilder', '$stateParams', '$state', 'sharedProperties', function(config, SiteService, DTOptionsBuilder, DTColumnDefBuilder, $stateParams, $state, sharedProperties) {
     var vm = this;
 
     vm.title = config.siteTitle;
+    var section_id = $stateParams.section_id;
+    var sub_section_id = $stateParams.sub_section_id;
+
+    if (_.isNull(section_id) || _.isNull(sub_section_id)) {
+      $state.go('root.site');
+    }
+    vm.hotel = sharedProperties.getProperty('hotel');
+    vm.permissionAccessable = vm.hotel.view_completed_inspections;
+
     vm.dateFrom = null;
     vm.dateTo = null;
 
