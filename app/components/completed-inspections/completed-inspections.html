@@ -1,0 +1,62 @@
+<h3>Completed Inspections</h3>
+<div class="container" ng-show="vm.permissionAccessable">
+    <div class="row">
+        <div class="col-md-12">
+            <form name="viewCompletedInspections" role="form" class="form-horizontal">
+                <div class="form-group">
+                    <label for="form-from-date" class="col-sm-3">From</label>
+                    <div class="col-xs-12 col-sm-8 col-md-5">
+                        <div class="input-group">
+                            <input type="text" uib-datepicker-popup="{{vm.format}}" datepicker-options="vm.dateOptions" is-open="vm.popup1.opened" close-text="Close" ng-required="true" ng-model="vm.dateFrom" name="form-from-date" class="form-control" id="form-from-date">
+                            <span class="input-group-btn">
+                                <button type="button" class="btn btn-default" ng-click="vm.open1()"><i class="glyphicon glyphicon-calendar"></i></button>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="form-to-date" class="col-sm-3">To</label>
+                    <div class="col-xs-12 col-sm-8 col-md-5">
+                        <div class="input-group">
+                            <input type="text" uib-datepicker-popup="{{vm.format}}" datepicker-options="vm.dateOptions" is-open="vm.popup2.opened" close-text="Close" ng-required="true" ng-model="vm.dateTo" name="form-to-date" class="form-control" id="form-to-date">
+                            <span class="input-group-btn">
+                                <button type="button" class="btn btn-default" ng-click="vm.open2()"><i class="glyphicon glyphicon-calendar"></i></button>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </form>
+            <button type="button" class="btn button-site-color" ng-disabled="viewCompletedInspections.$invalid" ng-click="vm.showInspections()">View</button>
+        </div>
+    </div>
+    <div class="row" ng-if="vm.completedInspections.length > 0">
+        <div class="col-md-12">
+            <table datatable="ng" dt-options="vm.dtOptions" dt-column-defs="vm.dtColumnDefs" class="table table-striped table-bordered">
+                <thead>
+                    <tr>
+                        <th>Hotel</th>
+                        <th>Inspection Date</th>
+                        <th>Score</th>
+                        <th>Inspected By</th>
+                        <th>Room</th>
+                        <th>Link to PDF</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="inspection in vm.completedInspections">
+                        <td>{{ inspection.hotel_name }}</td>
+                        <td>{{ inspection.date }}</td>
+                        <td>{{ inspection.percentage_obtained }}</td>
+                        <td>{{ inspection.inspected_by }}</td>
+                        <td>{{ inspection.room_number }}</td>
+                        <td><a target="_blank" href="{{ inspection.url }}">View</a></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<div ng-show="!vm.permissionAccessable" class="alert alert-warning" role="alert">
+    <h4>Unable to access content</h4>
+    <p>You do not have sufficient permissions to access this content. Please contact your system administrator.</p>
+</div>

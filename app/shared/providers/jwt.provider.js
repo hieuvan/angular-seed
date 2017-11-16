@@ -50,9 +50,11 @@ define(function(require) {
       var isTokenExpired = function(token) {
         var exp = getPayload(token).exp;
 
-        if (!exp) return true; // no expiry is set in the token
+        if (!exp) {
+            return false; // no expiry is set in the token
+        }
 
-        return Math.round(new Date().getTime() / 1000) <= exp;
+        return Math.round(new Date().getTime() / 1000) > exp;
       };
 
       /**
@@ -78,11 +80,11 @@ define(function(require) {
           throw new Error('Token must be passed.');
         }
 
-        var segments = token.split('.')
+        var segments = token.split('.');
 
         if (segments.length !== 3) {
           throw new Error('Token has not enough or too many segments.');
-        };
+        }
 
         return segments;
       };
@@ -90,7 +92,7 @@ define(function(require) {
       /**
        * Decode base64 url
        *
-       * @param string String to decode
+       * @param str String to decode
        * @return string decoded string
        */
       var base64urlDecode = function(str) {
@@ -98,9 +100,9 @@ define(function(require) {
       };
 
       /**
-       * Unscape base64 url
+       * Unescape base64 url
        *
-       * @param string string to unescape
+       * @param str string to unescape
        * @return string Escaped string
        */
       var base64urlUnscape = function(str) {

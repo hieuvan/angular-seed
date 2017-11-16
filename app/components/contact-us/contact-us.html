@@ -1,0 +1,27 @@
+<div>
+    <h2>Contact Us</h2>
+    <p>It’s our job to make you look good. At AHS Hospitality we offer hotels the complete outsourcing partnership.
+        In addition to our core focus of housekeeping we are also happy to take care of staff, HR and laundry, whilst giving you the benefit of our vast experience in hospitality.
+        You’ll wonder how you ever did without us.
+
+    For more information on AHS Hospitality, please free call 1800 026 036 or email <a href="mailto:info@ahshospitality.com.au">info@ahshospitality.com.au</a>
+    </p>
+    <div class="row">
+        <div class="col-md-6 col-sm-4">
+            <div id="map"></div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6" ng-repeat="marker in vm.markers">
+            <div class="address panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">{{marker.title}}</h3>
+                </div>
+                <div class="panel-body">
+                    <p><a ng-click="vm.openInfoWindow($event, marker)">{{marker.address}}</a></p>
+                    <p>Phone: {{marker.phone}}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

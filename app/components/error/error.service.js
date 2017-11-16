@@ -1,7 +1,6 @@
 'use strict';
 
 define(function(require) {
-  var _ = require('underscore');
 
   return ['$stateParams', function($stateParams) {
 
@@ -10,6 +9,11 @@ define(function(require) {
         code: '404',
         message: 'Sorry - Page not found!',
         description: 'The page you are looking for was moved, removed, renamed or might never existed.'
+      },
+      401: {
+        code: '401',
+        message: 'Unauthorised content',
+        description: 'Unauthorised content'
       },
       500: {
         code: '500',
@@ -42,7 +46,12 @@ define(function(require) {
       var result = errors[error.status];
 
       // we have custom error for the error
-      if (!_.isUndefined(result)) { return result; }
+      if (!_.isUndefined(result)) {
+        if (error.status == '401') {
+          result.description = error.data.error
+        }
+        return result;
+      }
 
       return {
         code: error.status,

@@ -31,7 +31,7 @@ module.exports = function (grunt) {
     watch: {
       bower: {
         files: ['bower.json'],
-        tasks: ['wiredep:sass', 'bowerRequirejs']
+        tasks: ['wiredep:sass']
       },
       js: {
         files: [
@@ -73,7 +73,7 @@ module.exports = function (grunt) {
 
     connect: {
       options: {
-        port: 8000,
+        port: 8001,
         open: true,
         livereload: 35729,
         host: '0.0.0.0'
@@ -280,14 +280,14 @@ module.exports = function (grunt) {
     },
 
     // automatically inject bower dependencies to rjs config
-    bowerRequirejs: {
+    /*bowerRequirejs: {
       target: {
         rjsConfig: '<%= config.app %>/rjs.config.js',
         options: {
           exclude: ['requirejs', 'bootstrap-sass', 'font-awesome', 'angular-mocks']
         }
       }
-    },
+    },*/
 
     // optimize javascript with rjs optimizer
     requirejs: {
@@ -375,10 +375,10 @@ module.exports = function (grunt) {
 
     grunt.task.run([
       'clean:tmp',
-      'wiredep:sass',
+      //'wiredep:sass',
       'ngtemplates',
       'ngconstant:development',
-      'bowerRequirejs',
+      //'bowerRequirejs',
       'concurrent:server',
       'autoprefixer:server',
       'connect:livereload',
@@ -414,9 +414,9 @@ module.exports = function (grunt) {
 
     grunt.task.run([
       'clean:dist',
-      'wiredep:sass',
+      //'wiredep:sass',
       'ngconstant:production',
-      'bowerRequirejs',
+      //'bowerRequirejs',
       'sass:dist',
       'copy:dist',
       'autoprefixer:dist',

@@ -1,19 +1,43 @@
 'use strict';
 
-define(function() {
-  return ['$rootScope', '$state', '$stateParams',
-  function($rootScope, $state, $stateParams) {
+define(function($Auth) {
+  return ['$rootScope', '$state', '$stateParams', '$Auth',
+  function($rootScope, $state, $stateParams, $Auth) {
 
     $rootScope.$state = $state;
     $rootScope.$stateParams = $stateParams;
+    $rootScope.hotels = [];
 
     $rootScope.$on('$stateChangeSuccess', function(ev, to, toParams, from) {
       $rootScope.previousState = from.name;
       $rootScope.currentState = to.name;
     });
 
+    $rootScope.$on('$stateChangeStart', function(event, toState, toParams, fromState, fromParams) {
+      var isLogin = toState.name === "root.login";
+      if (isLogin) {
+        if (!$Auth.isAuthenticated()) {
+          return; // no need to redirect
+        } else {
+          $state.go('root.home');
+          event.preventDefault();
+        }
+      }
+
+      var shouldLogin = toState.data !== undefined
+          && toState.data.authenticate
+          && !$Auth.isAuthenticated() ;
+
+      // NOT authenticated - wants any private stuff
+      if (shouldLogin) {
+        $state.go('root.login');
+        event.preventDefault();
+      }
+    });
+
     $rootScope.$on('$stateChangeError',
     function(event, toState, toParams, fromState, fromParams, error){
+      event.preventDefault();
       return $state.go('error', {error: error});
     });
   }];

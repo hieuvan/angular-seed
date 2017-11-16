@@ -1,0 +1,29 @@
+<h3>Assure Inspection</h3>
+<div class="container" ng-if="!vm.incompleteInspection">
+    <div class="row">
+        <div class="col-md-12">
+            <form name="startInspection" role="form" class="form-horizontal">
+                <div class="form-group">
+                    <label for="form-inspection-user" class="col-sm-3">Inspected by</label>
+                    <div class="col-xs-12 col-sm-8 col-md-5">
+                        <input class="col-xs-12 col-sm-8 col-md-5 form-control" type="text" required disabled ng-model="vm.inspectionUser" name="form-inspection-user" id="form-inspection-user">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="form-room-number" class="col-sm-3">Room number</label>
+                    <div class="col-xs-12 col-sm-8 col-md-5">
+                        <input type="text" required ng-model="vm.roomNumber" name="form-room-number" placeholder="Room number" class="col-xs-12 col-sm-8 col-md-5 form-control" id="form-room-number">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="form-cleaned-by" class="col-sm-3">Cleaned by</label>
+                    <div class="col-xs-12 col-sm-8 col-md-5">
+                        <input type="text" ng-model="vm.cleanedBy" name="form-cleaned-by" placeholder=" Cleaned by" class="col-xs-12 col-sm-8 col-md-5 form-control" id="form-cleaned-by">
+                    </div>
+                </div>
+            </form>
+            <button type="button" class="btn button-site-color" ng-disabled="startInspection.$invalid" ng-click="vm.startInspection()">{{vm.startResumeButton}}</button>
+        </div>
+    </div>
+</div>
+<p ng-if="vm.incompleteInspection">There is incomplete inspection. <a ui-sref="root.site.assure-inspection-start({siteId:vm.incompleteInspection})">Complete</a> it first or <a href="javascript:void(0)" ng-click="vm.cancelInspection()">Cancel</a> it before starting a new inspection.</p>

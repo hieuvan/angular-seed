@@ -1,0 +1,36 @@
+<div class="modal-demo">
+    <div class="modal-header">
+        <h3 class="modal-title" id="modal-title">Email photo</h3>
+    </div>
+    <div class="modal-body" id="modal-body">
+        <form name="emailPhoto" role="form">
+            <div class="form-group">
+                <label for="form-email-to">To</label>
+                <input class="form-control" required="" ng-pattern="vm.multipleEmailPattern" multiple type="text" name="form-email-to" id="form-email-to" ng-model="vm.emailTo" placeholder="Enter multiple email addresses separated by commas">
+            </div>
+            <div class="form-group">
+                <label for="form-subject">Subject</label>
+                <input class="form-control" required="" type="text" name="form-subject" id="form-subject" ng-model="vm.emailSubject">
+            </div>
+            <div class="form-group">
+                <label for="form-message">Message</label>
+                <textarea class="form-control" required="" id="form-message" name="form-message" ng-model="vm.emailMessage" rows="5"></textarea>
+            </div>
+            <div class="form-group">
+                <label for="form-photo">Photo</label>
+                <input class="ng-pristine ng-invalid ng-invalid-required" type="file" id="form-photo" name="form-photo" ng-model="vm.emailPhoto" required ngf-select ngf-capture="'camera'" ngf-accept="'image/*'">
+            </div>
+            <div class="form-group">
+                <div class="alert alert-success" role="alert" ng-if="vm.photoSubmitted == true">Email sent successfully!</div>
+                <div class="alert alert-danger" role="alert" ng-if="vm.photoSubmitted == false">
+                    <div ng-if="vm.formError">Error: {{vm.formError}}</div>
+                    Fail to send photo. Please try again!
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="modal-footer">
+        <button ng-disabled="emailPhoto.$invalid || vm.formSubmitted" class="btn btn-primary" type="button" ng-click="vm.sendPhoto()">Send</button>
+        <button class="btn btn-warning" type="button" ng-click="vm.cancelModal()">Cancel</button>
+    </div>
+</div>

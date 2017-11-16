@@ -1,0 +1,45 @@
+<h3>Inspection Overview</h3>
+<div class="container">
+    <div class="row">
+        <form name="completeInspection" role="form" class="form-horizontal">
+            <div class="form-group">
+                <label for="form-room-number" class="col-sm-3">Room number</label>
+                <div class="col-xs-12 col-sm-8 col-md-5">
+                    <input type="text" disabled ng-model="vm.currentInspectionData.roomNumber" name="form-room-number" class="col-xs-12 col-sm-8 col-md-5 form-control" id="form-room-number">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="form-cleaned-by" class="col-sm-3">Inspection Score</label>
+                <div class="col-xs-12 col-sm-8 col-md-5">
+                    <input type="text" disabled ng-model="vm.currentInspectionData.totalScore" name="form-inspection-score" class="col-xs-12 col-sm-8 col-md-5 form-control" id="form-inspection-score">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="form-cleaned-by" class="col-sm-3">Required Score</label>
+                <div class="col-xs-12 col-sm-8 col-md-5">
+                    <input type="text" disabled ng-model="vm.currentInspectionData.requiredScore" name="form-required-score" class="col-xs-12 col-sm-8 col-md-5 form-control" id="form-required-score">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="form-cleaned-by" class="col-sm-3">Cleaned by</label>
+                <div class="col-xs-12 col-sm-8 col-md-5">
+                    <input type="text" disabled ng-model="vm.currentInspectionData.cleanedBy" name="form-cleaned-by" placeholder=" Cleaned by" class="col-xs-12 col-sm-8 col-md-5 form-control" id="form-cleaned-by">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="form-comments" class="col-sm-3">Comments</label>
+                <div class="col-xs-12 col-sm-8 col-md-5">
+                    <input type="text" ng-model="vm.currentInspectionData.comments" name="form-comments" placeholder="Enter your comments" class="col-xs-12 col-sm-8 col-md-5 form-control" id="form-comments">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="form-comments" class="col-sm-3">Email to</label>
+                <div class="col-xs-12 col-sm-8 col-md-5">
+                    <input type="text" ng-model="vm.emailTo" name="form-email-to" placeholder="abc@g.com,def@g.com" class="col-xs-12 col-sm-8 col-md-5 form-control" id="form-email-to">
+                </div>
+            </div>
+        </form>
+        <button type="button" class="btn button-site-color"><a ui-sref="root.site.assure-inspection-question({questionId:'all'})">Back</a></button>
+        <button type="button" class="btn button-site-color" ng-disabled="completeInspection.$invalid" ng-click="vm.completeInspection()">Submit</button>
+    </div>
+</div>

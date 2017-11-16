@@ -1,0 +1,12 @@
+<div>
+    <h2>News</h2>
+    <div class="address panel panel-default" ng-repeat="news in vm.news | orderBy : '-sortedDate'">
+        <div class="panel-heading">
+            <h3 class="panel-title">{{news.title}}</h3>
+            <div class="link-color">{{news.published_date}}</div>
+        </div>
+        <div class="panel-body">
+            <p>{{news.description}}<a target="_blank" href="{{news.url}}">...</a></p>
+        </div>
+    </div>
+</div>
