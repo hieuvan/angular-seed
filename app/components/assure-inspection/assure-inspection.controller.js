@@ -1,16 +1,22 @@
 'use strict';
 
 define(function() {
-  return ['config', 'sharedProperties', '$state', '$stateParams', 'GetStorageService', 'SiteService', function(config, sharedProperties, $state, $stateParams, GetStorageService, SiteService) {
+  return ['config', 'sharedProperties', '$state', '$stateParams', 'GetStorageService', 'SiteService', '$uibModal', '$scope', function(config, sharedProperties, $state, $stateParams, GetStorageService, SiteService, $uibModal, $scope) {
     var vm = this;
     vm.inspectionUser = GetStorageService.getFullName();
     vm.questions = [];
+    vm.photos = [];
     vm.currentQuestion = null;
 
     vm.hotel = sharedProperties.getProperty('hotel');
     vm.questions = vm.hotel.questionnaire.questions;
     vm.questionsInCategories = {};
     var questionId = $stateParams.questionId;
+    var photos = vm.hotel.brand_images;
+
+    _.each(photos, function(photo) {
+      vm.photos.push({'url': photo.url, 'id': photo.id, thumbUrl: photo.thumbnail_url});
+    });
 
     vm.imageIndex = 0;
     vm.accordionArray = [];
@@ -128,6 +134,31 @@ define(function() {
       return;
     };
 
+    vm.cancelInspection = function() {
+      if (vm.incompleteInspection) {
+        GetStorageService.deleteCurrentInspection(vm.incompleteInspection);
+        delete vm.incompleteInspection;
+      }
+    };
+
+    vm.openEmailModal = function() {
+      $uibModal.open({
+        animation: true,
+        ariaLabelledBy: 'modal-title',
+        ariaDescribedBy: 'modal-body',
+        templateUrl: 'components/email-photo-modal/modal.html',
+        controller: 'ModalController',
+        bindToController: true,
+        controllerAs: 'vm',
+        resolve: {
+          emailMessage: function () {
+            return vm.emailBody;
+          }
+        }
+      });
+    };
+
+
     if (!_.isEmpty(questionId)) {
       if (_.isEmpty(vm.currentInspectionData)) {
         $state.go("root.site.assure-inspection-start");
@@ -154,8 +185,9 @@ define(function() {
               {"label": "N/A", "value": "-1"}
             ];
           }
-          vm.emailSubject = 'AHS Assure Quality Inspection Follow Up';
-          vm.emailBody = 'An AHS Assure Quality has been completed at ' + vm.hotel.name + '. This refers to question (' + vm.currentQuestion.text + '). ' + vm.inspectionUser + ' has made the following comments...';
+
+          vm.emailBody = 'An AHS Assure Quality inspection has been completed at ' + vm.hotel.name + '. This refers to question ('
+              + vm.currentQuestion.text + '). ' + vm.inspectionUser + ' has made the following comments: ';
         } else {
           $state.go("root.site.assure-inspection-question", {questionId: "all"});
         }
@@ -177,7 +209,7 @@ define(function() {
       }
     } else {
       // in case go straight to complete but skipped start
-      if ($state.current.name == 'root.site.assure-inspection-complete' && _.isEmpty(vm.currentInspectionData)) {
+      if ($state.current.name === 'root.site.assure-inspection-complete' && _.isEmpty(vm.currentInspectionData)) {
         $state.go("root.site.assure-inspection-start");
         return;
       }
@@ -218,26 +250,6 @@ define(function() {
       }
 
       $state.go("root.site.assure-inspection-question");
-    };
-
-    // if a current image is the same as requested image
-    vm.isActive = function (index) {
-      return vm.imageIndex === index;
-    };
-
-    // show prev image
-    vm.showPrev = function () {
-      vm.imageIndex = (vm.imageIndex > 0) ? --vm.imageIndex : vm.photos.length - 1;
-    };
-
-    // show next image
-    vm.showNext = function () {
-      vm.imageIndex = (vm.imageIndex < vm.photos.length - 1) ? ++vm.imageIndex : 0;
-    };
-
-    // show a certain image
-    vm.showPhoto = function (index) {
-      vm.imageIndex = index;
     };
 
   }];

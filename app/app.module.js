@@ -22,6 +22,7 @@ define(function(require) {
   require('angular-datatables.tabletools');
   require('bootstrap');
   require('ng-file-upload');
+  require('ng-image-gallery');
 
   // app components
   require('components/header/header.module');
@@ -40,6 +41,7 @@ define(function(require) {
   require('components/completed-inspections/completed-inspections.module');
   require('components/safety-documents/safety-documents.module');
   require('components/forgot-password/forgot-password.module');
+  require('components/email-photo-modal/modal.module');
 
 
   var AppRunner = require('app.runner'),
@@ -63,6 +65,7 @@ define(function(require) {
     'app.image-gallery',
     'app.documents',
     'app.assure-inspection',
+    'app.email-photo-modal',
     'app.login',
     'app.logout',
     'app.about-us',
@@ -84,7 +87,8 @@ define(function(require) {
     'LocalStorageModule',
     'datatables',
     'datatables.bootstrap',
-    'ngFileUpload'
+    'ngFileUpload',
+    'thatisuday.ng-image-gallery'
   ])
 
   .config(['$httpProvider', 'cfpLoadingBarProvider', '$resourceProvider', 'localStorageServiceProvider', 'ENV', 'config',
@@ -95,6 +99,10 @@ define(function(require) {
       $resourceProvider.apiUrl = config[ENV].url;
 
       cfpLoadingBarProvider.includeSpinner = true;
+      cfpLoadingBarProvider.latencyThreshold = 100;
+      cfpLoadingBarProvider.parentSelector = '#loading-spin-container';
+      cfpLoadingBarProvider.spinnerTemplate = '<div id="loading-spin-middle"><i class="fa fa-cog fa-spin fa-3x fa-fw"></i></div>';
+
       localStorageServiceProvider
           .setPrefix('AHS_Inspection')
           .setStorageCookie(1)

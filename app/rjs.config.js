@@ -72,6 +72,11 @@ require.config({
     ],
     'ng-file-upload': [
       'angular'
+    ],
+    'ng-image-gallery': [
+      'angular',
+      'angular-animate',
+      'hammer'
     ]
   },
   map: {
@@ -123,7 +128,11 @@ require.config({
     'angular-touch': '../bower_components/angular-touch/angular-touch',
     'angular-bootstrap': '../bower_components/angular-bootstrap/ui-bootstrap-tpls',
     'crypto-js': '../bower_components/crypto-js/crypto-js',
-    'ng-file-upload': '../bower_components/ng-file-upload/ng-file-upload'
+    'ng-file-upload': '../bower_components/ng-file-upload/ng-file-upload',
+    'angular-super-gallery': '../bower_components/angular-super-gallery/index',
+    'angular-fullscreen': '../bower_components/angular-fullscreen/src/angular-fullscreen',
+    'ng-image-gallery': '../bower_components/ng-image-gallery/dist/ng-image-gallery',
+    'hammer': '../bower_components/hammerjs/hammer'
   },
   packages: [
 

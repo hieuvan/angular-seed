@@ -14,6 +14,7 @@ define(function() {
   };
   var production = {
     url: 'http://app.ahshospitality.com.au/web/api.php/api/v1/'
+    //url: 'http://ahs.hieuvan.net/web/api.php/api/v1/'
   };
 
   return {

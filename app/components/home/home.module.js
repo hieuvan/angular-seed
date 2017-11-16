@@ -6,7 +6,7 @@ define(function(require) {
 
   var HomeController = require('components/home/home.controller');
 
-  return angular.module('app.home', [])
+  return angular.module('app.home', ['cfp.loadingBar'])
 
   .controller('HomeController', HomeController);
 });

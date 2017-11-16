@@ -73,14 +73,20 @@ define(function(require) {
     "                </div>\n" +
     "            </div>\n" +
     "        </form>\n" +
-    "        <button type=\"button\" class=\"btn\"><a ui-sref=\"root.site.assure-inspection-question({questionId:'all'})\">Back</a></button>\n" +
-    "        <button type=\"button\" class=\"btn\" ng-disabled=\"completeInspection.$invalid\" ng-click=\"vm.completeInspection()\">Submit</button>\n" +
+    "        <button type=\"button\" class=\"btn button-site-color\"><a ui-sref=\"root.site.assure-inspection-question({questionId:'all'})\">Back</a></button>\n" +
+    "        <button type=\"button\" class=\"btn button-site-color\" ng-disabled=\"completeInspection.$invalid\" ng-click=\"vm.completeInspection()\">Submit</button>\n" +
     "    </div>\n" +
     "</div>\n"
   );
 
 
   $templateCache.put('components/assure-inspection/assure-inspection-question.html',
+    "<h3>Brand Gallery</h3>\r" +
+    "\n" +
+    "<p>Click on a thumbnail to see larger image</p>\r" +
+    "\n" +
+    "<div ng-image-gallery images=\"vm.photos\" img-bubbles=\"true\"></div>\r" +
+    "\n" +
     "<h3>Assure inspection</h3>\r" +
     "\n" +
     "<div>\r" +
@@ -181,7 +187,7 @@ define(function(require) {
     "\n" +
     "                    <div class=\"form-group\">\r" +
     "\n" +
-    "                        <p><i class=\"fa fa-envelope-o\" aria-hidden=\"true\"></i> <a href=\"mailto:?subject={{vm.emailSubject}}&body={{vm.emailBody}}\">Email</a></p>\r" +
+    "                        <p><i class=\"fa fa-envelope-o\" aria-hidden=\"true\"></i> <a href=\"javascript:void(0)\" ng-click=\"vm.openEmailModal()\">Email photo</a></p>\r" +
     "\n" +
     "                    </div>\r" +
     "\n" +
@@ -201,8 +207,7 @@ define(function(require) {
     "\n" +
     "</div>\r" +
     "\n" +
-    "<div class=\"clearfix\"><a ng-click=\"vm.saveInspection('complete')\" class=\"btn btn-primary\" role=\"button\">Complete Inspection</a></div>\r" +
-    "\n"
+    "<div class=\"clearfix\"><a ng-click=\"vm.saveInspection('complete')\" class=\"btn btn-primary\" role=\"button\">Complete Inspection</a></div>"
   );
 
 
@@ -235,7 +240,7 @@ define(function(require) {
     "        </div>\n" +
     "    </div>\n" +
     "</div>\n" +
-    "<p ng-if=\"vm.incompleteInspection\">There is incomplete inspection. <a ui-sref=\"root.site.assure-inspection-start({siteId:vm.incompleteInspection})\">Finish</a> it first before starting the new inspection.</p>\n"
+    "<p ng-if=\"vm.incompleteInspection\">There is incomplete inspection. <a ui-sref=\"root.site.assure-inspection-start({siteId:vm.incompleteInspection})\">Complete</a> it first or <a href=\"javascript:void(0)\" ng-click=\"vm.cancelInspection()\">Cancel</a> it before starting a new inspection.</p>\n"
   );
 
 
@@ -427,7 +432,7 @@ define(function(require) {
   $templateCache.put('components/documents/documents.html',
     "<h3>{{vm.title}}</h3>\n" +
     "<div ng-show=\"vm.sectionDocuments.length\">\n" +
-    "    <table datatable=\"ng\" class=\"table table-striped table-bordered\">\n" +
+    "    <table datatable=\"ng\" dt-options=\"vm.dtOptions\" dt-column-defs=\"vm.dtColumnDefs\" class=\"table table-striped table-bordered\">\n" +
     "        <thead>\n" +
     "            <tr><th>Document Name</th>\n" +
     "            </tr>\n" +
@@ -443,6 +448,81 @@ define(function(require) {
     "    <h4>Unable to access content</h4>\n" +
     "    <p>You do not have sufficient permissions to access this content. Please contact your system administrator.</p>\n" +
     "</div>\n"
+  );
+
+
+  $templateCache.put('components/email-photo-modal/modal.html',
+    "<div class=\"modal-demo\">\r" +
+    "\n" +
+    "    <div class=\"modal-header\">\r" +
+    "\n" +
+    "        <h3 class=\"modal-title\" id=\"modal-title\">Email photo</h3>\r" +
+    "\n" +
+    "    </div>\r" +
+    "\n" +
+    "    <div class=\"modal-body\" id=\"modal-body\">\r" +
+    "\n" +
+    "        <form name=\"emailPhoto\" role=\"form\">\r" +
+    "\n" +
+    "            <div class=\"form-group\">\r" +
+    "\n" +
+    "                <label for=\"form-email-to\">To</label>\r" +
+    "\n" +
+    "                <input class=\"form-control\" required=\"\" ng-pattern=\"vm.multipleEmailPattern\" multiple type=\"text\" name=\"form-email-to\" id=\"form-email-to\" ng-model=\"vm.emailTo\" placeholder=\"Enter multiple email addresses separated by commas\">\r" +
+    "\n" +
+    "            </div>\r" +
+    "\n" +
+    "            <div class=\"form-group\">\r" +
+    "\n" +
+    "                <label for=\"form-subject\">Subject</label>\r" +
+    "\n" +
+    "                <input class=\"form-control\" required=\"\" type=\"text\" name=\"form-subject\" id=\"form-subject\" ng-model=\"vm.emailSubject\">\r" +
+    "\n" +
+    "            </div>\r" +
+    "\n" +
+    "            <div class=\"form-group\">\r" +
+    "\n" +
+    "                <label for=\"form-message\">Message</label>\r" +
+    "\n" +
+    "                <textarea class=\"form-control\" required=\"\" id=\"form-message\" name=\"form-message\" ng-model=\"vm.emailMessage\" rows=\"5\"></textarea>\r" +
+    "\n" +
+    "            </div>\r" +
+    "\n" +
+    "            <div class=\"form-group\">\r" +
+    "\n" +
+    "                <label for=\"form-photo\">Photo</label>\r" +
+    "\n" +
+    "                <input class=\"ng-pristine ng-invalid ng-invalid-required\" type=\"file\" id=\"form-photo\" name=\"form-photo\" ng-model=\"vm.emailPhoto\" required ngf-select ngf-capture=\"'camera'\" ngf-accept=\"'image/*'\">\r" +
+    "\n" +
+    "            </div>\r" +
+    "\n" +
+    "            <div class=\"form-group\">\r" +
+    "\n" +
+    "                <div class=\"alert alert-success\" role=\"alert\" ng-if=\"vm.photoSubmitted == true\">Email sent successfully!</div>\r" +
+    "\n" +
+    "                <div class=\"alert alert-danger\" role=\"alert\" ng-if=\"vm.photoSubmitted == false\">\r" +
+    "\n" +
+    "                    <div ng-if=\"vm.formError\">Error: {{vm.formError}}</div>\r" +
+    "\n" +
+    "                    Fail to send photo. Please try again!\r" +
+    "\n" +
+    "                </div>\r" +
+    "\n" +
+    "            </div>\r" +
+    "\n" +
+    "        </form>\r" +
+    "\n" +
+    "    </div>\r" +
+    "\n" +
+    "    <div class=\"modal-footer\">\r" +
+    "\n" +
+    "        <button ng-disabled=\"emailPhoto.$invalid || vm.formSubmitted\" class=\"btn btn-primary\" type=\"button\" ng-click=\"vm.sendPhoto()\">Send</button>\r" +
+    "\n" +
+    "        <button class=\"btn btn-warning\" type=\"button\" ng-click=\"vm.cancelModal()\">Cancel</button>\r" +
+    "\n" +
+    "    </div>\r" +
+    "\n" +
+    "</div>"
   );
 
 
@@ -501,7 +581,9 @@ define(function(require) {
     "\n" +
     "                        <ul>\r" +
     "\n" +
-    "                            <li><a ui-sref=\"contact-us\">Contact Us</a></li>\r" +
+    "                            <li><a ui-sref=\"root.contact-us\">Contact Us</a></li>\r" +
+    "\n" +
+    "                            <li><a target=\"_blank\" href=\"http://www.ahshospitality.com.au/\">AHS Hospitality</a></li>\r" +
     "\n" +
     "                        </ul>\r" +
     "\n" +
@@ -684,7 +766,7 @@ define(function(require) {
     "\n" +
     "                </td>\r" +
     "\n" +
-    "                <td class=\"text-center\"><a ui-sref=\"root.site({siteId: hotel.id})\"><i class=\"fa fa-arrow-right fa-lg\" aria-hidden=\"true\"></i></a></td>\r" +
+    "                <td class=\"text-center\"><a ui-sref=\"root.site({siteId: hotel.id})\"><i class=\"fa fa-arrow-right fa-2x\" aria-hidden=\"true\"></i></a></td>\r" +
     "\n" +
     "            </tr>\r" +
     "\n" +
@@ -699,19 +781,11 @@ define(function(require) {
 
 
   $templateCache.put('components/image-gallery/image-gallery.html',
-    "<div class=\"container slider\">\n" +
-    "    <!-- enumerate all photos -->\n" +
-    "    <img ng-repeat=\"photo in vm.photos\" class=\"slide img-responsive\" ng-swipe-right=\"vm.showPrev()\" ng-swipe-left=\"vm.showNext()\" ng-show=\"vm.isActive($index)\" ng-src=\"{{photo.src}}\" />\n" +
-    "    <!-- prev / next controls -->\n" +
-    "    <a class=\"arrow prev\" ng-click=\"vm.showPrev()\"></a>\n" +
-    "    <a class=\"arrow next\" ng-click=\"vm.showNext()\"></a>\n" +
-    "    <!-- extra navigation controls -->\n" +
-    "    <ul class=\"slider-nav\">\n" +
-    "        <li ng-repeat=\"photo in vm.photos\" ng-class=\"{'active':vm.isActive($index)}\">\n" +
-    "            <img ng-src=\"{{photo.src}}\" class=\"img-thumbnail\" alt=\"{{photo.desc}}\" title=\"{{photo.desc}}\" ng-click=\"vm.showPhoto($index);\" />\n" +
-    "        </li>\n" +
-    "    </ul>\n" +
-    "</div>\n"
+    "<h3>Brand Gallery</h3>\n" +
+    "<p>Click on a thumbnail to see larger image</p>\n" +
+    "<div ng-image-gallery images=\"vm.photos\" img-bubbles=\"true\"></div>\n" +
+    "\n" +
+    "\n"
   );
 
 
@@ -965,48 +1039,90 @@ define(function(require) {
 
 
   $templateCache.put('components/site-detail/site-detail.html',
-    "<h2>{{ vm.hotel.name }}</h2>\n" +
-    "<div class=\"row\">\n" +
-    "    <div class=\"col-md-2 col-sm-4 col-xs-12\">\n" +
-    "        <button class=\"btn btn-default btn-block dropdown-toggle\" type=\"button\" id=\"dropdownMenu1\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">\n" +
-    "            Assure Quality <span class=\"caret\"></span>\n" +
-    "        </button>\n" +
-    "        <ul class=\"dropdown-menu left-adjust\" aria-labelledby=\"dropdownMenu1\">\n" +
-    "            <li><a ui-sref=\"root.site.document({section_id: 2, sub_section_id: 6, title: 'Assure Manual', section_name: 'assure-manual'})\">Assure Manual</a></li>\n" +
-    "            <li><a ui-sref=\"root.site.assure-inspection-start\">Assure Inspection</a></li>\n" +
-    "            <li><a ui-sref=\"root.site.document({section_id: 2, sub_section_id: 8, title: 'Assure Reporting', section_name: 'assure-reporting'})\">Assure Reporting</a></li>\n" +
-    "            <li><a ui-sref=\"root.site.completed-inspections({section_id: 2, sub_section_id: 19})\">View Completed Inspections</a></li>\n" +
-    "            <li role=\"separator\" class=\"divider\"></li>\n" +
-    "            <li><a ui-sref=\"root.site.brand-standards\">Brand Standards</a></li>\n" +
-    "            <li><a ui-sref=\"root.site.document({section_id: 2, sub_section_id: 11, title: 'Internal Quality', section_name: 'internal-quality'})\">Internal Quality</a></li>\n" +
-    "            <li><a ui-sref=\"root.site.document({section_id: 2, sub_section_id: 10, title: 'Trip Advisor', section_name: 'trip-advisor'})\">Trip Advisor</a></li>\n" +
-    "        </ul>\n" +
-    "    </div>\n" +
-    "    <div class=\"col-md-2 col-sm-4 col-xs-12\">\n" +
-    "        <button class=\"btn btn-default btn-block dropdown-toggle\" type=\"button\" id=\"dropdownMenu2\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">\n" +
-    "            Safety <span class=\"caret\"></span>\n" +
-    "        </button>\n" +
-    "        <ul class=\"dropdown-menu left-adjust\" aria-labelledby=\"dropdownMenu2\">\n" +
-    "            <li><a ui-sref=\"root.site.document({section_id: 1, sub_section_id: 1, title: 'Policy', section_name: 'policy'})\">Policy</a></li>\n" +
-    "            <li><a ui-sref=\"root.site.document({section_id: 1, sub_section_id: 2, title: 'Safety Observations', section_name: 'safety-observations'})\">Safety Observations</a></li>\n" +
-    "            <li><a ui-sref=\"root.site.document({section_id: 1, sub_section_id: 3, title: 'View safety documents', section_name: 'view-safety-documents'})\">View safety documents</a></li>\n" +
-    "            <li role=\"separator\" class=\"divider\"></li>\n" +
-    "            <li><a ui-sref=\"root.site.safety-documents({section_id: 1, sub_section_id: 20})\">Submit safety documents</a></li>\n" +
-    "            <li><a ui-sref=\"root.site.document({section_id: 1, sub_section_id: 5, title: 'Compliance audits', section_name: 'compliance-audits'})\">Compliance audits</a></li>\n" +
-    "        </ul>\n" +
-    "    </div>\n" +
-    "    <div class=\"col-md-2 col-sm-4 col-xs-12\">\n" +
-    "        <button class=\"btn btn-default btn-block dropdown-toggle\" type=\"button\" id=\"dropdownMenu3\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"true\">\n" +
-    "            Service Delivery <span class=\"caret\"></span>\n" +
-    "        </button>\n" +
-    "        <ul class=\"dropdown-menu left-adjust\" aria-labelledby=\"dropdownMenu3\">\n" +
-    "            <li><a ui-sref=\"root.site.document({section_id: 3, sub_section_id: 12, title: 'Contract', section_name: 'contract'})\">Contract</a></li>\n" +
-    "            <li><a ui-sref=\"root.site.document({section_id: 3, sub_section_id: 13, title: 'Work scope', section_name: 'work-scope'})\">Work scope</a></li>\n" +
-    "            <li><a ui-sref=\"root.site.document({section_id: 3, sub_section_id: 14, title: 'SOPs', section_name: 'sops'})\">SOPs</a></li>\n" +
-    "        </ul>\n" +
-    "    </div>\n" +
-    "</div>\n" +
-    "<div ui-view><h4 class=\"link-color\">Please select option from the drop down list.</h4></div>\n"
+    "<h2>{{ vm.hotel.name }}</h2>\r" +
+    "\n" +
+    "<div class=\"row\">\r" +
+    "\n" +
+    "    <div class=\"col-md-2 col-sm-4 col-xs-12\">\r" +
+    "\n" +
+    "        <button class=\"btn btn-default btn-block dropdown-toggle\" type=\"button\" id=\"dropdownMenu1\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">\r" +
+    "\n" +
+    "            Assure Quality <span class=\"caret\"></span>\r" +
+    "\n" +
+    "        </button>\r" +
+    "\n" +
+    "        <ul class=\"dropdown-menu left-adjust\" aria-labelledby=\"dropdownMenu1\">\r" +
+    "\n" +
+    "            <li><a ui-sref=\"root.site.document({section_id: 2, sub_section_id: 6, title: 'Assure Manual', section_name: 'assure-manual'})\">Assure Manual</a></li>\r" +
+    "\n" +
+    "            <li><a ui-sref=\"root.site.assure-inspection-start\">Assure Inspection</a></li>\r" +
+    "\n" +
+    "            <li><a ui-sref=\"root.site.document({section_id: 2, sub_section_id: 8, title: 'Assure Reporting', section_name: 'assure-reporting'})\">Assure Reporting</a></li>\r" +
+    "\n" +
+    "            <li><a ui-sref=\"root.site.completed-inspections({section_id: 2, sub_section_id: 19})\">View Completed Inspections</a></li>\r" +
+    "\n" +
+    "            <li role=\"separator\" class=\"divider\"></li>\r" +
+    "\n" +
+    "            <li><a ui-sref=\"root.site.brand-standards\">Brand Standards</a></li>\r" +
+    "\n" +
+    "            <li><a ui-sref=\"root.site.document({section_id: 2, sub_section_id: 11, title: 'Internal Quality', section_name: 'internal-quality'})\">Internal Quality</a></li>\r" +
+    "\n" +
+    "            <li><a ui-sref=\"root.site.document({section_id: 2, sub_section_id: 10, title: 'Trip Advisor', section_name: 'trip-advisor'})\">Trip Advisor</a></li>\r" +
+    "\n" +
+    "        </ul>\r" +
+    "\n" +
+    "    </div>\r" +
+    "\n" +
+    "    <div class=\"col-md-2 col-sm-4 col-xs-12\">\r" +
+    "\n" +
+    "        <button class=\"btn btn-default btn-block dropdown-toggle\" type=\"button\" id=\"dropdownMenu2\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">\r" +
+    "\n" +
+    "            Safety <span class=\"caret\"></span>\r" +
+    "\n" +
+    "        </button>\r" +
+    "\n" +
+    "        <ul class=\"dropdown-menu left-adjust\" aria-labelledby=\"dropdownMenu2\">\r" +
+    "\n" +
+    "            <li><a ui-sref=\"root.site.document({section_id: 1, sub_section_id: 1, title: 'Policy', section_name: 'policy'})\">Policy</a></li>\r" +
+    "\n" +
+    "            <li><a ui-sref=\"root.site.document({section_id: 1, sub_section_id: 2, title: 'Safety Observations', section_name: 'safety-observations'})\">Safety Observations</a></li>\r" +
+    "\n" +
+    "            <li><a ui-sref=\"root.site.document({section_id: 1, sub_section_id: 3, title: 'View safety documents', section_name: 'view-safety-documents'})\">View safety documents</a></li>\r" +
+    "\n" +
+    "            <li role=\"separator\" class=\"divider\"></li>\r" +
+    "\n" +
+    "            <li><a ui-sref=\"root.site.safety-documents({section_id: 1, sub_section_id: 20})\">Submit safety documents</a></li>\r" +
+    "\n" +
+    "            <li><a ui-sref=\"root.site.document({section_id: 1, sub_section_id: 5, title: 'Compliance audits', section_name: 'compliance-audits'})\">Compliance audits</a></li>\r" +
+    "\n" +
+    "        </ul>\r" +
+    "\n" +
+    "    </div>\r" +
+    "\n" +
+    "    <div class=\"col-md-2 col-sm-4 col-xs-12\">\r" +
+    "\n" +
+    "        <button class=\"btn btn-default btn-block dropdown-toggle\" type=\"button\" id=\"dropdownMenu3\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"true\">\r" +
+    "\n" +
+    "            Service Delivery <span class=\"caret\"></span>\r" +
+    "\n" +
+    "        </button>\r" +
+    "\n" +
+    "        <ul class=\"dropdown-menu left-adjust\" aria-labelledby=\"dropdownMenu3\">\r" +
+    "\n" +
+    "            <li><a ui-sref=\"root.site.document({section_id: 3, sub_section_id: 12, title: 'Contract', section_name: 'contract'})\">Contract</a></li>\r" +
+    "\n" +
+    "            <li><a ui-sref=\"root.site.document({section_id: 3, sub_section_id: 13, title: 'Work scope', section_name: 'work-scope'})\">Work scope</a></li>\r" +
+    "\n" +
+    "            <li><a ui-sref=\"root.site.document({section_id: 3, sub_section_id: 14, title: 'SOPs', section_name: 'sops'})\">SOPs</a></li>\r" +
+    "\n" +
+    "        </ul>\r" +
+    "\n" +
+    "    </div>\r" +
+    "\n" +
+    "</div>\r" +
+    "\n" +
+    "<div ui-view><h4 class=\"link-color\">Please select option from the drop down list.</h4></div>\r" +
+    "\n"
   );
 
 

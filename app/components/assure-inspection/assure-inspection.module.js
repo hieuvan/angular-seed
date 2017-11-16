@@ -9,4 +9,5 @@ define(function(require) {
   return angular.module('app.assure-inspection', [])
 
   .controller('AssureInspectionController', AssureInspectionController);
+
 });

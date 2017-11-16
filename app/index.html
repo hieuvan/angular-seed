@@ -18,6 +18,7 @@
     <link rel="stylesheet" href="styles/angular-datatables/datatables.bootstrap.min.css">
 
     <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:400,100,300,500">
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDmatmflUosgKOQM1WjFqBFk5zGMN7rE0Y"></script>
 
   </head>
 
@@ -25,24 +26,22 @@
     <!--[if lt IE 10]>
     <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
+    <div id="main-container">
+      <div class="angular-app-container">
+        <div id="loading-spin-container"></div>
+        <div ui-view="header"></div>
+        <!-- ui-view-container is require for page transition animation -->
+        <div class="ui-view-container" id="body">
+          <div class="container" ui-view="content">
+          </div>
+        </div>
 
-
-    <toast></toast>
-
-    <div class="angular-app-container">
-      <div ui-view="header"></div>
-
-      <!-- ui-view-container is require for page transition animation -->
-      <div class="ui-view-container body">
-        <div class="container" ui-view="content"></div>
+        <div ui-view="footer" id="footer"></div>
       </div>
-
-      <!--<div ui-view="footer"></div>-->
     </div>
 
     <!-- build:js js/main.js -->
     <script data-main="rjs.config" src="../bower_components/requirejs/require.js"></script>
-    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDmatmflUosgKOQM1WjFqBFk5zGMN7rE0Y"></script>
     <!-- /build -->
   </body>
 </html>

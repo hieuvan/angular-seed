@@ -5,7 +5,7 @@ define(function(require) {
         var getNews = function() {
             var deferred = $q.defer();
 
-            $http.get($resourceProvider.apiUrl + 'news', {'cache': true})
+            $http.get($resourceProvider.apiUrl + 'news', {cache: true, timeout: 10000})
                 .then(function(response) {
                     deferred.resolve(response.data);
                 }, function errorCallback(response) {

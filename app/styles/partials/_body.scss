@@ -3,13 +3,16 @@ html, body {
 }
 .angular-app-container {
   min-height: 100%;
-  position:relative;
 }
 .nav-tabs {
   margin-bottom: 15px;
 }
-.body {
-  padding-bottom: 80px;
+#body {
+  padding-bottom: 60px;
+}
+#main-container {
+  min-height:100%;
+  position:relative;
 }
 #map {
   height:260px;

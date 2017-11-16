@@ -26,4 +26,4 @@
         </div>
     </div>
 </div>
-<p ng-if="vm.incompleteInspection">There is incomplete inspection. <a ui-sref="root.site.assure-inspection-start({siteId:vm.incompleteInspection})">Finish</a> it first before starting the new inspection.</p>
+<p ng-if="vm.incompleteInspection">There is incomplete inspection. <a ui-sref="root.site.assure-inspection-start({siteId:vm.incompleteInspection})">Complete</a> it first or <a href="javascript:void(0)" ng-click="vm.cancelInspection()">Cancel</a> it before starting a new inspection.</p>

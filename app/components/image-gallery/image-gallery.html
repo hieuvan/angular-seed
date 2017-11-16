@@ -1,13 +1,5 @@
-<div class="container slider">
-    <!-- enumerate all photos -->
-    <img ng-repeat="photo in vm.photos" class="slide img-responsive" ng-swipe-right="vm.showPrev()" ng-swipe-left="vm.showNext()" ng-show="vm.isActive($index)" ng-src="{{photo.src}}" />
-    <!-- prev / next controls -->
-    <a class="arrow prev" ng-click="vm.showPrev()"></a>
-    <a class="arrow next" ng-click="vm.showNext()"></a>
-    <!-- extra navigation controls -->
-    <ul class="slider-nav">
-        <li ng-repeat="photo in vm.photos" ng-class="{'active':vm.isActive($index)}">
-            <img ng-src="{{photo.src}}" class="img-thumbnail" alt="{{photo.desc}}" title="{{photo.desc}}" ng-click="vm.showPhoto($index);" />
-        </li>
-    </ul>
-</div>
+<h3>Brand Gallery</h3>
+<p>Click on a thumbnail to see larger image</p>
+<div ng-image-gallery images="vm.photos" img-bubbles="true"></div>
+
+
